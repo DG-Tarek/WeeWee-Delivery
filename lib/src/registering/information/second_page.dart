@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import '../../constant/constant.dart';
@@ -26,13 +27,11 @@ class _SecondPageState extends State<SecondPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Text("Personal Information", style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.deepPurple,
-                  fontWeight: FontWeight.w500
-              ),),
+              child: Text("Personal Information",
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.deepPurple , fontWeight: FontWeight.w500)
+                ,),
             ),
-            SizedBox(height: height * .035,),
+            SizedBox(height: 15.h,),
             const TextField(
               decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -200,8 +199,8 @@ class _SecondPageState extends State<SecondPage> {
               ),
             ),
             SizedBox(height: 20,),
-            Text("Gender",
-              style: TextStyle(color: Colors.deepPurple, fontSize: 18),),
+            Text(" Gender",
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple),),
             SizedBox(height: 15,),
             Container(
               height: 60,

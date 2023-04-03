@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/registering/information/first_page.dart';
 import 'package:weewee_delivery/src/registering/information/second_page.dart';
@@ -28,14 +29,14 @@ class _InformationScreenState extends State<InformationScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Registration"),
+        title: Text("Registration" ,),
       ),
       body:   Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: height*.03,),
+            SizedBox(height: 15.h,),
             SizedBox(
               height: 45,
               width: width*.8,
@@ -165,12 +166,12 @@ class _InformationScreenState extends State<InformationScreen> {
                 ],
               ),
             ),
-            SizedBox(height: height*.03,),
+            SizedBox(height: 15.h,),
             Flexible(
               child: PageView(
                 controller: _controller,
                 physics: NeverScrollableScrollPhysics(),
-                children: [
+                children: const [
                   FirstPage(),
                   SecondPage(),
                   ThirdPage(),
@@ -196,7 +197,7 @@ class _InformationScreenState extends State<InformationScreen> {
                       opacity:  _currentPage>1 ? 1 : 0,
                       child: Text(
                         "Previos" ,
-                        style: const TextStyle(color: Colors.deepPurple ,fontSize: 18),),
+                        style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple),),
                     ),
                   ),
 
@@ -217,11 +218,11 @@ class _InformationScreenState extends State<InformationScreen> {
                       padding: EdgeInsets.symmetric(vertical: 8,horizontal: 24),
                       decoration: BoxDecoration(
                         color: Colors.deepPurple,
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        borderRadius: BorderRadius.all(Radius.circular(24.w)),
                       ),
                       child: Text(
                         "Next" ,
-                        style: const TextStyle(color: Colors.white ,fontSize: 18 ,fontWeight: FontWeight.w500),),
+                        style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
                     ),
                   )
                 ],

@@ -57,6 +57,14 @@ flutter:
     - assets/icons/driver.png
     - assets/icons/trader.png
     - assets/onboarding/onboarding.jpg
+    - assets/icons/automobile.png
+    - assets/icons/cycle.png
+    - assets/icons/motorbiking.png
+    - assets/icons/suv.png
+    - assets/icons/tourist.png
+    - assets/icons/truck1.png
+    - assets/icons/truck2.png
+    - assets/icons/walking.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -30,7 +30,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: Column(
        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 20.h,),
+          SizedBox(height: 25.h,),
           SizedBox(
             height: 22.h,
             child: Row(
@@ -53,7 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             borderRadius: BorderRadius.all(Radius.circular(24.w)),
                             border: Border.all(width: 1, color: Colors.deepPurple)
                           ),
-                            child: Text("Skip", style: Theme.of(context).textTheme.displaySmall))),
+                            child: Text("Skip", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple)))),
                 ),
                 SizedBox(width: 50.w,),
               ],
@@ -62,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           const Spacer(),
 
           SizedBox(
-            height: 860.w,
+            height: 1.sw,
             child: PageView(
               controller: _controller,
               onPageChanged: (page){
@@ -81,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ],
             ),
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(height: 10.h,),
           SmoothPageIndicator(
             controller: _controller,
             count:  4,
@@ -98,7 +98,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
 
-          SizedBox(height: 90.h,),
+          const Spacer(),
+          SizedBox(height: 25.h,),
           GestureDetector(
             onTap: (){
               if(_currentPage<3){
@@ -133,10 +134,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: _currentPage == 3 ? Text(
                     "GET STARTED" ,
                     key: ValueKey<bool>(_currentPage == 3),
-                    style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.white),) : Text(
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),) : Text(
                   "NEXT" ,
                   key: ValueKey<bool>(_currentPage == 3),
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.white),),
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
                 ),
             )
               ,
@@ -167,7 +168,7 @@ class OnboardingPage extends StatelessWidget {
           Text(title,
 
               style:  Theme.of(context).textTheme.displayLarge),
-          SizedBox(height: 5.h,),
+          SizedBox(height: 6.h,),
            Text(text,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.black)),

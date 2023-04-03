@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 
 class ThirdPage extends StatelessWidget {
@@ -144,16 +145,16 @@ class _DriverPageState extends State<DriverPage> {
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        Text("I'm available to deliver", style: TextStyle(
-            fontSize: 24,
-            color: Colors.deepPurple,
-            fontWeight: FontWeight.w500
-        ),),
-        SizedBox(height: height*.035,),
+        Center(
+          child: Text("I'm available to deliver",
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.deepPurple , fontWeight: FontWeight.w500)
+            ,),
+        ),
+        SizedBox(height: 15.h,),
         Container(
           width: width,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderRadius: BorderRadius.all(Radius.circular(24.w)),
               border: Border.all(color: Colors.deepPurple, width: 1)
           ),
           child:Column(
@@ -219,7 +220,27 @@ class _DriverPageState extends State<DriverPage> {
             ],
           )
         ),
+        SizedBox(height: 15.h,),
+        SizedBox(
+          height: 400,
+          child: GridView.count(
+            physics: NeverScrollableScrollPhysics(),
+              crossAxisCount: 3,
+            mainAxisSpacing: 25.w,
+            crossAxisSpacing: 25.w,
+            children: TRONSPORTS.map((t) => Container(
+              padding: EdgeInsets.all(28.w),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(24.w)),
+                border: Border.all(color: Colors.deepPurple, width: 1),
+              ),
+              child: t.image.isNotEmpty? Image.asset(t.image) : Icon(Icons.directions_walk),
+            )).toList(),
+          ),
+        )
       ],
     );
   }
 }
+
+

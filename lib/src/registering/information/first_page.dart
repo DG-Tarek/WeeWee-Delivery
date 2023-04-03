@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 
 class FirstPage extends StatefulWidget {
@@ -16,18 +17,15 @@ class _FirstPageState extends State<FirstPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text("Type of Account", style: TextStyle(
-            fontSize: 24,
-            color: Colors.deepPurple,
-            fontWeight: FontWeight.w500
-        ),),
-        SizedBox(height: height*.035,),
-        SizedBox(
-          height: 165,
+        Text("Type of Account",
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.deepPurple , fontWeight: FontWeight.w500)
+          ,),
+        SizedBox(height: 15.h,),
+        Container(
+          height: 180,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Spacer(),
+              const Spacer(),
             GestureDetector(
               onTap: ()=>
                 setState(() {
@@ -38,8 +36,8 @@ class _FirstPageState extends State<FirstPage> {
                 children: [
                   AnimatedContainer(
                     duration: _animatedDuration ,
-                    height: 120 + (_type == "driver"? 10 : 0),
-                    width: 120 + (_type == "driver"? 10 : 0),
+                    height: 265.w + (_type == "driver"? 10 : 0),
+                    width: 265.w + (_type == "driver"? 10 : 0),
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -63,16 +61,12 @@ class _FirstPageState extends State<FirstPage> {
                       child: Image.asset("assets/icons/driver.png"),
                     ),
                   ),
-                  SizedBox(height: 10,),
-                  Text("Driver", style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.deepPurple,
-                      fontWeight: FontWeight.w400
-                  ),),
+                  SizedBox(height: 10.h,),
+                  Text("Driver", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.deepPurple),),
                 ],
               ),
             ),
-              SizedBox(width: 30,),
+              SizedBox(width: 80.w,),
               GestureDetector(
                 onTap: ()=>
                     setState(() {
@@ -83,8 +77,8 @@ class _FirstPageState extends State<FirstPage> {
                   children: [
                     AnimatedContainer(
                       duration: _animatedDuration ,
-                      height: 120 + (_type == "trader"? 10 : 0),
-                      width: 120 + (_type == "trader"? 10 : 0),
+                      height: 265.w + (_type == "trader"? 10 : 0),
+                      width: 265.w + (_type == "trader"? 10 : 0),
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -108,20 +102,16 @@ class _FirstPageState extends State<FirstPage> {
                         child: Image.asset("assets/icons/trader.png"),
                       ),
                     ),
-                    SizedBox(height: 10,),
-                    Text("Trader", style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.deepPurple,
-                        fontWeight: FontWeight.w400
-                    ),),
+                    SizedBox(height: 10.h,),
+                    Text("Trader", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.deepPurple),),
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),
-        SizedBox(height: height*.05,),
+        SizedBox(height: 25.h,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: AnimatedSwitcher(
