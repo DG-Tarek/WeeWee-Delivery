@@ -146,11 +146,6 @@ class _SecondPageState extends State<SecondPage> {
                   ),
                 ),
               ),
-
-
-
-
-
               const SizedBox(height: 20,),
               const TextField(
                 decoration: InputDecoration(

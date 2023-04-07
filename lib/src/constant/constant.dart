@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 late double height ;
 late double width ;
 
@@ -15,4 +17,8 @@ Transport(name: "suv 4x4", image: "assets/icons/automobile.png"),
 Transport(name: "van", image: "assets/icons/suv.png"),
 Transport(name: "mini truck", image: "assets/icons/truck1.png"),
 Transport(name: "truck", image: "assets/icons/truck2.png"),
+];
+
+final List<Color> COLORS = [Colors.deepPurple,Colors.blue,Colors.teal,Colors.deepOrange,Colors.pink,
+Colors.purpleAccent, Colors.red, Colors.brown
 ];

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import 'list_screen/list_screen.dart';
+import 'list_screen/packages_screen.dart';
 
 class DeliverMainScreen extends StatefulWidget {
   const DeliverMainScreen({Key? key}) : super(key: key);
@@ -19,11 +19,12 @@ class _DeliverMainScreenState extends State<DeliverMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:ListScreen(),
+      body:PackagesList(),
       bottomNavigationBar: Container(
         color: Colors.white,
         padding: EdgeInsets.only(right: 32.w ,left: 32.w, top: 12.w),
         child: SalomonBottomBar(
+
           currentIndex: _currentIndex,
           onTap: (i) => setState(() => _currentIndex = i),
           items: [
@@ -37,7 +38,7 @@ class _DeliverMainScreenState extends State<DeliverMainScreen> {
             /// Likes
             SalomonBottomBarItem(
               icon: Icon(CupertinoIcons.list_dash),
-              title: Text("List"),
+              title: Text("Packages"),
               selectedColor: Colors.teal,
             ),
 
