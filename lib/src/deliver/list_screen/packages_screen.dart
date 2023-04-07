@@ -17,7 +17,6 @@ class _PackagesListState extends State<PackagesList> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-
       slivers: [
         SliverAppBar(
           backgroundColor: Colors.teal,
@@ -79,14 +78,14 @@ class _PackagesListState extends State<PackagesList> {
                   ),
                 ),
               )),
-              Icon(CupertinoIcons.list_bullet_below_rectangle)
+              //Icon(CupertinoIcons.list_number)
             ],
           ),
         ),
         SliverList(
             delegate: SliverChildBuilderDelegate(
                 (context,index){
-                  return index == 0 ? SizedBox(height: 20,): PackageItem();
+                  return index == 0 ? const SizedBox(height: 20,): PackageItem();
                 },
               childCount: 5
             ))
