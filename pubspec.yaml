@@ -32,6 +32,7 @@ dependencies:
   bottom_picker: ^2.0.1
   flutter_datetime_picker: ^1.5.1
   intl: ^0.18.0
+  salomon_bottom_bar: ^3.3.2
 
 
 dev_dependencies:
@@ -57,6 +58,10 @@ flutter:
     - assets/icons/driver.png
     - assets/icons/trader.png
     - assets/onboarding/onboarding.jpg
+    - assets/onboarding/slide1.json
+    - assets/onboarding/slide2.json
+    - assets/onboarding/slide3.json
+    - assets/onboarding/slide4.json
     - assets/icons/automobile.png
     - assets/icons/cycle.png
     - assets/icons/motorbiking.png

@@ -8,11 +8,11 @@ class Transport{
 }
 
 List<Transport> TRONSPORTS = const [
-Transport(name: "Nothing", image: "assets/icons/walking.png"),
-Transport(name: "Bicycle", image: "assets/icons/cycle.png"),
-  Transport(name: "Motorbike", image: "assets/icons/motorbiking.png"),
-Transport(name: "SUV 4x4", image: "assets/icons/automobile.png"),
-Transport(name: "Van", image: "assets/icons/suv.png"),
-Transport(name: "Mini Truck", image: "assets/icons/truck1.png"),
-Transport(name: "Truck", image: "assets/icons/truck2.png"),
+Transport(name: "nothing", image: ""),
+Transport(name: "bicycle", image: "assets/icons/cycle.png"),
+  Transport(name: "motorbike", image: "assets/icons/motorbiking.png"),
+Transport(name: "suv 4x4", image: "assets/icons/automobile.png"),
+Transport(name: "van", image: "assets/icons/suv.png"),
+Transport(name: "mini truck", image: "assets/icons/truck1.png"),
+Transport(name: "truck", image: "assets/icons/truck2.png"),
 ];

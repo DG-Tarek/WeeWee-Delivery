@@ -1,12 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weewee_delivery/src/constant/constant.dart';
-import 'package:weewee_delivery/src/registering/information/first_page.dart';
-import 'package:weewee_delivery/src/registering/information/second_page.dart';
-import 'package:weewee_delivery/src/registering/information/third_page.dart';
+import 'package:weewee_delivery/src/registering/information/first_screen.dart';
+import 'package:weewee_delivery/src/registering/information/second_screen.dart';
+import 'package:weewee_delivery/src/registering/information/third_screen.dart';
+
 
 class InformationScreen extends StatefulWidget {
-  const InformationScreen({ super.key });
+  const InformationScreen({ super.key});
 
   @override
   State<InformationScreen> createState() => _InformationScreenState();
@@ -15,224 +16,175 @@ class InformationScreen extends StatefulWidget {
 class _InformationScreenState extends State<InformationScreen> {
 
 
-  final Duration _animatedDuration = Duration(milliseconds: 500);
+  // final Duration _animatedDuration = Duration(milliseconds: 500);
   int _currentPage = 1;
   late PageController _controller ;
+  late PageController _pageController ;
   @override
   void initState() {
     super.initState();
     _controller = PageController();
+    _pageController = PageController();
+  }
+
+     goNext(){
+    if(_currentPage<3){
+      setState(() {
+        _currentPage ++;
+      });
+    }
+  }
+ 
+  _back(){
+    if(_currentPage>1){
+      setState(() {
+        _currentPage--;
+      });
+      _controller.animateToPage(_currentPage -1, duration: Duration(milliseconds: 500), curve: Curves.fastOutSlowIn);
+      _pageController.animateToPage(_currentPage -1, duration: Duration(milliseconds: 500), curve: Curves.fastOutSlowIn);
+
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _controller.dispose();
+    _pageController.dispose();
   }
   @override
-
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Registration" ,),
-      ),
-      body:   Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 15.h,),
-            SizedBox(
-              height: 45,
-              width: width*.8,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Positioned(
-                    left: 0,
-                    child: AnimatedSwitcher(
-                      duration:  _animatedDuration,
-                      transitionBuilder: (Widget child, Animation<double> animation) {
-                        return FadeTransition(opacity: animation, child: child);
-                      },
-                      child: _currentPage <=  1 ?
-
-                      Container(
-                        height: 45,
-                        width: 45,
-                        alignment: Alignment.center,
-                        key: ValueKey<bool>(_currentPage <= 1),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.deepPurple,width: 2)
-                        ),
-                        child: Text("1" , style: TextStyle(color: Colors.deepPurple , fontSize: 22),),
-                      ) :
-                      Container(
-                        height: 45,
-                        width: 45,
-                        key: ValueKey<bool>(_currentPage <= 1),
-                        decoration: BoxDecoration(
-                            color: Colors.deepPurple,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.deepPurple,width: 2)
-                        ),
-                        child: Icon(Icons.done , color: Colors.white,),
+      body: CustomScrollView(
+        slivers: [
+          SliverFillRemaining(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap:()=>_back(),
+                        child: Container(
+                          height: 40.h,
+                          alignment: Alignment.bottomLeft,
+                          padding: EdgeInsets.only(bottom: 24.w),
+                          child: AnimatedOpacity(
+                              duration: Duration(milliseconds: 500),
+                              opacity: _currentPage >1 ? 1 : 0,
+                              child: Icon(CupertinoIcons.left_chevron)),
+                         ),
                       ),
-                    ),
-                  ),
-                  Positioned(
-                      left: 45,
-                      child: Stack(
+                      SizedBox(
+                        height: 35,
+                        child: PageView(
+                          physics: const NeverScrollableScrollPhysics(),
+                           controller: _pageController,
+                          children:  [
+                            Text("Type of Account", style: Theme.of(context).textTheme.titleLarge,),
+                            Text("Personal Information", style: Theme.of(context).textTheme.titleLarge,),
+                            Text("Confirmation", style: Theme.of(context).textTheme.titleLarge,),
+                            ],
+                      ),),
+                      Row(
                         children: [
-                          Container(height: 2,width : (width*.8)/2 -67.5,color: Colors.grey.withOpacity(.5),),
-                          AnimatedContainer(
-                            duration: _animatedDuration,
-                            height: 2,
-                            width :  _currentPage > 1 ? (width*.8)/2 -67.5 : 0,
-                            color: Colors.deepPurple,)
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 500),
+                            transitionBuilder: (Widget child, Animation<double> animation) {
+                              return ScaleTransition(scale: animation, child: child);
+                            },
+                            child: Text(
+                              "$_currentPage" ,
+                              key: ValueKey<int>(_currentPage),
+                              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[400]),
+                            ),
+                          ),
+                          Text(
+                            " of 3" ,
+                            key: ValueKey<int>(_currentPage),
+                            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[400]),
+                          ),
                         ],
-                      )),
-                  AnimatedSwitcher(
-                    duration:  _animatedDuration,
-                    transitionBuilder: (Widget child, Animation<double> animation) {
-                      return FadeTransition(opacity: animation, child: child);
-                    },
-                    child: _currentPage <= 2 ?
-
-                    Container(
-                      height: 45,
-                      width: 45,
-                      alignment: Alignment.center,
-                      key: ValueKey<bool>(_currentPage <= 2),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: _currentPage == 2 ? Colors.deepPurple : Colors.grey.withOpacity(.5),width: 2)
                       ),
-                      child: Text("2" , style: TextStyle(color: _currentPage == 2 ? Colors.deepPurple : Colors.grey.withOpacity(.5) , fontSize: 22),),
-                    ) :
-                    Container(
-                      height: 45,
-                      width: 45,
-                      key: ValueKey<bool>(_currentPage <= 1),
-                      decoration: BoxDecoration(
+                      SizedBox(height: 20.h,),
+                      Stack(children: [
+                        Container(height: 2.h,width:  850.w,decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.all(Radius.circular(24)),
+                        ),),
+
+                         AnimatedContainer(
+                           duration: Duration(milliseconds: 500),
+                           height: 2.h,
+                           width:  _currentPage == 1 ? 90.w : _currentPage == 2 ? 250.w : 650.w
+                           ,decoration: BoxDecoration(
                           color: Colors.deepPurple,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.deepPurple,width: 2)
-                      ),
-                      child: Icon(Icons.done , color: Colors.white,),
-                    ),
+                          borderRadius: BorderRadius.all(Radius.circular(24)),
+                        ),),
+                      ],),
+                    ],
                   ),
-                  Positioned(
-                      left: (width*.8)/2 +22.5,
-                      child: Stack(
-                        children: [
-                          Container(height: 2,width : (width*.8)/2 -67.5,color: Colors.grey.withOpacity(.5),),
-                          AnimatedContainer(
-                            duration: _animatedDuration,
-                            height: 2,
-                            width :  _currentPage > 2 ? (width*.8)/2 -67.5 : 0,
-                            color: Colors.deepPurple,)],
-                      )),
-
-                  Positioned(
-                    right: 0,
-                    child: AnimatedSwitcher(
-                      duration:  _animatedDuration,
-                      transitionBuilder: (Widget child, Animation<double> animation) {
-                        return FadeTransition(opacity: animation, child: child);
-                      },
-                      child: _currentPage <= 3 ?
-
-                      Container(
-                        height: 45,
-                        width: 45,
-                        alignment: Alignment.center,
-                        key: ValueKey<bool>(_currentPage <= 3),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: _currentPage == 3 ? Colors.deepPurple : Colors.grey.withOpacity(.5),width: 2)
-                        ),
-                        child: Text("3" , style: TextStyle(color: _currentPage == 3 ? Colors.deepPurple : Colors.grey.withOpacity(.5) , fontSize: 22),),
-                      ) :
-                      Container(
-                        height: 45,
-                        width: 45,
-                        key: ValueKey<bool>(_currentPage <= 3),
-                        decoration: BoxDecoration(
-                            color: Colors.deepPurple,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.deepPurple,width: 2)
-                        ),
-                        child: Icon(Icons.done , color: Colors.white,),
-                      ),
-                    ),
+                ),
+                SizedBox(height: 20.h,),
+                Flexible(
+                  fit: FlexFit.loose,
+                  child: PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: _controller,
+                    children: [
+                     // FirstPage(controller: _controller, pageController: _pageController,goNext: goNext,),
+                      //SecondPage(controller: _controller, pageController: _pageController, goNext: goNext,),
+                      ThirdPage()
+                    ],
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 15.h,),
-            Flexible(
-              child: PageView(
-                controller: _controller,
-                physics: NeverScrollableScrollPhysics(),
-                children: const [
-                  FirstPage(),
-                  SecondPage(),
-                  ThirdPage(),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20,),
-            SizedBox(
-              width: width,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: (){
-                      if(_currentPage>1){
-                        setState(() {
-                          _currentPage--;
-                        });
-                      }
-                      _controller.animateToPage(_currentPage-1, duration: _animatedDuration, curve: Curves.fastOutSlowIn);
-                    },
-                    child: AnimatedOpacity(
-                      duration: _animatedDuration,
-                      opacity:  _currentPage>1 ? 1 : 0,
-                      child: Text(
-                        "Previos" ,
-                        style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple),),
-                    ),
-                  ),
+                ),
 
-                  Spacer(),
-                  GestureDetector(
-                    onTap: (){
-                      if(_currentPage<3){
-                        setState(() {
-                          _currentPage++;
-                        });
-                        _controller.nextPage(duration: _animatedDuration, curve: Curves.fastOutSlowIn);
-                      }
-                    },
-                    child: Container(
-                      height: 45,
-                      width: 160,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 8,horizontal: 24),
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.all(Radius.circular(24.w)),
-                      ),
-                      child: Text(
-                        "Next" ,
-                        style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
-                    ),
-                  )
-                ],
-              ),
+
+              ],
             ),
-            SizedBox(height: height*.025,),
-          ],
-        )
+          )
+        ],
       ),
-
     );
   }
 }
+
+
+
+    /*
+    *
+    *  SizedBox(height: 100.h,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 85.w,
+                  width: 300.w,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.white , width: 0),
+                    borderRadius: BorderRadius.all(Radius.circular(24.w)),
+                  ),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 64.w),
+                  child: Text("Previous" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple),),
+                ),
+                Container(
+                  height: 85.w,
+                  width: 300.w,
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    border: Border.all(color: Colors.deepPurple , width: 0),
+                    borderRadius: BorderRadius.all(Radius.circular(24.w)),
+                  ),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 64.w),
+                  child: Text("Next" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
+                )
+              ],
+            )*/

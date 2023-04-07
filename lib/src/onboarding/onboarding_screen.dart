@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/registering/information/first_screen.dart';
 import 'package:weewee_delivery/src/registering/information/iformation_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -20,7 +21,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void initState() {
-
     super.initState();
     _controller = PageController(initialPage: _currentPage);
   }
@@ -41,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 GestureDetector(
                   onTap: ()=>Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) =>  InformationScreen()),
+                    MaterialPageRoute(builder: (context) =>  FirstPage()),
                   ),
                   child: AnimatedOpacity(
                         duration : _animatedDuration,
