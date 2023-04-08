@@ -4,16 +4,17 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
-import 'package:weewee_delivery/src/deliver/list_screen/package_item.dart';
+import 'package:weewee_delivery/src/deliver/packages/package_item.dart';
 
-class PackagesList extends StatefulWidget {
-  const PackagesList({Key? key}) : super(key: key);
+class PackagesListScreen extends StatefulWidget {
+  const PackagesListScreen({Key? key}) : super(key: key);
 
   @override
-  State<PackagesList> createState() => _PackagesListState();
+  State<PackagesListScreen> createState() => _PackagesListScreenState();
 }
 
-class _PackagesListState extends State<PackagesList> {
+class _PackagesListScreenState extends State<PackagesListScreen> {
+  String _list = "To pick-up";
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -50,16 +51,18 @@ class _PackagesListState extends State<PackagesList> {
                       value: item,
                       child: Text(
                         item,
-                        style: const TextStyle(
+                        style:  TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: Colors.teal
+                            color: item == _list ? Colors.white : Colors.teal
                         ),
                       ),
                     ))
                     .toList(),
                 onChanged: (value) {
-                  print(value.toString());
+                  setState(() {
+                    _list = value.toString();
+                  });
                 },
                 buttonStyleData: const ButtonStyleData(
                   height: 60,
