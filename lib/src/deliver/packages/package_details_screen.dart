@@ -210,6 +210,54 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                   ),)
                               ],
                             ),
+                            const SizedBox(height: 26,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                                      border: Border.all(color: Colors.red, width: 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade300,
+                                          spreadRadius: 3,
+                                          blurRadius: 3,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    child:  Icon(CupertinoIcons.phone_fill,color: Colors.red,size: 26,),
+                                  ),
+                                ),
+                                SizedBox(width: 16,),
+
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                                      border: Border.all(color: Colors.red, width: 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade300,
+                                          spreadRadius: 3,
+                                          blurRadius: 3,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    child:  Icon(CupertinoIcons.location_solid,color: Colors.red,size: 26,),
+                                  ),
+                                ),
+
+                                const SizedBox(width: 0,)
+                              ],
+                            )
 
                           ],
                         ),
@@ -309,39 +357,54 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
 
                               ],
                             ),
-                           /* SizedBox(height: 20,),
+                            const SizedBox(height: 26,),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.all(6),
-                                          decoration: BoxDecoration(
-                                            color: Colors.green,
-                                            shape: BoxShape.circle,
-                                            border: Border.all(color: Colors.green, width: 2)
-                                          ),
-                                          child: Icon(CupertinoIcons.phone,color: Colors.white,size: 26,),
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                                        border: Border.all(color: Colors.green, width: 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade300,
+                                          spreadRadius: 3,
+                                          blurRadius: 3,
+                                          offset: Offset(0, 3),
                                         ),
-                                        SizedBox(width: 6,),
-                                        Text("Call",style: TextStyle(fontSize: 18, color: Colors.green, fontWeight: FontWeight.w500),)
                                       ],
                                     ),
-                                SizedBox(width: 16,),
-                                Container(
-                                  padding: EdgeInsets.all(6),
-                                  decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: Colors.green, width: 2)
+                                    child:  Icon(CupertinoIcons.phone_fill,color: Colors.green,size: 26,),
                                   ),
-                                  child: Icon(Icons.location_on_outlined,color: Colors.white,size: 26,),
+                                ),
+                                SizedBox(width: 16,),
+                                
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                                        border: Border.all(color: Colors.green, width: 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade300,
+                                          spreadRadius: 3,
+                                          blurRadius: 3,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    child:  Icon(CupertinoIcons.location_solid,color: Colors.green,size: 26,),
+                                  ),
                                 ),
 
-                                  SizedBox(width: 16,)
+                                  const SizedBox(width: 0,)
                               ],
-                            )*/
+                            )
                           ],
                         ),
                       ),
