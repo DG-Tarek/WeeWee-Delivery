@@ -65,9 +65,13 @@ class PackageItem extends StatelessWidget {
                   SizedBox(height: 10,),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    children:  const [
-                      Icon(Icons.pin_drop_rounded, color: Colors.green,size: 26,),
-                       SizedBox(width: 6,),
+                    children:   [
+                      SizedBox(width: 2,),
+                      SizedBox(
+                        width: 22.5,
+                        height: 22.5,
+                        child: Image.asset("assets/icons/location.png", color: Colors.green,),),
+                      SizedBox(width: 10,),
                       Text("Blida, Blida",
                         style:  TextStyle(
                           fontSize: 16,
