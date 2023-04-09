@@ -50,11 +50,11 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                           SizedBox(height: 12,),
                           const Text("Morning (9:00-13:00)",
                             style:  TextStyle(
-                                fontSize: 17,
+                                fontSize: 16,
                                 color: Colors.black54
                             ),),
                           SizedBox(height: 10,),
-                          Text("321424W-22454" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22, fontWeight: FontWeight.w500),),
+                          Text("321424W-22454" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20, fontWeight: FontWeight.w500),),
                         ],
                       ),
               ),
