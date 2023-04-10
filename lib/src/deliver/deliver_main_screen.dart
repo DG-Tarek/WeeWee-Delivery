@@ -2,57 +2,64 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:weewee_delivery/src/deliver/packages/packages_list_screen.dart';
+import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit.dart';
+
+import '../state_management/deliver/deliver_main_cubit_state.dart';
 
 
-class DeliverMainScreen extends StatefulWidget {
+class DeliverMainScreen extends StatelessWidget {
   const DeliverMainScreen({Key? key}) : super(key: key);
 
-  @override
-  State<DeliverMainScreen> createState() => _DeliverMainScreenState();
-}
 
-class _DeliverMainScreenState extends State<DeliverMainScreen> {
-  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:PackagesListScreen(),
-      bottomNavigationBar: Container(
-        color: Colors.white,
-        padding: EdgeInsets.only(right: 32.w ,left: 32.w, top: 12.w),
-        child: SalomonBottomBar(
-          currentIndex: _currentIndex,
-          onTap: (i) => setState(() => _currentIndex = i),
-          items: [
-            /// Home
-            SalomonBottomBarItem(
-              icon: Icon(CupertinoIcons.map_fill),
-              title: Text("Maps"),
-              selectedColor: Colors.deepPurple,
-                unselectedColor: Colors.grey
-            ),
+    return BlocBuilder<DriverMainCubit, DeliverMainCubitState>(
+      bloc: DriverMainCubit(),
+      buildWhen: (previous, current)=> current is ChangeScreenState,
+      builder: (context, state) {
+        return Scaffold(
+          body: DriverMainCubit().currentScreen,
+          bottomNavigationBar: Container(
+            color: Colors.white,
+            padding: EdgeInsets.only(right: 32.w ,left: 32.w, top: 12.w),
+            child: SalomonBottomBar(
+              currentIndex: DriverMainCubit().currentScreenIndex,
+              onTap: (i) {
+                DriverMainCubit().changeScreen(i);
+              },
+              items: [
+                /// Home
+                SalomonBottomBarItem(
+                  icon: Icon(CupertinoIcons.map_fill),
+                  title: Text("Maps"),
+                  selectedColor: Colors.deepPurple,
+                    unselectedColor: Colors.grey
+                ),
 
-            /// Likes
-            SalomonBottomBarItem(
-              icon: Icon(CupertinoIcons.collections_solid),
-              title: Text("Packages"),
-              selectedColor: Colors.teal,
-                unselectedColor: Colors.grey
-            ),
+                /// Likes
+                SalomonBottomBarItem(
+                  icon: Icon(CupertinoIcons.collections_solid),
+                  title: Text("Packages"),
+                  selectedColor: Colors.teal,
+                    unselectedColor: Colors.grey
+                ),
 
-            /// Profile
-            SalomonBottomBarItem(
-              icon: Icon(Icons.person),
-              title: Text("Profile"),
-              selectedColor: Colors.blue,
-              unselectedColor: Colors.grey
+                /// Profile
+                SalomonBottomBarItem(
+                  icon: Icon(Icons.person),
+                  title: Text("Profile"),
+                  selectedColor: Colors.blue,
+                  unselectedColor: Colors.grey
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
 }

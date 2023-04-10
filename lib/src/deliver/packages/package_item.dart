@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/deliver/packages/package_details_screen.dart';
+import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit.dart';
 
 class PackageItem extends StatelessWidget {
   const PackageItem({Key? key}) : super(key: key);
@@ -16,19 +17,22 @@ class PackageItem extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
       child: GestureDetector(
         onTap: ()=>Navigator.of(context).push(_createRoute()),
+        onLongPress: (){
+          DriverMainCubit().changeScreen(0);
+        },
         child: Container(
           decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.all(Radius.circular(24)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade200,
-                spreadRadius: 5,
-                blurRadius: 5,
-                offset: Offset(0, 3),
-              ),
-            ],
-          ),
+          color: color,
+          borderRadius: BorderRadius.all(Radius.circular(24)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              spreadRadius: 5,
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
           child: Padding(
             padding: const EdgeInsets.only(left: 3),
             child: Container(

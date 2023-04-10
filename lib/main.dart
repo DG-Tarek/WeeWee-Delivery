@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/opening/opening_screen.dart';
 import 'package:weewee_delivery/src/shared/styles.dart';
+import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit.dart';
 
 import 'src/constant/constant.dart';
 
@@ -24,7 +26,13 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Flutter Demo',
           theme: lightTheme,
-          home: OpeningScreen(),
+          home: MultiBlocProvider(
+              providers: [
+                BlocProvider<DriverMainCubit>(
+                  create: (BuildContext context) => DriverMainCubit(),
+                ),
+              ],
+              child: OpeningScreen()),
         );
       },
     );

@@ -5,6 +5,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit.dart';
 
 class MapsScreen extends StatefulWidget {
   const MapsScreen({Key? key}) : super(key: key);
@@ -17,7 +18,6 @@ class _MapsScreenState extends State<MapsScreen> {
 
   final _animatedDuration = Duration(milliseconds: 300);
 
-  String _list  = "To pick-up";
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,21 +40,21 @@ class _MapsScreenState extends State<MapsScreen> {
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4),
         ),
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent,width: 0),
             borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent, width: 1),
             borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
       ),
       isExpanded: true,
       hint:  Text(
-        _list,
-      style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+        DriverMainCubit().selectedTypeOfPackages,
+      style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
       ),
-      items: const ["To pick-up", "To deliver", "To return"]
+      items:  DriverMainCubit().typesOfPackages
             .map((item) =>
               DropdownMenuItem<String>(
               value: item,
@@ -63,14 +63,14 @@ class _MapsScreenState extends State<MapsScreen> {
               style:  TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
-              color: _list == item ? Colors.white: Colors.deepPurple
+              color: item == DriverMainCubit().selectedTypeOfPackages ? Colors.white: Colors.deepPurple
               ),
               ),
               ))
             .toList(),
       onChanged: (value) {
         setState(() {
-          _list= value.toString();
+          DriverMainCubit().changeSelectedTypeOfPackages(value);
         });
       },
       buttonStyleData: const ButtonStyleData(
@@ -114,19 +114,16 @@ class _MapsScreenState extends State<MapsScreen> {
                   items: [
                     CircularMenuItem(
                         icon: Icons.gps_fixed_sharp,
-                        boxShadow: [],
                         onTap: () {
                       // callback
                     }),
                     CircularMenuItem(
                         icon: Icons.search,
-                        boxShadow: [],
                         onTap: () {
                       //callback
                     }),
                     CircularMenuItem(
                         icon: Icons.gps_fixed_sharp,
-                        boxShadow: [],
                         onTap: () {
                       //callback
                     }),
@@ -135,25 +132,49 @@ class _MapsScreenState extends State<MapsScreen> {
           Positioned(
               left: 15,
               top: 145,
-              child: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.deepPurple, width: 1),
-                  shape: BoxShape.circle,
-                  boxShadow:  [
-                    BoxShadow(
-                      color: Colors.grey.shade200,
-                      spreadRadius: 5,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
+              child: Row(
+                children: [
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.deepPurple, width: 1),
+                      shape: BoxShape.circle,
+                      boxShadow:  [
+                        BoxShadow(
+                          color: Colors.grey.shade200,
+                          spreadRadius: 5,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                alignment: Alignment.center,
-                child: Text("999", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.deepPurple, fontSize: 17),),
-              ))
+                    alignment: Alignment.center,
+                    child: Text("999", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.deepPurple, fontSize: 17),),
+                  ),
+                  SizedBox(width: 12,),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.green, width: 1),
+                      shape: BoxShape.circle,
+                      boxShadow:  [
+                        BoxShadow(
+                          color: Colors.grey.shade200,
+                          spreadRadius: 5,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    padding: EdgeInsets.all(6),
+                    child: Image.asset("assets/icons/packagelogo.png"),
+                  )
+                ],
+              ),)
 
         ],
       ),

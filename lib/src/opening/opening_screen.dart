@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:weewee_delivery/src/deliver/deliver_main_screen.dart';
 import 'package:weewee_delivery/src/onboarding/onboarding_screen.dart';
 
 import '../constant/constant.dart';
@@ -63,7 +64,7 @@ alignment: Alignment.center,
                     onFinished: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) =>  OnboardingScreen()),
+                        MaterialPageRoute(builder: (context) =>  DeliverMainScreen()),//OnboardingScreen
                       );
                     },
                   ),

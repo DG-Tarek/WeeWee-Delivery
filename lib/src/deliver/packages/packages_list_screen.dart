@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/deliver/packages/package_item.dart';
 
+import '../../state_management/deliver/deliver_main_cubit.dart';
+
 class PackagesListScreen extends StatefulWidget {
   const PackagesListScreen({Key? key}) : super(key: key);
 
@@ -14,7 +16,7 @@ class PackagesListScreen extends StatefulWidget {
 }
 
 class _PackagesListScreenState extends State<PackagesListScreen> {
-  String _list = "To pick-up";
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -41,11 +43,11 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
                   ),
                 ),
                 isExpanded: true,
-                hint: const Text(
-                  "To pick-up",
+                hint:  Text(
+                  DriverMainCubit().selectedTypeOfPackages,
                   style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
                 ),
-                items: const ["To pick-up", "To deliver", "To return"]
+                items: DriverMainCubit().typesOfPackages
                     .map((item) =>
                     DropdownMenuItem<String>(
                       value: item,
@@ -54,14 +56,14 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
                         style:  TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: item == _list ? Colors.white : Colors.teal
+                            color: item == DriverMainCubit().selectedTypeOfPackages ? Colors.white : Colors.teal
                         ),
                       ),
                     ))
                     .toList(),
                 onChanged: (value) {
                   setState(() {
-                    _list = value.toString();
+                    DriverMainCubit().changeSelectedTypeOfPackages(value);
                   });
                 },
                 buttonStyleData: const ButtonStyleData(
