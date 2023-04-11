@@ -147,8 +147,8 @@ class _MapsScreenState extends State<MapsScreen> {
                     BoxShadow(
                       color: Colors.grey.shade200,
                       spreadRadius: 5,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
+                      blurRadius: 3,
+                      offset: Offset(3, 3),
                     ),
                   ],
                 ),
