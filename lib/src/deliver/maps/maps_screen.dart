@@ -186,7 +186,7 @@ class _MapsScreenState extends State<MapsScreen> {
                           padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: Colors.teal, width: 0),
+                            border: Border.all(color: Colors.green, width: 0.5),
                             borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
                           child: Text("424Q-22454", style: TextStyle(fontWeight: FontWeight.w500),)),
@@ -195,7 +195,7 @@ class _MapsScreenState extends State<MapsScreen> {
                           padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: Colors.teal, width: 0),
+                            border: Border.all(color: Colors.green, width: 0.5),
                             borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
                           child: Text("Alger, Mohammadia")),
@@ -204,7 +204,7 @@ class _MapsScreenState extends State<MapsScreen> {
                           padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: Colors.teal, width: 0),
+                            border: Border.all(color: Colors.green, width: 0.5),
                             borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
                           child: Text("Blida, Blida")),
