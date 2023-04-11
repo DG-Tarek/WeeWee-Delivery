@@ -18,6 +18,7 @@ class PackageItem extends StatelessWidget {
       child: GestureDetector(
         onTap: ()=>Navigator.of(context).push(_createRoute()),
         onLongPress: (){
+          DriverMainCubit().setSelectedPackage();
           DriverMainCubit().changeScreen(0);
         },
         child: Container(

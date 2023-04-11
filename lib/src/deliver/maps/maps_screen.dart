@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit.dart';
 
+import '../packages/package_details_screen.dart';
+
 class MapsScreen extends StatefulWidget {
   const MapsScreen({Key? key}) : super(key: key);
 
@@ -132,52 +134,127 @@ class _MapsScreenState extends State<MapsScreen> {
           Positioned(
               left: 15,
               top: 145,
-              child: Row(
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.deepPurple, width: 1),
-                      shape: BoxShape.circle,
-                      boxShadow:  [
-                        BoxShadow(
-                          color: Colors.grey.shade200,
-                          spreadRadius: 5,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
+              child:
+              !DriverMainCubit().selectedPackage ?
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.deepPurple, width: 1),
+                  shape: BoxShape.circle,
+                  boxShadow:  [
+                    BoxShadow(
+                      color: Colors.grey.shade200,
+                      spreadRadius: 5,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
                     ),
-                    alignment: Alignment.center,
-                    child: Text("999", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.deepPurple, fontSize: 17),),
-                  ),
-                  SizedBox(width: 12,),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.green, width: 1),
-                      shape: BoxShape.circle,
-                      boxShadow:  [
-                        BoxShadow(
-                          color: Colors.grey.shade200,
-                          spreadRadius: 5,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: Text("999", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.deepPurple, fontSize: 17),),
+              )
+              :
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap:   ()=>Navigator.of(context).push(_createRoute()),
+                        child: Container(
+                          height: 55,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.green, width: 1),
+                            shape: BoxShape.circle,
+                            boxShadow:  [
+                              BoxShadow(
+                                color: Colors.grey.shade200,
+                                spreadRadius: 5,
+                                blurRadius: 3,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Image.asset("assets/icons/packagelogo.png"),
                         ),
-                      ],
-                    ),
-                    padding: EdgeInsets.all(6),
-                    child: Image.asset("assets/icons/packagelogo.png"),
+                      ),
+                      SizedBox(height: 16,),
+                      Container(
+                          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.teal, width: 0),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                          child: Text("424Q-22454", style: TextStyle(fontWeight: FontWeight.w500),)),
+                      SizedBox(height: 8,),
+                      Container(
+                          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.teal, width: 0),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                          child: Text("Alger, Mohammadia")),
+                      SizedBox(height: 8,),
+                      Container(
+                          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.teal, width: 0),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                          child: Text("Blida, Blida")),
+                      SizedBox(height: 10,),
+                      GestureDetector(
+                        onTap: (){
+                         setState(() {
+                           DriverMainCubit().setSelectedPackage();
+                         });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+                          decoration: BoxDecoration(
+                              color: Colors.red,
+                            borderRadius: BorderRadius.all(Radius.circular(24)),
+                            boxShadow: [BoxShadow(
+                              color: Colors.grey.shade200,
+                              spreadRadius: 5,
+                              blurRadius: 1,
+                              offset: Offset(1, 1),
+                            ),
+                            ],
+                          ),
+                          child: Icon(Icons.close, color: Colors.white,size: 22,),
+                        ),
+                      )
+
+                    ],
                   )
-                ],
-              ),)
+            )
 
         ],
       ),
     );
   }
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const PackageDetailsScreen(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(-1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );}
 }

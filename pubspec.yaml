@@ -81,6 +81,8 @@ flutter:
     - assets/icons/phone.png
     - assets/icons/location.png
     - assets/icons/down-arrow.png
+    - assets/icons/logout.png
+    - assets/icons/edit.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

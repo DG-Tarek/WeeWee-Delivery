@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weewee_delivery/src/deliver/maps/maps_screen.dart';
 import 'package:weewee_delivery/src/deliver/packages/packages_list_screen.dart';
+import 'package:weewee_delivery/src/deliver/profile/profile_screen.dart';
 import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit_state.dart';
 
 class DriverMainCubit extends Cubit<DeliverMainCubitState> {
@@ -16,11 +17,13 @@ class DriverMainCubit extends Cubit<DeliverMainCubitState> {
   List<Widget> _screens = [
     MapsScreen(),
     PackagesListScreen(),
-    Container(),
+    ProfileScreen(),
   ];
 
   final List<String> _typesOfPackages = ["To pick-up", "To deliver", "To return"];
   int _selectedTypeOfPackages = 0;
+
+  bool _selectedPackage = false ;
 
 
   DriverMainCubit._internal() : super(CreateDeliverMainBlocState());
@@ -34,9 +37,14 @@ class DriverMainCubit extends Cubit<DeliverMainCubitState> {
     _selectedTypeOfPackages = _typesOfPackages.indexOf(value);
   }
 
+  void setSelectedPackage(){
+   _selectedPackage = !_selectedPackage;
+  }
+
   Widget get currentScreen => _screens[_currentScreenIndex];
   int get currentScreenIndex => _currentScreenIndex;
   List<String> get typesOfPackages => _typesOfPackages;
   String get selectedTypeOfPackages => _typesOfPackages[_selectedTypeOfPackages];
+  bool get selectedPackage => _selectedPackage;
   }
 
