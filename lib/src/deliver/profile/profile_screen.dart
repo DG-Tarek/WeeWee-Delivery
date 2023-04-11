@@ -43,7 +43,7 @@ mainAxisSize: MainAxisSize.min,
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 10,),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -67,9 +67,10 @@ mainAxisSize: MainAxisSize.min,
               ],
             ),
             SizedBox(height: 40,),
-            Text("Kehal", style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.black),),
-            Text("Sami", style: Theme.of(context).textTheme.headlineSmall,),
-            SizedBox(height: 15,),
+            Text("Kadour", style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.black),),
+            SizedBox(height: 2,),
+            Text("Lhayecha", style: Theme.of(context).textTheme.headlineSmall,),
+            SizedBox(height: 25,),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -121,17 +122,17 @@ mainAxisSize: MainAxisSize.min,
                 ],
               ),
             ),
-            SizedBox(height: 80,),
+            SizedBox(height: 100,),
 
             Text("If you have any Problem or Inquiry, do not hesitate to contact us, we will be happy to help you.",
             style: TextStyle(color: Colors.black54 , height: 1.35),
               textAlign: TextAlign.justify,
 
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 24,),
             Container(
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 32),
-              //alignment: Alignment.center,
+               alignment: Alignment.center,
               decoration: BoxDecoration(
                   color: Colors.deepPurple,
                   borderRadius: BorderRadius.all(Radius.circular(16))
