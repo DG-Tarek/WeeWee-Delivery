@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weewee_delivery/src/state_management/trader/trader_main_cubit_states.dart';
+import 'package:weewee_delivery/src/trader/state_management/main_cubit/trader_main_cubit_states.dart';
 
 class TraderMainCubit extends Cubit<TraderMainCubitState> {
   static final TraderMainCubit _instance = TraderMainCubit._internal();

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:weewee_delivery/src/registering/information/third_screen.dart';
+import 'package:weewee_delivery/src/registering/third_screen.dart';
 
-import '../../constant/constant.dart';
+import '../constant/constant.dart';
 
 class SecondPage extends StatefulWidget {
     const SecondPage({Key? key, required this.accountType }) : super(key: key );

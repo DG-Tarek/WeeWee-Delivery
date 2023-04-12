@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../state_management/trader/trader_main_cubit.dart';
-import '../state_management/trader/trader_main_cubit_states.dart';
+import 'state_management/main_cubit/trader_main_cubit.dart';
+import 'state_management/main_cubit/trader_main_cubit_states.dart';
  
 class TraderMainScreen extends StatelessWidget {
   const TraderMainScreen({Key? key}) : super(key: key);

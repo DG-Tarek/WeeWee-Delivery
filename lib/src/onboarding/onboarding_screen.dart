@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:weewee_delivery/src/constant/constant.dart';
-import 'package:weewee_delivery/src/registering/information/first_screen.dart';
+
+
+import '../registering/first_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({ super.key });

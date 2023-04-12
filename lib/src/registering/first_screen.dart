@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
-import 'package:weewee_delivery/src/registering/information/second_screen.dart';
+import 'package:weewee_delivery/src/registering/second_screen.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({ super.key,});
