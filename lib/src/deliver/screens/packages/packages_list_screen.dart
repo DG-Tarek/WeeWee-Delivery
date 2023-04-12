@@ -1,12 +1,11 @@
 
 
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:weewee_delivery/src/constant/constant.dart';
-import 'package:weewee_delivery/src/deliver/packages/package_item.dart';
 
-import '../../state_management/deliver/deliver_main_cubit.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/material.dart';
+import 'package:weewee_delivery/src/deliver/screens/packages/package_item.dart';
+
+import '../../state_management/deliver/main_cubit/deliver_main_cubit.dart';
 
 class PackagesListScreen extends StatefulWidget {
   const PackagesListScreen({Key? key}) : super(key: key);

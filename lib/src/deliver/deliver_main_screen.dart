@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:weewee_delivery/src/deliver/packages/packages_list_screen.dart';
-import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit.dart';
+import 'package:weewee_delivery/src/deliver/state_management/deliver/main_cubit/deliver_main_cubit.dart';
+import 'package:weewee_delivery/src/deliver/state_management/deliver/main_cubit/deliver_main_cubit_states.dart';
 
-import '../state_management/deliver/deliver_main_cubit_state.dart';
+
 
 
 class DeliverMainScreen extends StatelessWidget {

@@ -3,9 +3,10 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weewee_delivery/src/constant/constant.dart';
-import 'package:weewee_delivery/src/deliver/packages/package_details_screen.dart';
-import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit.dart';
+import 'package:weewee_delivery/src/deliver/screens/packages/package_details_screen.dart';
+
+import '../../../constant/constant.dart';
+import '../../state_management/deliver/main_cubit/deliver_main_cubit.dart';
 
 class PackageItem extends StatelessWidget {
   const PackageItem({Key? key}) : super(key: key);
@@ -48,9 +49,9 @@ class PackageItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("424W-22454" , style: Theme.of(context).textTheme.titleSmall!.copyWith(color: color),),
-                  SizedBox(height: 14,),
+                  SizedBox(height: 10,),
                   Text("Bourak" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 26),),
-                  SizedBox(height: 18,),
+                  SizedBox(height: 16,),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children:  [

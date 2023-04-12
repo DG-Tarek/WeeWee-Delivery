@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/deliver/deliver_main_screen.dart';
+import 'package:weewee_delivery/src/trader/trader_main_screen.dart';
 
 
 class ThirdPage extends StatelessWidget {
-  const ThirdPage({Key? key}) : super(key: key);
-
+  const ThirdPage({Key? key, required this.accountType}) : super(key: key);
+  final String accountType;
   @override
   Widget build(BuildContext context) {
-    return DriverPage();
+    return accountType == "driver" ? DriverPage() : TraderPage();
   }
 }
 
@@ -25,110 +26,166 @@ class TraderPage extends StatefulWidget {
 class _TraderPageState extends State<TraderPage> {
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
-      child: Column(
-        children: [
-          Text("Company/Store Information", style: TextStyle(
-              fontSize: 24,
-              color: Colors.deepPurple,
-              fontWeight: FontWeight.w500
-          ),),
-          SizedBox(height: height*.035,),
-          const TextField(
-            decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple, width: 2),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple,),
-                ),
-                labelText: 'Store name (Company)',
-                labelStyle: TextStyle(color: Colors.deepPurple)
-
-            ),
-            //style: TextStyle(color: Colors.deepPurple),
-          ),
-          const SizedBox(height: 20,),
-          const TextField(
-            decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple, width: 2),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple,),
-                ),
-                labelText: 'Commercial register Number (NIf)',
-                labelStyle: TextStyle(color: Colors.deepPurple)
-
-            ),
-            //style: TextStyle(color: Colors.deepPurple),
-          ),
-          const SizedBox(height: 20,),
-          const TextField(
-            decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple, width: 2),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple,),
-                ),
-                labelText: 'Tax Identification Number (NIF)',
-                labelStyle: TextStyle(color: Colors.deepPurple)
-
-            ),
-            //style: TextStyle(color: Colors.deepPurple),
-          ),
-          const SizedBox(height: 20,),
-          const TextField(
-            decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple, width: 2),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple,),
-                ),
-                labelText: 'Package Estimation/Week',
-                labelStyle: TextStyle(color: Colors.deepPurple)
-
-            ),
-            //style: TextStyle(color: Colors.deepPurple),
-          ),
-          const SizedBox(height: 20,),
-          Container(
-            padding: EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              border: Border.all(color: Colors.deepPurple)
-            ),
-            child: Column(
-              children: [
-                Text("Our service is working with the help of geolocation to make delivery operation more efficient. Please, Select your Location on Map",
-                textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w400),
-
-                ),
-                SizedBox(height: 12,),
+    return  Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap:()=> Navigator. of(context). pop() ,
+                child: Container(
+                  height: 40.h,
+                  alignment: Alignment.bottomLeft,
+                  padding: EdgeInsets.only(bottom: 24.w),
+                  child: Icon(CupertinoIcons.left_chevron),),
+              ),
+              Text("Personal Information", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),),
+              SizedBox(height: 5.h,),
+              Text(
+                "3 of 3" ,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[400]),
+              ),
+              SizedBox(height: 12.5.h,),
+              Stack(children: [
+                Container(height: 2.h,width:  850.w,decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                ),),
                 Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.all(Radius.circular(8))
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Select on Map", style: TextStyle(color: Colors.white),),
-                      Icon(Icons.location_searching , color: Colors.white,)
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(height: 20,),
+                  height: 2.h,
+                  width:  720.w
+                  ,decoration: BoxDecoration(
+                  color: Colors.deepPurple,
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                ),),
+              ],),
+              SizedBox(height: 15.h,),
+              Text("Company / Store Information" , style: Theme.of(context).textTheme.titleLarge,),
+              SizedBox(height: 15.h,),
+              const TextField(
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple,width: 0),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    labelText: 'Store name (Company)',
+                    labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              const SizedBox(height: 20,),
+              const TextField(
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple,width: 0),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    labelText: 'Commercial register Number (NIf)',
+                    labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              const SizedBox(height: 20,),
+              const TextField(
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple,width: 0),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    labelText: 'Tax Identification Number (NIF)',
+                    labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              const SizedBox(height: 20,),
+              const TextField(
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple,width: 0),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    labelText: 'Package Estimation/Week',
+                    labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              const SizedBox(height: 20,),
 
-        ],
+              const SizedBox(height: 20,),
+              RichText(
+                textAlign: TextAlign.justify,
+                text: TextSpan(
+                  text: "Our service is working with the help of ",
+                  style: TextStyle(color: Colors.black54 , height: 1.35),
+                  children: <TextSpan>[
+                    TextSpan(text: 'geolocation', style: TextStyle(  color: Colors.deepPurple.shade400)),
+                    TextSpan(text: ' to make delivery operation more efficient. Please, Select your '),
+                    TextSpan(text: 'Location on Map', style: TextStyle(  color: Colors.deepPurple.shade400)),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24,),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16 , vertical: 12),
+
+                decoration:   BoxDecoration(
+                color: Colors.deepPurple,
+                border: Border.all(color: Colors.deepPurple , width: 0),
+                borderRadius: BorderRadius.all(Radius.circular(24.w)),
+              ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Select on Map" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
+                    Icon(Icons.location_searching , color: Colors.white,)
+                  ],
+                ),
+              ),
+              SizedBox(height: 40.h,),
+              Container(
+                width: width,
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                  onTap : ()=>Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => TraderMainScreen()),
+                  ),
+                  child: Container(
+                    height: 85.w,
+                    width: 300.w,
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      border: Border.all(color: Colors.deepPurple , width: 0),
+                      borderRadius: BorderRadius.all(Radius.circular(24.w)),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.symmetric(horizontal: 64.w),
+                    child: Text("Next" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
+                  ),
+                ),
+              )
+
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -168,9 +225,10 @@ class _DriverPageState extends State<DriverPage> {
                 "3 of 3" ,
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[400]),
               ),
-              SizedBox(height: 20.h,),
+              SizedBox(height: 12.5.h,),
               Stack(children: [
                 Container(height: 2.h,width:  850.w,decoration: BoxDecoration(
+
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                 ),),
@@ -182,7 +240,7 @@ class _DriverPageState extends State<DriverPage> {
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                 ),),
               ],),
-              SizedBox(height: 20.h,),
+              SizedBox(height: 15.h,),
               Text("I'm Available to Deliver" , style: Theme.of(context).textTheme.titleLarge,),
               SizedBox(height: 15.h,),
               Container(
@@ -286,8 +344,10 @@ class _DriverPageState extends State<DriverPage> {
           width: width,
           alignment: Alignment.centerRight,
           child: GestureDetector(
-            onTap: (){
- },
+                onTap : ()=>Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => DeliverMainScreen()),
+            ),
             child: Container(
               height: 85.w,
               width: 300.w,
@@ -298,12 +358,7 @@ class _DriverPageState extends State<DriverPage> {
               ),
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 64.w),
-              child: GestureDetector(
-                  onTap: ()=>Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => DeliverMainScreen()),
-                  ),
-                  child: Text("Next" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),)),
+              child: Text("Next" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
             ),
           ),
         )

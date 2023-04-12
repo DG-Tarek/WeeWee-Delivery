@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/registering/information/first_screen.dart';
-import 'package:weewee_delivery/src/registering/information/iformation_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({ super.key });
@@ -109,7 +108,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               }else{
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) =>  InformationScreen()),
+                  MaterialPageRoute(builder: (context) =>  FirstPage()),
                 );
               }
               _controller.nextPage(

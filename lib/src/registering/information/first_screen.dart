@@ -34,7 +34,7 @@ class _FirstPageState extends State<FirstPage> {
                   "1 of 3" ,
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[400]),
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(height: 12.5.h,),
                 Stack(children: [
                   Container(height: 2.h,width:  850.w,decoration: BoxDecoration(
                     color: Colors.grey[300],
@@ -48,7 +48,7 @@ class _FirstPageState extends State<FirstPage> {
                     borderRadius: BorderRadius.all(Radius.circular(24)),
                   ),),
                 ],),
-                SizedBox(height: 20.h,),
+                SizedBox(height: 15.h,),
                 Text("Select your Account Type" , style: Theme.of(context).textTheme.titleLarge,),
                 SizedBox(height: 8.h,),
                 SizedBox(
@@ -193,7 +193,7 @@ class _FirstPageState extends State<FirstPage> {
 
   Route _createRoute() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => const SecondPage(),
+      pageBuilder: (context, animation, secondaryAnimation) =>  SecondPage(accountType: _type,),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 0.0);
         const end = Offset.zero;

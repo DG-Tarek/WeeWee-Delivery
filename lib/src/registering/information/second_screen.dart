@@ -9,8 +9,9 @@ import 'package:weewee_delivery/src/registering/information/third_screen.dart';
 import '../../constant/constant.dart';
 
 class SecondPage extends StatefulWidget {
-    const SecondPage({Key? key }) : super(key: key );
+    const SecondPage({Key? key, required this.accountType }) : super(key: key );
 
+    final String accountType ;
   @override
   State<SecondPage> createState() => _SecondPageState();
 }
@@ -44,7 +45,7 @@ class _SecondPageState extends State<SecondPage> {
                 "2 of 3" ,
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[400]),
               ),
-              SizedBox(height: 20.h,),
+              SizedBox(height: 12.5.h,),
               Stack(children: [
                 Container(height: 2.h,width:  850.w,decoration: BoxDecoration(
                   color: Colors.grey[300],
@@ -58,7 +59,7 @@ class _SecondPageState extends State<SecondPage> {
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                 ),),
               ],),
-              SizedBox(height: 20.h,),
+              SizedBox(height: 15.h,),
               Text("Complete your Personal Information" , style: Theme.of(context).textTheme.titleLarge,),
               SizedBox(height: 15.h,),
                const TextField(
@@ -303,7 +304,7 @@ class _SecondPageState extends State<SecondPage> {
   }
   Route _createRoute() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => const ThirdPage(),
+      pageBuilder: (context, animation, secondaryAnimation) =>  ThirdPage(accountType: widget.accountType,),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 0.0);
         const end = Offset.zero;

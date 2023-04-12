@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/opening/opening_screen.dart';
 import 'package:weewee_delivery/src/shared/styles.dart';
-import 'package:weewee_delivery/src/state_management/deliver/deliver_main_cubit.dart';
+import 'package:weewee_delivery/src/deliver/state_management/deliver/main_cubit/deliver_main_cubit.dart';
+import 'package:weewee_delivery/src/state_management/trader/trader_main_cubit.dart';
 
 import 'src/constant/constant.dart';
 
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
               providers: [
                 BlocProvider<DriverMainCubit>(
                   create: (BuildContext context) => DriverMainCubit(),
+                ),
+                BlocProvider<TraderMainCubit>(
+                  create: (BuildContext context) => TraderMainCubit(),
                 ),
               ],
               child: OpeningScreen()),

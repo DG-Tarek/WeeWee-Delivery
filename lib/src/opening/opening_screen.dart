@@ -64,7 +64,7 @@ alignment: Alignment.center,
                     onFinished: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) =>  DeliverMainScreen()),//OnboardingScreen
+                        MaterialPageRoute(builder: (context) =>  OnboardingScreen()),//OnboardingScreen
                       );
                     },
                   ),
