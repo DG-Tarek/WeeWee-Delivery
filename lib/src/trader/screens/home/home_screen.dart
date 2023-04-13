@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.all( Radius.circular(28)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade400,
+                    color: Colors.grey.shade300,
                     spreadRadius: 2,
                     blurRadius: 4,
                     offset: Offset(0, 2),
@@ -75,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(24),),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.shade200,
+                          color: Colors.grey.shade300,
                           spreadRadius: 2,
                           blurRadius: 4,
                           offset: Offset(0, 2),
@@ -160,17 +161,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 50,),
+                  Text(' Business Management', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
+                  const SizedBox(height: 15,),
                   SizedBox(
                       height: 80,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
+                          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4),
                           child: Row(
                             children: [
                               Container(
                                 width: 125,
+                                height: 80,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -183,10 +187,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ],
                                 ),
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('New\nOrder', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.deepPurple),),
+
                               ),
                               SizedBox(width: 20,),
                               Container(
                                 width: 125,
+                                height: 80,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -199,10 +208,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ],
                                 ),
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('New\nClient', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.teal),),
+
                               ),
                               SizedBox(width: 20,),
                               Container(
                                 width: 125,
+                                height: 80,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -215,18 +229,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ],
                                 ),
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('New\nProduct', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),),
+
                               ),
                               SizedBox(width: 16,),
                             ],
                           ),
                         ),
                       )),
-                  const SizedBox(height: 35,),
+                  const SizedBox(height: 20,),
                   Container(
                     height: 94,
                     width: width,
                     decoration: BoxDecoration(
-                      color: Colors.teal,
+                      color: Colors.teal ,
                       borderRadius: BorderRadius.all(Radius.circular(24)),
                       boxShadow: [
                         BoxShadow(
