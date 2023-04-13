@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
                 color: Colors.deepPurple,
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(28), bottomLeft: Radius.circular(28)),
+                borderRadius: BorderRadius.all( Radius.circular(28)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.shade400,
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text('Kaddour', style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),),
                   const SizedBox(height: 12,),
                   Text("WeeWee Delivery wishes you a nice Day", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white.withOpacity(.9), fontWeight: FontWeight.w400),),
-                  const  SizedBox(height: 30,),
+                  const  SizedBox(height: 25,),
                 ],
               ),
             ),
@@ -91,7 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const SizedBox(height: 8,),
                             Text('Packages\nStates', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, fontSize: 22, color: Colors.black),),
                             const SizedBox(height: 16,),
                             Row(
@@ -101,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 16,
                                   child: Image.asset("assets/icons/half-circle.png", color: Colors.red,),
                                 ),
-                                SizedBox(width: 4,),
+                                const SizedBox(width: 4,),
                                 Text('Processing', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red, fontWeight: FontWeight.w300),),
                               ],
                             ),
@@ -113,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 16,
                                   child: Image.asset("assets/icons/half-circle.png", color: Colors.green,),
                                 ),
-                                SizedBox(width: 4,),
+                                const SizedBox(width: 4,),
                                 Text('Delivered', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.green , fontWeight: FontWeight.w300),),
                               ],
                             ),
@@ -125,11 +124,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 16,
                                   child: Image.asset("assets/icons/half-circle.png", color: Colors.blue,),
                                 ),
-                                SizedBox(width: 4,),
+                                const SizedBox(width: 4,),
                                 Text('Returned', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.blue, fontWeight: FontWeight.w300),),
                               ],
                             ),
-                            const SizedBox(height: 24,),
+                            const SizedBox(height: 32,),
                           ],
                         ),
                         Positioned(
@@ -143,14 +142,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   RadialBarSeries<ChartData, int>(
                                       useSeriesColor: true,
                                       trackOpacity: 0.2,
-                                      cornerStyle: CornerStyle.endCurve,
+                                      cornerStyle: CornerStyle.bothCurve,
                                       dataSource: chartData,
                                       pointRadiusMapper: (ChartData data, _) => data.text,
                                       pointColorMapper: (ChartData data, _) => data.color,
                                       xValueMapper: (ChartData sales, _) => sales.x,
                                       yValueMapper: (ChartData sales, _) => sales.y,
                                       dataLabelSettings: DataLabelSettings(
-                                        // Renders the data label
+                                          textStyle: TextStyle(fontWeight: FontWeight.w600 , fontSize: 14, height: 1.35),
                                           isVisible: true
                                       )
                                   )
@@ -161,6 +160,67 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 20,),
+                  SizedBox(
+                      height: 80,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 125,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                      offset: Offset(3, 3),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 20,),
+                              Container(
+                                width: 125,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                      offset: Offset(3, 3),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 20,),
+                              Container(
+                                width: 125,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                      offset: Offset(3, 3),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 16,),
+                            ],
+                          ),
+                        ),
+                      )),
                   const SizedBox(height: 35,),
                   Container(
                     height: 94,
@@ -203,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: width,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.deepPurple,
+                      color: Colors.purple,
                       borderRadius: BorderRadius.all(Radius.circular(24)),
                       boxShadow: [
                         BoxShadow(
@@ -221,9 +281,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.white),),
+                            Text('Stock', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.white),),
                             const SizedBox(height: 5,),
-                            Text('11 packages', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),),
+                            Text('11 Products', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),),
                           ],
                         ),
                         Spacer(),
@@ -374,7 +434,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class ChartData {
   ChartData(this.x, this.y, this.text, this.color);
   final int x;
-  final double y;
+  final int y;
   final String text;
   final Color color;
 }
