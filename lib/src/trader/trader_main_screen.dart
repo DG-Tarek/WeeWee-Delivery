@@ -20,7 +20,18 @@ class TraderMainScreen extends StatelessWidget {
         return Scaffold(
           body: TraderMainCubit().currentScreen,
           bottomNavigationBar: Container(
-            color: Colors.white,
+
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade100,
+                  spreadRadius: 2,
+                  blurRadius: 4,
+                  offset: Offset(0, 0),
+                ),
+              ],
+            ),
             padding: EdgeInsets.only(right: 32.w ,left: 32.w, top: 12.w),
             child: SalomonBottomBar(
               currentIndex: TraderMainCubit().currentScreenIndex,
