@@ -18,6 +18,7 @@ class TraderMainScreen extends StatelessWidget {
     buildWhen: (previous, current)=> current is ChangeScreenState,
     builder: (context, state) {
         return Scaffold(
+          body: TraderMainCubit().currentScreen,
           bottomNavigationBar: Container(
             color: Colors.white,
             padding: EdgeInsets.only(right: 32.w ,left: 32.w, top: 12.w),
@@ -30,23 +31,16 @@ class TraderMainScreen extends StatelessWidget {
               items: [
                 /// Home
                 SalomonBottomBarItem(
-                    icon: Icon(CupertinoIcons.house_fill),
+                    icon: Icon(Icons.dashboard_rounded),
                     title: Text("Home"),
                     selectedColor: Colors.deepPurple,
                     unselectedColor: Colors.grey
                 ),
 
                 SalomonBottomBarItem(
-                    icon: Icon(CupertinoIcons.person_2_fill),
-                    title: Text("Clients"),
+                    icon: Icon(CupertinoIcons.calendar_today),
+                    title: Text("Calender"),
                     selectedColor: Colors.teal,
-                    unselectedColor: Colors.grey
-                ),
-
-                SalomonBottomBarItem(
-                    icon: Icon(CupertinoIcons.collections_solid),
-                    title: Text("Products"),
-                    selectedColor: Colors.pink,
                     unselectedColor: Colors.grey
                 ),
                 SalomonBottomBarItem(
