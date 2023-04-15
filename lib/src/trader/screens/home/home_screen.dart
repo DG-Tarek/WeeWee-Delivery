@@ -6,14 +6,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
 
   final List<ChartData> chartData = [
     ChartData(1924, 90, '100%', Colors.blue),
@@ -36,13 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
               width: width,
               padding: EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
-                color: Colors.deepPurple,
+                color: Colors.teal,
                 borderRadius: BorderRadius.all( Radius.circular(28)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.shade300,
                     spreadRadius: 2,
-                    blurRadius: 4,
+                    blurRadius: 4, 
                     offset: Offset(0, 2),
                   ),
                 ],
@@ -76,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(24),),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.shade300,
+                          color: Colors.grey.shade200,
                           spreadRadius: 2,
                           blurRadius: 4,
                           offset: Offset(0, 2),
@@ -102,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Image.asset("assets/icons/half-circle.png", color: Colors.red,),
                                 ),
                                 const SizedBox(width: 4,),
-                                Text('Processing', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red, fontWeight: FontWeight.w300),),
+                                Text('In Progress', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red, fontWeight: FontWeight.w300),),
                               ],
                             ),
                             const SizedBox(height: 8,),
@@ -163,24 +157,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 50,),
                   Text(' Business Management', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 25,),
                   SizedBox(
-                      height: 80,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 125,
-                                height: 80,
+                      height: 160,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                height: 160,
+
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Colors.deepPurple,
                                   borderRadius: BorderRadius.all(Radius.circular(16)),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey.shade200,
+                                      color: Colors.grey.shade300,
                                       spreadRadius: 3,
                                       blurRadius: 5,
                                       offset: Offset(3, 3),
@@ -188,58 +182,98 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                                 alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.symmetric(horizontal: 16),
-                                child: Text('New\nOrder', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.deepPurple),),
-
-                              ),
-                              SizedBox(width: 20,),
-                              Container(
-                                width: 125,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.shade200,
-                                      spreadRadius: 3,
-                                      blurRadius: 5,
-                                      offset: Offset(3, 3),
+                                padding: EdgeInsets.all( 16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('New\nOrder', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.white),),
+                                    Spacer(),
+                                    SizedBox(
+                                      height: 45,
+                                      width: 55,
+                                      child: Image.asset("assets/icons/order.png",color: Colors.white,),
                                     ),
+                                    SizedBox(height: 5,),
                                   ],
                                 ),
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.symmetric(horizontal: 16),
-                                child: Text('New\nClient', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.teal),),
 
                               ),
-                              SizedBox(width: 20,),
-                              Container(
-                                width: 125,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.shade200,
-                                      spreadRadius: 3,
-                                      blurRadius: 5,
-                                      offset: Offset(3, 3),
+                            ),
+                            SizedBox(width: 10,),
+                            Expanded(
+                              flex: 4,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade300,
+                                            spreadRadius: 1,
+                                            blurRadius: 5,
+                                            offset: Offset(2, 2),
+                                          ),
+                                        ],
+                                      ),
+                                      alignment: Alignment.centerLeft,
+                                      padding: EdgeInsets.symmetric(horizontal: 16),
+                                      child:  Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                                        children: [
+                                          Text('New\nProduct', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),),
+                                            SizedBox(
+                                              height: 40,
+                                              width: 40,
+                                              child: Image.asset("assets/icons/product.png",color: Colors.purple,),
+                                            )
+                                        ],
+                                      ),
                                     ),
-                                  ],
-                                ),
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.symmetric(horizontal: 16),
-                                child: Text('New\nProduct', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade300,
+                                            spreadRadius: 1,
+                                            blurRadius: 5,
+                                            offset: Offset(2, 2),
+                                          ),
+                                        ],
+                                      ),
+                                      alignment: Alignment.centerLeft,
+                                      padding: EdgeInsets.symmetric(horizontal: 16),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text('New\nClient', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.teal),),
+                                          SizedBox(
+                                            height: 31.5,
+                                            width: 45,
+                                            child: Image.asset("assets/icons/add-client.png",color: Colors.teal,),
+                                          ) ],
+                                      ),
 
+                                    ),
+                                  ),
+
+                                ],
                               ),
-                              SizedBox(width: 16,),
-                            ],
-                          ),
+                            ),
+
+                          ],
                         ),
                       )),
-                  const SizedBox(height: 20,),
+
+                  const SizedBox(height: 25,),
                   Container(
                     height: 94,
                     width: width,
@@ -336,9 +370,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('All Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.deepPurple),),
+                              Text('All\nPackages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.deepPurple),),
                               Spacer(),
-                              Icon(CupertinoIcons.collections, size: 40,color: Colors.deepPurple,),
+                              SizedBox(
+                                height: 50,
+                                width: 50,
+                                child: Image.asset("assets/icons/packages.png",color: Colors.deepPurple,),
+                              ),
+                            const SizedBox(height: 5,)
                             ],
                           ),
                         ),
@@ -366,7 +405,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Text('Picked Up Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.teal),),
                               Spacer(),
-                              Icon(CupertinoIcons.collections, size: 40,color: Colors.teal,),
+                              SizedBox(
+                                height: 50,
+                                width: 50,
+                                child: Image.asset("assets/icons/pickedup.png",color: Colors.teal,),
+                              )
                             ],
                           ),
                         ),
@@ -401,8 +444,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text('Delivered Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.green),),
                               SizedBox(height: 4,),
                               Spacer(),
-                              Icon(CupertinoIcons.collections, size: 40,color: Colors.green,),
-                            ],
+                              SizedBox(
+                                height: 50,
+                                width: 50,
+                                child: Image.asset("assets/icons/approved.png",color: Colors.green,),
+                              )],
                           ),
                         ),
                       ),
@@ -430,7 +476,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text('Returned Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.red),),
                               SizedBox(height: 4,),
                               Spacer(),
-                              Icon(CupertinoIcons.collections, size: 40,color: Colors.red,),
+                              SizedBox(
+                                height: 50,
+                                width: 50,
+                                child: Image.asset("assets/icons/returned.png",color: Colors.red,),
+                              )
                             ],
                           ),
                         ),

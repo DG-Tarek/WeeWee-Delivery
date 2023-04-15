@@ -85,6 +85,13 @@ flutter:
     - assets/icons/logout.png
     - assets/icons/edit.png
     - assets/icons/half-circle.png
+    - assets/icons/product.png
+    - assets/icons/order.png
+    - assets/icons/approved.png
+    - assets/icons/packages.png
+    - assets/icons/pickedup.png
+    - assets/icons/returned.png
+    - assets/icons/add-client.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

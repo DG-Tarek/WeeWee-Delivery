@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weewee_delivery/src/trader/screens/calender/calender_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/home_screen.dart';
 import 'package:weewee_delivery/src/trader/state_management/main_cubit/trader_main_cubit_states.dart';
 
@@ -14,8 +15,7 @@ class TraderMainCubit extends Cubit<TraderMainCubitState> {
 
   List<Widget> _screens = [
  HomeScreen(),
- Container(),
- Container(),
+ CalenderScreen(),
  Container(),
   ];
 
