@@ -36,14 +36,17 @@ class _CalenderScreenState extends State<CalenderScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: height*.0875,),
-                    SizedBox(height: 12,),
-                    Text("Let's check your Packages ", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white , fontWeight: FontWeight.w500, fontSize: 22),),
+                    Text("Stay Up To Date", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white.withOpacity(.85)),),
+                    const SizedBox(height: 16,),
+                    Text("Let's Check Your Packages ", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white , fontWeight: FontWeight.w500, fontSize: 18),),
                     const  SizedBox(height: 25,),
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 15,),
               Calender(),
+              const SizedBox(height: 215,),
+               Text("Ops! f***")
             ],
       ),
     );
@@ -71,7 +74,7 @@ class _CalenderState extends State<Calender> {
       days.add(DateFormat.MMMd().format(today.add( Duration(days: i))));
     }
     return SizedBox(
-      height: 137.5,
+      height: 135,
       child: ListView.builder(
           itemCount: days.length,
           scrollDirection: Axis.horizontal,
@@ -104,11 +107,11 @@ class _CalenderState extends State<Calender> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(day[0], style: TextStyle(color: days[index] == _selectedDay ? Colors.white : Colors.white70, fontWeight: FontWeight.w400),),
+                  Text(day[0], style: TextStyle(fontSize:14 ,color: days[index] == _selectedDay ? Colors.white : Colors.white70, fontWeight: FontWeight.w400),),
                   SizedBox(height: 4,),
                   Container(height: .5,width : 36 ,color: days[index] == _selectedDay ? Colors.white : Colors.white70,),
                   SizedBox(height: 6,),
-                  Text(day[1], style: TextStyle(color: days[index] == _selectedDay ? Colors.white: Colors.white70, fontWeight: FontWeight.w700, fontSize: 22),),
+                  Text(day[1], style: TextStyle(color: days[index] == _selectedDay ? Colors.white: Colors.white70, fontWeight: FontWeight.w600, fontSize: 18),),
                   SizedBox(height:10,),
                   SizedBox(
                     height: 10,
