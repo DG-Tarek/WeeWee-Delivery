@@ -323,13 +323,46 @@ class _NewProductScreenState extends State<NewProductScreen> {
               const SizedBox(height: 40,),
               Text("Stock" , style: Theme.of(context).textTheme.titleLarge,),
               const SizedBox(height: 20,),
+              const TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple,width: 0),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    labelText: 'My Stock',
+                    labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              const SizedBox(height: 20,),
+              const TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple,width: 0),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    labelText: 'Min Stock',
+                    labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
               SizedBox(height: 40.h,),
               Container(
                 width: width,
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onTap: (){
-                    print("Prodect Saved !");
+                    print("Product Saved !");
                   },
                   child: Container(
                     height: 85.w,
