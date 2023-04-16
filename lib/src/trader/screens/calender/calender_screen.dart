@@ -21,7 +21,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 decoration: BoxDecoration(
                   color: Colors.deepPurple,
-                  borderRadius: BorderRadius.all( Radius.circular(28)),
+                  borderRadius: BorderRadius.all( Radius.circular(0)),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.shade300,
@@ -61,6 +61,12 @@ class Calender extends StatefulWidget {
 }
   String _selectedDay = "up";
 class _CalenderState extends State<Calender> {
+
+  @override
+  void dispose() {
+    _selectedDay = "up";
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();

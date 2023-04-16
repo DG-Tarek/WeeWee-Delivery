@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/trader/screens/home/new/new_product_screen.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -205,32 +206,40 @@ class HomeScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Expanded(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.shade300,
-                                            spreadRadius: 1,
-                                            blurRadius: 5,
-                                            offset: Offset(2, 2),
-                                          ),
-                                        ],
-                                      ),
-                                      alignment: Alignment.centerLeft,
-                                      padding: EdgeInsets.symmetric(horizontal: 16),
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    child: GestureDetector(
+                                      onTap: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) =>  NewProductScreen()),
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.shade300,
+                                              spreadRadius: 1,
+                                              blurRadius: 5,
+                                              offset: Offset(2, 2),
+                                            ),
+                                          ],
+                                        ),
+                                        alignment: Alignment.centerLeft,
+                                        padding: EdgeInsets.symmetric(horizontal: 16),
+                                        child:  Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                                        children: [
-                                          Text('New\nProduct', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),),
-                                            SizedBox(
-                                              height: 40,
-                                              width: 40,
-                                              child: Image.asset("assets/icons/product.png",color: Colors.purple,),
-                                            )
-                                        ],
+                                          children: [
+                                            Text('New\nProduct', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),),
+                                              SizedBox(
+                                                height: 40,
+                                                width: 40,
+                                                child: Image.asset("assets/icons/product.png",color: Colors.purple,),
+                                              )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

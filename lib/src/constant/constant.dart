@@ -22,3 +22,6 @@ Transport(name: "truck", image: "assets/icons/truck2.png"),
 final List<Color> COLORS = [Colors.deepPurple,Colors.blue,Colors.teal,Colors.deepOrange,Colors.pink,
 Colors.purpleAccent, Colors.red, Colors.brown
 ];
+
+final List<String>  PRODUCT_WEIGHT = ["< 1 KG","1 - 5 KG","5 - 10 KG","10 - 15 KG", "15 - 20 KG", "> 20 KG" ];
+final List<String>  PRODUCT_DIMENSIONS = ["< 10 CM","10 - 30 CM","30 - 50 CM","> 50 CM"];
