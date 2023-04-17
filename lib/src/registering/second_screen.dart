@@ -148,20 +148,58 @@ class _SecondPageState extends State<SecondPage> {
                 ),
               ),
               const SizedBox(height: 20,),
-              const TextField(
+              DropdownButtonFormField2(
                 decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepPurple, width: 1),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepPurple,width: 0),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    labelText: 'Town (Commune)',
-                    labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                  isDense: true,
+                  contentPadding: EdgeInsets.zero,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.deepPurple,width: 0),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
                 ),
-                style: TextStyle(color: Colors.black),
+                isExpanded: true,
+                hint: const Text(
+                  'Town (Commune )',
+                  style: TextStyle(fontSize: 16, color: Colors.deepPurple, fontWeight: FontWeight.w300),
+                ),
+                items: ["16 - Alger", "18 - Jijel"]
+                    .map((item) =>
+                    DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ))
+                    .toList(),
+                onChanged: (value) {
+                  print(value.toString());
+                },
+                buttonStyleData: const ButtonStyleData(
+                  height: 60,
+                  padding: EdgeInsets.only(right: 10),
+                ),
+                iconStyleData: const IconStyleData(
+                  icon: Icon(
+                    Icons.arrow_drop_down_outlined,
+                    color: Colors.deepPurple,
+                  ),
+                  iconSize: 26,
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
               ),
               const SizedBox(height: 20,),
               const TextField(

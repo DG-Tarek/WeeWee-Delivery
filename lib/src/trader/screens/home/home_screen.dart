@@ -7,6 +7,8 @@ import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new/new_product_screen.dart';
 
+import 'new/new_client_screen.dart';
+
 class HomeScreen extends StatelessWidget {
 
 
@@ -245,32 +247,40 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 10,),
                                   Expanded(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.shade300,
-                                            spreadRadius: 1,
-                                            blurRadius: 5,
-                                            offset: Offset(2, 2),
-                                          ),
-                                        ],
-                                      ),
-                                      alignment: Alignment.centerLeft,
-                                      padding: EdgeInsets.symmetric(horizontal: 16),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('New\nClient', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.teal),),
-                                          SizedBox(
-                                            height: 31.5,
-                                            width: 45,
-                                            child: Image.asset("assets/icons/add-client.png",color: Colors.teal,),
-                                          ) ],
-                                      ),
+                                    child: GestureDetector(
+                                      onTap: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) =>  NewClientScreen()),
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.shade300,
+                                              spreadRadius: 1,
+                                              blurRadius: 5,
+                                              offset: Offset(2, 2),
+                                            ),
+                                          ],
+                                        ),
+                                        alignment: Alignment.centerLeft,
+                                        padding: EdgeInsets.symmetric(horizontal: 16),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('New\nClient', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.teal),),
+                                            SizedBox(
+                                              height: 31.5,
+                                              width: 45,
+                                              child: Image.asset("assets/icons/add-client.png",color: Colors.teal,),
+                                            ) ],
+                                        ),
 
+                                      ),
                                     ),
                                   ),
 

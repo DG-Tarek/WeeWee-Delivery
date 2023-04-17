@@ -374,7 +374,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
                     ),
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(horizontal: 64.w),
-                    child: Text("Save" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
+                    child: Text("Save Product" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
                   ),
                 ),
               ),
