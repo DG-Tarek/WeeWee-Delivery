@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
@@ -26,10 +28,9 @@ class ClientsScreen extends StatelessWidget {
           children: [
             SizedBox(height: 20,),
             ClientItem(),
-            SizedBox(height: 20,),
             ClientItem(),
-            SizedBox(height: 20,),
             ClientItem(),
+ 
           ],
         ),
       ),
@@ -53,15 +54,16 @@ class _ClientItemState extends State<ClientItem> {
   bool _open = false;
   @override
   Widget build(BuildContext context) {
+    final color =  COLORS[Random().nextInt(COLORS.length)];
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
             width: width,
             decoration: BoxDecoration(
-              color: Colors.deepPurple,
+              color: color,
               borderRadius: BorderRadius.all(Radius.circular(24)),
               boxShadow: [
                 BoxShadow(
@@ -94,7 +96,7 @@ class _ClientItemState extends State<ClientItem> {
                                 onTap: ()=>setState(() {
                                   _open = !_open;
                                 }),
-                                child: Icon(Icons.more_horiz , color: Colors.deepPurple, size: 26,))
+                                child: Icon(Icons.more_horiz , color: color, size: 26,))
                           ],
                         ),
                         const SizedBox(height: 16,),
@@ -105,7 +107,7 @@ class _ClientItemState extends State<ClientItem> {
                             SizedBox(
                               width: 16,
                               height: 16,
-                              child: Image.asset("assets/icons/phone.png", color: Colors.deepPurple,),),
+                              child: Image.asset("assets/icons/phone.png", color: color,),),
 
                             const SizedBox(width: 16,),
                             const Text("0778854321" ,
@@ -123,7 +125,7 @@ class _ClientItemState extends State<ClientItem> {
                             SizedBox(
                               width: 17.5,
                               height: 17.5,
-                              child: Image.asset("assets/icons/location.png", color: Colors.deepPurple,),),
+                              child: Image.asset("assets/icons/location.png", color: color,),),
                             const SizedBox(width: 16,),
                             const Text("Blida, Blida" ,
                               style:  TextStyle(
@@ -167,7 +169,7 @@ class _ClientItemState extends State<ClientItem> {
                         offset: Offset(-2, 2),),
                     ],
                   ),
-                  child:  Icon(CupertinoIcons.phone_fill,color: Colors.deepPurple,size: 26,),
+                  child:  Icon(CupertinoIcons.phone_fill,color: color,size: 26,),
                 ),
                 SizedBox(width: 24,),
                 Container(
@@ -190,7 +192,7 @@ class _ClientItemState extends State<ClientItem> {
 
                     ],
                   ),
-                  child:  Icon(Icons.comment,color: Colors.deepPurple,size: 26,),
+                  child:  Icon(Icons.comment,color: color,size: 26,),
                 ),
                 const SizedBox(width: 24,),
                 Container(
@@ -213,7 +215,7 @@ class _ClientItemState extends State<ClientItem> {
 
                     ],
                   ),
-                  child:  Icon(CupertinoIcons.location_solid,color: Colors.deepPurple,size: 26,),
+                  child:  Icon(CupertinoIcons.location_solid,color: color,size: 26,),
                 ),
                 SizedBox(width: 8,),
               ],
