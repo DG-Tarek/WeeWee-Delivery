@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/trader/screens/home/clients/clients_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new/new_product_screen.dart';
 
 import 'new/new_client_screen.dart';
@@ -293,39 +294,47 @@ class HomeScreen extends StatelessWidget {
                       )),
 
                   const SizedBox(height: 25,),
-                  Container(
-                    height: 94,
-                    width: width,
-                    decoration: BoxDecoration(
-                      color: Colors.teal ,
-                      borderRadius: BorderRadius.all(Radius.circular(24)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade400,
-                          spreadRadius: 3,
-                          blurRadius: 5,
-                          offset: Offset(3, 3),
-                        ),
-                      ],
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(24),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Clients', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.white),),
-                            const SizedBox(height: 5,),
-                            Text('33 Clients', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),),
-                          ],
-                        ),
-                        Spacer(),
-                        Icon(CupertinoIcons.person_2, size: 46,color: Colors.white,),
-                        SizedBox(width: 8,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  ClientsScreen()),
+                      );
+                    },
+                    child: Container(
+                      height: 94,
+                      width: width,
+                      decoration: BoxDecoration(
+                        color: Colors.teal ,
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade400,
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(3, 3),
+                          ),
+                        ],
+                      ),
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(24),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Clients', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.white),),
+                              const SizedBox(height: 5,),
+                              Text('33 Clients', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),),
+                            ],
+                          ),
+                          Spacer(),
+                          Icon(CupertinoIcons.person_2, size: 46,color: Colors.white,),
+                          SizedBox(width: 8,),
 
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20,),
