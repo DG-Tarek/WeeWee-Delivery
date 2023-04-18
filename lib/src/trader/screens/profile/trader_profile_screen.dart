@@ -77,23 +77,24 @@ class _TraderProfileScreenState extends State<TraderProfileScreen> {
                 children: [
                   SizedBox(height: 22.5,
                     width: 22.5,
-                    child: Image.asset("assets/icons/phone.png"),),
-                  SizedBox(width: 8,),
-                  Text("+213 556836200", style: Theme.of(context).textTheme.titleMedium,),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  SizedBox(height: 22.5,
-                    width: 22.5,
                     child: Image.asset("assets/icons/store.png"),),
                   SizedBox(width: 10,),
                   Text("Souq Kaddour lbahi", style: Theme.of(context).textTheme.titleMedium,),
                 ],
               ),
               SizedBox(height: 15,),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(height: 20,
+                    width: 22.5,
+                    child: Image.asset("assets/icons/phone.png"),),
+                  SizedBox(width: 8,),
+                  Text("+213 556836200", style: Theme.of(context).textTheme.titleMedium,),
+                ],
+              ),
+              SizedBox(height: 15,),
+
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
