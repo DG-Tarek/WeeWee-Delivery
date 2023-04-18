@@ -7,6 +7,10 @@ import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/trader/screens/home/clients/clients_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new/new_product_screen.dart';
+import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_screen.dart';
+import 'package:weewee_delivery/src/trader/screens/home/packages/delivered_packages_screen.dart';
+import 'package:weewee_delivery/src/trader/screens/home/packages/picked_up_packages.dart';
+import 'package:weewee_delivery/src/trader/screens/home/packages/returned_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/stock/stock_screen.dart';
 
 import 'new/new_client_screen.dart';
@@ -388,66 +392,82 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       SizedBox(width: 8,),
                       Expanded(
-                        child: Container(
-                          height: 160,
-                          alignment: Alignment.centerLeft,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(24)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade200,
-                                spreadRadius: 3,
-                                blurRadius: 5,
-                                offset: Offset(3, 3),
-                              ),
-                            ],
-                          ),
-                          padding: EdgeInsets.all(24),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('All\nPackages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.deepPurple),),
-                              Spacer(),
-                              SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: Image.asset("assets/icons/packages.png",color: Colors.deepPurple,),
-                              ),
-                            const SizedBox(height: 5,)
-                            ],
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  AllPackagesScreen()),
+                            );
+                          },
+                          child: Container(
+                            height: 160,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(3, 3),
+                                ),
+                              ],
+                            ),
+                            padding: EdgeInsets.all(24),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('All\nPackages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Colors.deepPurple),),
+                                Spacer(),
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset("assets/icons/packages.png",color: Colors.deepPurple,),
+                                ),
+                              const SizedBox(height: 5,)
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       SizedBox(width: 20,),
                       Expanded(
-                        child: Container(
-                          height: 160,
-                          alignment: Alignment.centerLeft,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(24)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade200,
-                                spreadRadius: 3,
-                                blurRadius: 5,
-                                offset: Offset(3, 3),
-                              ),
-                            ],
-                          ),
-                          padding: EdgeInsets.all(24),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Picked Up Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.teal),),
-                              Spacer(),
-                              SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: Image.asset("assets/icons/pickedup.png",color: Colors.teal,),
-                              )
-                            ],
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  PickedUpPackagesScreen()),
+                            );
+                          },
+                          child: Container(
+                            height: 160,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(3, 3),
+                                ),
+                              ],
+                            ),
+                            padding: EdgeInsets.all(24),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Picked Up Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.teal),),
+                                Spacer(),
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset("assets/icons/pickedup.png",color: Colors.teal,),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -459,66 +479,82 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       SizedBox(width: 8,),
                       Expanded(
-                        child: Container(
-                          height: 160,
-                          alignment: Alignment.centerLeft,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(24)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade200,
-                                spreadRadius: 3,
-                                blurRadius: 5,
-                                offset: Offset(3, 3),
-                              ),
-                            ],
-                          ),
-                          padding: EdgeInsets.all(24),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Delivered Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.green),),
-                              SizedBox(height: 4,),
-                              Spacer(),
-                              SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: Image.asset("assets/icons/approved.png",color: Colors.green,),
-                              )],
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  DeliveredPackagesScreen()),
+                            );
+                          },
+                          child: Container(
+                            height: 160,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(3, 3),
+                                ),
+                              ],
+                            ),
+                            padding: EdgeInsets.all(24),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Delivered Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.green),),
+                                SizedBox(height: 4,),
+                                Spacer(),
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset("assets/icons/approved.png",color: Colors.green,),
+                                )],
+                            ),
                           ),
                         ),
                       ),
                       SizedBox(width: 20,),
                       Expanded(
-                        child: Container(
-                          height: 160,
-                          alignment: Alignment.centerLeft,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(24)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade200,
-                                spreadRadius: 3,
-                                blurRadius: 5,
-                                offset: Offset(3, 3),
-                              ),
-                            ],
-                          ),
-                          padding: EdgeInsets.all(24),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Returned Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.red),),
-                              SizedBox(height: 4,),
-                              Spacer(),
-                              SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: Image.asset("assets/icons/returned.png",color: Colors.red,),
-                              )
-                            ],
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  ReturnedPackagesScreen()),
+                            );
+                          },
+                          child: Container(
+                            height: 160,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(3, 3),
+                                ),
+                              ],
+                            ),
+                            padding: EdgeInsets.all(24),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Returned Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.red),),
+                                SizedBox(height: 4,),
+                                Spacer(),
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset("assets/icons/returned.png",color: Colors.red,),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

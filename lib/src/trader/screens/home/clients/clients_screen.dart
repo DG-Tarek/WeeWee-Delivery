@@ -80,18 +80,20 @@ class _ClientItemState extends State<ClientItem> {
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.symmetric(vertical: 16 , horizontal: 18),
+                    padding: EdgeInsets.symmetric(vertical: 16 , horizontal: 12),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(24)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            const SizedBox(width: 10,),
                             Text("AbdelMoumen " , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22 , fontWeight: FontWeight.w400),),
+Spacer(),
                             GestureDetector(
                                 onTap: ()=>setState(() {
                                   _open = !_open;
@@ -103,7 +105,7 @@ class _ClientItemState extends State<ClientItem> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children:  [
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 18,),
                             SizedBox(
                               width: 16,
                               height: 16,
@@ -121,7 +123,7 @@ class _ClientItemState extends State<ClientItem> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children:  [
-                            const SizedBox(width: 12,),
+                            const SizedBox(width: 17,),
                             SizedBox(
                               width: 17.5,
                               height: 17.5,
