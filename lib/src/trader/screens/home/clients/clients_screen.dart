@@ -76,7 +76,7 @@ class _ClientItemState extends State<ClientItem> {
             ),
             child: Row(
               children: [
-                SizedBox(width: 6,),
+                SizedBox(width: 3,),
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerLeft,
@@ -105,7 +105,7 @@ Spacer(),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children:  [
-                            const SizedBox(width: 18,),
+                            const SizedBox(width: 4,),
                             SizedBox(
                               width: 16,
                               height: 16,
@@ -123,7 +123,7 @@ Spacer(),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children:  [
-                            const SizedBox(width: 17,),
+                            const SizedBox(width: 3,),
                             SizedBox(
                               width: 17.5,
                               height: 17.5,
@@ -134,13 +134,13 @@ Spacer(),
                                   fontSize: 15.5,
                                   color: Colors.black54
                               ),),
-
                           ],
                         ),
                       ],
                     ),
                   ),
                 ),
+                SizedBox(width: 3,),
 
               ],
             ),
