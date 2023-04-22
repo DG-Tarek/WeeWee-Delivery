@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/registering/third_screen.dart';
 
 import '../../../../constant/constant.dart';
+import '../../../../moduls/trader/product_model.dart';
 
  
 
@@ -362,7 +364,10 @@ class _NewProductScreenState extends State<NewProductScreen> {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onTap: (){
-                    print("Product Saved !");
+
+                    Product p = Product(name: "Test", description: "Test", price: 212, length: "22",width: "22",wight: "22", height: "22", createdAt: "12/12/2121", stock: 12,minStock: 11);
+                    FirebaseFirestore.instance.collection('AAAAAA').doc("GSLJgJF7OzGx7XXjq3i4").collection("product").add(p.toJson());
+
                   },
                   child: Container(
                     height: 85.w,

@@ -16,8 +16,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  FirebaseFirestore.instance.collection('AAAAAA').doc("GSLJgJF7OzGx7XXjq3i4").collection("aaa").add({"Test": "1"});
-
   runApp(MyApp());
 }
 
