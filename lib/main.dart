@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,41 +8,42 @@ import 'package:weewee_delivery/src/shared/styles.dart';
 import 'package:weewee_delivery/src/deliver/state_management/deliver/main_cubit/deliver_main_cubit.dart';
 import 'package:weewee_delivery/src/trader/state_management/main_cubit/trader_main_cubit.dart';
 
-import 'src/constant/constant.dart';
+import 'firebase_options.dart';
 
 void main() async {
-  await ScreenUtil.ensureScreenSize();
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FirebaseFirestore.instance.collection('AAAAAA').doc("GSLJgJF7OzGx7XXjq3i4").collection("aaa").add({"Test": "1"});
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(932, 430),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context , child) {
+      builder: (context, child) {
         return MaterialApp(
           title: 'Flutter Demo',
           theme: lightTheme,
-          home: MultiBlocProvider(
-              providers: [
-                BlocProvider<DriverMainCubit>(
-                  create: (BuildContext context) => DriverMainCubit(),
-                ),
-                BlocProvider<TraderMainCubit>(
-                  create: (BuildContext context) => TraderMainCubit(),
-                ),
-              ],
-              child: OpeningScreen()),
+          home: MultiBlocProvider(providers: [
+            BlocProvider<DriverMainCubit>(
+              create: (BuildContext context) => DriverMainCubit(),
+            ),
+            BlocProvider<TraderMainCubit>(
+              create: (BuildContext context) => TraderMainCubit(),
+            ),
+          ], child: OpeningScreen()),
         );
       },
     );
   }
 }
-
-

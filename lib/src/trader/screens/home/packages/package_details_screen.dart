@@ -318,59 +318,105 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
               ),
               SizedBox(height: 50,),
               Container(
-                alignment: Alignment.centerRight,
                 width: width,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: GestureDetector(
-                    onTap: (){
-                      showModalBottomSheet<void>(
-                        context: context,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24.0),
+                alignment: Alignment.centerRight,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: GestureDetector(
+                  onTap: (){
+                    showModalBottomSheet<void>(
+                      context: context,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24.0),
+                      ),
+                      builder: (BuildContext context) {
+                        return Container(
+                            alignment: Alignment.center,
+                            height: height*.4,
+
+
+                            child: Text(" Report this package")
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    height: 45,
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    //alignment: Alignment.center,
+                    decoration:  BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          spreadRadius: 2,
+                          blurRadius: 4,
+                          offset: Offset(3, 3),
                         ),
-                        builder: (BuildContext context) {
-                          return Container(
-                              alignment: Alignment.center,
-                              height: height*.4,
-
-
-                              child: Text(" Report this package")
-                          );
-                        },
-                      );
-                    },
-                    child: Container(
-                      height: 45,
-                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                      //alignment: Alignment.center,
-                      decoration:  BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade300,
-                            spreadRadius: 2,
-                            blurRadius: 4,
-                            offset: Offset(3, 3),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Icon(Icons.report_gmailerrorred, color: Colors.white,),
-                          SizedBox(width: 6,),
-                          Text("Report this Package" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
-                          SizedBox(width: 4,),
-                        ],
-                      ),
-
+                      ],
                     ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Icon(Icons.report_gmailerrorred, color: Colors.white,),
+                        SizedBox(width: 6,),
+                        Text("Report this Package" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                        SizedBox(width: 4,),
+                      ],
+                    ),
+
                   ),
                 ),
               ),
+              SizedBox(height: 12,),
+             /* GestureDetector(
+                onTap: (){
+                  showModalBottomSheet<void>(
+                    context: context,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    builder: (BuildContext context) {
+                      return Container(
+                          alignment: Alignment.center,
+                          height: height*.4,
+
+
+                          child: Text(" Report this package")
+                      );
+                    },
+                  );
+                },
+                child: Container(
+                  height: 45,
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  //alignment: Alignment.center,
+                  decoration:  BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        spreadRadius: 2,
+                        blurRadius: 4,
+                        offset: Offset(3, 3),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(Icons.delete_outline_outlined, color: Colors.white,),
+                      SizedBox(width: 6,),
+                      Text("Delete this Package" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                      SizedBox(width: 4,),
+                    ],
+                  ),
+
+                ),
+              ),*/
               const SizedBox(height: 24,),
 
             ],

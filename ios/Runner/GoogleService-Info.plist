@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>951871916044-1i72e61ftq2c2arn1vc22cogr9tua8pd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.951871916044-1i72e61ftq2c2arn1vc22cogr9tua8pd</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>951871916044-6iqn7jl5jpaiqrk6iso211nee7kf4n4d.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAtwwP6NbasraYnGF-Z-954uThJvqhl7Hw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>951871916044</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.weeweeDelivery</string>
+	<key>PROJECT_ID</key>
+	<string>mhenni-livraison-dz</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mhenni-livraison-dz.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:951871916044:ios:4f323bee0f093ac69c4629</string>
+	<key>DATABASE_URL</key>
+	<string>https://mhenni-livraison-dz-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

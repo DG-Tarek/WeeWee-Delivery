@@ -105,7 +105,7 @@ class _TraderProfileScreenState extends State<TraderProfileScreen> {
                   Text("Alger, Mohammadia", style: Theme.of(context).textTheme.titleMedium,),
                 ],
               ),
-              SizedBox(height: 65,),
+              SizedBox(height: 25,),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -117,7 +117,7 @@ class _TraderProfileScreenState extends State<TraderProfileScreen> {
                   Text("WeeWee Privacy Policy", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.deepPurple, decoration: TextDecoration.underline),),
                 ],
               ),
-              SizedBox(height: 100,),
+              SizedBox(height: 120,),
 
               Text("If you have any Problem or Inquiry, do not hesitate to contact us, we will be happy to help you.",
                 style: TextStyle(color: Colors.black54 , height: 1.35),

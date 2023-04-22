@@ -33,14 +33,14 @@ class TraderMainScreen extends StatelessWidget {
                 SalomonBottomBarItem(
                     icon: Icon(Icons.dashboard_rounded),
                     title: Text("Home"),
-                    selectedColor: Colors.teal,
+                    selectedColor: Colors.deepPurple,
                     unselectedColor: Colors.grey
                 ),
 
                 SalomonBottomBarItem(
                     icon: Icon(CupertinoIcons.calendar_today),
                     title: Text("Calender"),
-                    selectedColor: Colors.deepPurple,
+                    selectedColor: Colors.teal,
                     unselectedColor: Colors.grey
                 ),
                 SalomonBottomBarItem(

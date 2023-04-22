@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/deliver/deliver_main_screen.dart';
 import 'package:weewee_delivery/src/onboarding/onboarding_screen.dart';
+import 'package:weewee_delivery/src/registering/phone_auth_screen.dart';
 
 import '../constant/constant.dart';
 

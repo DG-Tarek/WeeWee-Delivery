@@ -54,7 +54,7 @@ class ReturnedPackageItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16.0, right: 16),
               child: Container(
-                padding: EdgeInsets.only(left: 6),
+                padding: EdgeInsets.only(left: 3),
                 decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.all(Radius.circular(24)),

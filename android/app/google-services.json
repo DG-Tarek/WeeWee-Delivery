@@ -1,0 +1,139 @@
+{
+  "project_info": {
+    "project_number": "951871916044",
+    "firebase_url": "https://mhenni-livraison-dz-default-rtdb.firebaseio.com",
+    "project_id": "mhenni-livraison-dz",
+    "storage_bucket": "mhenni-livraison-dz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951871916044:android:f592ada8f7671aad9c4629",
+        "android_client_info": {
+          "package_name": "com.example.weewee_delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951871916044-qjrllvk103jmudj06j1upv8fo312qc7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArZiVI_kiLCn3ZXOGuikdRBBcTcas6FYE"
+        },
+        {
+          "current_key": "AIzaSyDLnD1iyZ4sWprP9p_hNBLhr0hSqAkkSqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951871916044-qjrllvk103jmudj06j1upv8fo312qc7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951871916044:android:cfaab2fbaed6c3639c4629",
+        "android_client_info": {
+          "package_name": "com.example.weeweedeliverymed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951871916044-9u5d3nhmr6dr6dboth00tm8h66a0ei9k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.weeweedeliverymed",
+            "certificate_hash": "fc519b0f54037fee8f45450f4d6adc55284f6473"
+          }
+        },
+        {
+          "client_id": "951871916044-qjrllvk103jmudj06j1upv8fo312qc7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArZiVI_kiLCn3ZXOGuikdRBBcTcas6FYE"
+        },
+        {
+          "current_key": "AIzaSyDLnD1iyZ4sWprP9p_hNBLhr0hSqAkkSqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951871916044-qjrllvk103jmudj06j1upv8fo312qc7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951871916044:android:af3b39a36552e8b49c4629",
+        "android_client_info": {
+          "package_name": "com.livraison.dz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951871916044-6iqn7jl5jpaiqrk6iso211nee7kf4n4d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.livraison.dz",
+            "certificate_hash": "34c0878c8a865074b2be4e08777eada4a9456f9a"
+          }
+        },
+        {
+          "client_id": "951871916044-g8skeebl1j5cqaccp4tiscqmtgmcnsa8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.livraison.dz",
+            "certificate_hash": "7a6fc0235e44fd6b84a57b1e8fbea78405577d4f"
+          }
+        },
+        {
+          "client_id": "951871916044-ocgn9ihu3a2gpp3d5sf9am6gchtv6541.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.livraison.dz",
+            "certificate_hash": "9c0036298c0d5bb0ea0a0816f7275c089cae4169"
+          }
+        },
+        {
+          "client_id": "951871916044-qjrllvk103jmudj06j1upv8fo312qc7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArZiVI_kiLCn3ZXOGuikdRBBcTcas6FYE"
+        },
+        {
+          "current_key": "AIzaSyDLnD1iyZ4sWprP9p_hNBLhr0hSqAkkSqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951871916044-qjrllvk103jmudj06j1upv8fo312qc7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

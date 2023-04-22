@@ -91,7 +91,7 @@ class _ClientItemState extends State<ClientItem> {
                       children: [
                         Row(
                           children: [
-                            const SizedBox(width: 10,),
+                            const SizedBox(width: 6,),
                             Text("AbdelMoumen " , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22 , fontWeight: FontWeight.w400),),
 Spacer(),
                             GestureDetector(
@@ -105,7 +105,7 @@ Spacer(),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children:  [
-                            const SizedBox(width: 4,),
+                            const SizedBox(width: 7,),
                             SizedBox(
                               width: 16,
                               height: 16,
@@ -123,7 +123,7 @@ Spacer(),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children:  [
-                            const SizedBox(width: 3,),
+                            const SizedBox(width: 6,),
                             SizedBox(
                               width: 17.5,
                               height: 17.5,
