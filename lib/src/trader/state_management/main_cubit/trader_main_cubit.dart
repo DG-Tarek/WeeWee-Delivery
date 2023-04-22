@@ -11,6 +11,8 @@ class TraderMainCubit extends Cubit<TraderMainCubitState> {
   factory TraderMainCubit() {
     return _instance;
   }
+  TraderMainCubit._internal() : super(CreateTraderMainBlocState());
+
   int _currentScreenIndex = 0 ;
 
 
@@ -23,7 +25,7 @@ class TraderMainCubit extends Cubit<TraderMainCubitState> {
   final List<String> _typesOfPackages = ["To pick-up", "To deliver", "To return"];
   int _selectedTypeOfPackages = 0;
 
-  TraderMainCubit._internal() : super(CreateTraderMainBlocState());
+
 
   void changeScreen(int index){
     _currentScreenIndex = index;

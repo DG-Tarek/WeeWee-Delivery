@@ -1,16 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-import 'package:weewee_delivery/src/registering/third_screen.dart';
+ import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weewee_delivery/src/moduls/trader/product_model.dart';
+import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 
 import '../../../../constant/constant.dart';
-import '../../../../moduls/trader/product_model.dart';
 
- 
 
 class NewProductScreen extends StatefulWidget {
   const NewProductScreen({Key? key }) : super(key: key );
@@ -21,10 +18,37 @@ class NewProductScreen extends StatefulWidget {
 }
 
 class _NewProductScreenState extends State<NewProductScreen> {
+
+
   String _weight = "0";
   String _width = "0";
   String _height = "0";
   String _length = "0";
+
+  late TextEditingController _nameController;
+  late TextEditingController _descriptionController;
+  late TextEditingController _priceController;
+  late TextEditingController _stockController;
+  late TextEditingController _minStockController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController();
+    _descriptionController = TextEditingController();
+    _priceController = TextEditingController();
+    _stockController = TextEditingController();
+    _minStockController = TextEditingController();
+  }
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descriptionController.dispose();
+    _priceController.dispose();
+    _stockController.dispose();
+    _minStockController.dispose();
+    super.dispose();
+  }
 
 
   @override
@@ -52,10 +76,11 @@ class _NewProductScreenState extends State<NewProductScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 15.h,),
-             Text("Product Information" , style: Theme.of(context).textTheme.titleLarge,),
+              Text("Product Information" , style: Theme.of(context).textTheme.titleLarge,),
               SizedBox(height: 15.h,),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _nameController,
+                decoration: const  InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.deepPurple, width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -67,12 +92,13 @@ class _NewProductScreenState extends State<NewProductScreen> {
                     labelText: 'Product Name',
                     labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
                 ),
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
               const SizedBox(height: 20,),
-              const TextField(
+              TextField(
+                controller: _descriptionController,
                 maxLines: 3,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.deepPurple, width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -84,12 +110,13 @@ class _NewProductScreenState extends State<NewProductScreen> {
                     labelText: 'Product Description',
                     labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
                 ),
-                style: TextStyle(color: Colors.black),
+                style:const TextStyle(color: Colors.black),
               ),
               const SizedBox(height: 20,),
-              const TextField(
+              TextField(
+                controller: _priceController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.deepPurple, width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -101,7 +128,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
                     labelText: 'Price (DA )',
                     labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
                 ),
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
               const SizedBox(height: 40,),
               Text("Product Dimension" , style: Theme.of(context).textTheme.titleLarge,),
@@ -248,7 +275,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
                     ))
                     .toList(),
                 onChanged: (value) {
-                   _height=value.toString();
+                  _height=value.toString();
                 },
                 buttonStyleData: const ButtonStyleData(
                   height: 60,
@@ -325,9 +352,10 @@ class _NewProductScreenState extends State<NewProductScreen> {
               const SizedBox(height: 40,),
               Text("Stock" , style: Theme.of(context).textTheme.titleLarge,),
               const SizedBox(height: 20,),
-              const TextField(
+              TextField(
+                controller: _stockController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.deepPurple, width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -337,14 +365,15 @@ class _NewProductScreenState extends State<NewProductScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                     labelText: 'My Stock',
-                    labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                    labelStyle:  TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
                 ),
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
               const SizedBox(height: 20,),
-              const TextField(
+              TextField(
+                controller: _minStockController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.deepPurple, width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -356,7 +385,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
                     labelText: 'Min Stock',
                     labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
                 ),
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
               SizedBox(height: 40.h,),
               Container(
@@ -364,10 +393,23 @@ class _NewProductScreenState extends State<NewProductScreen> {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onTap: (){
+                    if(_nameController.text.isEmpty || _descriptionController.text.isEmpty || _priceController.text.isEmpty ){
 
-                    Product p = Product(name: "Test", description: "Test", price: 212, length: "22",width: "22",wight: "22", height: "22", createdAt: "12/12/2121", stock: 12,minStock: 11);
-                    FirebaseFirestore.instance.collection('AAAAAA').doc("GSLJgJF7OzGx7XXjq3i4").collection("product").add(p.toJson());
-
+                       debugPrint("Information");
+                    }else if( _height =='0' || _weight =='0' || _width =='0' || _length =='0' ){
+                      debugPrint("Demontion");
+                    }else if( _stockController.text.isEmpty || _minStockController.text.isEmpty){
+                      debugPrint("stock");
+                    }
+                      else{
+                      try{
+                        final Product product = Product(name: _nameController.text, description: _descriptionController.text, price: double.parse(_priceController.text), height: _height,
+                            width: _width, length: _length, wight: _weight, stock: int.parse(_stockController.text), minStock: int.parse(_minStockController.text) , createdAt: createdAtTime());
+                        TraderFirebaseCubit().createProduct(product: product);
+                      }catch(e){
+                        debugPrint("Invalid Inputs");
+                      }
+                    }
                   },
                   child: Container(
                     height: 85.w,
@@ -385,7 +427,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
               ),
               SizedBox(height: 25.h,),
             ],
-          ),
+          )
         ),
       ),
     );

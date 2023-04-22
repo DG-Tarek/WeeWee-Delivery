@@ -58,7 +58,7 @@ class _NewClientScreenState extends State<NewClientScreen> {
               ),
               const SizedBox(height: 20,),
               const TextField(
-                maxLines: 1,
+                maxLength: 10,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.deepPurple, width: 1),
@@ -68,7 +68,7 @@ class _NewClientScreenState extends State<NewClientScreen> {
                       borderSide: BorderSide(color: Colors.deepPurple,width: 0),
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
-                    labelText: 'Client Mobile Number',
+                    labelText: 'Mobile Number',
                     labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
                 ),
                 style: TextStyle(color: Colors.black),

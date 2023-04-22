@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/opening/opening_screen.dart';
 import 'package:weewee_delivery/src/shared/styles.dart';
 import 'package:weewee_delivery/src/deliver/state_management/deliver/main_cubit/deliver_main_cubit.dart';
+import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/state_management/main_cubit/trader_main_cubit.dart';
 
 import 'firebase_options.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
             ),
             BlocProvider<TraderMainCubit>(
               create: (BuildContext context) => TraderMainCubit(),
+            ),
+            BlocProvider<TraderFirebaseCubit>(
+              create: (BuildContext context) => TraderFirebaseCubit(),
             ),
           ], child: OpeningScreen()),
         );
