@@ -7,6 +7,7 @@ import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/screens/home/clients/clients_screen.dart';
+import 'package:weewee_delivery/src/trader/screens/home/new/new_order.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new/new_product_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/delivered_packages_screen.dart';
@@ -176,37 +177,45 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               flex: 3,
-                              child: Container(
-                                height: 160,
+                              child: GestureDetector(
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>   NewOrderScreen()),
+                                  );
+                                },
+                                child: Container(
+                                  height: 160,
 
-                                decoration: BoxDecoration(
-                                  color: Colors.deepPurple,
-                                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.shade300,
-                                      spreadRadius: 3,
-                                      blurRadius: 5,
-                                      offset: Offset(3, 3),
-                                    ),
-                                  ],
-                                ),
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.all( 16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('New\nOrder', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.white),),
-                                    Spacer(),
-                                    SizedBox(
-                                      height: 45,
-                                      width: 55,
-                                      child: Image.asset("assets/icons/order.png",color: Colors.white,),
-                                    ),
-                                    SizedBox(height: 5,),
-                                  ],
-                                ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepPurple,
+                                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.shade300,
+                                        spreadRadius: 3,
+                                        blurRadius: 5,
+                                        offset: Offset(3, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  alignment: Alignment.centerLeft,
+                                  padding: EdgeInsets.all( 16),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('New\nOrder', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.white),),
+                                      Spacer(),
+                                      SizedBox(
+                                        height: 45,
+                                        width: 55,
+                                        child: Image.asset("assets/icons/order.png",color: Colors.white,),
+                                      ),
+                                      SizedBox(height: 5,),
+                                    ],
+                                  ),
 
+                                ),
                               ),
                             ),
                             SizedBox(width: 10,),
