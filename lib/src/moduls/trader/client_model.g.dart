@@ -7,9 +7,9 @@ part of 'client_model.dart';
 // **************************************************************************
 
 Client _$ClientFromJson(Map<String, dynamic> json) => Client(
-      name: json['name'] as String,
+      fullName: json['fullName'] as String,
       phoneNumber: json['phoneNumber'] as String,
-      optionalPhoneNumber: json['optionalPhoneNumber'] as String,
+      optionalPhoneNumber: json['optionalPhoneNumber'] as String?,
       wilaya: json['wilaya'] as String,
       baladia: json['baladia'] as String,
       geolocation: json['geolocation'] as String?,
@@ -17,7 +17,7 @@ Client _$ClientFromJson(Map<String, dynamic> json) => Client(
     );
 
 Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
-      'name': instance.name,
+      'fullName': instance.fullName,
       'phoneNumber': instance.phoneNumber,
       'optionalPhoneNumber': instance.optionalPhoneNumber,
       'wilaya': instance.wilaya,

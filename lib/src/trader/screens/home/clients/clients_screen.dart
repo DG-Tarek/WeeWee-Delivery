@@ -3,7 +3,10 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
+import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
 
 class ClientsScreen extends StatelessWidget {
   const ClientsScreen({Key? key}) : super(key: key);
@@ -24,14 +27,21 @@ class ClientsScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: Column(
-          children: [
-            SizedBox(height: 20,),
-            ClientItem(),
-            ClientItem(),
-            ClientItem(),
- 
-          ],
+        body: BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
+          bloc: TraderFirebaseCubit(),
+            buildWhen: (previous, current)=> current is GetClientsLoadingState || current is GetClientsSuccessfullyState,
+            builder: (_, state) {
+            return SingleChildScrollView(
+
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Column(
+                  children: TraderFirebaseCubit().clientsList.map((c) => ClientItem(fullname: c.fullName, phoneNumber: c.phoneNumber, wilaya: c.wilaya, baladia: c.baladia) ).toList(),
+                ),
+              ),
+            )
+            ;
+          }
         ),
       ),
     );
@@ -43,8 +53,11 @@ class ClientsScreen extends StatelessWidget {
 
 
 class ClientItem extends StatefulWidget {
-  const ClientItem({Key? key}) : super(key: key);
-
+  const ClientItem({Key? key, required this.fullname, required this.phoneNumber, required this.wilaya, required this.baladia}) : super(key: key);
+  final String fullname;
+  final String phoneNumber;
+  final String wilaya;
+  final String baladia;
   @override
   State<ClientItem> createState() => _ClientItemState();
 }
@@ -92,7 +105,7 @@ class _ClientItemState extends State<ClientItem> {
                         Row(
                           children: [
                             const SizedBox(width: 6,),
-                            Text("AbdelMoumen " , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22 , fontWeight: FontWeight.w400),),
+                            Text(widget.fullname , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22 , fontWeight: FontWeight.w400),),
 Spacer(),
                             GestureDetector(
                                 onTap: ()=>setState(() {
@@ -112,8 +125,8 @@ Spacer(),
                               child: Image.asset("assets/icons/phone.png", color: color,),),
 
                             const SizedBox(width: 16,),
-                            const Text("0778854321" ,
-                              style:  TextStyle(
+                             Text(widget.phoneNumber ,
+                              style: const  TextStyle(
                                   fontSize: 15.5,
                                   color: Colors.black54
                               ),)
@@ -129,8 +142,8 @@ Spacer(),
                               height: 17.5,
                               child: Image.asset("assets/icons/location.png", color: color,),),
                             const SizedBox(width: 16,),
-                            const Text("Blida, Blida" ,
-                              style:  TextStyle(
+                             Text("${widget.wilaya} , ${widget.baladia}" ,
+                              style:  const TextStyle(
                                   fontSize: 15.5,
                                   color: Colors.black54
                               ),),

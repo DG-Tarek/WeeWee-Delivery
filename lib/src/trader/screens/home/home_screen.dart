@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/screens/home/clients/clients_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new/new_product_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_screen.dart';
@@ -301,6 +302,7 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 25,),
                   GestureDetector(
                     onTap: (){
+                      TraderFirebaseCubit().getClientsList();
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) =>  ClientsScreen()),

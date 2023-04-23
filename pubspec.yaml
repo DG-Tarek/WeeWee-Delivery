@@ -42,6 +42,7 @@ dependencies:
   firebase_phone_auth_handler: ^1.0.7
   pin_code_fields: ^7.4.0
   json_annotation: ^4.8.0
+  loading_animation_widget: ^1.2.0+4
 
 
 

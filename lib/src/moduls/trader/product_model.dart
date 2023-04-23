@@ -5,8 +5,9 @@ part 'product_model.g.dart';
 
 @JsonSerializable()
 class Product{
-  Product({required this.name,required this.description,required this.price,required this.height,
+  Product({this.id, required this.name,required this.description,required this.price,required this.height,
     required this.width,required this.length,required this.wight,required this.stock,required this.minStock, this.createdAt});
+  String? id ;
   String name ;
   String description ;
   double price ;

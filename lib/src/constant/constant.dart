@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 late double height ;
 late double width ;
 
-String createdAtTime()=> DateTime.now().toString();
+String createdTime()=> DateTime.now().toString();
 
 class Transport{
   const Transport({required this.name, required this.image});
