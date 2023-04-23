@@ -12,6 +12,9 @@ class CreateClientSuccessfullyState extends TraderFirebaseCubitState {}
 // New Order States
 class CreateOrderLoadingState extends TraderFirebaseCubitState {}
 class CreateOrderSuccessfullyState extends TraderFirebaseCubitState {}
-// Get Client List
+// Get Clients List
 class GetClientsLoadingState extends TraderFirebaseCubitState{}
 class GetClientsSuccessfullyState extends TraderFirebaseCubitState {}
+// Get Products List
+class GetProductsLoadingState extends TraderFirebaseCubitState{}
+class GetProductsSuccessfullyState extends TraderFirebaseCubitState {}

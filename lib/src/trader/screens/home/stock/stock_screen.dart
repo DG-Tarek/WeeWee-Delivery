@@ -3,8 +3,13 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:weewee_delivery/src/moduls/trader/product_model.dart';
+import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
 
 import '../../../../constant/constant.dart';
+import '../../../provider/trader_firebase_cubit.dart';
 
 class StockScreen extends StatelessWidget {
   const StockScreen({Key? key}) : super(key: key);
@@ -22,20 +27,39 @@ class StockScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 10,),
-          StockItem(),
-          StockItem(),
-          StockItem(),
-        ],
+      body: BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
+        bloc: TraderFirebaseCubit(),
+        buildWhen: (previous, current)=> current is GetProductsLoadingState || current is GetProductsSuccessfullyState,
+        builder:(_,state){
+          if( state is GetProductsLoadingState){
+            return Center(
+              child: LoadingAnimationWidget.discreteCircle(
+                  color: Colors.deepPurple,
+                  size: 45,
+                  secondRingColor: Colors.purple,
+                  thirdRingColor: Colors.orange),
+            );
+          }
+          return SingleChildScrollView(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: TraderFirebaseCubit().productsList.length,
+              itemBuilder: (_,index){
+                return Container(
+                  padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
+                  child: StockItem(
+                product: TraderFirebaseCubit().productsList[index], ));
+
+              }),
+          );},
       ),
     );
   }
 }
 class StockItem extends StatelessWidget {
-  const StockItem({Key? key}) : super(key: key);
-
+  const StockItem({Key? key, required this.product}) : super(key: key);
+  final Product product ;
   @override
   Widget build(BuildContext context) {
     final color =  COLORS[Random().nextInt(COLORS.length)];
@@ -72,13 +96,13 @@ class StockItem extends StatelessWidget {
                   children: [
                     SizedBox(
                         width: width - 135,
-                        child: Text("Cle multefunction" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20, fontWeight: FontWeight.w400 , height: 1.35),)),
+                        child: Text(product.name , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20, fontWeight: FontWeight.w400 , height: 1.35),)),
 
                     const SizedBox(height: 16,),
                     SizedBox(
                       width: width - 110,
-                      child: const Text("To switch to da w route, use the .push() method. The push() method adds a Route to the stack of routes managed. " ,
-                        style:  TextStyle(
+                      child:  Text(product.description ,
+                        style:  const TextStyle(
                             fontSize: 14,
                             color: Colors.grey , fontWeight: FontWeight.w300
                         ),),
@@ -90,13 +114,13 @@ class StockItem extends StatelessWidget {
                       children: [
                         Text("Price" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.red),),
                         const SizedBox(width: 12,),
-                        Text("3200" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black87),),
+                        Text(product.price.toString() , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black87),),
                         const SizedBox(width: 4,),
                         Text("DZ" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black87),),
                        Spacer(),
                         Text("Stock" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 12, fontWeight: FontWeight.w300, color: Colors.red),),
                         const SizedBox(width: 8,),
-                        Text("23 / 5" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.brown),),
+                        Text("${product.stock} / ${product.minStock}" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.brown),),
 
                       ],
                     ),

@@ -4,9 +4,12 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
+
+import '../../../../moduls/trader/client_model.dart';
 
 class ClientsScreen extends StatelessWidget {
   const ClientsScreen({Key? key}) : super(key: key);
@@ -31,16 +34,30 @@ class ClientsScreen extends StatelessWidget {
           bloc: TraderFirebaseCubit(),
             buildWhen: (previous, current)=> current is GetClientsLoadingState || current is GetClientsSuccessfullyState,
             builder: (_, state) {
+            if( state is GetClientsLoadingState){
+              return Center(
+                child: LoadingAnimationWidget.discreteCircle(
+                    color: Colors.deepPurple,
+                    size: 45,
+                    secondRingColor: Colors.purple,
+                    thirdRingColor: Colors.orange),
+              );
+            }
             return SingleChildScrollView(
+              child: ListView.builder(
+                shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: TraderFirebaseCubit().clientsList.length,
+                itemBuilder: (_,index){
+                   return Container(
+                     padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
+                     child: ClientItem(
+                         client: TraderFirebaseCubit().clientsList[index],
+                     )
+                   );
 
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Column(
-                  children: TraderFirebaseCubit().clientsList.map((c) => ClientItem(fullname: c.fullName, phoneNumber: c.phoneNumber, wilaya: c.wilaya, baladia: c.baladia) ).toList(),
-                ),
-              ),
-            )
-            ;
+                }),
+            );
           }
         ),
       ),
@@ -53,11 +70,8 @@ class ClientsScreen extends StatelessWidget {
 
 
 class ClientItem extends StatefulWidget {
-  const ClientItem({Key? key, required this.fullname, required this.phoneNumber, required this.wilaya, required this.baladia}) : super(key: key);
-  final String fullname;
-  final String phoneNumber;
-  final String wilaya;
-  final String baladia;
+  const ClientItem({Key? key, required this.client}) : super(key: key);
+   final Client client;
   @override
   State<ClientItem> createState() => _ClientItemState();
 }
@@ -105,7 +119,7 @@ class _ClientItemState extends State<ClientItem> {
                         Row(
                           children: [
                             const SizedBox(width: 6,),
-                            Text(widget.fullname , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22 , fontWeight: FontWeight.w400),),
+                            Text(widget.client.fullName , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22 , fontWeight: FontWeight.w400),),
 Spacer(),
                             GestureDetector(
                                 onTap: ()=>setState(() {
@@ -125,7 +139,7 @@ Spacer(),
                               child: Image.asset("assets/icons/phone.png", color: color,),),
 
                             const SizedBox(width: 16,),
-                             Text(widget.phoneNumber ,
+                             Text(widget.client.phoneNumber ,
                               style: const  TextStyle(
                                   fontSize: 15.5,
                                   color: Colors.black54
@@ -142,7 +156,7 @@ Spacer(),
                               height: 17.5,
                               child: Image.asset("assets/icons/location.png", color: color,),),
                             const SizedBox(width: 16,),
-                             Text("${widget.wilaya} , ${widget.baladia}" ,
+                             Text("${widget.client.wilaya} , ${widget.client.baladia}" ,
                               style:  const TextStyle(
                                   fontSize: 15.5,
                                   color: Colors.black54

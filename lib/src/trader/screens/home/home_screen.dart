@@ -305,7 +305,7 @@ class HomeScreen extends StatelessWidget {
                       TraderFirebaseCubit().getClientsList();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>  ClientsScreen()),
+                        MaterialPageRoute(builder: (context) =>  const ClientsScreen()),
                       );
                     },
                     child: Container(
@@ -347,9 +347,10 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 20,),
                   GestureDetector(
                     onTap: (){
+                      TraderFirebaseCubit().getProductsList();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>  StockScreen()),
+                        MaterialPageRoute(builder: (context) =>  const StockScreen()),
                       );
                     },
                     child: Container(

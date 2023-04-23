@@ -48,5 +48,17 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   });
   }
   List<Client> get clientsList => _clientsList ;
+
+  Future<void> getProductsList() async {
+    emit(GetProductsLoadingState());
+    await FirebaseFirestore.instance.collection("test_users/"+_uid+"/stock").get().then((value) {
+      _productsList.clear();
+      for (var doc in value.docs) {
+        _productsList.add(Product.fromJson(doc.data())..id = doc.id);
+      }
+      emit(GetProductsSuccessfullyState());
+    });
+  }
+  List<Product> get productsList => _productsList ;
 }
 
