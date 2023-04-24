@@ -81,29 +81,32 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
           SizedBox(height: 10.h,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Container(
-              height: 120.w,
-              width: width,
-              decoration: BoxDecoration(
-                color: Colors.purple,
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade400,
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(2, 2),
-                  ),
-                ],
-              ),
-              alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Select Product from Stock" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
-                  Icon(CupertinoIcons.collections , color: Colors.white, size: 22,),
-                ],
+            child: GestureDetector(
+              onTap: (){},
+              child: Container(
+                height: 120.w,
+                width: width,
+                decoration: BoxDecoration(
+                  color: Colors.purple,
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade400,
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(2, 2),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Select Product from Stock" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),),
+                    Icon(CupertinoIcons.collections , color: Colors.white, size: 22,),
+                  ],
+                ),
               ),
             ),
           ),

@@ -20,6 +20,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
   List<Product> _productsList = [];
 
+  Client? _selectedClient ;
+  Product? _selectedProduct ;
+
   Future<void> createProduct({required Product product}) async {
     emit(CreateProductLoadingState());
     await FirebaseFirestore.instance.collection('test_users')
@@ -60,5 +63,16 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
     });
   }
   List<Product> get productsList => _productsList ;
+
+  void setSelectedClient(Client? client){
+    _selectedClient = client;
+    emit(SelectedClientState());
+  }
+  void setSelectedProduct(Product? product){
+    _selectedProduct = product;
+    emit(SelectedProductState());
+  }
+  Client? get selectedClient => _selectedClient ;
+  Product? get selectedProduct => _selectedProduct ;
 }
 
