@@ -88,7 +88,7 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                   onTap: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  const ClientsScreen(selectIsAvailable: true,)),
+                      MaterialPageRoute(builder: (context) =>  const ClientsScreen(selectIsAvailable: false,)),
                     );
                   },
                   child: Container(
