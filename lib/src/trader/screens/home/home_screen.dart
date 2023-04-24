@@ -7,15 +7,15 @@ import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/screens/home/clients/clients_screen.dart';
-import 'package:weewee_delivery/src/trader/screens/home/new/new_order.dart';
-import 'package:weewee_delivery/src/trader/screens/home/new/new_product_screen.dart';
-import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_screen.dart';
+import 'package:weewee_delivery/src/trader/screens/home/new_order/new_order.dart';
+ import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/delivered_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/picked_up_packages.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/returned_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/stock/stock_screen.dart';
 
-import 'new/new_client_screen.dart';
+import 'new_client/new_client_screen.dart';
+import 'new_product/new_product_screen.dart';
 
 class HomeScreen extends StatelessWidget {
 

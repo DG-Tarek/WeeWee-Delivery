@@ -28,6 +28,6 @@ Colors.purpleAccent, Colors.red, Colors.brown
 final List<String>  PRODUCT_WEIGHT = ["< 1 KG","1 - 5 KG","5 - 10 KG","10 - 15 KG", "15 - 20 KG", "> 20 KG" ];
 final List<String>  PRODUCT_DIMENSIONS = ["< 10 CM","10 - 30 CM","30 - 50 CM","> 50 CM"];
 final List<String>  WILAYA = ["18 - Jijel", "16 - Alger", "66 - Teemzawatin"];
-final List<String>  PICKEDUPTIME = ["Any Time", "Morning ( 09:00 - 13:00 )", "Noon ( 13:00 - 17:00 )","Evening ( 17:00 - 22:00 )"];
+final List<String>  PICKUPTIME = ["Any Time", "Morning ( 09:00 - 13:00 )", "Noon ( 13:00 - 17:00 )","Evening ( 17:00 - 22:00 )"];
 
 

@@ -53,8 +53,8 @@ class _NewClientScreenState extends State<NewClientScreen> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             SizedBox(
-              height: 30,
-              width: 30,
+              height: 27,
+              width: 27,
               child: Image.asset("assets/icons/add-client.png",color: Colors.white,),
             ),
             SizedBox(width: 12,),
