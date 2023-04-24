@@ -125,7 +125,35 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
               ),
               SizedBox(height: 15.h,),
               TraderFirebaseCubit().selectedProduct != null ?
-                  StockItem(product: TraderFirebaseCubit().selectedProduct! , selectIsAvailable: false,)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: (){
+                            TraderFirebaseCubit().setSelectedProduct(null);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 26.0, bottom: 6),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              boxShadow: [BoxShadow(
+                                color: Colors.grey.shade200,
+                                spreadRadius: 5,
+                                blurRadius: 1,
+                                offset: Offset(1, 1),
+                              ),
+                              ],
+                            ),
+                            child: Icon(Icons.close, color: Colors.white,size: 22,),
+                          ),
+                        ),
+                      ),
+                      StockItem(product: TraderFirebaseCubit().selectedProduct!),
+                    ],
+                  )
                   :
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),

@@ -88,7 +88,7 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                   onTap: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  const ClientsScreen(selectIsAvailable: false,)),
+                      MaterialPageRoute(builder: (context) =>  const ClientsScreen(selectIsAvailable: true,)),
                     );
                   },
                   child: Container(
@@ -120,7 +120,35 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
               ),
               SizedBox(height: 15.h,),
                TraderFirebaseCubit().selectedClient != null?
-                   ClientItem(client: TraderFirebaseCubit().selectedClient!)
+                   Column(
+                     crossAxisAlignment: CrossAxisAlignment.end,
+                     children: [
+                       GestureDetector(
+                         onTap: (){
+                           TraderFirebaseCubit().setSelectedClient(null);
+                         },
+                         child: Padding(
+                           padding: const EdgeInsets.only(right: 26.0, bottom: 20),
+                           child: Container(
+                             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+                             decoration: BoxDecoration(
+                               color: Colors.red,
+                               borderRadius: BorderRadius.all(Radius.circular(24)),
+                               boxShadow: [BoxShadow(
+                                 color: Colors.grey.shade200,
+                                 spreadRadius: 5,
+                                 blurRadius: 1,
+                                 offset: Offset(1, 1),
+                               ),
+                               ],
+                             ),
+                             child: Icon(Icons.close, color: Colors.white,size: 22,),
+                           ),
+                         ),
+                       ),
+                       ClientItem(client: TraderFirebaseCubit().selectedClient!),
+                     ],
+                   )
                    :
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),

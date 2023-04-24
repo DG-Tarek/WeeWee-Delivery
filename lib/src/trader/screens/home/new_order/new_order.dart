@@ -1,9 +1,12 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new_order/client_page.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new_order/delivery_page.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new_order/product_page.dart';
+
+import '../../../provider/trader_firebase_cubit.dart';
 
 class NewOrderScreen extends StatefulWidget {
   const NewOrderScreen({Key? key}) : super(key: key);
@@ -42,6 +45,14 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
             SizedBox(width: 12,),
             Text("New Order"),
           ],
+        ),
+        leading: IconButton(
+          icon: const Icon(CupertinoIcons.left_chevron ),
+          onPressed: (){
+            TraderFirebaseCubit().setSelectedClient(null);
+            TraderFirebaseCubit().setSelectedProduct(null);
+            Navigator.of(context).pop();
+          },
         ),
       ),
       body: SizedBox(
