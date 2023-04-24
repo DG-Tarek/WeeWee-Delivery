@@ -446,17 +446,21 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                   width: width,
                   child: GestureDetector(
                     onTap: (){
-                      if(_nameController.text.isEmpty || _descriptionController.text.isEmpty || _priceController.text.isEmpty ){
-                        debugPrint("Information");
-                      }else if( _height =='0' || _weight =='0' || _width =='0' || _length =='0' ){
-                        debugPrint("Demontion");}
-                      else{
-                        try{
-                          final Product product = Product(name: _nameController.text, description: _descriptionController.text, price: double.parse(_priceController.text), height: _height,
-                              width: _width, length: _length, wight: _weight, stock: 0, minStock: 0, createdAt: createdTime());
-                          widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
-                        }catch(e){
-                          debugPrint("Invalid Inputs");
+                      if(TraderFirebaseCubit().selectedProduct != null){
+                        widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
+                      }else{
+                        if(_nameController.text.isEmpty || _descriptionController.text.isEmpty || _priceController.text.isEmpty ){
+                          debugPrint("Information");
+                        }else if( _height =='0' || _weight =='0' || _width =='0' || _length =='0' ){
+                          debugPrint("Demontion");}
+                        else{
+                          try{
+                            final Product product = Product(name: _nameController.text, description: _descriptionController.text, price: double.parse(_priceController.text), height: _height,
+                                width: _width, length: _length, wight: _weight, stock: 0, minStock: 0, createdAt: createdTime());
+                            widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
+                          }catch(e){
+                            debugPrint("Invalid Inputs");
+                          }
                         }
                       }
                     },

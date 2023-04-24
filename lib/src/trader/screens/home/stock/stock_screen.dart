@@ -74,7 +74,7 @@ class StockItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 16.0, right: 16),
             child: GestureDetector(
-              onTap: (){
+              onLongPress: (){
                 if(selectIsAvailable){
                   TraderFirebaseCubit().setSelectedProduct(product);
                   Navigator.of(context).pop();
