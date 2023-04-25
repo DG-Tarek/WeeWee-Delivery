@@ -48,7 +48,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
     await FirebaseFirestore.instance.collection("test_users/"+_uid+"/clients").get().then((value) {
       _clientsList.clear();
       for (var doc in value.docs) {
-        _clientsList.add(Client.fromJson(doc.data()));
+        _clientsList.add(Client.fromJson(doc.data())..id = doc.id);
       }
       emit(GetClientsSuccessfullyState());
   });
