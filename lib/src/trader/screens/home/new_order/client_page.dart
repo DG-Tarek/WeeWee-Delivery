@@ -401,7 +401,7 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                           widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                         }else{
                           if(_fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty && _addressController.text.isNotEmpty && _wilaya != "Wilaya" && _baladia != "Towne (Commune)"){
-                            final Client client = Client(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, optionalPhoneNumber: _optionalPhoneNumberController.text, wilaya: _wilaya, baladia: _baladia, createdAt: createdTime());
+                            final Client client = Client(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, optionalPhoneNumber: _optionalPhoneNumberController.text, wilaya: _wilaya, baladia: _baladia,address: _addressController.text, createdAt: createdTime());
                             TraderFirebaseCubit().setSecondClientChoice(client);
                             widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                           }else{

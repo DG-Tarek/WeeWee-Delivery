@@ -436,7 +436,7 @@ class _NewClientScreenState extends State<NewClientScreen> {
                     child: GestureDetector(
                       onTap: (){
                         if(_fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty && _addressController.text.isNotEmpty && _wilaya != "Wilaya" && _baladia != "Towne (Commune)"){
-                          final Client client = Client(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, optionalPhoneNumber: _optionalPhoneNumberController.text, wilaya: _wilaya, baladia: _baladia, createdAt: createdTime());
+                          final Client client = Client(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, optionalPhoneNumber: _optionalPhoneNumberController.text, wilaya: _wilaya, baladia: _baladia,address: _addressController.text,createdAt: createdTime());
                         TraderFirebaseCubit().createClient(client: client);
                         }else{
                           debugPrint("Invalid Inputs");
