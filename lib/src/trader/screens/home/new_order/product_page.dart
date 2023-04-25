@@ -124,7 +124,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                 ),
               ),
               SizedBox(height: 15.h,),
-              TraderFirebaseCubit().selectedProduct != null ?
+              TraderFirebaseCubit().firstProductChoice != null ?
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -147,11 +147,11 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                               ),
                               ],
                             ),
-                            child: Icon(Icons.close, color: Colors.white,size: 22,),
+                            child: const Icon(Icons.close, color: Colors.white,size: 22,),
                           ),
                         ),
                       ),
-                      StockItem(product: TraderFirebaseCubit().selectedProduct!),
+                      StockItem(product: TraderFirebaseCubit().firstProductChoice!),
                     ],
                   )
                   :
@@ -446,7 +446,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                   width: width,
                   child: GestureDetector(
                     onTap: (){
-                      if(TraderFirebaseCubit().selectedProduct != null){
+                      if(TraderFirebaseCubit().firstProductChoice != null){
                         widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                       }else{
                         if(_nameController.text.isEmpty || _descriptionController.text.isEmpty || _priceController.text.isEmpty ){
@@ -457,6 +457,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                           try{
                             final Product product = Product(name: _nameController.text, description: _descriptionController.text, price: double.parse(_priceController.text), height: _height,
                                 width: _width, length: _length, wight: _weight, stock: 0, minStock: 0, createdAt: createdTime());
+                            TraderFirebaseCubit().setFirstProductCoice(product);
                             widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                           }catch(e){
                             debugPrint("Invalid Inputs");

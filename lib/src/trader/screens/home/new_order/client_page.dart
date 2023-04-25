@@ -118,7 +118,7 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                 ),
               ),
               SizedBox(height: 15.h,),
-               TraderFirebaseCubit().selectedClient != null?
+               TraderFirebaseCubit().firstClientChoice != null?
                    Column(
                      crossAxisAlignment: CrossAxisAlignment.end,
                      children: [
@@ -145,7 +145,7 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                            ),
                          ),
                        ),
-                       ClientItem(client: TraderFirebaseCubit().selectedClient!, options: false,),
+                       ClientItem(client: TraderFirebaseCubit().firstClientChoice!, options: false,),
                      ],
                    )
                    :
@@ -218,12 +218,12 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.deepPurple,width: 0),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.deepPurple,width: 0),
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.deepPurple, width: 1),
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                       ),
@@ -397,11 +397,12 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                     ),
                     GestureDetector(
                       onTap: (){
-                        if(TraderFirebaseCubit().selectedClient != null){
+                        if(TraderFirebaseCubit().firstClientChoice != null){
                           widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                         }else{
                           if(_fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty && _addressController.text.isNotEmpty && _wilaya != "Wilaya" && _baladia != "Towne (Commune)"){
                             final Client client = Client(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, optionalPhoneNumber: _optionalPhoneNumberController.text, wilaya: _wilaya, baladia: _baladia, createdAt: createdTime());
+                            TraderFirebaseCubit().setSecondClientChoice(client);
                             widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                           }else{
                             debugPrint("Invalid Inputs  ccc");

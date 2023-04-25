@@ -174,7 +174,6 @@ class StockItem extends StatelessWidget {
     child: Image.asset("assets/icons/packagelogo.png"),
     ))],
       ),
-//Image.asset("assets/icons/packagelogo.png"),
     );
   }
 }
