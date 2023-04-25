@@ -94,6 +94,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   void createOrder(){
     final Client selectedClient ;
     final Product selectedProduct ;
+    selectedClient = _firstClientChoice ?? _secondClientChoice! ;
+    selectedProduct = _firstProductChoice ?? _secondProductChoice! ;
+
 
   }
 
