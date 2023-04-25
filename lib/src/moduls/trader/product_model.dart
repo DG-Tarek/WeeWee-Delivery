@@ -26,7 +26,7 @@ class Product{
 
 
   void subtractFromStock({required int count}){
-    if(count>=minStock){
+    if(count <= stock){
       stock -= count;
     }else{
       debugPrint("Over count !");

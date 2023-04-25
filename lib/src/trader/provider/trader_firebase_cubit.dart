@@ -2,6 +2,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/moduls/shared/package_model.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
 
 import '../../moduls/trader/product_model.dart';
@@ -83,7 +86,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   }
 
   void setSecondProductChoice(Product? product){
-    _firstProductChoice = product;
+    _secondProductChoice = product;
     emit(SelectedProductState());
   }
 
@@ -91,11 +94,77 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   Product? get firstProductChoice => _firstProductChoice ;
 
 
-  void createOrder(){
+  Future<void> createPackage() async {
     final Client selectedClient ;
     final Product selectedProduct ;
+    final int stock ;
+    final int minStock ;
+    final bool fromStock;
+
     selectedClient = _firstClientChoice ?? _secondClientChoice! ;
     selectedProduct = _firstProductChoice ?? _secondProductChoice! ;
+
+    if (_firstProductChoice != null){
+      selectedProduct.subtractFromStock(count: 1);
+      stock = selectedProduct.stock;
+      minStock = selectedProduct.minStock;
+      fromStock = true;
+    }else{
+      stock = 0;
+      minStock = 0;
+      fromStock = false;
+    }
+    final Package package = Package(
+        packageCreatedAt: createdTime(),
+        packageState: "packageState",
+        isFreeDelivery: true,
+        preferredDeliveryDay: "preferredDeliveryDay",
+        preferredDeliveryTime: "preferredDeliveryTime",
+        deliveryCost: 0,
+        senderFullName: "senderFullName",
+        senderStoreName: "senderStoreName",
+        senderMobileNumber: "senderMobileNumber",
+        senderWilaia: "senderWilaia",
+        senderBaladia: "senderBaladia",
+        senderAddress: "senderAddress",
+        senderGeolocation: "senderGeolocation",
+        senderAnotherStoreName: "senderAnotherStoreName",
+        senderAnotherMobileNumber: "senderAnotherMobileNumber",
+        senderAnotherWilaia: "senderAnotherWilaia",
+        senderAnotherBaladia: "senderAnotherBaladia",
+        senderAnotherAddress: "senderAnotherAddress",
+        senderAnotherGeolocation: "senderAnotherGeolocation",
+        clientFullName: selectedClient.fullName,
+        clientPhoneNumber: selectedClient.phoneNumber,
+        clientOptionalPhoneNumber: selectedClient.optionalPhoneNumber
+        , clientWilaya: selectedClient.wilaya,
+        clientBaladia: selectedClient.baladia,
+        clientAddress: selectedClient.address,
+        clientGeolocation: selectedClient.geolocation,
+        productName: selectedProduct.name,
+        productDescription: selectedProduct.description,
+        productPrice: selectedProduct.price,
+        productHeight: selectedProduct.height,
+        productWidth: selectedProduct.width,
+        productLength: selectedProduct.length,
+        productWeight: selectedProduct.width,
+        productSelectedFromStock: fromStock,
+        productNewStockState: fromStock ? "$stock / $minStock" : "The Product has not been shipped from The Stock." );
+        // add package to Packages list
+        await FirebaseFirestore.instance.collection(DateFormat.yMMMM().format(DateTime.now()))
+        .add(package.toJson())
+        .then((value) async {
+          // add package id to Trader packages list
+          await FirebaseFirestore.instance.collection('test_users')
+              .doc(_uid).collection("packages").add({"package_id" : value.id})
+              .then((value) async {
+            // update product stock state
+            await FirebaseFirestore.instance.collection('test_users')
+                .doc(_uid).collection("stock").doc(selectedProduct.id).update({"stock" : selectedProduct.stock});
+          });
+           });
+
+
 
 
   }

@@ -50,7 +50,7 @@ class Package{
   String packageState;
   //////Delivery////////
   bool isFreeDelivery;
-  bool deliveryCost;
+  double deliveryCost;
   String preferredDeliveryDay;
   String preferredDeliveryTime;
   /////Sender///////////
@@ -79,7 +79,7 @@ class Package{
   //////Product////////
   String productName;
   String productDescription;
-  String productPrice;
+  double productPrice;
   String productHeight;
   String productWidth;
   String productLength;

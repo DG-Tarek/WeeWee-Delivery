@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 
 import '../../../../constant/constant.dart';
 
@@ -436,7 +437,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                 GestureDetector(
                   onTap: (){
                     widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
-
+                    TraderFirebaseCubit().createPackage();
                   },
                   child: Container(
                     height: 85.w,
