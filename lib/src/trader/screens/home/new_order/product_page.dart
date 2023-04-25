@@ -130,10 +130,10 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                     children: [
                       GestureDetector(
                         onTap: (){
-                            TraderFirebaseCubit().setSelectedProduct(null);
+                            TraderFirebaseCubit().setFirstProductCoice(null);
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 26.0, bottom: 6),
+                          padding: const EdgeInsets.only(right: 18.0, bottom: 6),
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
                             decoration: BoxDecoration(

@@ -49,8 +49,8 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
         leading: IconButton(
           icon: const Icon(CupertinoIcons.left_chevron ),
           onPressed: (){
-            TraderFirebaseCubit().setSelectedClient(null);
-            TraderFirebaseCubit().setSelectedProduct(null);
+            TraderFirebaseCubit().setFirstClientChoice(null);
+            TraderFirebaseCubit().setFirstProductCoice(null);
             Navigator.of(context).pop();
           },
         ),

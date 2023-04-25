@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
-import 'package:weewee_delivery/src/trader/screens/home/stock/stock_screen.dart';
 
 import '../../../../constant/constant.dart';
 import '../../../../moduls/trader/client_model.dart';
@@ -125,10 +124,10 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                      children: [
                        GestureDetector(
                          onTap: (){
-                           TraderFirebaseCubit().setSelectedClient(null);
+                           TraderFirebaseCubit().setFirstClientChoice(null);
                          },
                          child: Padding(
-                           padding: const EdgeInsets.only(right: 26.0, bottom: 20),
+                           padding: const EdgeInsets.only(right: 18.0, bottom: 10),
                            child: Container(
                              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
                              decoration: BoxDecoration(
@@ -146,7 +145,7 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                            ),
                          ),
                        ),
-                       ClientItem(client: TraderFirebaseCubit().selectedClient!),
+                       ClientItem(client: TraderFirebaseCubit().selectedClient!, options: false,),
                      ],
                    )
                    :

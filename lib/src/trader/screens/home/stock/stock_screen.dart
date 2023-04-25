@@ -76,7 +76,7 @@ class StockItem extends StatelessWidget {
             child: GestureDetector(
               onLongPress: (){
                 if(selectIsAvailable){
-                  TraderFirebaseCubit().setSelectedProduct(product);
+                  TraderFirebaseCubit().setFirstProductCoice(product);
                   Navigator.of(context).pop();
                 }
               },
@@ -88,9 +88,9 @@ class StockItem extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.shade200,
-                      spreadRadius: 5,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: Offset(3, 3),
                     ),
                   ],
                 ),
@@ -105,18 +105,15 @@ class StockItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                          width: width - 135,
+                          width: width - 40,
                           child: Text(product.name , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20, fontWeight: FontWeight.w400 , height: 1.35),)),
 
                       const SizedBox(height: 16,),
-                      SizedBox(
-                        width: width - 110,
-                        child:  Text(product.description ,
-                          style:  const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey , fontWeight: FontWeight.w300
-                          ),),
-                      ),
+                      Text(product.description ,
+                        style:  const TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey , fontWeight: FontWeight.w300
+                        )),
                       const SizedBox(height: 14,),
 
                       Row(
@@ -143,15 +140,41 @@ class StockItem extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            top: 4,
-            right: 2,
-            height: 80,
-            width: 80,
-            child:  Image.asset("assets/icons/packagelogo.png"),
-          )],
-      ),
+    Positioned(
+    top: 0,
+    right: 8,
+    height: 60,
+    width: 60,
+    child:  Container(
 
+    padding: const EdgeInsets.only(left: 5,right: 7,top: 8,bottom: 4),
+    decoration: BoxDecoration(
+    color: Colors.white,
+    shape: BoxShape.circle,
+    boxShadow:  <BoxShadow>[
+    BoxShadow(
+    color: Colors.grey.shade300,
+    spreadRadius: 1,
+    blurRadius: 5,
+    offset: Offset(0, -2),
+    ),
+    BoxShadow(
+    color: Colors.grey.shade300,
+    spreadRadius: 1,
+    blurRadius: 5,
+    offset: Offset(2, 0),
+    ),
+    const BoxShadow(
+    color: Colors.white,
+    spreadRadius: 3,
+    blurRadius: 0,
+    offset: Offset(-2, 2),),
+    ],
+    ),
+    child: Image.asset("assets/icons/packagelogo.png"),
+    ))],
+      ),
+//Image.asset("assets/icons/packagelogo.png"),
     );
   }
 }

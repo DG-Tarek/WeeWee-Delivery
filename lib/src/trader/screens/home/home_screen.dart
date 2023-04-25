@@ -314,7 +314,7 @@ class HomeScreen extends StatelessWidget {
                       TraderFirebaseCubit().getClientsList();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>  const ClientsScreen()),
+                        MaterialPageRoute(builder: (context) =>  const ClientsScreen(options: true,)),
                       );
                     },
                     child: Container(

@@ -20,8 +20,11 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
   List<Product> _productsList = [];
 
-  Client? _selectedClient ;
-  Product? _selectedProduct ;
+  Client? _firstClientChoice ;
+  Client? _secondClientChoice ;
+
+  Product? _firstProductChoice ;
+  Product? _secondProductChoice ;
 
   Future<void> createProduct({required Product product}) async {
     emit(CreateProductLoadingState());
@@ -64,15 +67,22 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   }
   List<Product> get productsList => _productsList ;
 
-  void setSelectedClient(Client? client){
-    _selectedClient = client;
+  void setFirstClientChoice(Client? client){
+    _firstClientChoice = client;
     emit(SelectedClientState());
   }
-  void setSelectedProduct(Product? product){
-    _selectedProduct = product;
+  void setSecondClientChoice(Client? client){
+    _secondClientChoice = client;
+    emit(SelectedClientState());
+  }
+
+
+  void setFirstProductCoice(Product? product){
+    _firstProductChoice = product;
     emit(SelectedProductState());
   }
-  Client? get selectedClient => _selectedClient ;
-  Product? get selectedProduct => _selectedProduct ;
+
+  Client? get selectedClient => _firstClientChoice ;
+  Product? get selectedProduct => _firstProductChoice ;
 }
 
