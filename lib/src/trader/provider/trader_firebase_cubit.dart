@@ -77,12 +77,12 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   }
 
 
-  void setFirstProductCoice(Product? product){
+  void setFirstProductChoice(Product? product){
     _firstProductChoice = product;
     emit(SelectedProductState());
   }
 
-  void setSecondProductCoice(Product? product){
+  void setSecondProductChoice(Product? product){
     _firstProductChoice = product;
     emit(SelectedProductState());
   }

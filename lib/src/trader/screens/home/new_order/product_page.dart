@@ -130,7 +130,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                     children: [
                       GestureDetector(
                         onTap: (){
-                            TraderFirebaseCubit().setFirstProductCoice(null);
+                            TraderFirebaseCubit().setFirstProductChoice(null);
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(right: 18.0, bottom: 6),
@@ -457,7 +457,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                           try{
                             final Product product = Product(name: _nameController.text, description: _descriptionController.text, price: double.parse(_priceController.text), height: _height,
                                 width: _width, length: _length, wight: _weight, stock: 0, minStock: 0, createdAt: createdTime());
-                            TraderFirebaseCubit().setFirstProductCoice(product);
+                            TraderFirebaseCubit().setFirstProductChoice(product);
                             widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                           }catch(e){
                             debugPrint("Invalid Inputs");

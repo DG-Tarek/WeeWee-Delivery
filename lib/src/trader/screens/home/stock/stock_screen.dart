@@ -76,8 +76,12 @@ class StockItem extends StatelessWidget {
             child: GestureDetector(
               onLongPress: (){
                 if(selectIsAvailable){
-                  TraderFirebaseCubit().setFirstProductCoice(product);
-                  Navigator.of(context).pop();
+                  if(product.stock>0){
+                    TraderFirebaseCubit().setFirstProductChoice(product);
+                    Navigator.of(context).pop();
+                  }else{
+                    debugPrint("This Product is out of your Stock");
+                  }
                 }
               },
               child: Container(
