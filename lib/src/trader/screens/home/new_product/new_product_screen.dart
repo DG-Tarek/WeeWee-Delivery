@@ -75,16 +75,16 @@ class _NewProductScreenState extends State<NewProductScreen> with SingleTickerPr
         leading: IconButton(
           icon: const Icon(CupertinoIcons.left_chevron ),
           onPressed: (){
-            TraderFirebaseCubit().restoreCreateProductState();
+            TraderFirebaseCubit().restoreProductState();
             Navigator.of(context).pop();
           },
         ),
       ),
       body: BlocBuilder<TraderFirebaseCubit,TraderFirebaseCubitState>(
         bloc: TraderFirebaseCubit(),
-        buildWhen: (previous, current) => current is CreateProductLoadingState || current is CreateProductSuccessfullyState || current is CreateProductState,
+        buildWhen: (previous, current) => current is NewProductLoadingState || current is NewProductSuccessfullyState || current is NewProductState,
         builder: (_,state) {
-          if(state is CreateProductLoadingState || state is CreateProductSuccessfullyState){
+          if(state is NewProductLoadingState || state is NewProductSuccessfullyState){
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
@@ -95,11 +95,11 @@ class _NewProductScreenState extends State<NewProductScreen> with SingleTickerPr
                       transitionBuilder: (Widget child, Animation<double> animation) {
                         return FadeTransition( opacity: animation, child: child);
                       },
-                      child: state is CreateProductLoadingState ?
+                      child: state is NewProductLoadingState ?
                             Container(
                               height: 150,width: 160,
                               alignment: Alignment.center,
-                              key: ValueKey<bool>(state is CreateProductSuccessfullyState),
+                              key: ValueKey<bool>(state is NewProductSuccessfullyState),
                               child: LoadingAnimationWidget.discreteCircle(
                                   color: Colors.deepPurple,
                                   size: 45,
@@ -109,7 +109,7 @@ class _NewProductScreenState extends State<NewProductScreen> with SingleTickerPr
 
                             :Container(
 
-                              key: ValueKey<bool>(state is CreateProductSuccessfullyState),
+                              key: ValueKey<bool>(state is NewProductSuccessfullyState),
                               child: Column(
                                 children: [
                                   Stack(
@@ -141,12 +141,12 @@ class _NewProductScreenState extends State<NewProductScreen> with SingleTickerPr
                     transitionBuilder: (Widget child, Animation<double> animation) {
                       return FadeTransition( opacity: animation, child: child);
                     },
-                    child: state is CreateProductLoadingState ?
+                    child: state is NewProductLoadingState ?
                     Container(
 
                     ) :Container(
 
-                      key: ValueKey<bool>(state is CreateProductSuccessfullyState),
+                      key: ValueKey<bool>(state is NewProductSuccessfullyState),
                       child: Column(
                         children: [
                           const SizedBox(height: 20,),
@@ -169,7 +169,7 @@ class _NewProductScreenState extends State<NewProductScreen> with SingleTickerPr
                             children: [
                               GestureDetector(
                                 onTap: (){
-                                  TraderFirebaseCubit().restoreCreateProductState();
+                                  TraderFirebaseCubit().restoreProductState();
                                   Navigator.of(context).pop();
                                 },
                                 child: Container(
@@ -186,7 +186,7 @@ class _NewProductScreenState extends State<NewProductScreen> with SingleTickerPr
                               ),
                               GestureDetector(
                                 onTap: (){
-                                  TraderFirebaseCubit().restoreCreateProductState();
+                                  TraderFirebaseCubit().restoreProductState();
                                  _nameController.clear();
                                   _descriptionController.clear();
                                   _priceController.clear();
@@ -554,7 +554,7 @@ class _NewProductScreenState extends State<NewProductScreen> with SingleTickerPr
                             try{
                               final Product product = Product(name: _nameController.text, description: _descriptionController.text, price: double.parse(_priceController.text), height: _height,
                                   width: _width, length: _length, wight: _weight, stock: int.parse(_stockController.text), minStock: int.parse(_minStockController.text) , createdAt: createdTime());
-                              TraderFirebaseCubit().createProduct(product: product);
+                              TraderFirebaseCubit().NewProduct(product: product);
                             }catch(e){
                               debugPrint("Invalid Inputs");
                             }

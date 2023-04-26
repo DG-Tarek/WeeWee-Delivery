@@ -53,6 +53,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
             TraderFirebaseCubit().setSecondClientChoice(null);
             TraderFirebaseCubit().setFirstProductChoice(null);
             TraderFirebaseCubit().setSecondProductChoice(null);
+            TraderFirebaseCubit().restoreOrderState();
             Navigator.of(context).pop();
           },
         ),

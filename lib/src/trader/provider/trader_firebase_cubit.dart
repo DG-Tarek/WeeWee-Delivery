@@ -9,6 +9,7 @@ import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states
 
 import '../../moduls/trader/product_model.dart';
 import '../../moduls/trader/client_model.dart';
+import '../../moduls/trader/new_order_model.dart';
 
 
 class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
@@ -29,22 +30,22 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   Product? _firstProductChoice ;
   Product? _secondProductChoice ;
 
-  Future<void> createProduct({required Product product}) async {
-    emit(CreateProductLoadingState());
+  Future<void> NewProduct({required Product product}) async {
+    emit(NewProductLoadingState());
     await FirebaseFirestore.instance.collection('test_users')
         .doc(_uid).collection("stock").add(product.toJson())
-        .then((value) => emit(CreateProductSuccessfullyState())
+        .then((value) => emit(NewProductSuccessfullyState())
     );
   }
-  void restoreCreateProductState()=>emit(CreateProductState());
+  void restoreProductState()=>emit(NewProductState());
 
-  Future<void> createClient({required Client client}) async {
-    emit(CreateClientLoadingState());
+  Future<void> NewClient({required Client client}) async {
+    emit(NewClientLoadingState());
     await FirebaseFirestore.instance.collection('test_users')
         .doc(_uid).collection("clients").add(client.toJson())
-        .then((value) => emit(CreateClientSuccessfullyState()));
+        .then((value) => emit(NewClientSuccessfullyState()));
   }
-  void restoreCreateClientState()=>emit(CreateClientState());
+  void restoreClientState()=>emit(NewClientState());
 
   Future<void> getClientsList() async {
     emit(GetClientsLoadingState());
@@ -94,7 +95,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   Product? get firstProductChoice => _firstProductChoice ;
 
 
-  Future<void> createPackage() async {
+  Future<void> newOrder() async {
+
+    emit(NewOrderLoadingState());
     final Client selectedClient ;
     final Product selectedProduct ;
     final int stock ;
@@ -114,9 +117,10 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       minStock = 0;
       fromStock = false;
     }
+    final String path = DateFormat.yMMMM().format(DateTime.now());
     final Package package = Package(
         packageCreatedAt: createdTime(),
-        packageState: "packageState",
+        packageState: "Up",
         isFreeDelivery: true,
         preferredDeliveryDay: "preferredDeliveryDay",
         preferredDeliveryTime: "preferredDeliveryTime",
@@ -151,23 +155,30 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         productSelectedFromStock: fromStock,
         productNewStockState: fromStock ? "$stock / $minStock" : "The Product has not been shipped from The Stock." );
         // add package to Packages list
-        await FirebaseFirestore.instance.collection(DateFormat.yMMMM().format(DateTime.now()))
+        await FirebaseFirestore.instance.collection(path)
         .add(package.toJson())
         .then((value) async {
           // add package id to Trader packages list
+
+          final NewOrder newOrder = NewOrder(packageId: value.id, savedPath: path, createdAt: createdTime());
           await FirebaseFirestore.instance.collection('test_users')
-              .doc(_uid).collection("packages").add({"package_id" : value.id})
+              .doc(_uid).collection("orders").add(newOrder.toJson())
               .then((value) async {
             // update product stock state
-            await FirebaseFirestore.instance.collection('test_users')
-                .doc(_uid).collection("stock").doc(selectedProduct.id).update({"stock" : selectedProduct.stock});
+            if(fromStock){
+              await FirebaseFirestore.instance.collection('test_users')
+                  .doc(_uid).collection("stock").doc(selectedProduct.id).update({"stock" : selectedProduct.stock})
+                  .then((value) => emit(NewOrderSuccessfullyState()));
+            }
+            else{
+              emit(NewOrderSuccessfullyState());
+            }
           });
            });
 
 
-
-
   }
 
+  void restoreOrderState()=>emit(NewOrderState());
 }
 

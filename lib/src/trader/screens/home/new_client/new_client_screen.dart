@@ -65,17 +65,17 @@ class _NewClientScreenState extends State<NewClientScreen> {
         leading: IconButton(
           icon: const Icon(CupertinoIcons.left_chevron ),
           onPressed: (){
-            TraderFirebaseCubit().restoreCreateClientState();
+            TraderFirebaseCubit().restoreClientState();
             Navigator.of(context).pop();
           },
         ),
       ),
       body: BlocBuilder<TraderFirebaseCubit,TraderFirebaseCubitState>(
         bloc: TraderFirebaseCubit(),
-        buildWhen: (previous, current)=> current is CreateClientState || current is CreateClientLoadingState || current is  CreateClientSuccessfullyState,
+        buildWhen: (previous, current)=> current is NewClientState || current is NewClientLoadingState || current is  NewClientSuccessfullyState,
         builder: (_,state) {
 
-          if(state is CreateClientLoadingState || state is CreateClientSuccessfullyState){
+          if(state is NewClientLoadingState || state is NewClientSuccessfullyState){
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
@@ -86,11 +86,11 @@ class _NewClientScreenState extends State<NewClientScreen> {
                     transitionBuilder: (Widget child, Animation<double> animation) {
                       return FadeTransition( opacity: animation, child: child);
                     },
-                    child: state is CreateClientLoadingState ?
+                    child: state is NewClientLoadingState ?
                     Container(
                       height: 150,width: 160,
                       alignment: Alignment.center,
-                      key: ValueKey<bool>(state is CreateClientSuccessfullyState),
+                      key: ValueKey<bool>(state is NewClientSuccessfullyState),
                       child: LoadingAnimationWidget.discreteCircle(
                           color: Colors.deepPurple,
                           size: 45,
@@ -100,7 +100,7 @@ class _NewClientScreenState extends State<NewClientScreen> {
 
                         :Container(
 
-                      key: ValueKey<bool>(state is CreateClientSuccessfullyState),
+                      key: ValueKey<bool>(state is NewClientSuccessfullyState),
                       child: Column(
                         children: [
                           Stack(
@@ -132,12 +132,12 @@ class _NewClientScreenState extends State<NewClientScreen> {
                     transitionBuilder: (Widget child, Animation<double> animation) {
                       return FadeTransition( opacity: animation, child: child);
                     },
-                    child: state is CreateClientLoadingState ?
+                    child: state is NewClientLoadingState ?
                     Container(
 
                     ) :Container(
 
-                      key: ValueKey<bool>(state is CreateClientSuccessfullyState),
+                      key: ValueKey<bool>(state is NewClientSuccessfullyState),
                       child: Column(
                         children: [
                           const SizedBox(height: 20,),
@@ -160,7 +160,7 @@ class _NewClientScreenState extends State<NewClientScreen> {
                             children: [
                               GestureDetector(
                                 onTap: (){
-                                  TraderFirebaseCubit().restoreCreateClientState();
+                                  TraderFirebaseCubit().restoreClientState();
                                   Navigator.of(context).pop();
                                 },
                                 child: Container(
@@ -177,7 +177,7 @@ class _NewClientScreenState extends State<NewClientScreen> {
                               ),
                               GestureDetector(
                                 onTap: (){
-                                  TraderFirebaseCubit().restoreCreateClientState();
+                                  TraderFirebaseCubit().restoreClientState();
                                   _fullNameController.clear();
                                   _phoneNumberController.clear();
                                   _optionalPhoneNumberController.clear();
@@ -437,7 +437,7 @@ class _NewClientScreenState extends State<NewClientScreen> {
                       onTap: (){
                         if(_fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty && _addressController.text.isNotEmpty && _wilaya != "Wilaya" && _baladia != "Towne (Commune)"){
                           final Client client = Client(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, optionalPhoneNumber: _optionalPhoneNumberController.text, wilaya: _wilaya, baladia: _baladia,address: _addressController.text,createdAt: createdTime());
-                        TraderFirebaseCubit().createClient(client: client);
+                        TraderFirebaseCubit().NewClient(client: client);
                         }else{
                           debugPrint("Invalid Inputs");
                         }

@@ -77,7 +77,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Product selection", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),),
+                    Text("Product Selection", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),),
                     SizedBox(height: 5.h,),
                     Text(
                       "1 of 3" ,

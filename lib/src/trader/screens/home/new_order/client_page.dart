@@ -71,7 +71,7 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Client selection", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),),
+                    Text("Client Selection", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),),
                     SizedBox(height: 5.h,),
                     Text(
                       "2 of 3" ,

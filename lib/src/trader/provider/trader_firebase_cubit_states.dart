@@ -2,16 +2,17 @@ class TraderFirebaseCubitState {}
 
 class CreateTraderFirebaseBlocState extends TraderFirebaseCubitState {}
 // New Product States
-class CreateProductState extends TraderFirebaseCubitState {}
-class CreateProductLoadingState extends TraderFirebaseCubitState {}
-class CreateProductSuccessfullyState extends TraderFirebaseCubitState {}
+class NewProductState extends TraderFirebaseCubitState {}
+class NewProductLoadingState extends TraderFirebaseCubitState {}
+class NewProductSuccessfullyState extends TraderFirebaseCubitState {}
 // New Client States
-class CreateClientState extends TraderFirebaseCubitState {}
-class CreateClientLoadingState extends TraderFirebaseCubitState {}
-class CreateClientSuccessfullyState extends TraderFirebaseCubitState {}
+class NewClientState extends TraderFirebaseCubitState {}
+class NewClientLoadingState extends TraderFirebaseCubitState {}
+class NewClientSuccessfullyState extends TraderFirebaseCubitState {}
 // New Order States
-class CreateOrderLoadingState extends TraderFirebaseCubitState {}
-class CreateOrderSuccessfullyState extends TraderFirebaseCubitState {}
+class NewOrderState extends TraderFirebaseCubitState {}
+class NewOrderLoadingState extends TraderFirebaseCubitState {}
+class NewOrderSuccessfullyState extends TraderFirebaseCubitState {}
 // Get Clients List
 class GetClientsLoadingState extends TraderFirebaseCubitState{}
 class GetClientsSuccessfullyState extends TraderFirebaseCubitState {}
