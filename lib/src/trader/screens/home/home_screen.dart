@@ -407,6 +407,7 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: (){
+                            TraderFirebaseCubit().getPackagesList();
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) =>  AllPackagesScreen()),

@@ -12,6 +12,7 @@ class Package{
       required this.preferredDeliveryDay,
       required this.preferredDeliveryTime,
       required this.deliveryCost,
+       this.senderId,
       required this.senderFullName,
       required this.senderStoreName,
       required this.senderMobileNumber,
@@ -54,6 +55,7 @@ class Package{
   String preferredDeliveryDay;
   String preferredDeliveryTime;
   /////Sender///////////
+    String? senderId ;
   String senderFullName;
   String senderStoreName;
   String senderMobileNumber;

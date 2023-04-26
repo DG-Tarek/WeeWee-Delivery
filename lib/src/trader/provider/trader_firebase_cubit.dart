@@ -9,7 +9,7 @@ import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states
 
 import '../../moduls/trader/product_model.dart';
 import '../../moduls/trader/client_model.dart';
-import '../../moduls/trader/new_order_model.dart';
+
 
 
 class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
@@ -23,6 +23,8 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   List<Client> _clientsList = [];
 
   List<Product> _productsList = [];
+
+  List<Package> _packagesList = [];
 
   Client? _firstClientChoice ;
   Client? _secondClientChoice ;
@@ -69,6 +71,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       emit(GetProductsSuccessfullyState());
     });
   }
+
   List<Product> get productsList => _productsList ;
 
   void setFirstClientChoice(Client? client){
@@ -125,6 +128,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         preferredDeliveryDay: "preferredDeliveryDay",
         preferredDeliveryTime: "preferredDeliveryTime",
         deliveryCost: 0,
+        senderId: _uid,
         senderFullName: "senderFullName",
         senderStoreName: "senderStoreName",
         senderMobileNumber: "senderMobileNumber",
@@ -158,27 +162,35 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         await FirebaseFirestore.instance.collection(path)
         .add(package.toJson())
         .then((value) async {
-          // add package id to Trader packages list
-
-          final NewOrder newOrder = NewOrder(packageId: value.id, savedPath: path, createdAt: createdTime());
-          await FirebaseFirestore.instance.collection('test_users')
-              .doc(_uid).collection("orders").add(newOrder.toJson())
-              .then((value) async {
-            // update product stock state
-            if(fromStock){
-              await FirebaseFirestore.instance.collection('test_users')
-                  .doc(_uid).collection("stock").doc(selectedProduct.id).update({"stock" : selectedProduct.stock})
-                  .then((value) => emit(NewOrderSuccessfullyState()));
-            }
-            else{
-              emit(NewOrderSuccessfullyState());
-            }
-          });
+          if(fromStock){
+            await FirebaseFirestore.instance.collection('test_users')
+                .doc(_uid).collection("stock").doc(selectedProduct.id).update({"stock" : selectedProduct.stock})
+                .then((value) => emit(NewOrderSuccessfullyState()));
+                emit(NewOrderSuccessfullyState());
+          }
+          else{
+                 emit(NewOrderSuccessfullyState());
+          }
            });
 
 
   }
 
   void restoreOrderState()=>emit(NewOrderState());
+
+  Future<void> getPackagesList() async {
+    
+    emit(GetPackagesLoadingState());
+    await FirebaseFirestore.instance.collection(DateFormat.yMMMM().format(DateTime.now())).where("senderId",isEqualTo: _uid).get().then((value) {
+      _packagesList.clear();
+      for (var doc in value.docs) {
+        _packagesList.add(Package.fromJson(doc.data())..id = doc.id);
+      }
+      emit(GetPackagesSuccessfullyState());
+    });
+    print(_packagesList.length);
+  }
+
+  List<Package> get packagesList => _packagesList ;
 }
 
