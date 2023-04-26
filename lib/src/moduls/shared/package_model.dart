@@ -20,7 +20,7 @@ class Package{
       required this.senderAddress,
       required this.senderGeolocation,
       required this.senderAnotherStoreName,
-      required this.senderAnotherMobileNumber,
+      required this.senderAnotherPhoneNumber,
       required this.senderAnotherWilaia,
       required this.senderAnotherBaladia,
       required this.senderAnotherAddress,
@@ -63,7 +63,7 @@ class Package{
   String senderGeolocation;
   ///////SenderAnotherOptions/////
     String senderAnotherStoreName;
-    String senderAnotherMobileNumber;
+    String senderAnotherPhoneNumber;
     String senderAnotherWilaia;
     String senderAnotherBaladia;
     String senderAnotherAddress;

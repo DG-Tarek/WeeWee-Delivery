@@ -129,7 +129,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         senderAddress: "senderAddress",
         senderGeolocation: "senderGeolocation",
         senderAnotherStoreName: "senderAnotherStoreName",
-        senderAnotherMobileNumber: "senderAnotherMobileNumber",
+        senderAnotherPhoneNumber: "senderAnotherMobileNumber",
         senderAnotherWilaia: "senderAnotherWilaia",
         senderAnotherBaladia: "senderAnotherBaladia",
         senderAnotherAddress: "senderAnotherAddress",

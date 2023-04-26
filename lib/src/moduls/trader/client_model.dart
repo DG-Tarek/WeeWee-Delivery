@@ -7,12 +7,12 @@ part 'client_model.g.dart';
 class Client{
   Client({this.id ,required this.fullName,required this.phoneNumber, this.optionalPhoneNumber,required this.wilaya,required this.baladia, required this.address,this.geolocation, this.createdAt});
   String? id;
-  String fullName;
-  String phoneNumber;
+  final String fullName;
+  final String phoneNumber;
   String? optionalPhoneNumber;
-  String wilaya;
-  String baladia;
-  String address;
+  final String wilaya;
+  final String baladia;
+  final String address;
   String? geolocation;
   String? createdAt;
 

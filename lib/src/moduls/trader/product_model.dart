@@ -8,15 +8,15 @@ class Product{
   Product({this.id, required this.name,required this.description,required this.price,required this.height,
     required this.width,required this.length,required this.wight,required this.stock,required this.minStock, this.createdAt});
   String? id ;
-  String name ;
-  String description ;
-  double price ;
-  String height ;
-  String width ;
-  String length ;
-  String wight ;
-  int stock ;
-  int minStock ;
+   String name ;
+   String description ;
+   double price ;
+   String height ;
+   String width ;
+   String length ;
+   String wight ;
+   int stock ;
+   int minStock ;
   String? createdAt ;
 
 
@@ -33,7 +33,7 @@ class Product{
     }
   }
   void updateProduct({required String name, required String description, required double price,
-    required String height, required String width, required String length}){
+    required String height, required String width, required String length,required String wight}){
 
      name = name;
      description = description;
