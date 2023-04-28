@@ -38,7 +38,7 @@ class AllPackagesScreen extends StatelessWidget {
           bloc: TraderFirebaseCubit(),
           buildWhen: (previous, current)=> current is GetPackagesLoadingState || current is GetPackagesSuccessfullyState,
           builder: (_, state) {
-            if( state is GetClientsLoadingState){
+            if( state is GetPackagesLoadingState){
               return Center(
                 child: LoadingAnimationWidget.discreteCircle(
                     color: Colors.deepPurple,
