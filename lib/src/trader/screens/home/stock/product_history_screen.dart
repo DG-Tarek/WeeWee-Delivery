@@ -57,6 +57,7 @@ class ProductHistoryItem extends StatelessWidget {
                     offset: Offset(2, 2),
                   ),
                 ],
+                //up
               ),
               child: Row(
                 children: [
