@@ -135,6 +135,8 @@ class HomeScreen extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 32,),
+                            //Text('This state is only about\nthe current month', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w300, fontSize: 14, color: Colors.black54),),
+
                           ],
                         ),
                         Positioned(
