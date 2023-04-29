@@ -205,18 +205,18 @@ class StockItem extends StatelessWidget {
 
     padding: const EdgeInsets.only(left: 5,right: 7,top: 8,bottom: 4),
     decoration: BoxDecoration(
-    color: product.stock< product.minStock ? Colors.red : Colors.white,
+    color: product.stock< product.minStock ? Colors.deepOrange : Colors.white,
     shape: BoxShape.circle,
     boxShadow: <BoxShadow>[
     BoxShadow(
     color: Colors.grey.shade300,
-    spreadRadius: 1,
+    spreadRadius: 3,
     blurRadius: 5,
     offset: Offset(0, -2),
     ),
     BoxShadow(
     color: Colors.grey.shade300,
-    spreadRadius: 1,
+    spreadRadius: 3,
     blurRadius: 5,
     offset: Offset(2, 0),
     ),
@@ -227,7 +227,7 @@ class StockItem extends StatelessWidget {
     blurRadius: 0,
     offset: Offset(-2, 2),):
     const BoxShadow(
-    color: Colors.red,
+    color: Colors.deepOrange,
     spreadRadius: 1,
     blurRadius: 0,
     offset: Offset(-1, 1),),

@@ -25,7 +25,7 @@ class ProductHistoryScreen extends StatelessWidget {
         children: [
           SizedBox(height: 8.h,),
           StockItem(product: product),
-          SizedBox(height: 5.h,),
+          SizedBox(height: 3.h,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Container(
@@ -33,7 +33,7 @@ class ProductHistoryScreen extends StatelessWidget {
               width: width,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(16)),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.shade200,
@@ -50,25 +50,25 @@ class ProductHistoryScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Text("In Progress", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.blueAccent),),
+                    Text("In Progress", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.blueAccent),),
                     Text("1", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
                   ],),
                   SizedBox(height: 4,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Text("Sales", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.green)),
+                    Text("Sales", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.green)),
                     Text("3", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
                   ],),
                   SizedBox(height: 4,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Text("Returned" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red)),
+                    Text("Returned" , style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.red)),
                     Text("0", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
 
                   ],),
-                  SizedBox(height: 12,),
+                  const SizedBox(height: 10,),
                   Row(
 
                     children: [
@@ -87,7 +87,7 @@ class ProductHistoryScreen extends StatelessWidget {
           SizedBox(height: 15.h,),
            Padding(
              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-             child: Text("Sales History" , style: Theme.of(context).textTheme.titleLarge,),
+             child: Text("Sales History" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500),),
            ),
           const SizedBox(height: 3),
           ProductHistoryItem(),
