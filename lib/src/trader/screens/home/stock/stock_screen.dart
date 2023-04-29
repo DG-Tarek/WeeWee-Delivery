@@ -13,8 +13,9 @@ import '../../../../constant/constant.dart';
 import '../../../provider/trader_firebase_cubit.dart';
 
 class StockScreen extends StatelessWidget {
-  const StockScreen({Key? key, this.selectIsAvailable = false}) : super(key: key);
+  const StockScreen({Key? key, this.selectIsAvailable = false, this.showDetails = false}) : super(key: key);
   final bool selectIsAvailable;
+  final bool showDetails;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +53,7 @@ class StockScreen extends StatelessWidget {
                   child: StockItem(
                 product: TraderFirebaseCubit().productsList[index],
                   selectIsAvailable: selectIsAvailable,
-                    showHistory: true,
+                    showDetails: showDetails,
                   ));
 
               }),
@@ -66,12 +67,12 @@ class StockScreen extends StatelessWidget {
 
 class StockItem extends StatelessWidget {
   const StockItem(
-      {Key? key, required this.product, this.selectIsAvailable = false, this.showHistory = false})
+      {Key? key, required this.product, this.selectIsAvailable = false, this.showDetails = false})
       : super(key: key);
 
   final Product product;
   final bool selectIsAvailable;
-  final bool showHistory;
+  final bool showDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,7 @@ class StockItem extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16.0, bottom: 12),
       child: GestureDetector(
           onTap: (){
-            if(showHistory){
+            if(showDetails){
               TraderFirebaseCubit().getProductHistory(productId: product.id!);
               Navigator.of(context).push(_createRoute());
             }

@@ -133,7 +133,7 @@ if(fromStock){
   ProductHistory productHistory = ProductHistory(clientFullName: selectedClient.fullName,
       clientPhoneNumber: selectedClient.phoneNumber,
       clientOptionalPhoneNumber: selectedClient.optionalPhoneNumber!,
-      state: "in_progress",
+      state: "inProgress",
       saleDate: DateFormat.yMMMMd().format(DateTime.now()).replaceAll(",", ""),
       quantity: 1,
       totalPrice: selectedProduct.price,

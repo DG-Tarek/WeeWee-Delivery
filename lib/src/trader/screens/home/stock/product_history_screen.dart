@@ -43,16 +43,17 @@ class ProductHistoryScreen extends StatelessWidget {
                     thirdRingColor: Colors.orange),
               );
             }
-            int in_progress = 0;
+            int inProgress = 0;
             int returned = 0 ;
             int sales = 0;
             double total = 0;
             for(var p in TraderFirebaseCubit().productHistory){
-              total+=p.totalPrice;
+              if(p.state == "sale") {
+                total+=p.totalPrice;}
               switch (p.state){
-                case "in_progress":
-                  in_progress +=1;break;
-                case "sales":
+                case "inProgress":
+                  inProgress +=1;break;
+                case "sale":
                   sales +=1;break;
                 case "returned":
                   returned +=1;break;
@@ -96,7 +97,7 @@ class ProductHistoryScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text("In Progress", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.blueAccent),),
-                                    Text(in_progress.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
+                                    Text(inProgress.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
                                   ],),
                                 SizedBox(height: 4,),
                                 Row(
