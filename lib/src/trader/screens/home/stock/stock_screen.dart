@@ -81,6 +81,7 @@ class StockItem extends StatelessWidget {
       child: GestureDetector(
           onTap: (){
             if(showHistory){
+              TraderFirebaseCubit().getProductHistory(productId: product.id!);
               Navigator.of(context).push(_createRoute());
             }
           },

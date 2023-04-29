@@ -27,6 +27,8 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
   List<Package> _packagesList = [];
 
+  List<ProductHistory> _productHistory = [];
+
   Client? _firstClientChoice ;
   Client? _secondClientChoice ;
 
@@ -133,7 +135,7 @@ if(fromStock){
       saleDate: "23 Avril 2023",
       quantity: 1,
       totalPrice: selectedProduct.price,
-      stockState: minStock.toString());
+      stockState: stock.toString());
 
   await FirebaseFirestore.instance.collection('test_users')
       .doc(_uid).collection("stock").doc(selectedProduct.id).collection("history").add(productHistory.toJson())
@@ -223,7 +225,7 @@ if(fromStock){
       productNewStockState:"The Product has not been shipped from The Stock." );
       await FirebaseFirestore.instance.collection(path)
           .add(package.toJson())
-          .then((value) async {
+          .then((value){
           emit(NewOrderSuccessfullyState());
   });
 }
@@ -247,9 +249,23 @@ if(fromStock){
       }
       emit(GetPackagesSuccessfullyState());
     });
-    print(_packagesList.length);
   }
 
   List<Package> get packagesList => _packagesList ;
+
+
+  Future<void> getProductHistory({required String productId}) async {
+
+    emit(GetProductHistoryLoadingState());
+    await FirebaseFirestore.instance.collection("test_users").doc(_uid).collection("stock").doc(productId)
+        .collection("history").get().then((value) {
+      _productHistory.clear();
+      for (var doc in value.docs) {
+        _productHistory.add(ProductHistory.fromJson(doc.data()));
+      }
+      emit(GetProductHistorySuccessfullyState());
+    });
+  }
+  List<ProductHistory> get productHistory => _productHistory ;
 }
 

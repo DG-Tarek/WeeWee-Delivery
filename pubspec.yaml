@@ -102,6 +102,7 @@ flutter:
     - assets/icons/returned.png
     - assets/icons/add-client.png
     - assets/icons/store.png
+    - assets/icons/open-box.png
     - assets/icons/privacy-policy.png
   #   - images/a_dot_ham.jpeg
 

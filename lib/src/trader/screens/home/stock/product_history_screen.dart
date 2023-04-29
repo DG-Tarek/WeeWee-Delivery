@@ -1,11 +1,14 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/moduls/trader/product_history_model.dart';
 import 'package:weewee_delivery/src/trader/screens/home/stock/stock_screen.dart';
-
-import '../../../../moduls/shared/package_model.dart';
 import '../../../../moduls/trader/product_model.dart';
+import '../../../provider/trader_firebase_cubit.dart';
+import '../../../provider/trader_firebase_cubit_states.dart';
 
 class ProductHistoryScreen extends StatelessWidget {
   const ProductHistoryScreen({Key? key, required this.product}) : super(key: key);
@@ -16,92 +19,124 @@ class ProductHistoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: Row(
           children: [
+            SizedBox(
+              height: 35,
+              width: 35,
+              child: Image.asset("assets/icons/open-box.png",color: Colors.white,),
+            ),
+            SizedBox(width: 12,),
             Text("Product Details"),
           ],
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 8.h,),
-          StockItem(product: product),
-          SizedBox(height: 3.h,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Container(
-              padding: EdgeInsets.only(top: 16, bottom: 16,left: 16,right: 24),
-              width: width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade200,
-                    spreadRadius: 1,
-                    blurRadius: 2,
-                    offset: Offset(1, 1),
-                  ),
-                ],
-                //up
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                    Text("In Progress", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.blueAccent),),
-                    Text("1", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
-                  ],),
-                  SizedBox(height: 4,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                    Text("Sales", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.green)),
-                    Text("3", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
-                  ],),
-                  SizedBox(height: 4,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                    Text("Returned" , style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.red)),
-                    Text("0", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
+      body:  BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
+          bloc: TraderFirebaseCubit(),
+          buildWhen: (previous, current)=> current is GetProductHistoryLoadingState || current is GetProductHistorySuccessfullyState,
+          builder: (_, state) {
+            if( state is GetProductHistoryLoadingState){
+              return Center(
+                child: LoadingAnimationWidget.discreteCircle(
+                    color: Colors.deepPurple,
+                    size: 45,
+                    secondRingColor: Colors.purple,
+                    thirdRingColor: Colors.orange),
+              );
+            }
+            return SingleChildScrollView(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: TraderFirebaseCubit().productHistory.length + 1 ,
+                  itemBuilder: (_,index){
+                    return index == 0 ?
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 8.h,),
+                        StockItem(product: product),
+                        SizedBox(height: 3.h,),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Container(
+                            padding: EdgeInsets.only(top: 16, bottom: 16,left: 16,right: 24),
+                            width: width,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  spreadRadius: 1,
+                                  blurRadius: 2,
+                                  offset: Offset(1, 1),
+                                ),
+                              ],
+                              //up
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("In Progress", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.blueAccent),),
+                                    Text("1", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
+                                  ],),
+                                SizedBox(height: 4,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Sales", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.green)),
+                                    Text("3", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
+                                  ],),
+                                SizedBox(height: 4,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Returned" , style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.red)),
+                                    Text("0", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
 
-                  ],),
-                  const SizedBox(height: 10,),
-                  Row(
+                                  ],),
+                                const SizedBox(height: 10,),
+                                Row(
 
-                    children: [
-                    Text("Total Salles", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
-                    Spacer(),
-                      Text("2000", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 2.0, left: 2),
-                        child: Text("DZ", style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w600)),
-                      ),
-                  ],),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 15.h,),
-           Padding(
-             padding: const EdgeInsets.symmetric(horizontal: 24.0),
-             child: Text("Sales History" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500),),
-           ),
-          const SizedBox(height: 3),
-          ProductHistoryItem(),
-          ProductHistoryItem(),
-        ],
-      ),
+                                  children: [
+                                    Text("Total Salles", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
+                                    Spacer(),
+                                    Text("2000", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 2.0, left: 2),
+                                      child: Text("DZ", style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w600)),
+                                    ),
+                                  ],),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(height: 15.h,),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                          child: Text("Sales History" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500),),
+                        ),
+                        const SizedBox(height: 3),
+                      ],
+                    )
+                        : ProductHistoryItem(
+                        productHistory: TraderFirebaseCubit().productHistory[index-1]);
+
+                  }),
+            );
+          }
+      )
     );
   }
 }
 
 
 class ProductHistoryItem extends StatelessWidget {
-  const ProductHistoryItem({Key? key}) : super(key: key);
-
+  const ProductHistoryItem({Key? key, required this.productHistory}) : super(key: key);
+  final ProductHistory productHistory ;
   @override
   Widget build(BuildContext context) {
     return Padding(
