@@ -132,7 +132,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 if(fromStock){
   ProductHistory productHistory = ProductHistory(clientFullName: selectedClient.fullName,
       clientPhoneNumber: selectedClient.phoneNumber,
-      saleDate: "23 Avril 2023",
+      clientOptionalPhoneNumber: selectedClient.optionalPhoneNumber!,
+      state: "in_progress",
+      saleDate: DateFormat.yMMMMd().format(DateTime.now()).replaceAll(",", ""),
       quantity: 1,
       totalPrice: selectedProduct.price,
       stockState: stock.toString());

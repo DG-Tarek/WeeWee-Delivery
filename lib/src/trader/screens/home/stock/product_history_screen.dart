@@ -15,6 +15,7 @@ class ProductHistoryScreen extends StatelessWidget {
   final Product product;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -41,6 +42,21 @@ class ProductHistoryScreen extends StatelessWidget {
                     secondRingColor: Colors.purple,
                     thirdRingColor: Colors.orange),
               );
+            }
+            int in_progress = 0;
+            int returned = 0 ;
+            int sales = 0;
+            double total = 0;
+            for(var p in TraderFirebaseCubit().productHistory){
+              total+=p.totalPrice;
+              switch (p.state){
+                case "in_progress":
+                  in_progress +=1;break;
+                case "sales":
+                  sales +=1;break;
+                case "returned":
+                  returned +=1;break;
+              }
             }
             return SingleChildScrollView(
               child: ListView.builder(
@@ -80,21 +96,21 @@ class ProductHistoryScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text("In Progress", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.blueAccent),),
-                                    Text("1", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
+                                    Text(in_progress.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
                                   ],),
                                 SizedBox(height: 4,),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text("Sales", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.green)),
-                                    Text("3", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
+                                    Text(sales.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
                                   ],),
                                 SizedBox(height: 4,),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text("Returned" , style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.red)),
-                                    Text("0", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
+                                    Text(returned.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54),),
 
                                   ],),
                                 const SizedBox(height: 10,),
@@ -102,9 +118,9 @@ class ProductHistoryScreen extends StatelessWidget {
 
                                   children: [
                                     Text("Total Salles", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
-                                    Spacer(),
-                                    Text("2000", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
-                                    Padding(
+                                    const Spacer(),
+                                    Text(total.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
+                                    const Padding(
                                       padding: const EdgeInsets.only(top: 2.0, left: 2),
                                       child: Text("DZ", style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w600)),
                                     ),
@@ -139,6 +155,7 @@ class ProductHistoryItem extends StatelessWidget {
   final ProductHistory productHistory ;
   @override
   Widget build(BuildContext context) {
+    final List<String> date = productHistory.saleDate.split(" ");
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, left: 16),
       child: Stack(
@@ -163,29 +180,31 @@ class ProductHistoryItem extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                      flex: 2,
+                      flex: 4,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text("Kaddour" ,style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w400),  ),
+                        children:  [
+                           Text(productHistory.clientFullName ,style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w400),  ),
                           SizedBox(height: 5,),
-                          Text("05565656" ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w300 , color: Colors.black54), ),
-                          Text("05565656" ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w300, color: Colors.black45), ),
+                          Text(productHistory.clientPhoneNumber ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w300 , color: Colors.black54), ),
+                          Text(productHistory.clientOptionalPhoneNumber,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w300, color: Colors.black45), ),
 
                         ],)),
                   Expanded(
+                    flex: 2,
                       child: Container(
                         alignment: FractionalOffset.centerLeft,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("23" ,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
-                            Text("Avril" ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
-                            Text("2023" ,style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black54),  ),
+                            Text(date[1] ,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
+                            Text(date[0] ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
+                            Text(date[2] ,style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black54),  ),
 
                           ],),
                       )),
                   Expanded(
+                    flex: 3,
                       child: Container(
                         alignment: Alignment.centerRight,
                     child: Column(
@@ -193,18 +212,18 @@ class ProductHistoryItem extends StatelessWidget {
                       children: [
                         const SizedBox(height: 13,),
                         Row(
-                          children: const [
-                             Text("Quantity" ,style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
-                            SizedBox(width: 8,),
-                             Text("1" ,style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w600, color: Colors.green),  ),
+                          children:  [
+                            const Text("Quantity" ,style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
+                            const SizedBox(width: 8,),
+                             Text(productHistory.quantity.toString() ,style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w600, color: Colors.green),  ),
                           ],
                         ),
 
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Text("2300" ,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400 , color: Colors.red),  ),
-                            Padding(
+                          children:  [
+                            Flexible(child: Text(productHistory.totalPrice.toString() ,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400 , color: Colors.red),  )),
+                            const Padding(
                               padding: EdgeInsets.only(top: 6.0),
                               child: Text(" DZ" ,style: TextStyle(fontSize: 12 , color: Colors.red),  ),
                             ),
@@ -247,7 +266,7 @@ class ProductHistoryItem extends StatelessWidget {
                       offset: Offset(-2, 2),)
                   ],
                 ),
-                child:  Text("23" ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w600, color: Colors.deepPurple),  ),
+                child:  Text(productHistory.stockState ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w600, color: Colors.deepPurple),  ),
 
               ))
         ],
