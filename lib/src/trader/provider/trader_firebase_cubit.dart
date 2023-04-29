@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/moduls/shared/package_model.dart';
+import 'package:weewee_delivery/src/moduls/trader/product_history_model.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
 
 import '../../moduls/trader/product_model.dart';
@@ -98,6 +99,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   Product? get firstProductChoice => _firstProductChoice ;
 
 
+
+
+
   Future<void> newOrder() async {
 
     emit(NewOrderLoadingState());
@@ -109,26 +113,39 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
     selectedClient = _firstClientChoice ?? _secondClientChoice! ;
     selectedProduct = _firstProductChoice ?? _secondProductChoice! ;
+    final String path = DateFormat.yMMMM().format(DateTime.now());
 
     if (_firstProductChoice != null){
       selectedProduct.subtractFromStock(count: 1);
       stock = selectedProduct.stock;
       minStock = selectedProduct.minStock;
       fromStock = true;
+
     }else{
       stock = 0;
       minStock = 0;
       fromStock = false;
     }
-    final String path = DateFormat.yMMMM().format(DateTime.now());
-    final Package package = Package(
+
+if(fromStock){
+  ProductHistory productHistory = ProductHistory(clientFullName: selectedClient.fullName,
+      clientPhoneNumber: selectedClient.phoneNumber,
+      saleDate: "23 Avril 2023",
+      quantity: 1,
+      totalPrice: selectedProduct.price,
+      stockState: minStock.toString());
+
+  await FirebaseFirestore.instance.collection('test_users')
+      .doc(_uid).collection("stock").doc(selectedProduct.id).collection("history").add(productHistory.toJson())
+      .then((value) async {
+        final Package package = Package(
         packageCreatedAt: createdTime(),
         packageState: "Up",
         isFreeDelivery: true,
         preferredDeliveryDay: "preferredDeliveryDay",
         preferredDeliveryTime: "preferredDeliveryTime",
         deliveryCost: 0,
-        senderId: _uid,
+        senderId: _uid + "!weewee!" + selectedProduct.id! + "!weewee!" + value.id,
         senderFullName: "senderFullName",
         senderStoreName: "senderStoreName",
         senderMobileNumber: "senderMobileNumber",
@@ -157,24 +174,66 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         productLength: selectedProduct.length,
         productWeight: selectedProduct.width,
         productSelectedFromStock: fromStock,
-        productNewStockState: fromStock ? "$stock / $minStock" : "The Product has not been shipped from The Stock." );
-        // add package to Packages list
+        productNewStockState: "$stock / $minStock" );
         await FirebaseFirestore.instance.collection(path)
         .add(package.toJson())
         .then((value) async {
-          if(fromStock){
-            await FirebaseFirestore.instance.collection('test_users')
-                .doc(_uid).collection("stock").doc(selectedProduct.id).update({"stock" : selectedProduct.stock})
-                .then((value) => emit(NewOrderSuccessfullyState()));
-                emit(NewOrderSuccessfullyState());
-          }
-          else{
-                 emit(NewOrderSuccessfullyState());
-          }
-           });
+        await FirebaseFirestore.instance.collection('test_users')
+            .doc(_uid).collection("stock").doc(selectedProduct.id).update({"stock" : selectedProduct.stock})
+            .then((value) => emit(NewOrderSuccessfullyState()));
+    });
+  });
+}else{
+  final Package package = Package(
+      packageCreatedAt: createdTime(),
+      packageState: "Up",
+      isFreeDelivery: true,
+      preferredDeliveryDay: "preferredDeliveryDay",
+      preferredDeliveryTime: "preferredDeliveryTime",
+      deliveryCost: 0,
+      senderId: _uid,
+      senderFullName: "senderFullName",
+      senderStoreName: "senderStoreName",
+      senderMobileNumber: "senderMobileNumber",
+      senderWilaia: "senderWilaia",
+      senderBaladia: "senderBaladia",
+      senderAddress: "senderAddress",
+      senderGeolocation: "senderGeolocation",
+      senderAnotherStoreName: "senderAnotherStoreName",
+      senderAnotherPhoneNumber: "senderAnotherMobileNumber",
+      senderAnotherWilaia: "senderAnotherWilaia",
+      senderAnotherBaladia: "senderAnotherBaladia",
+      senderAnotherAddress: "senderAnotherAddress",
+      senderAnotherGeolocation: "senderAnotherGeolocation",
+      clientFullName: selectedClient.fullName,
+      clientPhoneNumber: selectedClient.phoneNumber,
+      clientOptionalPhoneNumber: selectedClient.optionalPhoneNumber
+      , clientWilaya: selectedClient.wilaya,
+      clientBaladia: selectedClient.baladia,
+      clientAddress: selectedClient.address,
+      clientGeolocation: selectedClient.geolocation,
+      productName: selectedProduct.name,
+      productDescription: selectedProduct.description,
+      productPrice: selectedProduct.price,
+      productHeight: selectedProduct.height,
+      productWidth: selectedProduct.width,
+      productLength: selectedProduct.length,
+      productWeight: selectedProduct.width,
+      productSelectedFromStock: fromStock,
+      productNewStockState:"The Product has not been shipped from The Stock." );
+      await FirebaseFirestore.instance.collection(path)
+          .add(package.toJson())
+          .then((value) async {
+          emit(NewOrderSuccessfullyState());
+  });
+}
+
 
 
   }
+
+
+
 
   void restoreOrderState()=>emit(NewOrderState());
 

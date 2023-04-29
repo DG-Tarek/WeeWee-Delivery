@@ -11,8 +11,8 @@ ProductHistory _$ProductHistoryFromJson(Map<String, dynamic> json) =>
       clientFullName: json['clientFullName'] as String,
       clientPhoneNumber: json['clientPhoneNumber'] as String,
       saleDate: json['saleDate'] as String,
-      quantity: json['quantity'] as String,
-      totalPrice: json['totalPrice'] as String,
+      quantity: json['quantity'] as int,
+      totalPrice: json['totalPrice'] as double,
           stockState: json['stockState'] as String,
     );
 

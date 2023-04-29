@@ -7,12 +7,13 @@ part 'product_history_model.g.dart';
 class ProductHistory{
     ProductHistory({required this.clientFullName, required this.clientPhoneNumber, required this.saleDate,
     required this.quantity, required this.totalPrice, required this.stockState});
-  final String clientFullName;
-  final String clientPhoneNumber;
-  final String saleDate;
-  final String quantity;
-  final String totalPrice;
-  final String stockState;
+
+      final String clientFullName;
+      final String clientPhoneNumber;
+      final String saleDate;
+      final int quantity;
+      final double totalPrice;
+      final String stockState;
 
     factory ProductHistory.fromJson(Map<String, dynamic> json) => _$ProductHistoryFromJson(json);
     Map<String, dynamic> toJson() => _$ProductHistoryToJson(this);
