@@ -25,6 +25,9 @@ class GetProductHistorySuccessfullyState extends TraderFirebaseCubitState {}
 // Get Packages List
 class GetPackagesLoadingState extends TraderFirebaseCubitState{}
 class GetPackagesSuccessfullyState extends TraderFirebaseCubitState {}
+// Get Packages List by day
+class GetPackagesByDayLoadingState extends TraderFirebaseCubitState{}
+class GetPackagesByDaySuccessfullyState extends TraderFirebaseCubitState {}
 // Select Product for Order
 class SelectedProductState extends TraderFirebaseCubitState{}
 // Select Client for Order

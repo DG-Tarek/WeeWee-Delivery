@@ -26,6 +26,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   List<Product> _productsList = [];
 
   List<Package> _packagesList = [];
+  List<Package> _packagesListByDay = [];
 
   List<ProductHistory> _productHistory = [];
 
@@ -115,7 +116,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
     selectedClient = _firstClientChoice ?? _secondClientChoice! ;
     selectedProduct = _firstProductChoice ?? _secondProductChoice! ;
-    final String path = DateFormat.yMMMM().format(DateTime.now());
+    final String path = DateFormat.yMMM().format(DateTime.now());
 
     if (_firstProductChoice != null){
       selectedProduct.subtractFromStock(count: 1);
@@ -248,7 +249,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   Future<void> getPackagesList() async {
     
     emit(GetPackagesLoadingState());
-    await FirebaseFirestore.instance.collection(DateFormat.yMMMM().format(DateTime.now())).where("senderId",isEqualTo: _uid).get().then((value) {
+    await FirebaseFirestore.instance.collection(DateFormat.yMMM().format(DateTime.now())).where("senderId",isEqualTo: _uid).get().then((value) {
       _packagesList.clear();
       for (var doc in value.docs) {
         _packagesList.add(Package.fromJson(doc.data())..id = doc.id);
@@ -258,6 +259,30 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   }
 
   List<Package> get packagesList => _packagesList ;
+
+
+
+
+
+
+
+  Future<void> getPackagesListByDay({required String date}) async {
+    emit(GetPackagesByDayLoadingState());
+    final List<String> d = date.split(" ");
+    await FirebaseFirestore.instance.collection("${d[0]} ${d[2]}").where("packageCreatedDay",isEqualTo: "$_uid@DAY#$date").get().then((value) {
+      _packagesListByDay.clear();
+      for (var doc in value.docs) {
+        _packagesListByDay.add(Package.fromJson(doc.data())..id = doc.id);
+      }
+      emit(GetPackagesByDaySuccessfullyState());
+    });
+  }
+  List<Package> get packagesListByDay => _packagesListByDay ;
+
+
+
+
+
 
 
   Future<void> getProductHistory({required String productId}) async {

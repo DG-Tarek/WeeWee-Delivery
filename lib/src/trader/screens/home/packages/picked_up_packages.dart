@@ -7,8 +7,8 @@ import 'package:weewee_delivery/src/trader/screens/home/packages/package_details
 
 import '../../../../constant/constant.dart';
 
-class PickedUpPackagesScreen extends StatelessWidget {
-  const PickedUpPackagesScreen({Key? key}) : super(key: key);
+class PickUpPackagesScreen extends StatelessWidget {
+  const PickUpPackagesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class PickedUpPackagesScreen extends StatelessWidget {
               child: Image.asset("assets/icons/pickedup.png",color: Colors.white,),
             ),
             SizedBox(width: 12,),
-            Text("Picked Up Packages"),
+            Text("Pick Up Packages"),
 
           ],
         ),
@@ -30,16 +30,16 @@ class PickedUpPackagesScreen extends StatelessWidget {
       body: Column(
         children: [
             SizedBox(height: 20,),
-          PickedUpPackageItem(),
-          PickedUpPackageItem(),
+          PickUpPackageItem(),
+          PickUpPackageItem(),
         ],
       ),
     );
   }
 }
 
-class PickedUpPackageItem extends StatelessWidget {
-  const PickedUpPackageItem({Key? key}) : super(key: key);
+class PickUpPackageItem extends StatelessWidget {
+  const PickUpPackageItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

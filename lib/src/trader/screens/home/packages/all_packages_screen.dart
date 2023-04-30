@@ -254,11 +254,11 @@ class PackageItem extends StatelessWidget {
 
   String stateFlag() {
     if (package.packageState == "pickup") {
-      return "assets/icons/approved.png";
+      return "assets/icons/pickedup.png";
     } else if (
     package.packageState == "delivered"
     ) {
-      return "assets/icons/pickedup.png";
+      return "assets/icons/approved.png";
     } else {
       return "assets/icons/returned.png";
     }

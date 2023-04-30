@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: SingleChildScrollView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -453,7 +453,7 @@ class HomeScreen extends StatelessWidget {
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  PickedUpPackagesScreen()),
+                              MaterialPageRoute(builder: (context) =>  PickUpPackagesScreen()),
                             );
                           },
                           child: Container(
@@ -475,7 +475,7 @@ class HomeScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Picked Up Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.teal),),
+                                Text('Pick Up Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.teal),),
                                 Spacer(),
                                 SizedBox(
                                   height: 50,

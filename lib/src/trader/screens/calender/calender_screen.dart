@@ -1,7 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+
+import '../../provider/trader_firebase_cubit.dart';
+import '../../provider/trader_firebase_cubit_states.dart';
+import '../home/packages/all_packages_screen.dart';
 
 class CalenderScreen extends StatefulWidget {
   const CalenderScreen({Key? key}) : super(key: key);
@@ -14,40 +20,65 @@ class _CalenderScreenState extends State<CalenderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-            children: [
-              Container(
-                width: width,
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple,
-                  borderRadius: BorderRadius.all( Radius.circular(0)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade300,
-                      spreadRadius: 2,
-                      blurRadius: 4,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
-                ),
+      body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        child: Column(
+              children: [
+                Container(
+                  width: width,
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.all( Radius.circular(0)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        spreadRadius: 2,
+                        blurRadius: 4,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
 
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: height*.0875,),
-                    Text("Stay Up To Date", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white.withOpacity(.85)),),
-                    const SizedBox(height: 16,),
-                    Text("Let's Check Your Packages ", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white , fontWeight: FontWeight.w500, fontSize: 18),),
-                    const  SizedBox(height: 25,),
-                  ],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: height*.0875,),
+                      Text("Stay Up To Date", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white.withOpacity(.85)),),
+                      const SizedBox(height: 16,),
+                      Text("Let's Check Your Packages ", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white , fontWeight: FontWeight.w500, fontSize: 18),),
+                      const  SizedBox(height: 25,),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 15,),
-              Calender(),
-              const SizedBox(height: 215,),
-               Text("Ops! f***")
-            ],
+                const SizedBox(height: 15,),
+                Calender(),
+                BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
+                    bloc: TraderFirebaseCubit(),
+                    buildWhen: (previous, current)=> current is GetPackagesByDayLoadingState || current is GetPackagesByDaySuccessfullyState,
+                    builder: (_, state) {
+                      if( state is GetPackagesByDayLoadingState){
+                        return Center(
+                          child: LoadingAnimationWidget.discreteCircle(
+                              color: Colors.deepPurple,
+                              size: 45,
+                              secondRingColor: Colors.purple,
+                              thirdRingColor: Colors.orange),
+                        );
+                      }
+                      return  ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: TraderFirebaseCubit().packagesList.length ,
+                            itemBuilder: (_,index){
+                              return PackageItem(
+                                package: TraderFirebaseCubit().packagesList[index],
+                              ); });
+                    }
+                )
+
+              ],
+        ),
       ),
     );
   }
