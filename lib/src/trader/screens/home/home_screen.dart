@@ -10,7 +10,7 @@ import 'package:weewee_delivery/src/trader/screens/home/clients/clients_screen.d
 import 'package:weewee_delivery/src/trader/screens/home/new_order/new_order.dart';
  import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/delivered_packages_screen.dart';
-import 'package:weewee_delivery/src/trader/screens/home/packages/picked_up_packages.dart';
+import 'package:weewee_delivery/src/trader/screens/home/packages/pick_up_packages.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/returned_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/stock/stock_screen.dart';
 

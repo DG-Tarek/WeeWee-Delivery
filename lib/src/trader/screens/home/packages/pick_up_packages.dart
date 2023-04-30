@@ -9,8 +9,8 @@ import 'package:weewee_delivery/src/trader/screens/home/packages/package_details
 import '../../../../constant/constant.dart';
 import '../../../provider/trader_firebase_cubit.dart';
 
-class ReturnedPackagesScreen extends StatelessWidget {
-  const ReturnedPackagesScreen({Key? key}) : super(key: key);
+class PickUpPackagesScreen extends StatelessWidget {
+  const PickUpPackagesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,10 @@ class ReturnedPackagesScreen extends StatelessWidget {
             SizedBox(
               height: 35,
               width: 35,
-              child: Image.asset("assets/icons/returned.png",color: Colors.white,),
+              child: Image.asset("assets/icons/pickedup.png",color: Colors.white,),
             ),
             SizedBox(width: 12,),
-            Text("Returned Packages"),
+            Text("Pick Up Packages"),
 
           ],
         ),
@@ -37,7 +37,7 @@ class ReturnedPackagesScreen extends StatelessWidget {
             itemBuilder: (_,index){
               return Container(
                   padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
-                  child: TraderFirebaseCubit().packagesList[index].packageState == "returned" ?
+                  child: TraderFirebaseCubit().packagesList[index].packageState == "pickup" ?
                   PackageItem(
                     package: TraderFirebaseCubit().packagesList[index],
                   ): Container()
@@ -48,3 +48,4 @@ class ReturnedPackagesScreen extends StatelessWidget {
     );
   }
 }
+

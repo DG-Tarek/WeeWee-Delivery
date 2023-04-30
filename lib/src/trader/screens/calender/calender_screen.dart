@@ -53,12 +53,15 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 ),
                 const SizedBox(height: 15,),
                 Calender(),
+                const SizedBox(height: 15,),
                 BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
                     bloc: TraderFirebaseCubit(),
                     buildWhen: (previous, current)=> current is GetPackagesByDayLoadingState || current is GetPackagesByDaySuccessfullyState,
                     builder: (_, state) {
                       if( state is GetPackagesByDayLoadingState){
-                        return Center(
+                        return Container(
+                          height: height*.5,
+                          alignment: Alignment.center,
                           child: LoadingAnimationWidget.discreteCircle(
                               color: Colors.deepPurple,
                               size: 45,
@@ -66,14 +69,18 @@ class _CalenderScreenState extends State<CalenderScreen> {
                               thirdRingColor: Colors.orange),
                         );
                       }
-                      return  ListView.builder(
+                      return  MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
+                        child: ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: TraderFirebaseCubit().packagesList.length ,
+                            itemCount: TraderFirebaseCubit().packagesListByDay.length ,
                             itemBuilder: (_,index){
                               return PackageItem(
-                                package: TraderFirebaseCubit().packagesList[index],
-                              ); });
+                                package: TraderFirebaseCubit().packagesListByDay[index],
+                              ); }),
+                      );
                     }
                 )
 
@@ -90,14 +97,9 @@ class Calender extends StatefulWidget {
   @override
   State<Calender> createState() => _CalenderState();
 }
-  String _selectedDay = "up";
-class _CalenderState extends State<Calender> {
+  String _selectedDay = TraderFirebaseCubit().packagesListByDay.isNotEmpty ? TraderFirebaseCubit().packagesListByDay[0].packageCreatedDay.split("@DAY#")[1] : "Up";
+  class _CalenderState extends State<Calender> {
 
-  @override
-  void dispose() {
-    _selectedDay = "up";
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
@@ -122,7 +124,7 @@ class _CalenderState extends State<Calender> {
             onTap: (){
              setState(() {
                _selectedDay = days[index];
-               print(_selectedDay );
+               TraderFirebaseCubit().getPackagesListByDay(date: _selectedDay);
              });
             },
             child: Container(
