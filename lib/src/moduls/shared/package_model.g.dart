@@ -9,6 +9,7 @@ part of 'package_model.dart';
 Package _$PackageFromJson(Map<String, dynamic> json) => Package(
       id: json['id'] as String?,
       packageCreatedAt: json['packageCreatedAt'] as String,
+      packageCreatedDay: json['packageCreatedDay'] as String,
       packageState: json['packageState'] as String,
       isFreeDelivery: json['isFreeDelivery'] as bool,
       preferredDeliveryDay: json['preferredDeliveryDay'] as String,
@@ -37,6 +38,7 @@ Package _$PackageFromJson(Map<String, dynamic> json) => Package(
       clientGeolocation: json['clientGeolocation'] as String?,
       productName: json['productName'] as String,
       productDescription: json['productDescription'] as String,
+      productHistoryPath: json['productHistoryPath'] as String,
       productPrice: (json['productPrice'] as num).toDouble(),
       productHeight: json['productHeight'] as String,
       productWidth: json['productWidth'] as String,
@@ -49,6 +51,7 @@ Package _$PackageFromJson(Map<String, dynamic> json) => Package(
 Map<String, dynamic> _$PackageToJson(Package instance) => <String, dynamic>{
       'id': instance.id,
       'packageCreatedAt': instance.packageCreatedAt,
+      'packageCreatedDay': instance.packageCreatedDay,
       'packageState': instance.packageState,
       'isFreeDelivery': instance.isFreeDelivery,
       'deliveryCost': instance.deliveryCost,
@@ -78,6 +81,7 @@ Map<String, dynamic> _$PackageToJson(Package instance) => <String, dynamic>{
       'productName': instance.productName,
       'productDescription': instance.productDescription,
       'productPrice': instance.productPrice,
+      'productHistoryPath': instance.productHistoryPath,
       'productHeight': instance.productHeight,
       'productWidth': instance.productWidth,
       'productLength': instance.productLength,

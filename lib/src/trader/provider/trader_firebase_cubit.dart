@@ -128,22 +128,23 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       minStock = 0;
       fromStock = false;
     }
-
-if(fromStock){
+    final String date = DateFormat.yMMMd().format(DateTime.now()).replaceAll(",", "");
+    if(fromStock){
   ProductHistory productHistory = ProductHistory(clientFullName: selectedClient.fullName,
       clientPhoneNumber: selectedClient.phoneNumber,
       clientOptionalPhoneNumber: selectedClient.optionalPhoneNumber!,
       state: "inProgress",
-      saleDate: DateFormat.yMMMMd().format(DateTime.now()).replaceAll(",", ""),
+      saleDate: DateFormat.yMMMd().format(DateTime.now()).replaceAll(",", ""),
       quantity: 1,
       totalPrice: selectedProduct.price,
       stockState: stock.toString());
 
-  await FirebaseFirestore.instance.collection('test_users')
+ await FirebaseFirestore.instance.collection('test_users')
       .doc(_uid).collection("stock").doc(selectedProduct.id).collection("history").add(productHistory.toJson())
       .then((value) async {
         final Package package = Package(
         packageCreatedAt: createdTime(),
+        packageCreatedDay: "$_uid@DAY#$date",
         packageState: "pickup",
         isFreeDelivery: true,
         preferredDeliveryDay: "preferredDeliveryDay",
@@ -173,6 +174,7 @@ if(fromStock){
         productName: selectedProduct.name,
         productDescription: selectedProduct.description,
         productPrice: selectedProduct.price,
+        productHistoryPath: "${selectedProduct.id}@PATH#${value.id}",
         productHeight: selectedProduct.height,
         productWidth: selectedProduct.width,
         productLength: selectedProduct.length,
@@ -190,6 +192,7 @@ if(fromStock){
 }else{
   final Package package = Package(
       packageCreatedAt: createdTime(),
+      packageCreatedDay: "$_uid@DAY#$date",
       packageState: "pickup",
       isFreeDelivery: true,
       preferredDeliveryDay: "preferredDeliveryDay",
@@ -219,6 +222,7 @@ if(fromStock){
       productName: selectedProduct.name,
       productDescription: selectedProduct.description,
       productPrice: selectedProduct.price,
+      productHistoryPath: "The Product has not been shipped from The Stock.",
       productHeight: selectedProduct.height,
       productWidth: selectedProduct.width,
       productLength: selectedProduct.length,

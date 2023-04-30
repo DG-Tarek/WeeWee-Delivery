@@ -7,6 +7,7 @@ class Package{
     Package({
       this.id,
       required this.packageCreatedAt,
+      required this.packageCreatedDay,
       required this.packageState,
       required this.isFreeDelivery,
       required this.preferredDeliveryDay,
@@ -35,6 +36,7 @@ class Package{
       required this.clientGeolocation,
       required this.productName,
       required this.productDescription,
+      required this.productHistoryPath,
       required this.productPrice,
       required this.productHeight,
       required this.productWidth,
@@ -48,6 +50,7 @@ class Package{
     //////Package///////
   String? id;
   String packageCreatedAt;
+  String packageCreatedDay;
   String packageState;
   //////Delivery////////
   bool isFreeDelivery;
@@ -82,6 +85,7 @@ class Package{
   String productName;
   String productDescription;
   double productPrice;
+  String productHistoryPath;
   String productHeight;
   String productWidth;
   String productLength;

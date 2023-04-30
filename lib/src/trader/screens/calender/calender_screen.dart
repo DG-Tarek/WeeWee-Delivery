@@ -71,13 +71,11 @@ class _CalenderState extends State<Calender> {
   Widget build(BuildContext context) {
     final today = DateTime.now();
     List<String> days = [];
-    for (int i=21; i>0;i--){
-
-    days.add(DateFormat.MMMd().format(today.subtract( Duration(days: i))));
+    for (int i=3; i>0;i--){
+    days.add(DateFormat.yMMMd().format(today.subtract( Duration(days: i))).replaceAll(",", ""));
     }
-    days.add( DateFormat.MMMd().format(today));
-    for (int i=0; i<7;i++){
-      days.add(DateFormat.MMMd().format(today.add( Duration(days: i))));
+   for (int i=0; i<5;i++){
+      days.add(DateFormat.yMMMd().format(today.add( Duration(days: i))).replaceAll(",", ""));
     }
     return SizedBox(
       height: 135,
@@ -93,7 +91,7 @@ class _CalenderState extends State<Calender> {
             onTap: (){
              setState(() {
                _selectedDay = days[index];
-               print(_selectedDay +" "+DateTime.now().year.toString());
+               print(_selectedDay );
              });
             },
             child: Container(
