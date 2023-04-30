@@ -144,12 +144,12 @@ if(fromStock){
       .then((value) async {
         final Package package = Package(
         packageCreatedAt: createdTime(),
-        packageState: "Up",
+        packageState: "pickup",
         isFreeDelivery: true,
         preferredDeliveryDay: "preferredDeliveryDay",
         preferredDeliveryTime: "preferredDeliveryTime",
         deliveryCost: 0,
-        senderId: _uid + "!weewee!" + selectedProduct.id! + "!weewee!" + value.id,
+        senderId: _uid ,
         senderFullName: "senderFullName",
         senderStoreName: "senderStoreName",
         senderMobileNumber: "senderMobileNumber",
@@ -190,7 +190,7 @@ if(fromStock){
 }else{
   final Package package = Package(
       packageCreatedAt: createdTime(),
-      packageState: "Up",
+      packageState: "pickup",
       isFreeDelivery: true,
       preferredDeliveryDay: "preferredDeliveryDay",
       preferredDeliveryTime: "preferredDeliveryTime",

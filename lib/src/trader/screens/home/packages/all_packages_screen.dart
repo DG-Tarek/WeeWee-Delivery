@@ -253,10 +253,10 @@ class PackageItem extends StatelessWidget {
   }
 
   String stateFlag() {
-    if (package.packageState == "pickedup") {
+    if (package.packageState == "pickup") {
       return "assets/icons/approved.png";
     } else if (
-    package.packageState == "deliverd"
+    package.packageState == "delivered"
     ) {
       return "assets/icons/pickedup.png";
     } else {
@@ -265,10 +265,10 @@ class PackageItem extends StatelessWidget {
   }
 
   Color stateColor() {
-    if (package.packageState == "pickedup") {
+    if (package.packageState == "pickup") {
       return Colors.teal;
     } else if (
-    package.packageState == "deliverd"
+    package.packageState == "delivered"
     ) {
       return Colors.green;
     } else {

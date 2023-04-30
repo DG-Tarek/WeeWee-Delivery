@@ -93,6 +93,7 @@ class _CalenderState extends State<Calender> {
             onTap: (){
              setState(() {
                _selectedDay = days[index];
+               print(_selectedDay +" "+DateTime.now().year.toString());
              });
             },
             child: Container(

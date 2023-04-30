@@ -185,10 +185,10 @@ class ProductHistoryItem extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:  [
-                           Text(productHistory.clientFullName ,style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w400),  ),
+                           Text(productHistory.clientFullName ,style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w400),  ),
                           SizedBox(height: 5,),
-                          Text(productHistory.clientPhoneNumber ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w300 , color: Colors.black54), ),
-                          Text(productHistory.clientOptionalPhoneNumber,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w300, color: Colors.black45), ),
+                          Text(productHistory.clientPhoneNumber ,style: const TextStyle(fontSize: 14 , fontWeight: FontWeight.w300 , color: Colors.black54), ),
+                          Text(productHistory.clientOptionalPhoneNumber,style: const TextStyle(fontSize: 14 , fontWeight: FontWeight.w300, color: Colors.black45), ),
 
                         ],)),
                   Expanded(
@@ -198,9 +198,9 @@ class ProductHistoryItem extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(date[1] ,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
-                            Text(date[0] ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
-                            Text(date[2] ,style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black54),  ),
+                            Text(date[1] ,style: const TextStyle(fontSize: 20 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
+                            Text(date[0] ,style: const TextStyle(fontSize: 14 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
+                            Text(date[2] ,style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black54),  ),
 
                           ],),
                       )),
@@ -216,14 +216,14 @@ class ProductHistoryItem extends StatelessWidget {
                           children:  [
                             const Text("Quantity" ,style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400, color: Colors.black54),  ),
                             const SizedBox(width: 8,),
-                             Text(productHistory.quantity.toString() ,style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w600, color: Colors.green),  ),
+                             Text(productHistory.quantity.toString() ,style: const TextStyle(fontSize: 18 , fontWeight: FontWeight.w600, color: Colors.green),  ),
                           ],
                         ),
 
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children:  [
-                            Flexible(child: Text(productHistory.totalPrice.toString() ,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400 , color: Colors.red),  )),
+                            Flexible(child: Text(productHistory.totalPrice.toString() ,style: const TextStyle(fontSize: 20 , fontWeight: FontWeight.w400 , color: Colors.red),  )),
                             const Padding(
                               padding: EdgeInsets.only(top: 6.0),
                               child: Text(" DZ" ,style: TextStyle(fontSize: 12 , color: Colors.red),  ),
@@ -267,7 +267,7 @@ class ProductHistoryItem extends StatelessWidget {
                       offset: Offset(-2, 2),)
                   ],
                 ),
-                child:  Text(productHistory.stockState ,style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w600, color: Colors.deepPurple),  ),
+                child:  Text(productHistory.stockState ,style: const TextStyle(fontSize: 14 , fontWeight: FontWeight.w600, color: Colors.deepPurple),  ),
 
               ))
         ],
