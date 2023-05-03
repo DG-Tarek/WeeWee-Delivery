@@ -1,6 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
@@ -35,6 +35,13 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
   Product? _firstProductChoice ;
   Product? _secondProductChoice ;
+
+  bool _freeProduct = false;
+  double _productPrice = 0;
+  double _deliveryCost = 0;
+
+
+
 
   Future<void> NewProduct({required Product product}) async {
     emit(NewProductLoadingState());
@@ -186,7 +193,8 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         .add(package.toJson())
         .then((value) async {
         await FirebaseFirestore.instance.collection('test_users')
-            .doc(_uid).collection("stock").doc(selectedProduct.id).update({"stock" : selectedProduct.stock})
+            .doc(_uid).collection("stock").doc(selectedProduct.id)
+            .update({"stock" : selectedProduct.stock})
             .then((value) => emit(NewOrderSuccessfullyState()));
     });
   });
@@ -298,5 +306,74 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
     });
   }
   List<ProductHistory> get productHistory => _productHistory ;
+
+
+
+
+  void setFreeProduct({required isFree})=> _freeProduct = isFree ;
+  bool get isFreeProduct =>_freeProduct ;
+
+
+    void  setProductPrice() {
+      if (_firstProductChoice != null ){
+        if(_freeProduct == true){
+          _productPrice = 0;
+        }else{
+          _productPrice = _firstProductChoice!.price;
+        }
+      }
+      else{
+        _productPrice = _secondProductChoice!.price;
+      }
+      print(_productPrice);
+      emit(UpdateDeliveryOptionsState());
+    }
+    double get productPrice => _productPrice ;
+
+
+
+  void  setDeliveryCost({String anotherPickUpWilia=""}){
+    double theSameWilya = 500;
+    double isNotTheSameWilya = 600;
+    if(anotherPickUpWilia.isNotEmpty){
+
+      if(_firstClientChoice != null ){
+
+        if( _firstClientChoice!.wilaya  == anotherPickUpWilia){
+          _deliveryCost = theSameWilya;
+        }
+        else {
+          _deliveryCost = isNotTheSameWilya  ;
+        }
+      }
+      else{
+        if(_secondClientChoice!.wilaya  == anotherPickUpWilia)
+          {_deliveryCost = theSameWilya;}
+      else{
+          _deliveryCost = isNotTheSameWilya  ;
+        }
+      }
+    }else{
+      if(_firstClientChoice != null ){
+        if( _firstClientChoice!.wilaya == "16 - Alger"){
+          _deliveryCost = theSameWilya;
+        }
+        else {
+          _deliveryCost = isNotTheSameWilya  ;
+        }
+      }
+      else{
+        if(_secondClientChoice!.wilaya == "16 - Alger")
+        {_deliveryCost = theSameWilya;}
+        else{
+          _deliveryCost = isNotTheSameWilya  ;
+        }
+      }
+    }
+    print(_deliveryCost);
+    emit(UpdateDeliveryOptionsState());
+  }
+
+  double get deliveryCost => _deliveryCost ;
 }
 

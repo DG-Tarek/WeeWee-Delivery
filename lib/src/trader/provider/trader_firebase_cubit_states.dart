@@ -32,3 +32,6 @@ class GetPackagesByDaySuccessfullyState extends TraderFirebaseCubitState {}
 class SelectedProductState extends TraderFirebaseCubitState{}
 // Select Client for Order
 class SelectedClientState extends TraderFirebaseCubitState{}
+
+// Update DeliveryOptions
+class UpdateDeliveryOptionsState extends TraderFirebaseCubitState{}

@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -218,6 +219,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[400]),
                 ),
                 SizedBox(height: 10.h,),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -352,6 +354,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                       onChanged: (bool value) {
                         setState(() {
                           _anotherPickupPlace = value;
+                          TraderFirebaseCubit().setDeliveryCost();
                         });
                       },
                     )
@@ -443,6 +446,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                         .toList(),
                     onChanged: (value) {
                       _wilaya = value.toString();
+                      TraderFirebaseCubit().setDeliveryCost(anotherPickUpWilia: _wilaya);
                     },
                     buttonStyleData: const ButtonStyleData(
                       height: 60,
@@ -565,6 +569,59 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                       ],
                     ),),
                 ],
+                SizedBox(height: 5.h,),
+                BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
+                    bloc: TraderFirebaseCubit(),
+                    buildWhen: (previous, current)=>current is UpdateDeliveryOptionsState,
+                    builder: (_, state){
+                      final double deliveryCost = _freeDelivery ? 0 : TraderFirebaseCubit().deliveryCost ;
+                      return Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(24)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.shade200,
+                              spreadRadius: 3,
+                              blurRadius: 5,
+                              offset: Offset(3, 3),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              SizedBox(height: 10.h,),
+                              Text("Product Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400)),
+                              const Spacer(),
+                              Text( TraderFirebaseCubit().productPrice.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
+                            ],),
+                          SizedBox(height: 8.h,),
+                          Row(
+                            children: [
+                              SizedBox(height: 7.h,),
+                              Text("Delivery Cost", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400)),
+                              const Spacer(),
+                              Text( deliveryCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
+                            ],),
+                          SizedBox(height: 8.h,),
+                          Row(
+                            children: [
+                              SizedBox(height: 7.h,),
+                              Text("Total Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red, fontWeight: FontWeight.w500)),
+                              const Spacer(),
+                              Text( ( TraderFirebaseCubit().productPrice + deliveryCost).toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
+                              const Padding(
+                                padding: const EdgeInsets.only(top: 2.0, left: 2),
+                                child: Text("DZ", style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w700)),
+                              ),
+                            ],),
+                        ],
+                    ),
+                      );}),
+
                 SizedBox(height: 25.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

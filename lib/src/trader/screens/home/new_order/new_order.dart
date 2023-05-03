@@ -30,6 +30,9 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
     super.dispose();
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +67,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            ProductPage(pageController: _pageController,),
+            ProductPage(pageController: _pageController),
             ClientPage(pageController: _pageController,),
             DeliveryPage(pageController: _pageController,),
           ],

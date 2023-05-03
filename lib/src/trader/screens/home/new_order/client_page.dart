@@ -13,6 +13,7 @@ import '../clients/clients_screen.dart';
 class ClientPage extends StatefulWidget {
   const ClientPage({Key? key, required this.pageController}) : super(key: key);
   final PageController pageController ;
+
   @override
   State<ClientPage> createState() => _ClientPageState();
 }
@@ -25,6 +26,7 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
 
   String _wilaya = "Wilaya";
   String _baladia = "Towne (Commune)";
+
 
 
 
@@ -398,11 +400,13 @@ class _ClientPageState extends State<ClientPage> with AutomaticKeepAliveClientMi
                     GestureDetector(
                       onTap: (){
                         if(TraderFirebaseCubit().firstClientChoice != null){
+                          TraderFirebaseCubit().setDeliveryCost();
                           widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                         }else{
                           if(_fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty && _addressController.text.isNotEmpty && _wilaya != "Wilaya" && _baladia != "Towne (Commune)"){
                             final Client client = Client(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, optionalPhoneNumber: _optionalPhoneNumberController.text, wilaya: _wilaya, baladia: _baladia,address: _addressController.text, createdAt: createdTime());
                             TraderFirebaseCubit().setSecondClientChoice(client);
+                            TraderFirebaseCubit().setDeliveryCost();
                             widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                           }else{
                             debugPrint("Invalid Inputs  ccc");

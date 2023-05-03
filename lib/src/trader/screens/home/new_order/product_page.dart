@@ -11,10 +11,10 @@ import '../../../../constant/constant.dart';
 import '../../../../moduls/trader/product_model.dart';
 
 class ProductPage extends StatefulWidget {
-  ProductPage({Key? key, required this.pageController }) : super(key: key);
+  ProductPage({Key? key, required this.pageController}) : super(key: key);
 
   final PageController pageController ;
-
+ 
   @override
   State<ProductPage> createState() => _ProductPageState();
 }
@@ -47,6 +47,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
     _priceController = TextEditingController();
 
   }
+  
 
   void dispose() {
     // Product Controllers
@@ -133,7 +134,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                             TraderFirebaseCubit().setFirstProductChoice(null);
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 18.0, bottom: 6),
+                          padding: const EdgeInsets.only(right: 20.0, bottom: 6),
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
                             decoration: BoxDecoration(
@@ -151,7 +152,48 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                           ),
                         ),
                       ),
-                      StockItem(product: TraderFirebaseCubit().firstProductChoice!),
+                      Column(
+                        children: [
+                          StockItem(product: TraderFirebaseCubit().firstProductChoice!),
+                          const SizedBox(height: 20,),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Is a Free Product ?" , style: Theme.of(context).textTheme.titleLarge,),
+                                Switch(
+                                  value: TraderFirebaseCubit().isFreeProduct,
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      TraderFirebaseCubit().setFreeProduct(isFree: value);
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+
+                          ),
+                          SizedBox(height: 4,),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                text: "By setting this option ON your ",
+                                style: const TextStyle(color: Colors.black54 , height: 1.45),
+                                children: <TextSpan>[
+                                  TextSpan(text: 'CLIENT', style: TextStyle(  color: Colors.deepPurple.shade400)),
+                                  const TextSpan(text: ', will '),
+                                  TextSpan(text: 'NOT BAY', style: TextStyle(  color: Colors.deepPurple.shade400)),
+                                  const TextSpan(text: ' for this Product.'),
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   )
                   :
@@ -438,7 +480,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                   ],
                 ),
               ),
-              SizedBox(height: 20.h,),
+              SizedBox(height: 30.h,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
@@ -447,6 +489,7 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                   child: GestureDetector(
                     onTap: (){
                       if(TraderFirebaseCubit().firstProductChoice != null){
+                        TraderFirebaseCubit().setProductPrice();
                         widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                       }else{
                         if(_nameController.text.isEmpty || _descriptionController.text.isEmpty || _priceController.text.isEmpty ){
@@ -458,9 +501,10 @@ class _ProductPageState extends State<ProductPage> with AutomaticKeepAliveClient
                             final Product product = Product(name: _nameController.text, description: _descriptionController.text, price: double.parse(_priceController.text), height: _height,
                                 width: _width, length: _length, wight: _weight, stock: 0, minStock: 0, createdAt: createdTime());
                             TraderFirebaseCubit().setSecondProductChoice(product);
+                            TraderFirebaseCubit().setProductPrice();
                             widget.pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
                           }catch(e){
-                            debugPrint("Invalid Inputs");
+                            debugPrint(e.toString());
                           }
                         }
                       }
