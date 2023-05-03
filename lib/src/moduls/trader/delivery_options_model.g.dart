@@ -9,10 +9,12 @@ part of 'delivery_options_model.dart';
 DeliveryOptions _$DeliveryOptionsFromJson(Map<String, dynamic> json) =>
     DeliveryOptions(
       isFreeDelivery: json['isFreeDelivery'] as bool,
-      preferredDeliveryDate: json['preferredDeliveryDate'] as String,
+      isFreeProduct: json['isFreeProduct'] as bool,
+      deliveryCost: (json['deliveryCost'] as num).toDouble(),
+      totalPrice: (json['totalPrice'] as num).toDouble(),
+          preferredDeliveryDay: json['preferredDeliveryDate'] as String,
       preferredDeliveryTime: json['preferredDeliveryTime'] as String,
-      deliveryCoast: (json['deliveryCoast'] as num).toDouble(),
-      useAnotherPlace: (json['useAnotherPlace'] as num).toDouble(),
+      useAnotherPlace: json['useAnotherPlace'] as bool ,
       anotherStoreName: json['anotherStoreName'] as String? ?? "",
       anotherPhoneNumber: json['anotherPhoneNumber'] as String? ?? "",
       anotherWilaya: json['anotherWilaya'] as String? ?? "",
@@ -24,9 +26,11 @@ DeliveryOptions _$DeliveryOptionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DeliveryOptionsToJson(DeliveryOptions instance) =>
     <String, dynamic>{
       'isFreeDelivery': instance.isFreeDelivery,
-      'preferredDeliveryDate': instance.preferredDeliveryDate,
+      'isFreeProduct': instance.isFreeProduct,
+      'deliveryCost': instance.deliveryCost,
+      'totalPrice': instance.totalPrice,
+      'preferredDeliveryDate': instance.preferredDeliveryDay,
       'preferredDeliveryTime': instance.preferredDeliveryTime,
-      'deliveryCoast': instance.deliveryCoast,
       'useAnotherPlace': instance.useAnotherPlace,
       'anotherStoreName': instance.anotherStoreName,
       'anotherPhoneNumber': instance.anotherPhoneNumber,

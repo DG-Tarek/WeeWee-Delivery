@@ -10,9 +10,11 @@ class DeliveryOptions{
   DeliveryOptions(
   {
     required this.isFreeDelivery,
-    required this.preferredDeliveryDate,
+    required this.isFreeProduct,
+    required this.deliveryCost,
+    required this.totalPrice,
+    required this.preferredDeliveryDay,
     required this.preferredDeliveryTime,
-    required this.deliveryCoast,
     required this.useAnotherPlace,
     this.anotherStoreName = "",
     this.anotherPhoneNumber = "",
@@ -23,10 +25,12 @@ class DeliveryOptions{
 }
       );
   final bool isFreeDelivery;
-  final String preferredDeliveryDate;
+  final bool isFreeProduct;
+  final double deliveryCost;
+  final double totalPrice;
+  final String preferredDeliveryDay;
   final String preferredDeliveryTime;
-  final double deliveryCoast;
-  final double useAnotherPlace;
+  final bool useAnotherPlace;
   String? anotherStoreName;
   String? anotherPhoneNumber;
   String? anotherWilaya;

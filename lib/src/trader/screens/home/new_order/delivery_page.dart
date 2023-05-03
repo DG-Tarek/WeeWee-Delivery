@@ -7,6 +7,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:weewee_delivery/src/moduls/trader/delivery_options_model.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new_order/new_order.dart';
@@ -31,6 +32,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
   String _wilaya = "Wilaya";
   String _baladia = "Towne (Commune)";
 
+  double _totalPrice = 0;
 
 
   late TextEditingController _storeNameController;
@@ -575,6 +577,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                     buildWhen: (previous, current)=>current is UpdateDeliveryOptionsState,
                     builder: (_, state){
                       final double deliveryCost = _freeDelivery ? 0 : TraderFirebaseCubit().deliveryCost ;
+                       _totalPrice = TraderFirebaseCubit().productPrice + deliveryCost ;
                       return Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
                         decoration: BoxDecoration(
@@ -612,7 +615,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                               SizedBox(height: 7.h,),
                               Text("Total Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red, fontWeight: FontWeight.w500)),
                               const Spacer(),
-                              Text( ( TraderFirebaseCubit().productPrice + deliveryCost).toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
+                              Text( _totalPrice.toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
                               const Padding(
                                 padding: const EdgeInsets.only(top: 2.0, left: 2),
                                 child: Text("DZ", style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w700)),
@@ -645,7 +648,23 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                     ),
                     GestureDetector(
                       onTap: (){
-
+                        if(!_anotherPickupPlace){
+                          final DeliveryOptions deliveryOptions = DeliveryOptions(isFreeDelivery: _freeDelivery,
+                              isFreeProduct: TraderFirebaseCubit().productPrice == 0,
+                              deliveryCost: TraderFirebaseCubit().deliveryCost,
+                              totalPrice: _totalPrice,
+                              preferredDeliveryDay: _deliveryDay,
+                              preferredDeliveryTime: _deliveryTime,
+                              useAnotherPlace: false );
+                        }else{
+                          final DeliveryOptions deliveryOptions = DeliveryOptions(isFreeDelivery: _freeDelivery,
+                              isFreeProduct: TraderFirebaseCubit().productPrice == 0,
+                              deliveryCost: TraderFirebaseCubit().deliveryCost,
+                              totalPrice: _totalPrice,
+                              preferredDeliveryDay: _deliveryDay,
+                              preferredDeliveryTime: _deliveryTime,
+                              useAnotherPlace: true );
+                        }
                         TraderFirebaseCubit().newOrder();
                       },
                       child: Container(
@@ -672,3 +691,5 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
     );
   }
 }
+
+/**/

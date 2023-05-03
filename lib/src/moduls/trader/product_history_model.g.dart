@@ -14,8 +14,8 @@ ProductHistory _$ProductHistoryFromJson(Map<String, dynamic> json) =>
       state: json['state'] as String,
       saleDate: json['saleDate'] as String,
       quantity: json['quantity'] as int,
-      totalPrice: json['totalPrice'] as double,
-          stockState: json['stockState'] as String,
+      totalPrice: (json['totalPrice'] as num).toDouble(),
+      stockState: json['stockState'] as String,
     );
 
 Map<String, dynamic> _$ProductHistoryToJson(ProductHistory instance) =>
