@@ -104,6 +104,8 @@ flutter:
     - assets/icons/store.png
     - assets/icons/open-box.png
     - assets/icons/privacy-policy.png
+    - assets/icons/delivery-cost.png
+    - assets/icons/wallet.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

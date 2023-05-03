@@ -132,7 +132,7 @@ class _ClientItemState extends State<ClientItem> {
                       children: [
                         Text(widget.client.fullName , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22 , fontWeight: FontWeight.w400),),
 
-                        const SizedBox(height: 16,),
+                        const SizedBox(height: 20,),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children:  [
@@ -150,7 +150,26 @@ class _ClientItemState extends State<ClientItem> {
                               ),)
                           ],
                         ),
-                        SizedBox(height: 12,),
+                        if(widget.client.optionalPhoneNumber!.isNotEmpty)...[
+                          SizedBox(height: 12,),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children:  [
+                              const SizedBox(width: 7,),
+                              SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: Image.asset("assets/icons/phone.png", color: color,),),
+                              const SizedBox(width: 16,),
+                              Text(widget.client.optionalPhoneNumber! ,
+                                style: const  TextStyle(
+                                    fontSize: 15.5,
+                                    color: Colors.black54
+                                ),)
+                            ],
+                          ),
+                        ],
+                        SizedBox(height: 20,),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children:  [

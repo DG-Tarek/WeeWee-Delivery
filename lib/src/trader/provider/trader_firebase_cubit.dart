@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/moduls/shared/package_model.dart';
+import 'package:weewee_delivery/src/moduls/trader/delivery_options_model.dart';
 import 'package:weewee_delivery/src/moduls/trader/product_history_model.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
 
@@ -35,6 +36,8 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
   Product? _firstProductChoice ;
   Product? _secondProductChoice ;
+
+  DeliveryOptions? _deliveryOptions ;
 
   bool _freeProduct = false;
   double _productPrice = 0;
@@ -152,26 +155,28 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       .then((value) async {
         final Package package = Package(
         packageCreatedAt: createdTime(),
-        packageCreatedDay: "$_uid@DAY#$date",
+        packageCreatedDay: "$_uid@DAY#$date",//find package by day (this is related to the calender screen)
         packageState: "pickup",
-        isFreeDelivery: true,
-        preferredDeliveryDay: "preferredDeliveryDay",
-        preferredDeliveryTime: "preferredDeliveryTime",
-        deliveryCost: 0,
+        isFreeDelivery: _deliveryOptions!.isFreeDelivery,
+        isFreeProduct: _deliveryOptions!.isFreeProduct,
+        preferredDeliveryDay: _deliveryOptions!.preferredDeliveryDay,
+        preferredDeliveryTime: _deliveryOptions!.preferredDeliveryTime,
+        deliveryCost: _deliveryOptions!.deliveryCost,
+        totalPrice: _deliveryOptions!.totalPrice,
         senderId: _uid ,
         senderFullName: "senderFullName",
         senderStoreName: "senderStoreName",
         senderMobileNumber: "senderMobileNumber",
-        senderWilaia: "senderWilaia",
+        senderWilaya: "senderWilaya",
         senderBaladia: "senderBaladia",
         senderAddress: "senderAddress",
         senderGeolocation: "senderGeolocation",
-        senderAnotherStoreName: "senderAnotherStoreName",
-        senderAnotherPhoneNumber: "senderAnotherMobileNumber",
-        senderAnotherWilaia: "senderAnotherWilaia",
-        senderAnotherBaladia: "senderAnotherBaladia",
-        senderAnotherAddress: "senderAnotherAddress",
-        senderAnotherGeolocation: "senderAnotherGeolocation",
+        senderAnotherStoreName: _deliveryOptions!.anotherStoreName!,
+        senderAnotherPhoneNumber: _deliveryOptions!.anotherPhoneNumber!,
+        senderAnotherWilaia: _deliveryOptions!.anotherWilaya!,
+        senderAnotherBaladia: _deliveryOptions!.anotherBaladia!,
+        senderAnotherAddress: _deliveryOptions!.anotherAddress!,
+        senderAnotherGeolocation: _deliveryOptions!.anotherGeolocation!,
         clientFullName: selectedClient.fullName,
         clientPhoneNumber: selectedClient.phoneNumber,
         clientOptionalPhoneNumber: selectedClient.optionalPhoneNumber
@@ -203,15 +208,17 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       packageCreatedAt: createdTime(),
       packageCreatedDay: "$_uid@DAY#$date",
       packageState: "pickup",
-      isFreeDelivery: true,
-      preferredDeliveryDay: "preferredDeliveryDay",
-      preferredDeliveryTime: "preferredDeliveryTime",
-      deliveryCost: 0,
-      senderId: _uid,
+      isFreeDelivery: _deliveryOptions!.isFreeDelivery,
+      isFreeProduct: _deliveryOptions!.isFreeProduct,
+      preferredDeliveryDay: _deliveryOptions!.preferredDeliveryDay,
+      preferredDeliveryTime: _deliveryOptions!.preferredDeliveryTime,
+      deliveryCost: _deliveryOptions!.deliveryCost,
+      totalPrice: _deliveryOptions!.totalPrice,
+      senderId: _uid ,
       senderFullName: "senderFullName",
       senderStoreName: "senderStoreName",
       senderMobileNumber: "senderMobileNumber",
-      senderWilaia: "senderWilaia",
+      senderWilaya: "senderWilaya",
       senderBaladia: "senderBaladia",
       senderAddress: "senderAddress",
       senderGeolocation: "senderGeolocation",
@@ -370,10 +377,13 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         }
       }
     }
-    print(_deliveryCost);
     emit(UpdateDeliveryOptionsState());
   }
 
   double get deliveryCost => _deliveryCost ;
+
+  void setDeliveryOptions({required DeliveryOptions options})=> _deliveryOptions = options ;
+
+  DeliveryOptions get deliveryOptions => _deliveryOptions! ;
 }
 

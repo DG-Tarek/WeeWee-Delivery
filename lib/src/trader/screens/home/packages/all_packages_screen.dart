@@ -138,25 +138,7 @@ class PackageItem extends StatelessWidget {
                         children: [
                           Icon(CupertinoIcons.person, color: stateC,),
                           const SizedBox(width: 8,),
-                           Text(package.senderFullName,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black54
-                            ),)
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          const SizedBox(width: 3,),
-                          SizedBox(
-                            width: 19,
-                            height: 22.5,
-                            child: Image.asset(
-                              "assets/icons/phone.png", color: stateC,),),
-                          const SizedBox(width: 10,),
-                          Text("0556784365",
+                           Text(package.clientFullName,
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black54
@@ -173,16 +155,16 @@ class PackageItem extends StatelessWidget {
                             child: Image.asset("assets/icons/location.png",
                               color: stateC,),),
                           const SizedBox(width: 10,),
-                          Text("Blida, Blida",
+                          Text(package.clientWilaya + ", "+package.clientBaladia,
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black54
                             ),)
                         ],
                       ),
-                      SizedBox(height: 16,),
+                      SizedBox(height: 20,),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text("Price", style: Theme
                               .of(context)
@@ -192,7 +174,7 @@ class PackageItem extends StatelessWidget {
                               fontWeight: FontWeight.w300,
                               color: Colors.red),),
                           const SizedBox(width: 12,),
-                          Text("3200", style: Theme
+                          Text(package.isFreeProduct ? "0.0":package.productPrice.toString(), style: Theme
                               .of(context)
                               .textTheme
                               .titleLarge!
@@ -205,6 +187,28 @@ class PackageItem extends StatelessWidget {
                               .textTheme
                               .titleLarge!
                               .copyWith(fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87),),
+                          const Spacer(),
+                          SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: Image.asset(
+                              "assets/icons/delivery-cost.png", color: Colors.deepPurple,),),
+                          const SizedBox(width: 8,),
+                          Text(package.deliveryCost.toString(), style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black87),),
+                          const SizedBox(width: 4,),
+                          Text("DZ", style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 12,
                               fontWeight: FontWeight.w600,
                               color: Colors.black87),),
                         ],

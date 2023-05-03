@@ -9,15 +9,18 @@ class Package{
       required this.packageCreatedAt,
       required this.packageCreatedDay,
       required this.packageState,
+
       required this.isFreeDelivery,
+      required this.isFreeProduct,
       required this.preferredDeliveryDay,
       required this.preferredDeliveryTime,
       required this.deliveryCost,
+      required this.totalPrice,
        this.senderId,
       required this.senderFullName,
       required this.senderStoreName,
       required this.senderMobileNumber,
-      required this.senderWilaia,
+      required this.senderWilaya,
       required this.senderBaladia,
       required this.senderAddress,
       required this.senderGeolocation,
@@ -53,8 +56,10 @@ class Package{
   String packageCreatedDay;
   String packageState;
   //////Delivery////////
+    bool isFreeProduct;
   bool isFreeDelivery;
   double deliveryCost;
+  double totalPrice;
   String preferredDeliveryDay;
   String preferredDeliveryTime;
   /////Sender///////////
@@ -62,7 +67,7 @@ class Package{
   String senderFullName;
   String senderStoreName;
   String senderMobileNumber;
-  String senderWilaia;
+  String senderWilaya;
   String senderBaladia;
   String senderAddress;
   String senderGeolocation;

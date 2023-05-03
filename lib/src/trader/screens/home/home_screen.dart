@@ -577,7 +577,46 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(width: 8,),
                     ],
                   ),
-                  SizedBox(height: 80,),
+
+                  const SizedBox(height: 50,),
+                  Container(
+                      width: width,
+                      padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade400,
+                            spreadRadius: 5,
+                            blurRadius: 8,
+                            offset: Offset(3, 3),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        //mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('My WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w400,fontSize: 18, color: Colors.white),),
+                              const SizedBox(height: 4,),
+                              Text('Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 26, color: Colors.white),),
+                            ],
+                          ),
+                          Spacer(),
+                          SizedBox(
+                            height: 55,
+                            width: 55,
+                            child: Image.asset("assets/icons/wallet.png",color: Colors.white,),
+                          ),
+                        ],
+                      )),
+
+                  SizedBox(height: 50,),
                 ],
               ),
             )
