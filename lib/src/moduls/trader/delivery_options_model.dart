@@ -12,7 +12,6 @@ class DeliveryOptions{
     required this.isFreeDelivery,
     required this.isFreeProduct,
     required this.deliveryCost,
-    required this.totalPrice,
     required this.preferredDeliveryDay,
     required this.preferredDeliveryTime,
     required this.useAnotherPlace,
@@ -27,7 +26,6 @@ class DeliveryOptions{
   final bool isFreeDelivery;
   final bool isFreeProduct;
   final double deliveryCost;
-  final double totalPrice;
   final String preferredDeliveryDay;
   final String preferredDeliveryTime;
   final bool useAnotherPlace;

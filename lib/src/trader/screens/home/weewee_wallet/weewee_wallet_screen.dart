@@ -84,13 +84,18 @@ class _MyWeeWeeWalletState extends State<MyWeeWeeWallet> {
                           ],
                         ),
                         const SizedBox(height: 40,),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 32, vertical: 15),
-                          decoration: BoxDecoration(
-                            color: Colors.green ,
-                            borderRadius: BorderRadius.all(Radius.circular(32)),
+                        GestureDetector(
+                          onTap: (){
+                            TraderFirebaseCubit().newWeeWeeWallet();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 15),
+                            decoration: BoxDecoration(
+                              color: Colors.green ,
+                              borderRadius: BorderRadius.all(Radius.circular(32)),
+                            ),
+                            child: Text("Receive Now", style: TextStyle(color: Colors.white, fontSize: 18,fontWeight: FontWeight.w600),),
                           ),
-                          child: Text("Receive Now", style: TextStyle(color: Colors.white, fontSize: 18,fontWeight: FontWeight.w600),),
                         ),
                       ],
                     )),

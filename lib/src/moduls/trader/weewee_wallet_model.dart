@@ -10,24 +10,24 @@ class WeeWeeWallet{
   required this.moneyReceiverFullName,
   required this.numberOfDeliveredPackages,
   required this.numberOfReturnedPackages,
-    required this.moneyReceivedFromDeliveredPackages,
+    required this.moneyReceived ,
     required this.deliveryCost,
     required this.returnCost,
-    required this.netMoney,
+
   });
   String? id;
   final String createdAt;
   final String receivedDay;
   final String moneyReceiverFullName;
+  final double moneyReceived;
 
-  final double numberOfDeliveredPackages;
-  final double numberOfReturnedPackages;
+  final int numberOfDeliveredPackages;
+  final int numberOfReturnedPackages;
 
-  final double moneyReceivedFromDeliveredPackages;
+
   final double deliveryCost;
   final double returnCost;
-  final double netMoney ;
-  List<Package>? packages;
+
   factory WeeWeeWallet.fromJson(Map<String, dynamic> json) => _$WeeWeeWalletFromJson(json);
   Map<String, dynamic> toJson() => _$WeeWeeWalletToJson(this);
 

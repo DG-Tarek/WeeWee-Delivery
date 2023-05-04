@@ -11,18 +11,12 @@ WeeWeeWallet _$WeeWeeWalletFromJson(Map<String, dynamic> json) => WeeWeeWallet(
       createdAt: json['createdAt'] as String,
       receivedDay: json['receivedDay'] as String,
       moneyReceiverFullName: json['moneyReceiverFullName'] as String,
-      numberOfDeliveredPackages:
-          (json['numberOfDeliveredPackages'] as num).toDouble(),
-      numberOfReturnedPackages:
-          (json['numberOfReturnedPackages'] as num).toDouble(),
-      moneyReceivedFromDeliveredPackages:
-          (json['moneyReceivedFromDeliveredPackages'] as num).toDouble(),
+      numberOfDeliveredPackages: json['numberOfDeliveredPackages'] as int,
+      numberOfReturnedPackages: json['numberOfReturnedPackages'] as int,
+      moneyReceived: (json['moneyReceived'] as num).toDouble(),
       deliveryCost: (json['deliveryCost'] as num).toDouble(),
       returnCost: (json['returnCost'] as num).toDouble(),
-      netMoney: (json['netMoney'] as num).toDouble(),
-    )..packages = (json['packages'] as List<dynamic>?)
-        ?.map((e) => Package.fromJson(e as Map<String, dynamic>))
-        .toList();
+    );
 
 Map<String, dynamic> _$WeeWeeWalletToJson(WeeWeeWallet instance) =>
     <String, dynamic>{
@@ -30,12 +24,9 @@ Map<String, dynamic> _$WeeWeeWalletToJson(WeeWeeWallet instance) =>
       'createdAt': instance.createdAt,
       'receivedDay': instance.receivedDay,
       'moneyReceiverFullName': instance.moneyReceiverFullName,
+      'moneyReceived': instance.moneyReceived,
       'numberOfDeliveredPackages': instance.numberOfDeliveredPackages,
       'numberOfReturnedPackages': instance.numberOfReturnedPackages,
-      'moneyReceivedFromDeliveredPackages':
-          instance.moneyReceivedFromDeliveredPackages,
       'deliveryCost': instance.deliveryCost,
       'returnCost': instance.returnCost,
-      'netMoney': instance.netMoney,
-      'packages': instance.packages,
     };

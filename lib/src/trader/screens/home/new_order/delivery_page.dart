@@ -32,7 +32,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
   String _wilaya = "Wilaya";
   String _baladia = "Towne (Commune)";
 
-  double _totalPrice = 0;
+
   double _deliveryCost  = 0;
 
 
@@ -578,8 +578,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                     buildWhen: (previous, current)=>current is UpdateDeliveryOptionsState,
                     builder: (_, state){
                        _deliveryCost = _freeDelivery ? 0 : TraderFirebaseCubit().deliveryCost ;
-                       _totalPrice = TraderFirebaseCubit().productPrice + _deliveryCost ;
-                      return Container(
+                       return Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -641,7 +640,6 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                           final DeliveryOptions deliveryOptions = DeliveryOptions(isFreeDelivery: _freeDelivery,
                               isFreeProduct: TraderFirebaseCubit().productPrice == 0,
                               deliveryCost: _deliveryCost,
-                              totalPrice: _totalPrice,
                               preferredDeliveryDay: _deliveryDay,
                               preferredDeliveryTime: _deliveryTime,
                               useAnotherPlace: false );
@@ -653,7 +651,6 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                               isFreeDelivery: _freeDelivery,
                                 isFreeProduct: TraderFirebaseCubit().productPrice == 0,
                                 deliveryCost: _deliveryCost,
-                                totalPrice: _totalPrice,
                                 preferredDeliveryDay: _deliveryDay,
                                 preferredDeliveryTime: _deliveryTime,
                                 useAnotherPlace: true,

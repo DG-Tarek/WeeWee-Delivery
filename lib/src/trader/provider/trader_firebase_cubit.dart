@@ -34,6 +34,11 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   int _returnedPackages = 0;
   int _deliveredPackagesReadyToReceive = 0;
   int _returnedPackagesReadyToReceive = 0;
+  double _walletDeliveredCost = 0 ;
+  double _walletReturnedCost = 0 ;
+
+  List<Package> _readyPackagesToReceive = [];
+
 
 
   List<Package> _packagesListByDay = [];
@@ -48,7 +53,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   DeliveryOptions? _deliveryOptions ;
 
   bool _freeProduct = false;
+  // this when you create a new order;
   double _productPrice = 0;
+  // this for calcullate the price based on the distance beetwin sender and reciever
   double _deliveryCost = 0;
 
   List<WeeWeeWallet> _walletList = [] ;
@@ -171,7 +178,6 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         preferredDeliveryDay: _deliveryOptions!.preferredDeliveryDay,
         preferredDeliveryTime: _deliveryOptions!.preferredDeliveryTime,
         deliveryCost: _deliveryOptions!.deliveryCost,
-        totalPrice: _deliveryOptions!.totalPrice,
         senderId: _uid ,
         senderFullName: "senderFullName",
         senderStoreName: "senderStoreName",
@@ -222,7 +228,6 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       preferredDeliveryDay: _deliveryOptions!.preferredDeliveryDay,
       preferredDeliveryTime: _deliveryOptions!.preferredDeliveryTime,
       deliveryCost: _deliveryOptions!.deliveryCost,
-      totalPrice: _deliveryOptions!.totalPrice,
       senderId: _uid ,
       senderFullName: "senderFullName",
       senderStoreName: "senderStoreName",
@@ -280,6 +285,8 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       _returnedPackages = 0;
       _returnedPackagesReadyToReceive=0;
       _deliveredPackagesReadyToReceive = 0;
+      _walletDeliveredCost = 0 ;
+      _walletReturnedCost = 0 ;
       double returnCost = 150;
       for (var doc in value.docs) {
         final Package package = Package.fromJson(doc.data())..id = doc.id;
@@ -287,7 +294,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
           case "delivered+":
             {
               _deliveredPackagesReadyToReceive +=1;
-              _incomeMoney += package.totalPrice;
+              _walletDeliveredCost += package.deliveryCost;
+              _incomeMoney += (package.productPrice - package.deliveryCost);
+              _readyPackagesToReceive.add(package);
             }
             break;
           case "delivered":
@@ -296,7 +305,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
           case "returned+":
             {
               _returnedPackagesReadyToReceive +=1;
-              _incomeMoney -=returnCost;
+              _walletReturnedCost += returnCost;
+              _incomeMoney -= returnCost;
+              _readyPackagesToReceive.add(package);
             }
             break;
           case "returned":
@@ -317,6 +328,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   int get returnedPackages => _returnedPackages;
 
   List<Package> get packagesList => _packagesList ;
+  List<Package> get readyPackagesToReceive => _readyPackagesToReceive ;
 
 
 
@@ -336,6 +348,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
     });
   }
   List<Package> get packagesListByDay => _packagesListByDay ;
+
 
 
 
@@ -432,13 +445,36 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
 
 
-  Future<void> newWallet()async{
+
+
+
+  Future<void> newWeeWeeWallet()async{
+    final String receivedDay = DateFormat.MMMd().format(DateTime.now());
+    emit(NewWeeWeeWalletLoadingState());
+    final WeeWeeWallet weeWeeWallet = WeeWeeWallet(
+        createdAt: createdTime(),
+        receivedDay: receivedDay,
+        moneyReceiverFullName: "Select by Admin",
+        moneyReceived: _incomeMoney,
+        numberOfDeliveredPackages: _deliveredPackagesReadyToReceive,
+        numberOfReturnedPackages: _returnedPackagesReadyToReceive,
+        deliveryCost: _walletDeliveredCost,
+        returnCost: _walletReturnedCost,
+   );
+
+    await FirebaseFirestore.instance.collection('test_users')
+        .doc(_uid).collection("wallet").add(weeWeeWallet.toJson())
+        .then((value) async {
+          /*
+          await FirebaseFirestore.instance.collection("test_users")
+          .doc(_uid).collection("wallet").doc(value.id).collection("receivedDay");
+          */
+
+      emit(NewWeeWeeWalletSuccessfullyState());
+    }
+    );
 
   }
-
-
-
-
 
 
 

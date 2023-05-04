@@ -39,3 +39,8 @@ class UpdateDeliveryOptionsState extends TraderFirebaseCubitState{}
 // Get My Wallet
 class GetWeeWeeWalletLoadingState extends TraderFirebaseCubitState{}
 class GetWeeWeeWalletSuccessfullyState extends TraderFirebaseCubitState {}
+
+
+// new Wallet
+class NewWeeWeeWalletLoadingState extends TraderFirebaseCubitState{}
+class NewWeeWeeWalletSuccessfullyState extends TraderFirebaseCubitState {}

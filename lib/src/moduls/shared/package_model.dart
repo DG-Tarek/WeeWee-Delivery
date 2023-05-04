@@ -15,7 +15,6 @@ class Package{
       required this.preferredDeliveryDay,
       required this.preferredDeliveryTime,
       required this.deliveryCost,
-      required this.totalPrice,
        this.senderId,
       required this.senderFullName,
       required this.senderStoreName,
@@ -59,7 +58,6 @@ class Package{
     bool isFreeProduct;
   bool isFreeDelivery;
   double deliveryCost;
-  double totalPrice;
   String preferredDeliveryDay;
   String preferredDeliveryTime;
   /////Sender///////////
