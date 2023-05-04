@@ -21,7 +21,7 @@ class PickUpPackagesScreen extends StatelessWidget {
             SizedBox(
               height: 35,
               width: 35,
-              child: Image.asset("assets/icons/pickedup.png",color: Colors.white,),
+              child: Image.asset("assets/icons/pickup.png",color: Colors.white,),
             ),
             SizedBox(width: 12,),
             Text("Pick Up Packages"),

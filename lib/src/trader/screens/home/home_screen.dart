@@ -481,7 +481,7 @@ class HomeScreen extends StatelessWidget {
                                 SizedBox(
                                   height: 50,
                                   width: 50,
-                                  child: Image.asset("assets/icons/pickedup.png",color: Colors.teal,),
+                                  child: Image.asset("assets/icons/pickup.png",color: Colors.teal,),
                                 )
                               ],
                             ),

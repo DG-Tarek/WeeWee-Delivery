@@ -11,11 +11,14 @@ WeeWeeWallet _$WeeWeeWalletFromJson(Map<String, dynamic> json) => WeeWeeWallet(
       createdAt: json['createdAt'] as String,
       receivedDay: json['receivedDay'] as String,
       moneyReceiverFullName: json['moneyReceiverFullName'] as String,
+      numberOfPackages: json['numberOfPackages'] as int,
       numberOfDeliveredPackages: json['numberOfDeliveredPackages'] as int,
       numberOfReturnedPackages: json['numberOfReturnedPackages'] as int,
       moneyReceived: (json['moneyReceived'] as num).toDouble(),
       deliveryCost: (json['deliveryCost'] as num).toDouble(),
       returnCost: (json['returnCost'] as num).toDouble(),
+      packages:
+          (json['packages'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$WeeWeeWalletToJson(WeeWeeWallet instance) =>
@@ -27,6 +30,8 @@ Map<String, dynamic> _$WeeWeeWalletToJson(WeeWeeWallet instance) =>
       'moneyReceived': instance.moneyReceived,
       'numberOfDeliveredPackages': instance.numberOfDeliveredPackages,
       'numberOfReturnedPackages': instance.numberOfReturnedPackages,
+      'numberOfPackages': instance.numberOfPackages,
       'deliveryCost': instance.deliveryCost,
       'returnCost': instance.returnCost,
+      'packages': instance.packages,
     };

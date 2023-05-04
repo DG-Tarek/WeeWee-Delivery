@@ -257,27 +257,45 @@ class PackageItem extends StatelessWidget {
   }
 
   String stateFlag() {
-    if (package.packageState == "pickup") {
-      return "assets/icons/pickedup.png";
-    } else if (
-    package.packageState == "delivered"
-    ) {
-      return "assets/icons/approved.png";
-    } else {
-      return "assets/icons/returned.png";
+
+    switch(package.packageState){
+      case "online":
+        return "assets/icons/pickup.png";
+      case "pickup":
+        return "assets/icons/pickup.png";
+      case "inroad":
+          return "assets/icons/inroad.png";
+      case "delivered":
+        return "assets/icons/approved.png";
+      case "delivered+":
+        return "assets/icons/approved.png";
+      case "returned":
+        return "assets/icons/returned.png";
+      case "returned+":
+        return "assets/icons/returned.png";
+
     }
+     return " error";
   }
 
   Color stateColor() {
-    if (package.packageState == "pickup") {
-      return Colors.teal;
-    } else if (
-    package.packageState == "delivered"
-    ) {
-      return Colors.green;
-    } else {
-      return Colors.red;
+    switch(package.packageState){
+      case "online":
+        return Colors.teal;
+      case "pickup":
+        return Colors.teal;
+      case "inroad":
+        return Colors.teal;
+      case "delivered":
+        return Colors.green;
+      case "delivered+":
+        return Colors.green;
+      case "returned":
+        return Colors.red;
+      case "returned+":
+        return Colors.red;
     }
+    return Colors.black;
   }
 
 

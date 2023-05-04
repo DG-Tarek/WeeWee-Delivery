@@ -79,7 +79,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                       SizedBox(
                           height: 65,
                           width: 65,
-                          child: Image.asset("assets/icons/pickedup.png" , color: Colors.teal,)),
+                          child: Image.asset("assets/icons/pickup.png" , color: Colors.teal,)),
                     ],
                   ),
                 ),

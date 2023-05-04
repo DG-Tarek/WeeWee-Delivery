@@ -171,7 +171,8 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       .then((value) async {
         final Package package = Package(
         packageCreatedAt: createdTime(),
-        packageCreatedDay: "$_uid@DAY#$date",//find package by day (this is related to the calender screen)
+        packageCreatedDay: "$_uid@DAY#$date",
+            savedCollection: path,//find package by day (this is related to the calender screen)
         packageState: "pickup",
         isFreeDelivery: _deliveryOptions!.isFreeDelivery,
         isFreeProduct: _deliveryOptions!.isFreeProduct,
@@ -222,6 +223,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   final Package package = Package(
       packageCreatedAt: createdTime(),
       packageCreatedDay: "$_uid@DAY#$date",
+      savedCollection: path,
       packageState: "pickup",
       isFreeDelivery: _deliveryOptions!.isFreeDelivery,
       isFreeProduct: _deliveryOptions!.isFreeProduct,
@@ -287,6 +289,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       _deliveredPackagesReadyToReceive = 0;
       _walletDeliveredCost = 0 ;
       _walletReturnedCost = 0 ;
+      _readyPackagesToReceive.clear();
       double returnCost = 150;
       for (var doc in value.docs) {
         final Package package = Package.fromJson(doc.data())..id = doc.id;
@@ -300,8 +303,10 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
             }
             break;
           case "delivered":
-            _deliveredPackages +=1;
-            break;
+            {
+              _deliveredPackages +=1;
+              break;
+            }
           case "returned+":
             {
               _returnedPackagesReadyToReceive +=1;
@@ -311,9 +316,12 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
             }
             break;
           case "returned":
-            _returnedPackages+=1;
-            break;
+            {
+              _returnedPackages+=1;
+              break;
+            }
         }
+
         _packagesList.add(package);
       }
       emit(GetPackagesSuccessfullyState());
@@ -451,25 +459,27 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   Future<void> newWeeWeeWallet()async{
     final String receivedDay = DateFormat.MMMd().format(DateTime.now());
     emit(NewWeeWeeWalletLoadingState());
+    List<String> packages = [];
+    print(_readyPackagesToReceive.length);
+    for(Package p in _readyPackagesToReceive){
+      packages.add(p.id!+"@COLLECTION#"+p.savedCollection);
+    }
     final WeeWeeWallet weeWeeWallet = WeeWeeWallet(
         createdAt: createdTime(),
         receivedDay: receivedDay,
         moneyReceiverFullName: "Select by Admin",
         moneyReceived: _incomeMoney,
+        numberOfPackages: _readyPackagesToReceive.length,
         numberOfDeliveredPackages: _deliveredPackagesReadyToReceive,
         numberOfReturnedPackages: _returnedPackagesReadyToReceive,
         deliveryCost: _walletDeliveredCost,
         returnCost: _walletReturnedCost,
+      packages: packages,
    );
-
+    print(packages.length);
     await FirebaseFirestore.instance.collection('test_users')
         .doc(_uid).collection("wallet").add(weeWeeWallet.toJson())
-        .then((value) async {
-          /*
-          await FirebaseFirestore.instance.collection("test_users")
-          .doc(_uid).collection("wallet").doc(value.id).collection("receivedDay");
-          */
-
+        .then((value)  {
       emit(NewWeeWeeWalletSuccessfullyState());
     }
     );
