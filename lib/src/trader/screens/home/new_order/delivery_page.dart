@@ -606,21 +606,9 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                           Row(
                             children: [
                               SizedBox(height: 7.h,),
-                              Text("Delivery Cost", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400)),
+                              Text("Delivery Cost", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.black54, fontWeight: FontWeight.w400)),
                               const Spacer(),
-                              Text( _deliveryCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
-                            ],),
-                          SizedBox(height: 8.h,),
-                          Row(
-                            children: [
-                              SizedBox(height: 7.h,),
-                              Text("Total Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red, fontWeight: FontWeight.w500)),
-                              const Spacer(),
-                              Text( _totalPrice.toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
-                              const Padding(
-                                padding: const EdgeInsets.only(top: 2.0, left: 2),
-                                child: Text("DZ", style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w700)),
-                              ),
+                              Text( "+ " + _deliveryCost.toString(), style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                         ],
                     ),

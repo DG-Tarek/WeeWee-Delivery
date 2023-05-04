@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
+import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 
 class MyWeeWeeWallet extends StatefulWidget {
   const MyWeeWeeWallet({Key? key}) : super(key: key);
@@ -75,7 +76,7 @@ class _MyWeeWeeWalletState extends State<MyWeeWeeWallet> {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text("+ 22000.0", style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),),
+                            Text(TraderFirebaseCubit().incomeMoney.toString(), style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0, left: 6),
                               child: Text("DZ", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
@@ -128,7 +129,7 @@ class _MyWeeWeeWalletState extends State<MyWeeWeeWallet> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text('Delivered\nPackages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.green),),
-                            Text('7', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 24),),
+                            Text(TraderFirebaseCubit().deliveredPackages.toString(), textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 24),),
 
                           ],
                         ),
@@ -138,7 +139,7 @@ class _MyWeeWeeWalletState extends State<MyWeeWeeWallet> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text('Ready to\nReceive', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.black54),),
-                            Text('5', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.black54, fontSize: 22),),
+                            Text(TraderFirebaseCubit().deliveredPackagesReadyToReceive.toString(), textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.black54, fontSize: 22),),
 
                           ],
                         ),],
@@ -171,7 +172,7 @@ class _MyWeeWeeWalletState extends State<MyWeeWeeWallet> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text('Returned\nPackages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.red),),
-                            Text('4', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 24),),
+                            Text(TraderFirebaseCubit().returnedPackages.toString(), textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 24),),
 
                           ],
                         ),
@@ -181,7 +182,7 @@ class _MyWeeWeeWalletState extends State<MyWeeWeeWallet> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text('Ready to\nReceive', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.black54),),
-                            Text('2', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.black54, fontSize: 22),),
+                            Text(TraderFirebaseCubit().returnedPackagesReadyToReceive.toString(), textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.black54, fontSize: 22),),
 
                           ],
                         ),],

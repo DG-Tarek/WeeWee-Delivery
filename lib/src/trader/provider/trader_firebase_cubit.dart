@@ -7,6 +7,7 @@ import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/moduls/shared/package_model.dart';
 import 'package:weewee_delivery/src/moduls/trader/delivery_options_model.dart';
 import 'package:weewee_delivery/src/moduls/trader/product_history_model.dart';
+import 'package:weewee_delivery/src/moduls/trader/weewee_wallet_model.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit_states.dart';
 
 import '../../moduls/trader/product_model.dart';
@@ -20,15 +21,22 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   factory TraderFirebaseCubit() {
     return _instance;
   }
-  final String _uid = "xdIGBM182qPHRvqt8BLM" ;
+  final String _uid = "kF6ffq2JGtlLESh0L7cw" ;
 
   List<Client> _clientsList = [];
 
   List<Product> _productsList = [];
 
   List<Package> _packagesList = [];
-  List<Package> _packagesListByDay = [];
 
+  double _incomeMoney = 0;
+  int _deliveredPackages = 0;
+  int _returnedPackages = 0;
+  int _deliveredPackagesReadyToReceive = 0;
+  int _returnedPackagesReadyToReceive = 0;
+
+
+  List<Package> _packagesListByDay = [];
   List<ProductHistory> _productHistory = [];
 
   Client? _firstClientChoice ;
@@ -43,6 +51,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   double _productPrice = 0;
   double _deliveryCost = 0;
 
+  List<WeeWeeWallet> _walletList = [] ;
 
 
 
@@ -266,12 +275,46 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
     emit(GetPackagesLoadingState());
     await FirebaseFirestore.instance.collection(DateFormat.yMMM().format(DateTime.now())).where("senderId",isEqualTo: _uid).get().then((value) {
       _packagesList.clear();
+      _incomeMoney = 0;
+      _deliveredPackages = 0;
+      _returnedPackages = 0;
+      _returnedPackagesReadyToReceive=0;
+      _deliveredPackagesReadyToReceive = 0;
+      double returnCost = 150;
       for (var doc in value.docs) {
-        _packagesList.add(Package.fromJson(doc.data())..id = doc.id);
+        final Package package = Package.fromJson(doc.data())..id = doc.id;
+        switch(package.packageState){
+          case "delivered+":
+            {
+              _deliveredPackagesReadyToReceive +=1;
+              _incomeMoney += package.totalPrice;
+            }
+            break;
+          case "delivered":
+            _deliveredPackages +=1;
+            break;
+          case "returned+":
+            {
+              _returnedPackagesReadyToReceive +=1;
+              _incomeMoney -=returnCost;
+            }
+            break;
+          case "returned":
+            _returnedPackages+=1;
+            break;
+        }
+        _packagesList.add(package);
       }
       emit(GetPackagesSuccessfullyState());
     });
   }
+
+
+  double get incomeMoney => _incomeMoney;
+  int get deliveredPackages => _deliveredPackages;
+  int get deliveredPackagesReadyToReceive => _deliveredPackagesReadyToReceive;
+  int get returnedPackagesReadyToReceive => _returnedPackagesReadyToReceive;
+  int get returnedPackages => _returnedPackages;
 
   List<Package> get packagesList => _packagesList ;
 
@@ -385,5 +428,34 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   void setDeliveryOptions({required DeliveryOptions options})=> _deliveryOptions = options ;
 
   DeliveryOptions get deliveryOptions => _deliveryOptions! ;
+
+
+
+
+  Future<void> newWallet()async{
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  Future<void> getMyWeeWeeWallet() async {
+    emit(GetWeeWeeWalletLoadingState());
+    await FirebaseFirestore.instance.collection("test_user").doc(_uid).collection("weewee_wallet").get().then((value) {
+      _walletList.clear();
+      for (var doc in value.docs) {
+        _walletList.add(WeeWeeWallet.fromJson(doc.data())..id = doc.id);
+      }
+      emit(GetWeeWeeWalletSuccessfullyState());
+    });
+  }
 }
 

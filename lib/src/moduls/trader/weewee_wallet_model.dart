@@ -28,5 +28,7 @@ class WeeWeeWallet{
   final double returnCost;
   final double netMoney ;
   List<Package>? packages;
+  factory WeeWeeWallet.fromJson(Map<String, dynamic> json) => _$WeeWeeWalletFromJson(json);
+  Map<String, dynamic> toJson() => _$WeeWeeWalletToJson(this);
 
 }
