@@ -13,6 +13,7 @@ import 'package:weewee_delivery/src/trader/screens/home/packages/delivered_packa
 import 'package:weewee_delivery/src/trader/screens/home/packages/pick_up_packages.dart';
 import 'package:weewee_delivery/src/trader/screens/home/packages/returned_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/stock/stock_screen.dart';
+import 'package:weewee_delivery/src/trader/screens/home/weewee_wallet/weewee_wallet_screen.dart';
 
 import 'new_client/new_client_screen.dart';
 import 'new_product/new_product_screen.dart';
@@ -579,42 +580,50 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 50,),
-                  Container(
-                      width: width,
-                      padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.all(Radius.circular(24)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade400,
-                            spreadRadius: 5,
-                            blurRadius: 8,
-                            offset: Offset(3, 3),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        //mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('My WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w400,fontSize: 18, color: Colors.white),),
-                              const SizedBox(height: 4,),
-                              Text('Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 26, color: Colors.white),),
-                            ],
-                          ),
-                          Spacer(),
-                          SizedBox(
-                            height: 55,
-                            width: 55,
-                            child: Image.asset("assets/icons/wallet.png",color: Colors.white,),
-                          ),
-                        ],
-                      )),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  MyWeeWeeWallet()),
+                      );
+                    },
+                    child: Container(
+                        width: width,
+                        padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.deepPurple,
+                          borderRadius: BorderRadius.all(Radius.circular(24)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.shade400,
+                              spreadRadius: 5,
+                              blurRadius: 8,
+                              offset: Offset(3, 3),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          //mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('My WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w400,fontSize: 18, color: Colors.white),),
+                                const SizedBox(height: 4,),
+                                Text('Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 26, color: Colors.white),),
+                              ],
+                            ),
+                            Spacer(),
+                            SizedBox(
+                              height: 55,
+                              width: 55,
+                              child: Image.asset("assets/icons/wallet.png",color: Colors.white,),
+                            ),
+                          ],
+                        )),
+                  ),
 
                   SizedBox(height: 50,),
                 ],
