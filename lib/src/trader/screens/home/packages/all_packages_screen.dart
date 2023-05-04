@@ -248,7 +248,18 @@ class PackageItem extends StatelessWidget {
                   ),
                   child: Image.asset(
                     stateF, color: Colors.white,)),
-            )
+            ),
+            if(package.closedPackage)
+              Positioned(
+                top: 46,
+                right: -5,
+                child: Container(
+                    height: 80,
+                    width: 80,
+                    padding: EdgeInsets.all(8),
+                    child: Image.asset(
+                      "assets/icons/closed.png",)),
+              ),
           ],
         ),
       ),

@@ -33,6 +33,7 @@ class WeeWeeWallet{
   final double deliveryCost;
   final double returnCost;
   List<String> packages;
+
   factory WeeWeeWallet.fromJson(Map<String, dynamic> json) => _$WeeWeeWalletFromJson(json);
   Map<String, dynamic> toJson() => _$WeeWeeWalletToJson(this);
 

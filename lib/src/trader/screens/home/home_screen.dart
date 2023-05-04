@@ -582,6 +582,7 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 50,),
                   GestureDetector(
                     onTap: (){
+                      TraderFirebaseCubit().getMyWeeWeeWallet();
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) =>  MyWeeWeeWallet()),

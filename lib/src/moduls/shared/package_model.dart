@@ -10,6 +10,7 @@ class Package{
       required this.packageCreatedDay,
       required this.packageState,
       required this.savedCollection,
+      required this.closedPackage,
 
       required this.isFreeDelivery,
       required this.isFreeProduct,
@@ -56,6 +57,7 @@ class Package{
   String packageCreatedDay;
   String packageState;
   String savedCollection;
+  bool closedPackage;
   //////Delivery////////
     bool isFreeProduct;
   bool isFreeDelivery;
