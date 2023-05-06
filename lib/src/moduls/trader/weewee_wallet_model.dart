@@ -9,6 +9,7 @@ class WeeWeeWallet{
   WeeWeeWallet({this.id,
     required this.createdAt,
     required this.receivedDay,
+    required this.confirmed,
   required this.moneyReceiverFullName,
     required this.numberOfPackages,
   required this.numberOfDeliveredPackages,
@@ -22,6 +23,7 @@ class WeeWeeWallet{
   String? id;
   final String createdAt;
   final String receivedDay;
+  final bool confirmed;
   final String moneyReceiverFullName;
   final double moneyReceived;
 

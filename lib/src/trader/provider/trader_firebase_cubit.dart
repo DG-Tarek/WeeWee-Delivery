@@ -469,10 +469,12 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
     List<String> packages = [];
     for(Package package in _readyPackagesToReceive){
       packages.add(package.savedCollection!+"@COLLECTION#"+package.id!);
-    }
+      await FirebaseFirestore.instance.collection(package.savedCollection).doc(package.id).update({"closedPackage":true});
+      }
     final WeeWeeWallet weeWeeWallet = WeeWeeWallet(
         createdAt: createdTime(),
         receivedDay: receivedDay,
+        confirmed: false,
         moneyReceiverFullName: "Select by Admin",
         moneyReceived: _incomeMoney,
         numberOfPackages: _readyPackagesToReceive.length,
@@ -520,8 +522,6 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
     _walletPackagesListHistory.clear();
     for(String package in wallet.packages){
       final List<String> path = package.split("@COLLECTION#");
-      print(path[0]);
-      print(path[1]);
       await FirebaseFirestore.instance.collection(path[0]).doc(path[1]).get().then((value) {
         _walletPackagesListHistory.add(Package.fromJson(value.data()!)..id = value.id);
 

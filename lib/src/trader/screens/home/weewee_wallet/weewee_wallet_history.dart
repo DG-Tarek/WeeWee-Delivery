@@ -87,7 +87,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
                               const Spacer(),
                               Text( widget.wallet.numberOfReturnedPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
-                          const SizedBox(height: 20,),
+                          const SizedBox(height: 12,),
                           Row(
                             children: [
 
@@ -95,7 +95,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
                               const Spacer(),
                               Text( widget.wallet.numberOfPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
-                          const SizedBox(height: 20,),
+                          const SizedBox(height: 12,),
                           Row(
                             children: [
 

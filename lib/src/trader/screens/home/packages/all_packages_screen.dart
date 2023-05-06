@@ -54,7 +54,7 @@ class AllPackagesScreen extends StatelessWidget {
                   itemCount: TraderFirebaseCubit().packagesList.length,
                   itemBuilder: (_,index){
                     return Container(
-                        padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
+                        padding: index == 0 ? const EdgeInsets.only(top: 20,):null ,
                         child: PackageItem(
                           package: TraderFirebaseCubit().packagesList[index],
                         )
@@ -80,7 +80,7 @@ class PackageItem extends StatelessWidget {
     final Color stateC = stateColor();
     final color = COLORS[Random().nextInt(COLORS.length)];
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, bottom: 12),
+      padding: const EdgeInsets.only(left: 16.0, bottom: 12.0),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(_createRoute()),
         child: Stack(
@@ -89,7 +89,7 @@ class PackageItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16.0, right: 16),
               child: Container(
-                padding: EdgeInsets.only(left: 3),
+                padding: const EdgeInsets.only(left: 3,),
                 decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -213,12 +213,11 @@ class PackageItem extends StatelessWidget {
                               color: Colors.black87),),
                         ],
                       ),
-
-
                     ],
                   ),
 
                 ),
+
               ),
             ),
             Positioned(
