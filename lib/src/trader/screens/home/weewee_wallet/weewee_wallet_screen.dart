@@ -215,41 +215,39 @@ class MyWeeWeeWallet extends StatelessWidget {
             MediaQuery.removePadding(
              context: context,
              removeTop: true,
-             child: Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-               child: BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
-                    bloc: TraderFirebaseCubit(),
-                    buildWhen: (previous, current)=> current is GetWeeWeeWalletLoadingState || current is GetWeeWeeWalletSuccessfullyState,
-                    builder: (_, state) {
-                      if( state is GetWeeWeeWalletLoadingState){
-                        return Container(
-                          padding: const EdgeInsets.only(top: 110),
-                          alignment: Alignment.center,
-                          child: LoadingAnimationWidget.discreteCircle(
-                              color: Colors.deepPurple,
-                              size: 45,
-                              secondRingColor: Colors.purple,
-                              thirdRingColor: Colors.orange),
-                        );
-                      }
-                      return SingleChildScrollView(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: TraderFirebaseCubit().walletList.length,
-                            itemBuilder: (_,index){
-                              return Container(
-                                  padding: const EdgeInsets.only(bottom: 12) ,
-                                  child: WalletItem(
-                                    wallet: TraderFirebaseCubit().walletList[index],
-                                  )
-                              );
+             child: BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
+                 bloc: TraderFirebaseCubit(),
+                 buildWhen: (previous, current)=> current is GetWeeWeeWalletLoadingState || current is GetWeeWeeWalletSuccessfullyState,
+                 builder: (_, state) {
+                   if( state is GetWeeWeeWalletLoadingState){
+                     return Container(
+                       padding: const EdgeInsets.only(top: 110),
+                       alignment: Alignment.center,
+                       child: LoadingAnimationWidget.discreteCircle(
+                           color: Colors.deepPurple,
+                           size: 45,
+                           secondRingColor: Colors.purple,
+                           thirdRingColor: Colors.orange),
+                     );
+                   }
+                   return SingleChildScrollView(
+                     child: ListView.builder(
+                         shrinkWrap: true,
+                         physics: const NeverScrollableScrollPhysics(),
+                         itemCount: TraderFirebaseCubit().walletList.length,
+                         itemBuilder: (_,index){
+                           return Container(
+                               padding: const EdgeInsets.only(bottom: 12) ,
+                               child: WalletItem(
+                                 wallet: TraderFirebaseCubit().walletList[index],
+                               )
+                           );
 
-                            }),
-                      );
-                    }
-                ),
+                         }),
+                   );
+                 }
              ),
+
            ),
           ],
         ),
@@ -266,49 +264,66 @@ class WalletItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> day = wallet.receivedDay.split(" ");
-    return GestureDetector(
-      onTap: (){
-        TraderFirebaseCubit().getWalletPackagesListHistory(wallet: wallet);
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>  WeeWeeWalletHistoryScreen(wallet: wallet,)),
-        );
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(24)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade200,
-            spreadRadius: 3,
-            blurRadius: 5,
-            offset: Offset(3, 3),
+    return Stack(
+      alignment: Alignment.topRight,
+      children: [
+
+        GestureDetector(
+          onTap: (){
+            TraderFirebaseCubit().getWalletPackagesListHistory(wallet: wallet);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  WeeWeeWalletHistoryScreen(wallet: wallet,)),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 12.0, left: 16,right: 16),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(24)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade200,
+                  spreadRadius: 3,
+                  blurRadius: 5,
+                  offset: Offset(3, 3),
+                ),
+              ],
+            ),
+              child: Row(
+                 children: [
+                 Column(
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                   children: [
+                     Text(day[1].replaceAll(",", ""), style: TextStyle(fontSize: 26 , fontWeight: FontWeight.w500),),
+                     Text(day[0] , style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w400),),
+                   ],
+                 ),
+                   const Spacer(),
+                   Text(wallet.moneyReceiverFullName , style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w400, color: Colors.black54),),
+                   const Spacer(),
+                  Text(wallet.moneyReceived.toString() , style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400),),
+                  const SizedBox(width: 4,),
+                   const Padding(
+                     padding: EdgeInsets.only(top: 5.0),
+                     child: Text("DZ" , style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w500),),
+                   ),
+                ],
+              ),
+            ),
           ),
-        ],
-      ),
-        child: Row(
-           children: [
-           Column(
-             crossAxisAlignment: CrossAxisAlignment.center,
-             children: [
-               Text(day[1].replaceAll(",", ""), style: TextStyle(fontSize: 26 , fontWeight: FontWeight.w500),),
-               Text(day[0] , style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w400),),
-             ],
-           ),
-             const Spacer(),
-             Text(wallet.moneyReceiverFullName , style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w400, color: Colors.black54),),
-             const Spacer(),
-            Text(wallet.moneyReceived.toString() , style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400),),
-            const SizedBox(width: 4,),
-             const Padding(
-               padding: EdgeInsets.only(top: 5.0),
-               child: Text("DZ" , style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w500),),
-             ),
-          ],
         ),
-      ),
+        if(! wallet.confirmed)
+        const Padding(
+          padding: EdgeInsets.only(right: 4.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Icon(Icons.verified_rounded, size: 28,),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -452,6 +452,87 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: (){
+                            //Online package
+                          },
+                          child: Container(
+                            height: 160,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(3, 3),
+                                ),
+                              ],
+                            ),
+                            padding: EdgeInsets.all(24),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Online\nPackages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.purple),),
+                                Spacer(),
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset("assets/icons/online.png",color: Colors.purple,),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 8,),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      SizedBox(width: 8,),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: (){
+                            // on road packages
+                          },
+                          child: Container(
+                            height: 160,
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  spreadRadius: 3,
+                                  blurRadius: 5,
+                                  offset: Offset(3, 3),
+                                ),
+                              ],
+                            ),
+                            padding: EdgeInsets.all(24),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('On Road\nPackages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.teal),),
+                                Spacer(),
+                                SizedBox(
+                                  height: 55,
+                                  width: 50,
+                                  child: Image.asset("assets/icons/inroad.png",color: Colors.teal,),
+                                ),
+                                const SizedBox(height: 2,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20,),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: (){
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) =>  PickUpPackagesScreen()),
@@ -578,6 +659,7 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(width: 8,),
                     ],
                   ),
+
 
                   const SizedBox(height: 50,),
                   GestureDetector(

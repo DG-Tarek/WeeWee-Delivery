@@ -175,7 +175,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         packageCreatedAt: createdTime(),
         packageCreatedDay: "$_uid@DAY#$date",
             savedCollection: path,//find package by day (this is related to the calender screen)
-        packageState: "pickup",
+        packageState: "online",
         closedPackage: false,
         isFreeDelivery: _deliveryOptions!.isFreeDelivery,
         isFreeProduct: _deliveryOptions!.isFreeProduct,
@@ -227,7 +227,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       packageCreatedAt: createdTime(),
       packageCreatedDay: "$_uid@DAY#$date",
       savedCollection: path,
-      packageState: "pickup",
+      packageState: "online",
       closedPackage: false,
       isFreeDelivery: _deliveryOptions!.isFreeDelivery,
       isFreeProduct: _deliveryOptions!.isFreeProduct,
