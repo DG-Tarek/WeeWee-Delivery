@@ -53,7 +53,7 @@ class DeliveredPackagesScreen extends StatelessWidget {
                   itemBuilder: (_,index){
                     return Container(
                         padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
-                        child: TraderFirebaseCubit().packagesList[index].packageState == "delivered" ?
+                        child: TraderFirebaseCubit().packagesList[index].packageState == "delivered" || TraderFirebaseCubit().packagesList[index].packageState == "delivered+"  ?
                         PackageItem(
                           package: TraderFirebaseCubit().packagesList[index],
                         ): Container()

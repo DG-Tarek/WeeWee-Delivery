@@ -15,6 +15,7 @@ class WeeWeeWallet{
   required this.numberOfDeliveredPackages,
   required this.numberOfReturnedPackages,
     required this.moneyReceived ,
+    required this.totalPrice,
     required this.deliveryCost,
     required this.returnCost,
     required this.packages,
@@ -25,6 +26,7 @@ class WeeWeeWallet{
   final String receivedDay;
   final bool confirmed;
   final String moneyReceiverFullName;
+  final double totalPrice;
   final double moneyReceived;
 
   final int numberOfDeliveredPackages;

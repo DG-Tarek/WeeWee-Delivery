@@ -37,7 +37,7 @@ class ReturnedPackagesScreen extends StatelessWidget {
             itemBuilder: (_,index){
               return Container(
                   padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
-                  child: TraderFirebaseCubit().packagesList[index].packageState == "returned" ?
+                  child: TraderFirebaseCubit().packagesList[index].packageState == "returned" || TraderFirebaseCubit().packagesList[index].packageState == "returned+" ?
                   PackageItem(
                     package: TraderFirebaseCubit().packagesList[index],
                   ): Container()

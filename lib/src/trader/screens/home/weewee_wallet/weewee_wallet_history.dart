@@ -63,7 +63,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
                               const Spacer(),
                               Text( widget.wallet.receivedDay.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
                             ],),
-                          const SizedBox(height: 26,),
+                          const SizedBox(height: 20,),
                           Row(
                             children: [
 
@@ -94,6 +94,14 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
                               Text("Total Packages", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w400)),
                               const Spacer(),
                               Text( widget.wallet.numberOfPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                            ],),
+                          const SizedBox(height: 20,),
+                          Row(
+                            children: [
+
+                              Text("Total Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.teal, fontWeight: FontWeight.w400)),
+                              const Spacer(),
+                              Text( widget.wallet.totalPrice.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                           const SizedBox(height: 12,),
                           Row(
@@ -157,11 +165,8 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: TraderFirebaseCubit().walletPackagesListHistory.length,
                           itemBuilder: (_,index){
-                            return Container(
-                                padding: const EdgeInsets.only(bottom: 12) ,
-                                child: PackageItem(
-                                  package: TraderFirebaseCubit().walletPackagesListHistory[index],
-                                )
+                            return PackageItem(
+                              package: TraderFirebaseCubit().walletPackagesListHistory[index],
                             );
                           }),
                     );

@@ -63,11 +63,19 @@ class _WeeWeeWalletDetailsScreenState extends State<WeeWeeWalletDetailsScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 32,),
+                const SizedBox(height: 28,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Column(
                     children: [
+                      Row(
+                        children: [
+
+                          Text("Total Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.teal, fontWeight: FontWeight.w400)),
+                          const Spacer(),
+                          Text( TraderFirebaseCubit().totalPrice.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                        ],),
+                      SizedBox(height: 8,),
                       Row(
                         children: [
 
@@ -75,7 +83,7 @@ class _WeeWeeWalletDetailsScreenState extends State<WeeWeeWalletDetailsScreen> {
                           const Spacer(),
                           Text( TraderFirebaseCubit().walletDeliveryCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                         ],),
-                      const SizedBox(height: 6,),
+                      const SizedBox(height: 8,),
                       Row(
                         children: [
                           SizedBox(height: 16,),

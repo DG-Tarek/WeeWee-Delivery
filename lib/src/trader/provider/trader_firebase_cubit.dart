@@ -30,6 +30,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   List<Package> _packagesList = [];
 
   double _incomeMoney = 0;
+  double _totalPrice = 0;
   int _deliveredPackages = 0;
   int _returnedPackages = 0;
   int _deliveredPackagesReadyToReceive = 0;
@@ -286,6 +287,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
     await FirebaseFirestore.instance.collection(DateFormat.yMMM().format(DateTime.now())).where("senderId",isEqualTo: _uid).get().then((value) {
       _packagesList.clear();
       _incomeMoney = 0;
+      _totalPrice = 0;
       _deliveredPackages = 0;
       _returnedPackages = 0;
       _returnedPackagesReadyToReceive=0;
@@ -300,7 +302,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
           switch(package.packageState){
             case "delivered+":
               {
+                _deliveredPackages +=1;
                 _deliveredPackagesReadyToReceive +=1;
+                _totalPrice += package.productPrice;
                 _walletDeliveredCost += package.deliveryCost;
                 _incomeMoney += (package.productPrice - package.deliveryCost);
                 _readyPackagesToReceive.add(package);
@@ -313,6 +317,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
               }
             case "returned+":
               {
+                _returnedPackages+=1;
                 _returnedPackagesReadyToReceive +=1;
                 _walletReturnedCost += returnCost;
                 _incomeMoney -= returnCost;
@@ -335,6 +340,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
 
   double get incomeMoney => _incomeMoney;
+  double get totalPrice => _totalPrice;
   double get walletDeliveryCost => _walletDeliveredCost;
   double get walletReturnedCost => _walletReturnedCost;
   int get deliveredPackages => _deliveredPackages;
@@ -476,6 +482,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         receivedDay: receivedDay,
         confirmed: false,
         moneyReceiverFullName: "Select by Admin",
+        totalPrice: _totalPrice,
         moneyReceived: _incomeMoney,
         numberOfPackages: _readyPackagesToReceive.length,
         numberOfDeliveredPackages: _deliveredPackagesReadyToReceive,
@@ -524,7 +531,6 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       final List<String> path = package.split("@COLLECTION#");
       await FirebaseFirestore.instance.collection(path[0]).doc(path[1]).get().then((value) {
         _walletPackagesListHistory.add(Package.fromJson(value.data()!)..id = value.id);
-
         emit(GetProductHistorySuccessfullyState());
       });
     }

@@ -80,14 +80,14 @@ class PackageItem extends StatelessWidget {
     final Color stateC = stateColor();
     final color = COLORS[Random().nextInt(COLORS.length)];
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, bottom: 12.0),
+      padding: const EdgeInsets.only(left: 16.0),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(_createRoute()),
         child: Stack(
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 16.0, right: 16),
+              padding: const EdgeInsets.only(top: 20.0, right: 16,bottom: 16),
               child: Container(
                 padding: const EdgeInsets.only(left: 3,),
                 decoration: BoxDecoration(
@@ -158,11 +158,62 @@ class PackageItem extends StatelessWidget {
                           Text(package.clientWilaya + ", "+package.clientBaladia,
                             style: TextStyle(
                                 fontSize: 16,
-                                color: Colors.black54
+                                color: Colors.black54,
                             ),)
                         ],
                       ),
                       SizedBox(height: 20,),
+                      package.packageState == "returned+" || package.packageState == "returned"?
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("Price", style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 16,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.red),),
+                          const SizedBox(width: 12,),
+                          Text("0.0", style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black87),),
+                          const SizedBox(width: 4,),
+                          Text("DZ", style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87),),
+                          const Spacer(),
+                          SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: Image.asset(
+                              "assets/icons/delivery-truck-return.png", color: Colors.red,),),
+                          const SizedBox(width: 8,),
+                          Text("150.0", style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black87),),
+                          const SizedBox(width: 4,),
+                          Text("DZ", style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87),),
+                        ],
+                      ):
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -213,6 +264,7 @@ class PackageItem extends StatelessWidget {
                               color: Colors.black87),),
                         ],
                       ),
+
                     ],
                   ),
 
@@ -221,7 +273,7 @@ class PackageItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 4,
+              top: 6,
               right: 6,
               height: 60,
               child: Row(
@@ -253,6 +305,8 @@ class PackageItem extends StatelessWidget {
                         "assets/icons/logo.png", color: Colors.deepPurple,)),
                   const SizedBox(width: 16,),
                   Container(
+                      height: 60,
+                      width: 60,
                       padding: EdgeInsets.only(top: 6, left: 8, bottom: 6),
                       decoration: BoxDecoration(
                         color: stateC,
