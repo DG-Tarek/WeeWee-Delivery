@@ -6,14 +6,8 @@ import 'package:weewee_delivery/src/constant/constant.dart';
 import '../../../provider/trader_firebase_cubit.dart';
 import '../packages/all_packages_screen.dart';
 
-class WeeWeeWalletDetailsScreen extends StatefulWidget {
+class WeeWeeWalletDetailsScreen extends StatelessWidget {
   const WeeWeeWalletDetailsScreen({Key? key}) : super(key: key);
-
-  @override
-  State<WeeWeeWalletDetailsScreen> createState() => _WeeWeeWalletDetailsScreenState();
-}
-
-class _WeeWeeWalletDetailsScreenState extends State<WeeWeeWalletDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

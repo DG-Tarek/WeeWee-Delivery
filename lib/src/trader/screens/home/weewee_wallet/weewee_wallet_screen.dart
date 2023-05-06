@@ -12,15 +12,10 @@ import 'package:weewee_delivery/src/trader/screens/home/weewee_wallet/weewee_wal
 
 import '../../../provider/trader_firebase_cubit_states.dart';
 
-class MyWeeWeeWallet extends StatefulWidget {
+class MyWeeWeeWallet extends StatelessWidget {
   const MyWeeWeeWallet({Key? key}) : super(key: key);
 
-  @override
-  State<MyWeeWeeWallet> createState() => _MyWeeWeeWalletState();
-}
-
-class _MyWeeWeeWalletState extends State<MyWeeWeeWallet> {
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
 

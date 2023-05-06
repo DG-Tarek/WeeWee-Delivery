@@ -8,19 +8,14 @@ import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_sc
 import '../../../provider/trader_firebase_cubit.dart';
 import '../../../provider/trader_firebase_cubit_states.dart';
 
-class WeeWeeWalletHistoryScreen extends StatefulWidget {
+class WeeWeeWalletHistoryScreen extends StatelessWidget {
   const WeeWeeWalletHistoryScreen({Key? key, required this.wallet}) : super(key: key);
   final WeeWeeWallet wallet ;
-  @override
-  State<WeeWeeWalletHistoryScreen> createState() => _WeeWeeWalletHistoryScreenState();
-}
-
-class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wallet History"),
+        title: Text("WeeWee Wallet History"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -61,7 +56,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
                               SizedBox(height: 16,),
                               Text("Day", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
                               const Spacer(),
-                              Text( widget.wallet.receivedDay.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
+                              Text( wallet.receivedDay.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
                             ],),
                           const SizedBox(height: 20,),
                           Row(
@@ -69,7 +64,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
 
                               Text("Receiver", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w400)),
                               const Spacer(),
-                              Text( widget.wallet.moneyReceiverFullName.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                              Text( wallet.moneyReceiverFullName.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                           const SizedBox(height: 12,),
                           Row(
@@ -77,7 +72,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
 
                               Text("Delivered Packages", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w400)),
                               const Spacer(),
-                              Text( widget.wallet.numberOfDeliveredPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                              Text( wallet.numberOfDeliveredPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                           const SizedBox(height: 12,),
                           Row(
@@ -85,7 +80,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
 
                               Text("Returned Packages", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w400)),
                               const Spacer(),
-                              Text( widget.wallet.numberOfReturnedPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                              Text( wallet.numberOfReturnedPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                           const SizedBox(height: 12,),
                           Row(
@@ -93,7 +88,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
 
                               Text("Total Packages", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w400)),
                               const Spacer(),
-                              Text( widget.wallet.numberOfPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                              Text( wallet.numberOfPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                           const SizedBox(height: 20,),
                           Row(
@@ -101,7 +96,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
 
                               Text("Total Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.teal, fontWeight: FontWeight.w400)),
                               const Spacer(),
-                              Text( widget.wallet.totalPrice.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                              Text( wallet.totalPrice.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                           const SizedBox(height: 12,),
                           Row(
@@ -109,7 +104,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
 
                               Text("Delivery Cost", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple.shade300, fontWeight: FontWeight.w400)),
                               const Spacer(),
-                              Text( widget.wallet.deliveryCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                              Text( wallet.deliveryCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                           const SizedBox(height: 12,),
                           Row(
@@ -117,7 +112,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
                               SizedBox(height: 16,),
                               Text("Returned Cost", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red.shade300, fontWeight: FontWeight.w400)),
                               const Spacer(),
-                              Text( widget.wallet.returnCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                              Text( wallet.returnCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
                           const SizedBox(height: 24,),
                           Row(
@@ -125,7 +120,7 @@ class _WeeWeeWalletHistoryScreenState extends State<WeeWeeWalletHistoryScreen> {
                               SizedBox(height: 16,),
                               Text("Received Money", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
                               const Spacer(),
-                              Text( widget.wallet.moneyReceived.toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
+                              Text( wallet.moneyReceived.toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
                             ],),
                         ],
                       ),
