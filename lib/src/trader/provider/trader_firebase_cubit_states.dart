@@ -40,6 +40,10 @@ class UpdateDeliveryOptionsState extends TraderFirebaseCubitState{}
 class GetWeeWeeWalletLoadingState extends TraderFirebaseCubitState{}
 class GetWeeWeeWalletSuccessfullyState extends TraderFirebaseCubitState {}
 
+// Get Wallet packages list history
+class GetWalletPackagesListHistoryLoadingState extends TraderFirebaseCubitState{}
+class GetWalletPackagesListHistorySuccessfullyState extends TraderFirebaseCubitState {}
+
 
 // new Wallet
 class NewWeeWeeWalletLoadingState extends TraderFirebaseCubitState{}

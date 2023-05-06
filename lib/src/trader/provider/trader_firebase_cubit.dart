@@ -59,6 +59,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
   double _deliveryCost = 0;
 
   List<WeeWeeWallet> _walletList = [] ;
+  List<Package> _walletPackagesListHistory = [] ;
 
 
 
@@ -334,6 +335,8 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
 
   double get incomeMoney => _incomeMoney;
+  double get walletDeliveryCost => _walletDeliveredCost;
+  double get walletReturnedCost => _walletReturnedCost;
   int get deliveredPackages => _deliveredPackages;
   int get deliveredPackagesReadyToReceive => _deliveredPackagesReadyToReceive;
   int get returnedPackagesReadyToReceive => _returnedPackagesReadyToReceive;
@@ -461,12 +464,11 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
 
 
   Future<void> newWeeWeeWallet()async{
-    final String receivedDay = DateFormat.MMMd().format(DateTime.now());
+    final String receivedDay = DateFormat.yMMMd().format(DateTime.now());
     emit(NewWeeWeeWalletLoadingState());
     List<String> packages = [];
-    print(_readyPackagesToReceive.length);
-    for(Package p in _readyPackagesToReceive){
-      packages.add(p.id!+"@COLLECTION#"+p.savedCollection);
+    for(Package package in _readyPackagesToReceive){
+      packages.add(package.savedCollection!+"@COLLECTION#"+package.id!);
     }
     final WeeWeeWallet weeWeeWallet = WeeWeeWallet(
         createdAt: createdTime(),
@@ -480,7 +482,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         returnCost: _walletReturnedCost,
       packages: packages,
    );
-    print(packages.length);
+
     await FirebaseFirestore.instance.collection('test_users')
         .doc(_uid).collection("wallet").add(weeWeeWallet.toJson())
         .then((value)  {
@@ -507,5 +509,27 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       emit(GetWeeWeeWalletSuccessfullyState());
     });
   }
+
+  List<WeeWeeWallet> get walletList => _walletList;
+
+
+  Future<void> getWalletPackagesListHistory(
+      {required WeeWeeWallet wallet}
+      ) async {
+    emit(GetWalletPackagesListHistoryLoadingState());
+    _walletPackagesListHistory.clear();
+    for(String package in wallet.packages){
+      final List<String> path = package.split("@COLLECTION#");
+      print(path[0]);
+      print(path[1]);
+      await FirebaseFirestore.instance.collection(path[0]).doc(path[1]).get().then((value) {
+        _walletPackagesListHistory.add(Package.fromJson(value.data()!)..id = value.id);
+
+        emit(GetProductHistorySuccessfullyState());
+      });
+    }
+  }
+
+  List<Package> get walletPackagesListHistory => _walletPackagesListHistory;
 }
 

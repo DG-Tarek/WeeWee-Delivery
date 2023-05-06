@@ -225,29 +225,59 @@ class PackageItem extends StatelessWidget {
               top: 4,
               right: 6,
               height: 60,
-              width: 60,
-              child: Container(
-                  padding: EdgeInsets.only(top: 6, left: 8, bottom: 6),
-                  decoration: BoxDecoration(
-                    color: stateC,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade300,
-                        spreadRadius: 3,
-                        blurRadius: 5,
-                        offset: Offset(-2, 2),
+              child: Row(
+                children: [
+                  if(package.packageState == "delivered+" || package.packageState == "returned+")
+                  Container(
+                    height: 60,
+                      width: 60,
+                      padding: const EdgeInsets.only(top: 12, left: 8 ,right: 7),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade300,
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(-2, 2),
+                          ),
+                          BoxShadow(
+                            color: Colors.grey.shade300,
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
                       ),
-                      BoxShadow(
-                        color: Colors.grey.shade300,
-                        spreadRadius: 3,
-                        blurRadius: 5,
-                        offset: Offset(2, 2),
+                      child: Image.asset(
+                        "assets/icons/logo.png", color: Colors.deepPurple,)),
+                  const SizedBox(width: 16,),
+                  Container(
+                      padding: EdgeInsets.only(top: 6, left: 8, bottom: 6),
+                      decoration: BoxDecoration(
+                        color: stateC,
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade300,
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(-2, 2),
+                          ),
+                          BoxShadow(
+                            color: Colors.grey.shade300,
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Image.asset(
-                    stateF, color: Colors.white,)),
+                      child: Image.asset(
+                        stateF, color: Colors.white,)),
+
+                ],
+              ),
             ),
             if(package.closedPackage)
               Positioned(
@@ -260,6 +290,7 @@ class PackageItem extends StatelessWidget {
                     child: Image.asset(
                       "assets/icons/closed.png",)),
               ),
+
           ],
         ),
       ),
