@@ -140,7 +140,7 @@ class StockItem extends StatelessWidget {
                 Text(product.description,
                     style: const TextStyle(
                         fontSize: 14,
-                        color: Colors.grey, fontWeight: FontWeight.w300
+                        color: Colors.black54, fontWeight: FontWeight.w400
                     )),
                 const SizedBox(height: 14,),
 

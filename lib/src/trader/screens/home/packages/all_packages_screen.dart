@@ -290,6 +290,7 @@ class PackageItem extends StatelessWidget {
               height: 60,
               child: Row(
                 children: [
+
                   if(package.packageState == "delivered+" || package.packageState == "returned+")
                   Container(
                     height: 60,
@@ -315,7 +316,34 @@ class PackageItem extends StatelessWidget {
                       ),
                       child: Image.asset(
                         "assets/icons/logo.png", color: Colors.deepPurple,)),
-                  const SizedBox(width: 16,),
+                  if(package.isFreeDelivery)...[
+                    const SizedBox(width: 12,),
+                    Container(
+                        height: 60,
+                        width: 60,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                           boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.shade300,
+                              spreadRadius: 3,
+                              blurRadius: 5,
+                              offset: Offset(-2, 2),
+                            ),
+                            BoxShadow(
+                              color: Colors.grey.shade300,
+                              spreadRadius: 3,
+                              blurRadius: 5,
+                              offset: Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                        child: Text("Free\nDeli\nvery" ,textAlign: TextAlign.center, style: const TextStyle(color: Colors.deepPurple, fontSize: 13, fontWeight: FontWeight.w600),)),
+                  ],
+                  const SizedBox(width: 12,),
                   Container(
                       height: 60,
                       width: 60,
@@ -340,6 +368,9 @@ class PackageItem extends StatelessWidget {
                       ),
                       child: Image.asset(
                         stateF, color: Colors.white,)),
+
+
+
 
                 ],
               ),
@@ -367,7 +398,7 @@ class PackageItem extends StatelessWidget {
 
     switch(package.packageState){
       case "online":
-        return "assets/icons/pickup.png";
+        return "assets/icons/online.png";
       case "pickup":
         return "assets/icons/pickup.png";
       case "inroad":

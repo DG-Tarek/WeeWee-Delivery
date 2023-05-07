@@ -679,7 +679,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                           final DeliveryOptions deliveryOptions = DeliveryOptions(
                               isFreeDelivery: _freeDelivery,
                               isFreeProduct: TraderFirebaseCubit().productPrice == 0,
-                              deliveryCost: _deliveryCost,
+                              deliveryCost: TraderFirebaseCubit().deliveryCost,
                               preferredDeliveryDay: _deliveryDay,
                               preferredDeliveryTime: _deliveryTime,
                               useAnotherPlace: false,
@@ -691,7 +691,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                             final DeliveryOptions deliveryOptions = DeliveryOptions(
                               isFreeDelivery: _freeDelivery,
                                 isFreeProduct: TraderFirebaseCubit().productPrice == 0,
-                                deliveryCost: _deliveryCost,
+                                deliveryCost: TraderFirebaseCubit().deliveryCost,
                                 preferredDeliveryDay: _deliveryDay,
                                 preferredDeliveryTime: _deliveryTime,
                                 useAnotherPlace: true,

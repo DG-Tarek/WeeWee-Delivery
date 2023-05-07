@@ -6,7 +6,7 @@ part 'package_model.g.dart';
 class Package{
     Package({
       this.id,
-
+      this.report,
       required this.packageCreatedAt,
       required this.packageCreatedDay,
       required this.packageState,
@@ -103,6 +103,7 @@ class Package{
   bool productSelectedFromStock;
   String productNewStockState;
   String coment;
+  String? report;
 
     factory Package.fromJson(Map<String, dynamic> json) => _$PackageFromJson(json);
     Map<String, dynamic> toJson() => _$PackageToJson(this);

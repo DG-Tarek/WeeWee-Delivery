@@ -8,6 +8,7 @@ part of 'package_model.dart';
 
 Package _$PackageFromJson(Map<String, dynamic> json) => Package(
       id: json['id'] as String?,
+      report: json['report'] as String?,
       packageCreatedAt: json['packageCreatedAt'] as String,
       packageCreatedDay: json['packageCreatedDay'] as String,
       packageState: json['packageState'] as String,
@@ -96,4 +97,5 @@ Map<String, dynamic> _$PackageToJson(Package instance) => <String, dynamic>{
       'productSelectedFromStock': instance.productSelectedFromStock,
       'productNewStockState': instance.productNewStockState,
       'coment': instance.coment,
+      'report': instance.report,
     };

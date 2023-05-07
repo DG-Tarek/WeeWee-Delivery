@@ -55,11 +55,11 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                         ],
                       ),
                       child: SizedBox(
-                        height: 100,
                         child: Column(
                           crossAxisAlignment:  CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
+
                           children:  [
+                            const SizedBox(height: 34 ,),
                             Text(widget.package.id! , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18, fontWeight: FontWeight.w500),),
                             const SizedBox(height: 10,),
                             Text( widget.package.preferredDeliveryDay.split(" ")[0] ,
@@ -110,6 +110,33 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                               ),
                               child: Image.asset(
                                 "assets/icons/logo.png", color: Colors.deepPurple,)),
+                        if(widget.package.isFreeDelivery)...[
+                          const SizedBox(width: 12,),
+                          Container(
+                              height: 60,
+                              width: 60,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                color: Colors.deepPurple,
+                                borderRadius: BorderRadius.all(Radius.circular(12)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    spreadRadius: 3,
+                                    blurRadius: 5,
+                                    offset: Offset(-2, 2),
+                                  ),
+                                  BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    spreadRadius: 3,
+                                    blurRadius: 5,
+                                    offset: Offset(2, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Text("Free\nDeli\nvery" ,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),)),
+                        ],
                         const SizedBox(width: 16,),
                         Container(
                             height: 60,
@@ -153,71 +180,73 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                 ],
               ),
             const SizedBox(height: 5,),
-              Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0,left: 16,right: 16),
-                    child: Container(
-                      padding: EdgeInsets.only(left: 3),
-                      decoration: BoxDecoration(
-                        color: color,
-                        borderRadius: BorderRadius.all(Radius.circular(24)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade200,
-                            spreadRadius: 3,
-                            blurRadius: 7,
-                            offset: Offset(3, 3),
-                          ),
-                        ],
-                      ),
+              if(widget.package.coment.isNotEmpty)...[
+                Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0,left: 16,right: 16),
                       child: Container(
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(top: 18 , left: 20,right: 60,bottom: 18),
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(24)),
-                        ),
-                        child: Text("Comment vskldsd lkfsdlk lkf,sl kfsdlk lkfdskl lksdl "),
-
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 8,
-                    height: 60,
-                    width: 60,
-                    child:  Container(
-                        padding: const EdgeInsets.only(top: 10,right: 4,left: 4, bottom: 10),
+                        padding: EdgeInsets.only(left: 3),
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          boxShadow:  <BoxShadow>[
+                          color: color,
+                          borderRadius: BorderRadius.all(Radius.circular(24)),
+                          boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.shade300,
-                              spreadRadius: 1,
-                              blurRadius: 5,
-                              offset: Offset(0, -2),
-                            ),
-                            BoxShadow(
-                              color: Colors.grey.shade300,
-                              spreadRadius: 1,
-                              blurRadius: 5,
-                              offset: Offset(2, 0),
-                            ),
-                            const BoxShadow(
-                              color: Colors.white,
+                              color: Colors.grey.shade200,
                               spreadRadius: 3,
-                              blurRadius: 0,
-                              offset: Offset(-2, 2),),
+                              blurRadius: 7,
+                              offset: Offset(3, 3),
+                            ),
                           ],
                         ),
-                        child: Image.asset("assets/icons/coment.png")),
-                  )
-                ],
-              ),
-              const SizedBox(height: 15,),
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.only(top: 18 , left: 20,right: 60,bottom: 18),
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(24)),
+                          ),
+                          child: Text(widget.package.coment),
+
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      right: 8,
+                      height: 60,
+                      width: 60,
+                      child:  Container(
+                          padding: const EdgeInsets.only(top: 10,right: 4,left: 4, bottom: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            boxShadow:  <BoxShadow>[
+                              BoxShadow(
+                                color: Colors.grey.shade300,
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: Offset(0, -2),
+                              ),
+                              BoxShadow(
+                                color: Colors.grey.shade300,
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: Offset(2, 0),
+                              ),
+                              const BoxShadow(
+                                color: Colors.white,
+                                spreadRadius: 3,
+                                blurRadius: 0,
+                                offset: Offset(-2, 2),),
+                            ],
+                          ),
+                          child: Image.asset("assets/icons/coment.png")),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 15,),
+              ],
               Padding(
                 padding: const EdgeInsets.only(left: 16.0, bottom: 12),
                 child: Stack(
@@ -264,7 +293,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                               Text(widget.package.productDescription,
                                   style: const TextStyle(
                                       fontSize: 14,
-                                      color: Colors.grey, fontWeight: FontWeight.w300
+                                      color: Colors.black54, fontWeight: FontWeight.w400
                                   )),
                               const SizedBox(height: 25,),
                               Row(
@@ -611,7 +640,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
 
     switch(widget.package.packageState){
       case "online":
-        return "assets/icons/pickup.png";
+        return "assets/icons/online.png";
       case "pickup":
         return "assets/icons/pickup.png";
       case "inroad":
