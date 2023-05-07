@@ -25,6 +25,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
   @override
   bool get wantKeepAlive => true;
   bool _freeDelivery = false;
+  bool _addComent = false;
   bool _anotherPickupPlace = false;
   String _deliveryDay = "Preferred Delivery Day";
   String _deliveryTime = "Preferred Delivery Time";
@@ -39,6 +40,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
   late TextEditingController _storeNameController;
   late TextEditingController _phoneNumberController;
   late TextEditingController _addressController;
+  late TextEditingController _comentController;
 
 
   @override
@@ -47,12 +49,14 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
     _storeNameController = TextEditingController();
     _phoneNumberController = TextEditingController();
     _addressController = TextEditingController();
+    _comentController = TextEditingController();
   }
-
+  @override
   void dispose() {
     _storeNameController.dispose();
     _phoneNumberController.dispose();
     _addressController.dispose();
+    _comentController.dispose();
     super.dispose();
   }
 
@@ -175,6 +179,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                                 TraderFirebaseCubit().setSecondProductChoice(null);
                                 TraderFirebaseCubit().setFirstClientChoice(null);
                                 TraderFirebaseCubit().setSecondClientChoice(null);
+                                TraderFirebaseCubit().setFreeProduct(isFree: false);
                                 TraderFirebaseCubit().restoreOrderState();
 
                                 Navigator.pushReplacement(
@@ -222,7 +227,41 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[400]),
                 ),
                 SizedBox(height: 10.h,),
-
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Add a Coment" , style: Theme.of(context).textTheme.titleMedium,),
+                    Switch(
+                      value: _addComent,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _addComent = value;
+                        });
+                      },
+                    )
+                  ],
+                ),
+                if(_addComent)...[
+                  SizedBox(height: 5.h,),
+                  TextField(
+                    controller: _comentController,
+                    maxLines: 3,
+                    decoration: const InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.deepPurple, width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.deepPurple,width: 0.5),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                        ),
+                        labelText: 'Write a Coment',
+                        labelStyle: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w300)
+                    ),
+                    style:const TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(height: 15.h,),
+                ],
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -637,12 +676,14 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                     GestureDetector(
                       onTap: (){
                         if(!_anotherPickupPlace){
-                          final DeliveryOptions deliveryOptions = DeliveryOptions(isFreeDelivery: _freeDelivery,
+                          final DeliveryOptions deliveryOptions = DeliveryOptions(
+                              isFreeDelivery: _freeDelivery,
                               isFreeProduct: TraderFirebaseCubit().productPrice == 0,
                               deliveryCost: _deliveryCost,
                               preferredDeliveryDay: _deliveryDay,
                               preferredDeliveryTime: _deliveryTime,
-                              useAnotherPlace: false );
+                              useAnotherPlace: false,
+                              coment: _comentController.text,);
                               TraderFirebaseCubit().newOrder();
                               TraderFirebaseCubit().setDeliveryOptions(options: deliveryOptions);
                         }else{
@@ -660,6 +701,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                                 anotherWilaya: _wilaya,
                                 anotherBaladia: _baladia,
                                 anotherGeolocation: "Geolocation",
+                              coment: _comentController.text,
                             );
                             TraderFirebaseCubit().setDeliveryOptions(options: deliveryOptions);
                             TraderFirebaseCubit().newOrder();

@@ -175,13 +175,25 @@ class PackageItem extends StatelessWidget {
                               fontWeight: FontWeight.w300,
                               color: Colors.red),),
                           const SizedBox(width: 12,),
-                          Text("0.0", style: Theme
+                          Text(package.productPrice.toString(), style: Theme
                               .of(context)
                               .textTheme
                               .titleLarge!
-                              .copyWith(fontSize: 20,
+                              .copyWith(
+                              fontSize: 16,
                               fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.lineThrough,
                               color: Colors.black87),),
+                          if (package.packageState == "returned+" || package.packageState == "returned")...[
+                            const SizedBox(width: 8,),
+                            Text("0.0", style: Theme
+                                .of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black87),),
+                          ],
                           const SizedBox(width: 4,),
                           Text("DZ", style: Theme
                               .of(context)
@@ -334,11 +346,11 @@ class PackageItem extends StatelessWidget {
             ),
             if(package.closedPackage)
               Positioned(
-                top: 46,
-                right: -5,
+                top: 50,
+                right: 0,
                 child: Container(
-                    height: 80,
-                    width: 80,
+                    height: 65,
+                    width: 65,
                     padding: EdgeInsets.all(8),
                     child: Image.asset(
                       "assets/icons/closed.png",)),

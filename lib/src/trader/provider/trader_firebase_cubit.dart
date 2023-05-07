@@ -212,7 +212,9 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         productLength: selectedProduct.length,
         productWeight: selectedProduct.width,
         productSelectedFromStock: fromStock,
-        productNewStockState: "$stock / $minStock" );
+        productNewStockState: "$stock / $minStock",
+          coment: _deliveryOptions!.coment,
+        );
         await FirebaseFirestore.instance.collection(path)
         .add(package.toJson())
         .then((value) async {
@@ -264,7 +266,10 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       productLength: selectedProduct.length,
       productWeight: selectedProduct.width,
       productSelectedFromStock: fromStock,
-      productNewStockState:"The Product has not been shipped from The Stock." );
+      productNewStockState:"The Product has not been shipped from The Stock.",
+      coment: _deliveryOptions!.coment,
+  );
+
       await FirebaseFirestore.instance.collection(path)
           .add(package.toJson())
           .then((value){

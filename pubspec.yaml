@@ -110,6 +110,7 @@ flutter:
     - assets/icons/delivery-truck-return.png
     - assets/icons/online.png
     - assets/icons/inroad.png
+    - assets/icons/coment.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

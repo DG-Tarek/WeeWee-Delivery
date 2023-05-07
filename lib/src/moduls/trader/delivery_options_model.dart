@@ -15,6 +15,7 @@ class DeliveryOptions{
     required this.preferredDeliveryDay,
     required this.preferredDeliveryTime,
     required this.useAnotherPlace,
+    required this.coment,
     this.anotherStoreName = "",
     this.anotherPhoneNumber = "",
     this.anotherWilaya = "",
@@ -29,6 +30,7 @@ class DeliveryOptions{
   final String preferredDeliveryDay;
   final String preferredDeliveryTime;
   final bool useAnotherPlace;
+  final String coment;
   String? anotherStoreName;
   String? anotherPhoneNumber;
   String? anotherWilaya;
