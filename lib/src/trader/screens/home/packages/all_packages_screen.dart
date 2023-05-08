@@ -181,8 +181,7 @@ class PackageItem extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               decoration: TextDecoration.lineThrough,
                               color: Colors.black87),),
-                          if (package.packageState == "returned+" || package.packageState == "returned")...[
-                            const SizedBox(width: 8,),
+                              const SizedBox(width: 8,),
                             Text("0.0", style: Theme
                                 .of(context)
                                 .textTheme
@@ -190,7 +189,7 @@ class PackageItem extends StatelessWidget {
                                 .copyWith(fontSize: 20,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black87),),
-                          ],
+
                           const SizedBox(width: 4,),
                           Text("DZ", style: Theme
                               .of(context)

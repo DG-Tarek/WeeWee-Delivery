@@ -243,7 +243,7 @@ class _MapsScreenState extends State<MapsScreen> {
 
   Route _createRoute() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => const PackageDetailsScreen(),
+      pageBuilder: (context, animation, secondaryAnimation) =>  Container(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(-1.0, 0.0);
         const end = Offset.zero;

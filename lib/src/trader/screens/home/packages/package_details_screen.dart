@@ -27,6 +27,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
 
         appBar: AppBar(
           title: Text("Package Details"),
+          backgroundColor: stateC,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -653,7 +654,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
         return "assets/icons/online.png";
       case "pickup":
         return "assets/icons/pickup.png";
-      case "inroad":
+      case "onroad":
         return "assets/icons/inroad.png";
       case "delivered":
         return "assets/icons/approved.png";
@@ -671,10 +672,12 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
   Color stateColor() {
     switch(widget.package.packageState){
       case "online":
-        return Colors.teal;
-      case "pickup":
-        return Colors.teal;
-      case "inroad":
+        return Colors.purple;
+      case "onhold":
+        return Colors.purple;
+      case "pickedup":
+        return Colors.blue;
+      case "onroad":
         return Colors.teal;
       case "delivered":
         return Colors.green;
