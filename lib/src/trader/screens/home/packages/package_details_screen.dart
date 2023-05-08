@@ -319,13 +319,13 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       .of(context)
                                       .textTheme
                                       .titleLarge!
-                                      .copyWith(fontSize: 14,
+                                      .copyWith(fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.orange),),
                                   const Spacer(),
                                    Text("${widget.package.senderWilaya}, ${widget.package.senderBaladia}" ,
                                     style:  const TextStyle(
-                                        fontSize: 14,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                         color: Colors.black54),)
                                 ],
@@ -342,12 +342,12 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     .of(context)
                                     .textTheme
                                     .titleLarge!
-                                    .copyWith(fontSize: 14,
+                                    .copyWith(fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.deepPurple),),
                                 const Spacer(),
                                 Text(widget.package.productNewStockState, style: const TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black54
                                 ),),
@@ -555,7 +555,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     const SizedBox(width: 16,),
                                     Text(widget.package.clientPhoneNumber ,
                                       style: const  TextStyle(
-                                          fontSize: 15.5,
+                                          fontSize: 16,
                                           color: Colors.black54
                                       ),)
                                   ],
@@ -573,7 +573,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       const SizedBox(width: 16,),
                                       Text(widget.package.clientOptionalPhoneNumber! ,
                                         style: const  TextStyle(
-                                            fontSize: 15.5,
+                                            fontSize: 16,
                                             color: Colors.black54
                                         ),)
                                     ],
@@ -591,7 +591,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     const SizedBox(width: 16,),
                                     Text("${widget.package.clientWilaya} , ${widget.package.clientBaladia}" ,
                                       style:  const TextStyle(
-                                          fontSize: 15.5,
+                                          fontSize: 16,
                                           color: Colors.black54
                                       ),),
                                   ],

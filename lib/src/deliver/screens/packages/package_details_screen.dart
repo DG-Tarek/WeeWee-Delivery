@@ -61,7 +61,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                             const SizedBox(height: 10,),
                             Text( widget.package.preferredDeliveryDay.split(" ")[0] ,
                               style:  const TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 16,
                                   color: Colors.black54 , fontWeight: FontWeight.w400
                               ),),
                             const SizedBox(height: 10,),
@@ -268,17 +268,17 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       height: 20,
                                       width: 20,
                                       child: Image.asset("assets/icons/store.png", color: Colors.deepPurple,)),
-                                  const SizedBox(width: 7,),
+                                  const SizedBox(width: 10,),
                                   Text("Store Name", style: Theme
                                       .of(context)
                                       .textTheme
                                       .titleLarge!
-                                      .copyWith(fontSize: 15,
+                                      .copyWith(fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.deepPurple),),
                                   const Spacer(),
                                   Text(widget.package.productNewStockState, style: const TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black54
                                   ),),
@@ -291,20 +291,38 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       height: 20,
                                       width: 20,
                                       child: Image.asset("assets/icons/package.png")),
-                                  const SizedBox(width: 8,),
+                                  const SizedBox(width: 10,),
                                   Text("Pick Up", style: Theme
                                       .of(context)
                                       .textTheme
                                       .titleLarge!
-                                      .copyWith(fontSize: 15,
+                                      .copyWith(fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.orange),),
                                   const Spacer(),
                                   Text("${widget.package.senderWilaya}, ${widget.package.senderBaladia}" ,
                                     style:  const TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                         color: Colors.black54),)
+                                ],
+                              ),
+                              const SizedBox(height: 12,),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children:  [
+                                  const SizedBox(width: 4,),
+                                  SizedBox(
+                                    width: 18,
+                                    height: 18,
+                                    child: Image.asset("assets/icons/phone.png", color: stateC,),),
+
+                                  const SizedBox(width: 10,),
+                                  Text(widget.package.clientPhoneNumber ,
+                                    style: const  TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black54
+                                    ),)
                                 ],
                               ),
 
@@ -465,7 +483,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     const SizedBox(width: 16,),
                                     Text(widget.package.clientPhoneNumber ,
                                       style: const  TextStyle(
-                                          fontSize: 15.5,
+                                          fontSize: 16,
                                           color: Colors.black54
                                       ),)
                                   ],
@@ -483,7 +501,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       const SizedBox(width: 16,),
                                       Text(widget.package.clientOptionalPhoneNumber! ,
                                         style: const  TextStyle(
-                                            fontSize: 15.5,
+                                            fontSize: 16,
                                             color: Colors.black54
                                         ),)
                                     ],
@@ -501,7 +519,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     const SizedBox(width: 16,),
                                     Text("${widget.package.clientWilaya} , ${widget.package.clientBaladia}" ,
                                       style:  const TextStyle(
-                                          fontSize: 15.5,
+                                          fontSize: 16,
                                           color: Colors.black54
                                       ),),
                                   ],
