@@ -59,7 +59,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                           crossAxisAlignment:  CrossAxisAlignment.start,
 
                           children:  [
-                            const SizedBox(height: 34 ,),
+                            const SizedBox(height: 16 ,),
                             Text(widget.package.id! , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18, fontWeight: FontWeight.w500),),
                             const SizedBox(height: 10,),
                             Text( widget.package.preferredDeliveryDay.split(" ")[0] ,
@@ -73,7 +73,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                   fontSize: 15,
                                   color: Colors.black54
                               ),),
-                            const SizedBox(height: 10,),
+                            const SizedBox(height: 16,),
                           ],
                         ),
                       ),
@@ -82,8 +82,8 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                   Positioned(
                     top: 6,
                     right: 6,
-                    height: 60,
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if(widget.package.packageState == "delivered+" || widget.package.packageState == "returned+")
                           Container(
@@ -98,7 +98,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     color: Colors.grey.shade300,
                                     spreadRadius: 3,
                                     blurRadius: 5,
-                                    offset: Offset(-2, 2),
+                                    offset: Offset(-1, 2),
                                   ),
                                   BoxShadow(
                                     color: Colors.grey.shade300,
@@ -110,66 +110,77 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                               ),
                               child: Image.asset(
                                 "assets/icons/logo.png", color: Colors.deepPurple,)),
-                        if(widget.package.isFreeDelivery)...[
-                          const SizedBox(width: 12,),
-                          Container(
-                              height: 60,
-                              width: 60,
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.all(6),
-                              decoration: BoxDecoration(
-                                color: Colors.deepPurple,
-                                borderRadius: BorderRadius.all(Radius.circular(12)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade300,
-                                    spreadRadius: 3,
-                                    blurRadius: 5,
-                                    offset: Offset(-2, 2),
-                                  ),
-                                  BoxShadow(
-                                    color: Colors.grey.shade300,
-                                    spreadRadius: 3,
-                                    blurRadius: 5,
-                                    offset: Offset(2, 2),
-                                  ),
-                                ],
-                              ),
-                              child: Text("Free\nDeli\nvery" ,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),)),
-                        ],
-                        const SizedBox(width: 16,),
-                        Container(
-                            height: 60,
-                            width: 60,
-                            padding: EdgeInsets.only(top: 6, left: 8, bottom: 6),
-                            decoration: BoxDecoration(
-                              color: stateC,
-                              borderRadius: BorderRadius.all(Radius.circular(12)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.shade300,
-                                  spreadRadius: 3,
-                                  blurRadius: 5,
-                                  offset: Offset(-2, 2),
-                                ),
-                                BoxShadow(
-                                  color: Colors.grey.shade300,
-                                  spreadRadius: 3,
-                                  blurRadius: 5,
-                                  offset: Offset(2, 2),
-                                ),
-                              ],
-                            ),
-                            child: Image.asset(
-                              stateF, color: Colors.white,)),
 
+                        const SizedBox(width: 15,),
+                        Column(
+                          children: [
+                            Container(
+                                height: 60,
+                                width: 60,
+                                padding: EdgeInsets.only(top: 6, left: 8, bottom: 6),
+                                decoration: BoxDecoration(
+                                  color: stateC,
+                                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade300,
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                      offset: Offset(-1, 2),
+                                    ),
+                                    BoxShadow(
+                                      color: Colors.grey.shade300,
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                      offset: Offset(2, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Image.asset(
+                                  stateF, color: Colors.white,)),
+                            if(widget.package.isFreeDelivery)...[
+                              const SizedBox(height: 12,),
+                              Container(
+                                  height: 60,
+                                  width: 60,
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.all(7),
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepPurple,
+                                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.shade300,
+                                        spreadRadius: 3,
+                                        blurRadius: 5,
+                                        offset: Offset(-1, 2),
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.grey.shade300,
+                                        spreadRadius: 3,
+                                        blurRadius: 5,
+                                        offset: Offset(2, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: const [
+                                      Text("FREE" ,textAlign: TextAlign.center, style:  TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),),
+                                      Text("Delivery" ,textAlign: TextAlign.center, style:  TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600),),
+                                      SizedBox(height: 2,)
+                                    ],
+                                  )),
+                            ],
+                          ],
+                        ),
                       ],
                     ),
                   ),
                   if(widget.package.closedPackage)
                     Positioned(
-                      top: 50,
-                      right: 0,
+                      top: 47.5,
+                      right: 77.5,
                       child: Container(
                           height: 65,
                           width: 65,

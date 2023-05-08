@@ -309,9 +309,14 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
               {
                 _deliveredPackages +=1;
                 _deliveredPackagesReadyToReceive +=1;
-                _totalPrice += package.productPrice;
                 _walletDeliveredCost += package.deliveryCost;
-                _incomeMoney += (package.productPrice - package.deliveryCost);
+                if(!package.isFreeDelivery){
+                  _totalPrice += package.productPrice + package.deliveryCost;
+                  _incomeMoney += package.productPrice ;
+                }else{
+                  _totalPrice += package.productPrice ;
+                  _incomeMoney += package.productPrice - package.deliveryCost ;
+                }
                 _readyPackagesToReceive.add(package);
               }
               break;

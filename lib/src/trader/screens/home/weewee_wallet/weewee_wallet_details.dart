@@ -22,11 +22,11 @@ class WeeWeeWalletDetailsScreen extends StatelessWidget {
             width: width,
             child: ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+                //physics: const NeverScrollableScrollPhysics(),
                 itemCount: TraderFirebaseCubit().readyPackagesToReceive.length,
                 itemBuilder: (_,index){
                   return Container(
-                      padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
+                      padding: index == 0 ? const EdgeInsets.only(top: 20): index == TraderFirebaseCubit().readyPackagesToReceive.length - 1 ? const EdgeInsets.only(bottom: 250) : null,
                       child: PackageItem(
                         package: TraderFirebaseCubit().readyPackagesToReceive[index],
                       )
