@@ -78,7 +78,6 @@ class PackageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final String stateF = stateFlag();
     final Color stateC = stateColor();
-    final color = COLORS[Random().nextInt(COLORS.length)];
     return Padding(
       padding: const EdgeInsets.only(left: 16.0),
       child: GestureDetector(
@@ -91,7 +90,7 @@ class PackageItem extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.only(left: 3,),
                 decoration: BoxDecoration(
-                  color: color,
+                  color: stateC,
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                   boxShadow: [
                     BoxShadow(
@@ -122,7 +121,7 @@ class PackageItem extends StatelessWidget {
                           color: Colors.black54),),
                       const SizedBox(height: 8,),
                       SizedBox(
-                          width: width - 175,
+                          width: width - 100,
                           child: Text(package.productName, style: Theme
                               .of(context)
                               .textTheme
@@ -171,7 +170,7 @@ class PackageItem extends StatelessWidget {
                               .titleLarge!
                               .copyWith(fontSize: 16,
                               fontWeight: FontWeight.w300,
-                              color: Colors.red),),
+                              color: stateC),),
                           const SizedBox(width: 12,),
                           Text(package.productPrice.toString(), style: Theme
                               .of(context)
@@ -232,8 +231,8 @@ class PackageItem extends StatelessWidget {
                               .textTheme
                               .titleLarge!
                               .copyWith(fontSize: 16,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.red),),
+                              fontWeight: FontWeight.w400,
+                              color: stateC),),
                           const SizedBox(width: 12,),
                           Text(package.isFreeProduct ? "0.0":package.productPrice.toString(), style: Theme
                               .of(context)
@@ -320,7 +319,7 @@ class PackageItem extends StatelessWidget {
                       Container(
                           height: 60,
                           width: 60,
-                          padding: EdgeInsets.only(top: 6, left: 8, bottom: 6),
+                          padding: package.packageState != "onroad" ?  const EdgeInsets.only(top: 6, left: 8, bottom: 6) : const EdgeInsets.all(7),
                           decoration: BoxDecoration(
                             color: stateC,
                             borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -406,7 +405,7 @@ class PackageItem extends StatelessWidget {
         return "assets/icons/online.png";
       case "pickup":
         return "assets/icons/pickup.png";
-      case "inroad":
+      case "onroad":
           return "assets/icons/inroad.png";
       case "delivered":
         return "assets/icons/approved.png";
@@ -424,10 +423,12 @@ class PackageItem extends StatelessWidget {
   Color stateColor() {
     switch(package.packageState){
       case "online":
-        return Colors.teal;
-      case "pickup":
-        return Colors.teal;
-      case "inroad":
+        return Colors.purple;
+      case "onhold":
+        return Colors.purple;
+      case "pickedup":
+        return Colors.blue;
+      case "onroad":
         return Colors.teal;
       case "delivered":
         return Colors.green;

@@ -210,18 +210,24 @@ class StockItem extends StatelessWidget {
     color: product.stock< product.minStock ? Colors.deepOrange : Colors.white,
     shape: BoxShape.circle,
     boxShadow: <BoxShadow>[
-    BoxShadow(
-    color: Colors.grey.shade300,
-    spreadRadius: 3,
-    blurRadius: 5,
-    offset: Offset(0, -2),
-    ),
-    BoxShadow(
-    color: Colors.grey.shade300,
-    spreadRadius: 3,
-    blurRadius: 5,
-    offset: Offset(2, 0),
-    ),
+
+      BoxShadow(
+        color: Colors.grey.shade300,
+        spreadRadius: 1,
+        blurRadius: 5,
+        offset: Offset(0, -2),
+      ),
+      BoxShadow(
+        color: Colors.grey.shade300,
+        spreadRadius: 1,
+        blurRadius: 5,
+        offset: Offset(2, 0),
+      ),
+      const BoxShadow(
+        color: Colors.white,
+        spreadRadius: 3,
+        blurRadius: 0,
+        offset: Offset(-2, 2),),
     product.stock >= product.minStock ?
     const BoxShadow(
     color: Colors.white,

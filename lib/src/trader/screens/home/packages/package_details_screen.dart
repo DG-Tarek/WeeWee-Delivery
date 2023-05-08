@@ -23,8 +23,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
   Widget build(BuildContext context) {
     final String stateF = stateFlag();
     final Color stateC = stateColor();
-    final color = COLORS[Random().nextInt(COLORS.length)];
-    return  Scaffold(
+  return  Scaffold(
 
         appBar: AppBar(
           title: Text("Package Details"),
@@ -199,7 +198,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                       child: Container(
                         padding: EdgeInsets.only(left: 3),
                         decoration: BoxDecoration(
-                          color: color,
+                          color: stateC,
                           borderRadius: BorderRadius.all(Radius.circular(24)),
                           boxShadow: [
                             BoxShadow(
@@ -268,7 +267,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                       child: Container(
                         padding: EdgeInsets.only(left: 3),
                         decoration: BoxDecoration(
-                          color: color,
+                          color: stateC,
                           borderRadius: BorderRadius.all(Radius.circular(24)),
                           boxShadow: [
                             BoxShadow(
@@ -363,7 +362,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       .titleLarge!
                                       .copyWith(fontSize: 16,
                                       fontWeight: FontWeight.w300,
-                                      color: Colors.red),),
+                                      color: stateC),),
                                   const SizedBox(width: 12,),
                                   Text(widget.package.productPrice.toString(), style: Theme
                                       .of(context)
@@ -425,7 +424,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       .titleLarge!
                                       .copyWith(fontSize: 16,
                                       fontWeight: FontWeight.w300,
-                                      color: Colors.red),),
+                                      color: stateC),),
                                   const SizedBox(width: 12,),
                                   Text(widget.package.isFreeProduct ? "0.0":widget.package.productPrice.toString(), style: Theme
                                       .of(context)
@@ -487,13 +486,13 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                             boxShadow: <BoxShadow>[
                               BoxShadow(
                                 color: Colors.grey.shade300,
-                                spreadRadius: 3,
+                                spreadRadius: 1,
                                 blurRadius: 5,
                                 offset: Offset(0, -2),
                               ),
                               BoxShadow(
                                 color: Colors.grey.shade300,
-                                spreadRadius: 3,
+                                spreadRadius: 1,
                                 blurRadius: 5,
                                 offset: Offset(2, 0),
                               ),
@@ -519,7 +518,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                         Container(
                           padding: EdgeInsets.only(left: 3),
                           decoration: BoxDecoration(
-                            color: color,
+                            color: stateC,
                             borderRadius: BorderRadius.all(Radius.circular(24)),
                             boxShadow: [
                               BoxShadow(
@@ -550,7 +549,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     SizedBox(
                                       width: 16,
                                       height: 16,
-                                      child: Image.asset("assets/icons/phone.png", color: color,),),
+                                      child: Image.asset("assets/icons/phone.png", color: stateC,),),
 
                                     const SizedBox(width: 16,),
                                     Text(widget.package.clientPhoneNumber ,
@@ -569,7 +568,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       SizedBox(
                                         width: 16,
                                         height: 16,
-                                        child: Image.asset("assets/icons/phone.png", color: color,),),
+                                        child: Image.asset("assets/icons/phone.png", color: stateC,),),
                                       const SizedBox(width: 16,),
                                       Text(widget.package.clientOptionalPhoneNumber! ,
                                         style: const  TextStyle(
@@ -587,7 +586,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     SizedBox(
                                       width: 17.5,
                                       height: 17.5,
-                                      child: Image.asset("assets/icons/location.png", color: color,),),
+                                      child: Image.asset("assets/icons/location.png", color: stateC,),),
                                     const SizedBox(width: 16,),
                                     Text("${widget.package.clientWilaya} , ${widget.package.clientBaladia}" ,
                                       style:  const TextStyle(
