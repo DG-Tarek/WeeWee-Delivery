@@ -17,19 +17,19 @@ class DeliverMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DriverMainCubit, DeliverMainCubitState>(
-      bloc: DriverMainCubit(),
+    return BlocBuilder<DeliverMainCubit, DeliverMainCubitState>(
+      bloc: DeliverMainCubit(),
       buildWhen: (previous, current)=> current is ChangeScreenState,
       builder: (context, state) {
         return Scaffold(
-          body: DriverMainCubit().currentScreen,
+          body: DeliverMainCubit().currentScreen,
           bottomNavigationBar: Container(
             color: Colors.white,
             padding: EdgeInsets.only(right: 32.w ,left: 32.w, top: 12.w),
             child: SalomonBottomBar(
-              currentIndex: DriverMainCubit().currentScreenIndex,
+              currentIndex: DeliverMainCubit().currentScreenIndex,
               onTap: (i) {
-                DriverMainCubit().changeScreen(i);
+                DeliverMainCubit().changeScreen(i);
               },
               items: [
                 /// Home

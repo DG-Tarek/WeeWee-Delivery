@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
  import 'package:weewee_delivery/src/deliver/screens/profile/driver_profile_screen.dart';
+import '../../../provider/deliver_firebase_cubit.dart';
 import '../../../screens/maps/maps_screen.dart';
 import '../../../screens/packages/packages_list_screen.dart';
 import 'deliver_main_cubit_states.dart';
 
-class DriverMainCubit extends Cubit<DeliverMainCubitState> {
-  static final DriverMainCubit _instance = DriverMainCubit._internal();
+class DeliverMainCubit extends Cubit<DeliverMainCubitState> {
+  static final DeliverMainCubit _instance = DeliverMainCubit._internal();
 
-  factory DriverMainCubit() {
+  factory DeliverMainCubit() {
     return _instance;
   }
   int _currentScreenIndex = 0 ;
@@ -26,10 +27,14 @@ class DriverMainCubit extends Cubit<DeliverMainCubitState> {
   bool _selectedPackage = false ;
 
 
-  DriverMainCubit._internal() : super(CreateDeliverMainBlocState());
+  DeliverMainCubit._internal() : super(CreateDeliverMainBlocState());
 
   void changeScreen(int index){
     _currentScreenIndex = index;
+    if(index==2)
+     {
+       print("up");
+       DeliverFirebaseCubit().getMyPackagesList();}
     emit(ChangeScreenState());
   }
 

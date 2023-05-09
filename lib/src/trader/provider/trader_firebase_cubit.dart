@@ -214,6 +214,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
         productSelectedFromStock: fromStock,
         productNewStockState: "$stock / $minStock",
           coment: _deliveryOptions!.coment,
+          drivers: []
         );
         await FirebaseFirestore.instance.collection(path)
         .add(package.toJson())
@@ -268,6 +269,7 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
       productSelectedFromStock: fromStock,
       productNewStockState:"The Product has not been shipped from The Stock.",
       coment: _deliveryOptions!.coment,
+      drivers: []
   );
 
       await FirebaseFirestore.instance.collection(path)

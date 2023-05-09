@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: lightTheme,
           home: MultiBlocProvider(providers: [
-            BlocProvider<DriverMainCubit>(
-              create: (BuildContext context) => DriverMainCubit(),
+            BlocProvider<DeliverMainCubit>(
+              create: (BuildContext context) => DeliverMainCubit(),
             ),
             BlocProvider<TraderMainCubit>(
               create: (BuildContext context) => TraderMainCubit(),

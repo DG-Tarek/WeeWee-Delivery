@@ -54,10 +54,10 @@ class _MapsScreenState extends State<MapsScreen> {
       ),
       isExpanded: true,
       hint:  Text(
-        DriverMainCubit().selectedTypeOfPackages,
+        DeliverMainCubit().selectedTypeOfPackages,
       style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
       ),
-      items:  DriverMainCubit().typesOfPackages
+      items:  DeliverMainCubit().typesOfPackages
             .map((item) =>
               DropdownMenuItem<String>(
               value: item,
@@ -66,14 +66,14 @@ class _MapsScreenState extends State<MapsScreen> {
               style:  TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
-              color: item == DriverMainCubit().selectedTypeOfPackages ? Colors.white: Colors.deepPurple
+              color: item == DeliverMainCubit().selectedTypeOfPackages ? Colors.white: Colors.deepPurple
               ),
               ),
               ))
             .toList(),
       onChanged: (value) {
         setState(() {
-          DriverMainCubit().changeSelectedTypeOfPackages(value);
+          DeliverMainCubit().changeSelectedTypeOfPackages(value);
         });
       },
       buttonStyleData: const ButtonStyleData(
@@ -136,7 +136,7 @@ class _MapsScreenState extends State<MapsScreen> {
               left: 15,
               top: 145,
               child:
-              !DriverMainCubit().selectedPackage ?
+              !DeliverMainCubit().selectedPackage ?
               Container(
                 height: 50,
                 width: 50,
@@ -213,7 +213,7 @@ class _MapsScreenState extends State<MapsScreen> {
                       GestureDetector(
                         onTap: (){
                          setState(() {
-                           DriverMainCubit().setSelectedPackage();
+                           DeliverMainCubit().setSelectedPackage();
                          });
                         },
                         child: Container(
@@ -246,7 +246,7 @@ class _MapsScreenState extends State<MapsScreen> {
     final Package package = Package(packageCreatedAt: "packageCreatedAt", packageCreatedDay: "packageCreatedDay", packageState: "returned+", savedCollection: "savedCollection", closedPackage: false, isFreeDelivery: true,
         isFreeProduct: false, preferredDeliveryDay: "preferredDeliveryDay", preferredDeliveryTime: "preferredDeliveryTime", deliveryCost: 1, senderFullName: "senderFullName", senderStoreName: "senderStoreName", senderMobileNumber: "senderMobileNumber", senderWilaya: "senderWilaya",
         senderBaladia: "senderBaladia", senderAddress: "senderAddress", senderGeolocation: "senderGeolocation", senderAnotherStoreName: "senderAnotherStoreName", senderAnotherPhoneNumber: "senderAnotherPhoneNumber", senderAnotherWilaia: "senderAnotherWilaia", senderAnotherBaladia: "senderAnotherBaladia", senderAnotherAddress: "senderAnotherAddress", senderAnotherGeolocation: "senderAnotherGeolocation",
-        clientFullName: "clientFullName", clientPhoneNumber: "clientPhoneNumber", clientOptionalPhoneNumber: "clientOptionalPhoneNumber", clientWilaya: "clientWilaya", clientBaladia: "clientBaladia", clientAddress: "clientAddress", clientGeolocation: "clientGeolocation", productName: "productName", productDescription: "productDescription", productHistoryPath: "productHistoryPath", productPrice: 5, productHeight: "productHeight", productWidth: "productWidth", productLength: "productLength", productWeight: "productWeight", productSelectedFromStock: true, productNewStockState: "productNewStockState", coment: "");
+        clientFullName: "clientFullName", clientPhoneNumber: "clientPhoneNumber", clientOptionalPhoneNumber: "clientOptionalPhoneNumber", clientWilaya: "clientWilaya", drivers: [], clientBaladia: "clientBaladia", clientAddress: "clientAddress", clientGeolocation: "clientGeolocation", productName: "productName", productDescription: "productDescription", productHistoryPath: "productHistoryPath", productPrice: 5, productHeight: "productHeight", productWidth: "productWidth", productLength: "productLength", productWeight: "productWeight", productSelectedFromStock: true, productNewStockState: "productNewStockState", coment: "");
 
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>  PackageDetailsScreen(package: package),

@@ -3,6 +3,7 @@
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
 import 'package:weewee_delivery/src/deliver/screens/packages/package_item.dart';
 
 import '../../state_management/deliver/main_cubit/deliver_main_cubit.dart';
@@ -43,10 +44,10 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
                 ),
                 isExpanded: true,
                 hint:  Text(
-                  DriverMainCubit().selectedTypeOfPackages,
+                  DeliverMainCubit().selectedTypeOfPackages,
                   style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
                 ),
-                items: DriverMainCubit().typesOfPackages
+                items: DeliverMainCubit().typesOfPackages
                     .map((item) =>
                     DropdownMenuItem<String>(
                       value: item,
@@ -55,14 +56,14 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
                         style:  TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: item == DriverMainCubit().selectedTypeOfPackages ? Colors.white : Colors.teal
+                            color: item == DeliverMainCubit().selectedTypeOfPackages ? Colors.white : Colors.teal
                         ),
                       ),
                     ))
                     .toList(),
                 onChanged: (value) {
                   setState(() {
-                    DriverMainCubit().changeSelectedTypeOfPackages(value);
+                    DeliverMainCubit().changeSelectedTypeOfPackages(value);
                   });
                 },
                 buttonStyleData: const ButtonStyleData(
@@ -89,9 +90,12 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
         SliverList(
             delegate: SliverChildBuilderDelegate(
                 (context,index){
-                  return index == 0 ? const SizedBox(height: 20,): PackageItem();
+                  return Container(
+                    padding: index == 0 ?const EdgeInsets.only(top: 20) : null,
+                    child: PackageItem(package: DeliverFirebaseCubit().myPackagesList[index],),
+                  );
                 },
-              childCount: 5
+              childCount: DeliverFirebaseCubit().myPackagesList.length
             ))
       ],
     );

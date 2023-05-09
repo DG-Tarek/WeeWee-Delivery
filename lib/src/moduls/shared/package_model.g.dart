@@ -51,6 +51,8 @@ Package _$PackageFromJson(Map<String, dynamic> json) => Package(
       productSelectedFromStock: json['productSelectedFromStock'] as bool,
       productNewStockState: json['productNewStockState'] as String,
       coment: json['coment'] as String,
+      drivers:
+          (json['drivers'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$PackageToJson(Package instance) => <String, dynamic>{
@@ -98,4 +100,5 @@ Map<String, dynamic> _$PackageToJson(Package instance) => <String, dynamic>{
       'productNewStockState': instance.productNewStockState,
       'coment': instance.coment,
       'report': instance.report,
+      'drivers': instance.drivers,
     };

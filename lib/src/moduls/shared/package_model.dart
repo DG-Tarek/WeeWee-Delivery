@@ -49,8 +49,8 @@ class Package{
       required this.productWeight,
       required this.productSelectedFromStock,
       required this.productNewStockState,
-      required this.coment
-
+      required this.coment,
+      required this.drivers,
 
 });
 
@@ -104,7 +104,7 @@ class Package{
   String productNewStockState;
   String coment;
   String? report;
-  //List<String> drivers = [];
+  List<String> drivers ;
 
     factory Package.fromJson(Map<String, dynamic> json) => _$PackageFromJson(json);
     Map<String, dynamic> toJson() => _$PackageToJson(this);
