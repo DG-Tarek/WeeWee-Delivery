@@ -12,10 +12,10 @@ import '../../state_management/deliver/main_cubit/deliver_main_cubit.dart';
 class PackageItem extends StatelessWidget {
    PackageItem({Key? key}) : super(key: key);
 
-  final Package package = Package(packageCreatedAt: "packageCreatedAt", packageCreatedDay: "packageCreatedDay", packageState: "delivered+", savedCollection: "savedCollection", closedPackage: false, isFreeDelivery: true,
+  final Package package = Package(packageCreatedAt: "packageCreatedAt", packageCreatedDay: "packageCreatedDay", packageState: "returned+", savedCollection: "savedCollection", closedPackage: false, isFreeDelivery: true,
       isFreeProduct: false, preferredDeliveryDay: "preferredDeliveryDay", preferredDeliveryTime: "preferredDeliveryTime", deliveryCost: 1, senderFullName: "senderFullName", senderStoreName: "senderStoreName", senderMobileNumber: "senderMobileNumber", senderWilaya: "senderWilaya",
       senderBaladia: "senderBaladia", senderAddress: "senderAddress", senderGeolocation: "senderGeolocation", senderAnotherStoreName: "senderAnotherStoreName", senderAnotherPhoneNumber: "senderAnotherPhoneNumber", senderAnotherWilaia: "senderAnotherWilaia", senderAnotherBaladia: "senderAnotherBaladia", senderAnotherAddress: "senderAnotherAddress", senderAnotherGeolocation: "senderAnotherGeolocation",
-      clientFullName: "clientFullName", clientPhoneNumber: "clientPhoneNumber", clientOptionalPhoneNumber: "clientOptionalPhoneNumber", clientWilaya: "clientWilaya", clientBaladia: "clientBaladia", clientAddress: "clientAddress", clientGeolocation: "clientGeolocation", productName: "productName", productDescription: "productDescription", productHistoryPath: "productHistoryPath", productPrice: 5, productHeight: "productHeight", productWidth: "productWidth", productLength: "productLength", productWeight: "productWeight", productSelectedFromStock: true, productNewStockState: "productNewStockState", coment: "coment");
+      clientFullName: "clientFullName", clientPhoneNumber: "clientPhoneNumber", clientOptionalPhoneNumber: "clientOptionalPhoneNumber", clientWilaya: "clientWilaya", clientBaladia: "clientBaladia", clientAddress: "clientAddress", clientGeolocation: "clientGeolocation", productName: "productName", productDescription: "productDescription", productHistoryPath: "productHistoryPath", productPrice: 5, productHeight: "productHeight", productWidth: "productWidth", productLength: "productLength", productWeight: "productWeight", productSelectedFromStock: true, productNewStockState: "productNewStockState", coment: "");
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,10 @@ class PackageItem extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16.0),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(_createRoute()),
+        onLongPress: (){
+          DriverMainCubit().setSelectedPackage();
+          DriverMainCubit().changeScreen(0);
+        },
         child: Stack(
           alignment: Alignment.center,
           children: [

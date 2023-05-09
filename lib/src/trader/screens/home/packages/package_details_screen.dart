@@ -117,7 +117,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                             Container(
                                 height: 60,
                                 width: 60,
-                                padding: EdgeInsets.only(top: 6, left: 8, bottom: 6),
+                                padding: widget.package.packageState != "onroad" ?  const EdgeInsets.only(top: 6, left: 8, bottom: 6) : const EdgeInsets.all(7),
                                 decoration: BoxDecoration(
                                   color: stateC,
                                   borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -291,7 +291,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                             children: [
 
                               SizedBox(
-                                  width: width - 40,
+                                  width: width - 120,
                                   child: Text(widget.package.productName, style: Theme
                                       .of(context)
                                       .textTheme
@@ -548,8 +548,8 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                   children:  [
                                     const SizedBox(width: 7,),
                                     SizedBox(
-                                      width: 16,
-                                      height: 16,
+                                      width: 18,
+                                      height: 18,
                                       child: Image.asset("assets/icons/phone.png", color: stateC,),),
 
                                     const SizedBox(width: 16,),
@@ -567,8 +567,8 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     children:  [
                                       const SizedBox(width: 7,),
                                       SizedBox(
-                                        width: 16,
-                                        height: 16,
+                                        width: 18,
+                                        height: 18,
                                         child: Image.asset("assets/icons/phone.png", color: stateC,),),
                                       const SizedBox(width: 16,),
                                       Text(widget.package.clientOptionalPhoneNumber! ,
@@ -585,8 +585,8 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                   children:  [
                                     const SizedBox(width: 6,),
                                     SizedBox(
-                                      width: 17.5,
-                                      height: 17.5,
+                                      width: 20,
+                                      height: 20,
                                       child: Image.asset("assets/icons/location.png", color: stateC,),),
                                     const SizedBox(width: 16,),
                                     Text("${widget.package.clientWilaya} , ${widget.package.clientBaladia}" ,
@@ -652,9 +652,11 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
     switch(widget.package.packageState){
       case "online":
         return "assets/icons/online.png";
-      case "pickup":
+      case "onHold":
+        return "assets/icons/online.png";
+      case "pickedUp":
         return "assets/icons/pickup.png";
-      case "onroad":
+      case "onRoad":
         return "assets/icons/inroad.png";
       case "delivered":
         return "assets/icons/approved.png";
@@ -673,11 +675,11 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
     switch(widget.package.packageState){
       case "online":
         return Colors.purple;
-      case "onhold":
+      case "onHold":
         return Colors.purple;
-      case "pickedup":
+      case "pickedUp":
         return Colors.blue;
-      case "onroad":
+      case "onRoad":
         return Colors.teal;
       case "delivered":
         return Colors.green;

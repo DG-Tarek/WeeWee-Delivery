@@ -104,6 +104,7 @@ class Package{
   String productNewStockState;
   String coment;
   String? report;
+  //List<String> drivers = [];
 
     factory Package.fromJson(Map<String, dynamic> json) => _$PackageFromJson(json);
     Map<String, dynamic> toJson() => _$PackageToJson(this);

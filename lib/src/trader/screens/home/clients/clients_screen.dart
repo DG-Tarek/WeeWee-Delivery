@@ -85,7 +85,8 @@ class _ClientItemState extends State<ClientItem> {
   @override
   Widget build(BuildContext context) {
     final color =  COLORS[Random().nextInt(COLORS.length)];
-    return Stack(
+    return Stack
+      (
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 12),

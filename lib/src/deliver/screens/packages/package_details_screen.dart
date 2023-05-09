@@ -248,10 +248,9 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SizedBox(height: 4,),
                               SizedBox(
-                                  width: width - 40,
-                                  child: Text(widget.package.productName, style: Theme
+                                  width: width - 120,
+                                  child: Text(widget.package.productName*3, style: Theme
                                       .of(context)
                                       .textTheme
                                       .titleLarge!
@@ -318,6 +317,14 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     child: Image.asset("assets/icons/phone.png", color: stateC,),),
 
                                   const SizedBox(width: 10,),
+                                  Text("Contact", style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      color: stateC),),
+                                  const Spacer(),
                                   Text(widget.package.clientPhoneNumber ,
                                     style: const  TextStyle(
                                         fontSize: 16,
@@ -326,7 +333,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                 ],
                               ),
 
-                              const SizedBox(height: 25,),
+                              const SizedBox(height: 30,),
                               widget.package.packageState == "returned+" || widget.package.packageState == "returned"?
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -394,7 +401,87 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
 
                                 ],
                               ),
+                              const SizedBox(height: 25,),
+                              SizedBox(
+                                width: width,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
 
+                                    Container(
+                                      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade200,
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: Offset(-2, 2),
+                                          ),
+                                          BoxShadow(
+                                            color: Colors.grey.shade200,
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: Offset(2, 2),),
+                                        ],
+                                      ),
+                                      child:  Icon(CupertinoIcons.phone_fill,color: stateC,size: 26,),
+                                    ),
+
+                                    Container(
+                                      padding: EdgeInsets.symmetric( horizontal: 20, vertical: 8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade200,
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: Offset(-2, 2),
+                                          ),
+                                      BoxShadow(
+                                        color: Colors.grey.shade200,
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: Offset(2, 2),),
+
+
+                                        ],
+                                      ),
+                                      child:  Icon(Icons.comment,color: stateC,size: 26,),
+                                    ),
+
+                                    Container(
+                                      padding: EdgeInsets.symmetric( horizontal: 20, vertical: 8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade200,
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: Offset(-2, 2),
+                                          ),
+                                          BoxShadow(
+                                            color: Colors.grey.shade200,
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: Offset(2, 2),),
+
+                                        ],
+                                      ),
+                                      child:  Icon(CupertinoIcons.location_solid,color: stateC,size: 26,),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 5,),
                             ],
                           ),
 
@@ -436,7 +523,8 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                         ))],
                 ),
               ),
-              const SizedBox(height: 5,),
+
+              const SizedBox(height: 10,),
               Stack(
                 children: [
                   Padding(
@@ -469,15 +557,14 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(widget.package.clientFullName , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22 , fontWeight: FontWeight.w400),),
-
                                 const SizedBox(height: 20,),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children:  [
                                     const SizedBox(width: 7,),
                                     SizedBox(
-                                      width: 16,
-                                      height: 16,
+                                      width: 18,
+                                      height: 18,
                                       child: Image.asset("assets/icons/phone.png", color: stateC,),),
 
                                     const SizedBox(width: 16,),
@@ -495,8 +582,8 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                     children:  [
                                       const SizedBox(width: 7,),
                                       SizedBox(
-                                        width: 16,
-                                        height: 16,
+                                        width: 18,
+                                        height: 18,
                                         child: Image.asset("assets/icons/phone.png", color: stateC,),),
                                       const SizedBox(width: 16,),
                                       Text(widget.package.clientOptionalPhoneNumber! ,
@@ -513,8 +600,8 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                   children:  [
                                     const SizedBox(width: 6,),
                                     SizedBox(
-                                      width: 17.5,
-                                      height: 17.5,
+                                      width: 20,
+                                      height: 20,
                                       child: Image.asset("assets/icons/location.png", color: stateC,),),
                                     const SizedBox(width: 16,),
                                     Text("${widget.package.clientWilaya} , ${widget.package.clientBaladia}" ,
@@ -524,7 +611,87 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       ),),
                                   ],
                                 ),
+                                const SizedBox(height: 35,),
+                                SizedBox(
+                                  width: width,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
 
+                                      Container(
+                                        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.shade200,
+                                              spreadRadius: 2,
+                                              blurRadius: 5,
+                                              offset: Offset(-2, 2),
+                                            ),
+                                            BoxShadow(
+                                              color: Colors.grey.shade200,
+                                              spreadRadius: 2,
+                                              blurRadius: 5,
+                                              offset: Offset(2, 2),),
+                                          ],
+                                        ),
+                                        child:  Icon(CupertinoIcons.phone_fill,color: stateC,size: 26,),
+                                      ),
+
+                                      Container(
+                                        padding: EdgeInsets.symmetric( horizontal: 20, vertical: 8),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.shade200,
+                                              spreadRadius: 2,
+                                              blurRadius: 5,
+                                              offset: Offset(-2, 2),
+                                            ),
+                                            BoxShadow(
+                                              color: Colors.grey.shade200,
+                                              spreadRadius: 2,
+                                              blurRadius: 5,
+                                              offset: Offset(2, 2),),
+
+
+                                          ],
+                                        ),
+                                        child:  Icon(Icons.comment,color: stateC,size: 26,),
+                                      ),
+
+                                      Container(
+                                        padding: EdgeInsets.symmetric( horizontal: 20, vertical: 8),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.shade200,
+                                              spreadRadius: 2,
+                                              blurRadius: 5,
+                                              offset: Offset(-2, 2),
+                                            ),
+                                            BoxShadow(
+                                              color: Colors.grey.shade200,
+                                              spreadRadius: 2,
+                                              blurRadius: 5,
+                                              offset: Offset(2, 2),),
+
+                                          ],
+                                        ),
+                                        child:  Icon(CupertinoIcons.location_solid,color: stateC,size: 26,),
+                                      ),
+
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 5,),
 
                               ],
                             ),
@@ -568,6 +735,8 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                   )
                 ],
               ),
+
+              const SizedBox(height: 60,),
             ],
           ),
         )

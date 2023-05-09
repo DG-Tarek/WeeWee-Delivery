@@ -6,6 +6,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constant/constant.dart';
+import '../../../moduls/shared/package_model.dart';
 import '../../state_management/deliver/main_cubit/deliver_main_cubit.dart';
 import '../packages/package_details_screen.dart';
 
@@ -242,8 +243,13 @@ class _MapsScreenState extends State<MapsScreen> {
   }
 
   Route _createRoute() {
+    final Package package = Package(packageCreatedAt: "packageCreatedAt", packageCreatedDay: "packageCreatedDay", packageState: "returned+", savedCollection: "savedCollection", closedPackage: false, isFreeDelivery: true,
+        isFreeProduct: false, preferredDeliveryDay: "preferredDeliveryDay", preferredDeliveryTime: "preferredDeliveryTime", deliveryCost: 1, senderFullName: "senderFullName", senderStoreName: "senderStoreName", senderMobileNumber: "senderMobileNumber", senderWilaya: "senderWilaya",
+        senderBaladia: "senderBaladia", senderAddress: "senderAddress", senderGeolocation: "senderGeolocation", senderAnotherStoreName: "senderAnotherStoreName", senderAnotherPhoneNumber: "senderAnotherPhoneNumber", senderAnotherWilaia: "senderAnotherWilaia", senderAnotherBaladia: "senderAnotherBaladia", senderAnotherAddress: "senderAnotherAddress", senderAnotherGeolocation: "senderAnotherGeolocation",
+        clientFullName: "clientFullName", clientPhoneNumber: "clientPhoneNumber", clientOptionalPhoneNumber: "clientOptionalPhoneNumber", clientWilaya: "clientWilaya", clientBaladia: "clientBaladia", clientAddress: "clientAddress", clientGeolocation: "clientGeolocation", productName: "productName", productDescription: "productDescription", productHistoryPath: "productHistoryPath", productPrice: 5, productHeight: "productHeight", productWidth: "productWidth", productLength: "productLength", productWeight: "productWeight", productSelectedFromStock: true, productNewStockState: "productNewStockState", coment: "");
+
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>  Container(),
+      pageBuilder: (context, animation, secondaryAnimation) =>  PackageDetailsScreen(package: package),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(-1.0, 0.0);
         const end = Offset.zero;

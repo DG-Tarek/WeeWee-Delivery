@@ -402,9 +402,11 @@ class PackageItem extends StatelessWidget {
     switch(package.packageState){
       case "online":
         return "assets/icons/online.png";
-      case "pickup":
+        case "onHold":
+        return "assets/icons/online.png";
+      case "pickedUp":
         return "assets/icons/pickup.png";
-      case "onroad":
+      case "onRoad":
           return "assets/icons/inroad.png";
       case "delivered":
         return "assets/icons/approved.png";
@@ -423,11 +425,11 @@ class PackageItem extends StatelessWidget {
     switch(package.packageState){
       case "online":
         return Colors.purple;
-      case "onhold":
+      case "onHold":
         return Colors.purple;
-      case "pickedup":
+      case "pickedUp":
         return Colors.blue;
-      case "onroad":
+      case "onRoad":
         return Colors.teal;
       case "delivered":
         return Colors.green;
