@@ -159,9 +159,12 @@ top: height*.2,
     log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
     if (!p) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('no Permission')),
+        const SnackBar(
+            backgroundColor: Colors.deepPurple,
+            content: Center(child: Text('\nNo Permission'))),
       );
     }
+    //remove this btw
     DeliverFirebaseCubit().pickUpScannedPackage();
   }
 

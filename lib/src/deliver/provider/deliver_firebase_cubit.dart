@@ -20,10 +20,14 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
 
   String? _selectedQRCode = "";
 
+  int _pickUpPackages = 0;
+
 
   List<Package> _myPackagesList = [];
   final String _uid = "kF6ffq2JGtlLESh0L7cw";
 
+
+  int get pickUpPackages => _pickUpPackages ;
 
   Future<void> getMyPackagesList() async {
     emit(GetMyPackagesListLoadingState());
@@ -32,8 +36,11 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
         "drivers", arrayContains: _uid).get().then((value) {
       _myPackagesList.clear();
       for (var doc in value.docs) {
-        _myPackagesList.add(Package.fromJson(doc.data())
-          ..id = doc.id);
+        Package p = Package.fromJson(doc.data())
+          ..id = doc.id ;
+        if(p.packageState == "pickUp")
+          _pickUpPackages++;
+        _myPackagesList.add(p);
       }
       emit(GetMyPackagesListSuccessfullyState());
     });
@@ -43,15 +50,16 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
 
   Future<void> pickUpScannedPackage() async {
     _selectedQRCode = "A8MK8D3FplSCSeGOhFrs";
-    emit(ChangePackageStateLoadingState());
     for(Package p in _myPackagesList){
       if (p.packageState == "pickUp" && p.id == _selectedQRCode ){
+        emit(ChangePackageStateLoadingState());
         await FirebaseFirestore.instance.collection(p.savedCollection)
             .doc(p.id)
             .update({"packageState" : "onRoad" })
             .then((value) {
+              p.packageState = "onRoad";
+              _pickUpPackages-- ;
               emit(ChangePackageStateSuccessfullyState());
-                p.packageState = "onRoad";
             });
       }
     }

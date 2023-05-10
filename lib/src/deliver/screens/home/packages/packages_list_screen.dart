@@ -40,7 +40,7 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
               width: 35,
               child: Image.asset(stateF,color: Colors.white,),
             ),
-            SizedBox(width: 12,),
+            const SizedBox(width: 12,),
             Text(stateT),
 
           ],
@@ -62,51 +62,6 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
           return Column(
             children: [
               SizedBox(height: 20,),
-              if(widget.state == "pickUp")
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: GestureDetector(
-                    onTap: (){
-                     Navigator.of(context).push(_createRoute());
-                    },
-                    child: Container(
-                      width: width,
-                      decoration: BoxDecoration(
-                        color: Colors.teal ,
-                        borderRadius: BorderRadius.all(Radius.circular(24)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade400,
-                            spreadRadius: 3,
-                            blurRadius: 5,
-                            offset: Offset(3, 3),
-                          ),
-                        ],
-                      ),
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(24),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Scan', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, color: Colors.white),),
-                                const SizedBox(height: 5,),
-                                Text('Ready Packages', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 16),),
-                              ],
-                            ),
-                          ),
-                          Spacer(),
-                          Icon(CupertinoIcons.qrcode, size: 46,color: Colors.white,),
-                          SizedBox(width: 8,),
-
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
               SingleChildScrollView(
                 child: ListView.builder(
                     shrinkWrap: true,

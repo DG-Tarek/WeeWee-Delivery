@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/deliver/screens/home/packages/packages_list_screen.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/pickup_packages_screen.dart';
 
 import '../../../constant/constant.dart';
 
@@ -51,8 +52,8 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 35,),
-                  Text('   My Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
+                  const SizedBox(height: 30,),
+                  Text(' Packages Details', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
                   const SizedBox(height: 25,),
                   Row(
                     children: [
@@ -62,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  PackagesListScreen(state: "pickUp")),
+                              MaterialPageRoute(builder: (context) =>  PickUpPackagesScreen()),
                             );
                           },
                           child: Container(
@@ -230,6 +231,8 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                  const SizedBox(height: 35,),
+                  Text(' ', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
+                  const SizedBox(height: 35,),
                   GestureDetector(
                     onTap: (){
 
@@ -250,6 +253,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+
                         child: Row(
                           //mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.center,
