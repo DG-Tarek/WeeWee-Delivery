@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
-import 'package:weewee_delivery/src/deliver/deliver_main_screen.dart';
+import 'package:weewee_delivery/src/deliver/screens/deliver_main_screen.dart';
 import 'package:weewee_delivery/src/trader/trader_main_screen.dart';
 
 

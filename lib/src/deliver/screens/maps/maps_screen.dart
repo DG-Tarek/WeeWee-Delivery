@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../../../constant/constant.dart';
 import '../../../moduls/shared/package_model.dart';
 import '../../state_management/deliver/main_cubit/deliver_main_cubit.dart';
-import '../packages/package_details_screen.dart';
+import '../home/packages/package_details_screen.dart';
 
 class MapsScreen extends StatefulWidget {
   const MapsScreen({Key? key}) : super(key: key);

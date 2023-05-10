@@ -3,8 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constant/constant.dart';
-import '../../../moduls/shared/package_model.dart';
+import '../../../../constant/constant.dart';
+import '../../../../moduls/shared/package_model.dart';
 
 class PackageDetailsScreen extends StatefulWidget {
   const PackageDetailsScreen({Key? key, required this.package}) : super(key: key);

@@ -18,6 +18,8 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
     return _instance;
   }
 
+  String? _selectedQRCode = "";
+
 
   List<Package> _myPackagesList = [];
   final String _uid = "kF6ffq2JGtlLESh0L7cw";
@@ -37,7 +39,25 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
     });
   }
 
+  void setSelectedQRCode(String? qr)=> _selectedQRCode = qr;
+
+  Future<void> pickUpScannedPackage() async {
+    _selectedQRCode = "A8MK8D3FplSCSeGOhFrs";
+    emit(ChangePackageStateLoadingState());
+    for(Package p in _myPackagesList){
+      if (p.packageState == "pickUp" && p.id == _selectedQRCode ){
+        await FirebaseFirestore.instance.collection(p.savedCollection)
+            .doc(p.id)
+            .update({"packageState" : "onRoad" })
+            .then((value) {
+              emit(ChangePackageStateSuccessfullyState());
+                p.packageState = "onRoad";
+            });
+      }
+    }
+  }
 
   
   List<Package> get myPackagesList => _myPackagesList;
+  String? get selectedQRCode => _selectedQRCode;
 }

@@ -4,3 +4,8 @@ class CreateDeliverFirebaseBlocState extends DeliverFirebaseCubitState {}
 
 class GetMyPackagesListLoadingState extends DeliverFirebaseCubitState{}
 class GetMyPackagesListSuccessfullyState extends DeliverFirebaseCubitState {}
+
+
+
+class ChangePackageStateLoadingState extends DeliverFirebaseCubitState{}
+class ChangePackageStateSuccessfullyState extends DeliverFirebaseCubitState{}

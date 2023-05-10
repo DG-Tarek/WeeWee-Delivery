@@ -32,22 +32,18 @@ class DeliverMainScreen extends StatelessWidget {
                 DeliverMainCubit().changeScreen(i);
               },
               items: [
-                /// Home
+                SalomonBottomBarItem(
+                    icon: Icon(Icons.dashboard),
+                    title: Text("Home"),
+                    selectedColor: Colors.teal,
+                    unselectedColor: Colors.grey
+                ),
                 SalomonBottomBarItem(
                   icon: Icon(CupertinoIcons.map_fill),
                   title: Text("Maps"),
                   selectedColor: Colors.deepPurple,
                     unselectedColor: Colors.grey
                 ),
-
-                /// Likes
-                SalomonBottomBarItem(
-                  icon: Icon(CupertinoIcons.collections_solid),
-                  title: Text("Packages"),
-                  selectedColor: Colors.teal,
-                    unselectedColor: Colors.grey
-                ),
-
                 /// Profile
                 SalomonBottomBarItem(
                   icon: Icon(Icons.person),
