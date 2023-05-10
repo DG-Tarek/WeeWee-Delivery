@@ -91,7 +91,7 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
             delegate: SliverChildBuilderDelegate(
                 (context,index){
                   return Container(
-                    padding: index == 0 ?const EdgeInsets.only(top: 20) : null,
+                    padding: index == 0 ? const EdgeInsets.only(top: 20) : null,
                     child: PackageItem(package: DeliverFirebaseCubit().myPackagesList[index],),
                   );
                 },

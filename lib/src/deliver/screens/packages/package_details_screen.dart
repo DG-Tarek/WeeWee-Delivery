@@ -749,9 +749,9 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
     switch(widget.package.packageState){
       case "online":
         return "assets/icons/online.png";
-      case "pickup":
+      case "pickUp":
         return "assets/icons/pickup.png";
-      case "onroad":
+      case "onRoad":
         return "assets/icons/inroad.png";
       case "delivered":
         return "assets/icons/approved.png";
@@ -770,11 +770,9 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
     switch(widget.package.packageState){
       case "online":
         return Colors.purple;
-      case "onhold":
-        return Colors.purple;
-      case "pickedup":
+      case "pickUp":
         return Colors.blue;
-      case "onroad":
+      case "onRoad":
         return Colors.teal;
       case "delivered":
         return Colors.green;

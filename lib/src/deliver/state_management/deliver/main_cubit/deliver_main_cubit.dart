@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
- import 'package:weewee_delivery/src/deliver/screens/profile/driver_profile_screen.dart';
-import '../../../provider/deliver_firebase_cubit.dart';
+import 'package:weewee_delivery/src/deliver/screens/profile/driver_profile_screen.dart';
+ import '../../../provider/deliver_firebase_cubit.dart';
 import '../../../screens/maps/maps_screen.dart';
 import '../../../screens/packages/packages_list_screen.dart';
 import 'deliver_main_cubit_states.dart';
