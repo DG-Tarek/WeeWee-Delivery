@@ -9,9 +9,7 @@ import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/screens/home/clients/clients_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/new_order/new_order.dart';
  import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_screen.dart';
-import 'package:weewee_delivery/src/trader/screens/home/packages/delivered_packages_screen.dart';
-import 'package:weewee_delivery/src/trader/screens/home/packages/pick_up_packages.dart';
-import 'package:weewee_delivery/src/trader/screens/home/packages/returned_packages_screen.dart';
+ import 'package:weewee_delivery/src/trader/screens/home/packages/Special_packages_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/stock/stock_screen.dart';
 import 'package:weewee_delivery/src/trader/screens/home/weewee_wallet/weewee_wallet_screen.dart';
 
@@ -452,7 +450,10 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: (){
-                            //Online package
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  SpecialPackagesScreen(state: "online")),
+                            );
                           },
                           child: Container(
                             height: 160,
@@ -497,7 +498,7 @@ class HomeScreen extends StatelessWidget {
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  PickUpPackagesScreen()),
+                              MaterialPageRoute(builder: (context) =>  SpecialPackagesScreen(state: "pickUp")),
                             );
                           },
                           child: Container(
@@ -519,7 +520,7 @@ class HomeScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Picked Up Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.blue),),
+                                Text('Pick Up Packages', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.blue),),
                                 Spacer(),
                                 SizedBox(
                                   height: 50,
@@ -535,7 +536,10 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: (){
-                            // on road packages
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  SpecialPackagesScreen(state: "onRoad")),
+                            );
                           },
                           child: Container(
                             height: 160,
@@ -583,7 +587,7 @@ class HomeScreen extends StatelessWidget {
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  DeliveredPackagesScreen()),
+                              MaterialPageRoute(builder: (context) =>  SpecialPackagesScreen(state: "delivered")),
                             );
                           },
                           child: Container(
@@ -623,7 +627,7 @@ class HomeScreen extends StatelessWidget {
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  ReturnedPackagesScreen()),
+                              MaterialPageRoute(builder: (context) =>  SpecialPackagesScreen(state: "returned")),
                             );
                           },
                           child: Container(
