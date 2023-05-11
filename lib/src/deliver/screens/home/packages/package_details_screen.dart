@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/QRCodeScanner.dart';
 
 import '../../../../constant/constant.dart';
 import '../../../../moduls/shared/package_model.dart';
@@ -770,34 +771,39 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                         ],
                       ),
                       const SizedBox(height: 30,),
-                      Container(
-                        width: width,
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.all(Radius.circular(18)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.shade400,
-                              spreadRadius: 3,
-                              blurRadius: 5,
-                              offset: Offset(3, 3),
-                            ),
-                          ],
-                        ),
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(vertical: 12),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 20,),
-                            Text("Delivered", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
-                            Spacer(),
-                            SizedBox(
-                                height: 35,
-                                width: 35,
-                                child: Image.asset("assets/icons/approved.png", color: Colors.white,)),
-                            const SizedBox(width: 20,),
-                          ],
-                        ),),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).push(_createRoute());
+                        },
+                        child: Container(
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.all(Radius.circular(18)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade400,
+                                spreadRadius: 3,
+                                blurRadius: 5,
+                                offset: Offset(3, 3),
+                              ),
+                            ],
+                          ),
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          child: Row(
+                            children: [
+                              const SizedBox(width: 20,),
+                              Text("Delivered", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                              Spacer(),
+                              SizedBox(
+                                  height: 35,
+                                  width: 35,
+                                  child: Image.asset("assets/icons/approved.png", color: Colors.white,)),
+                              const SizedBox(width: 20,),
+                            ],
+                          ),),
+                      ),
                       const SizedBox(height: 15,),
                       Container(
                         width: width,
@@ -814,7 +820,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                           ],
                         ),
                         alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Row(
                           children: [
                             const SizedBox(width: 20,),
@@ -881,6 +887,27 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
         return Colors.red;
     }
     return Colors.black;
+  }
+
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation,
+          secondaryAnimation) =>  QRViewExample(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween = Tween(begin: begin, end: end).chain(
+            CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
   }
 }
 

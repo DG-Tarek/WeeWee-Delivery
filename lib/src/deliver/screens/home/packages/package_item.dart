@@ -381,7 +381,6 @@ class PackageItem extends StatelessWidget {
 
 
    Route _createRoute() {
-     print("clicked");
      return PageRouteBuilder(
        pageBuilder: (context, animation,
            secondaryAnimation) =>  PackageDetailsScreen(package: package,),

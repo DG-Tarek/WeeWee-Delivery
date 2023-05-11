@@ -19,6 +19,7 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
   }
 
   String? _selectedQRCode = "";
+  String? _pickedUpQRCode = "";
 
   int _pickUpPackages = 0;
 
@@ -47,11 +48,12 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
   }
 
   void setSelectedQRCode(String? qr)=> _selectedQRCode = qr;
+  void setPickedUpQRCode(String? qr)=> _pickedUpQRCode = qr;
 
   Future<void> pickUpScannedPackage() async {
-    _selectedQRCode = "A8MK8D3FplSCSeGOhFrs";
+    _pickedUpQRCode = "A8MK8D3FplSCSeGOhFrs";
     for(Package p in _myPackagesList){
-      if (p.packageState == "pickUp" && p.id == _selectedQRCode ){
+      if ( p.id == _pickedUpQRCode && p.packageState == "pickUp" ){
         emit(PickUpPackagesLoadingState());
         await FirebaseFirestore.instance.collection(p.savedCollection)
             .doc(p.id)
@@ -78,7 +80,24 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
     });
   }
 
+
+
+  // Complete this Method for saving Deliver History
+  Future<void> addHistory( {required String activityType, required String event, String location="-", String money="-"})async{
+    final String month = DateFormat.yMMM().format(DateTime.now());
+    final String day = DateFormat.MMMd().format(DateTime.now());
+    const String time = "up";
+    final String history = "$time $activityType $event $location $money";
+    await FirebaseFirestore.instance.collection("test_users")
+        .doc(_uid).collection(month).doc(day).set({})
+        .then((value) {
+
+    });
+
+  }
+
   
   List<Package> get myPackagesList => _myPackagesList;
-  String? get selectedQRCode => _selectedQRCode;
+
+
 }

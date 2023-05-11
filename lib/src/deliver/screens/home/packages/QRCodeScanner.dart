@@ -10,8 +10,8 @@ import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart
  
 
 class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
-
+  const QRViewExample({Key? key, this.event = "confirming"}) : super(key: key);
+  final String event ;
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
 }
@@ -97,8 +97,14 @@ top: height*.2,
             bottom: 40,
             child: GestureDetector(
               onTap: (){
-                DeliverFirebaseCubit().setSelectedQRCode(result!.code);
-                Navigator.of(context).pop();
+                if(widget.event == "pickingUp"){
+                  DeliverFirebaseCubit().setPickedUpQRCode(result!.code);
+                  Navigator.of(context).pop();
+                }else if(widget.event == "")
+                {
+                  DeliverFirebaseCubit().setPickedUpQRCode(result!.code);
+                  Navigator.of(context).pop();
+                }
               },
               child: Container(
                 height: 46,
@@ -152,6 +158,7 @@ top: height*.2,
         controller.stopCamera();
         _stop = true;
       });
+
     });
   }
 
