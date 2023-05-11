@@ -52,17 +52,30 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
     _selectedQRCode = "A8MK8D3FplSCSeGOhFrs";
     for(Package p in _myPackagesList){
       if (p.packageState == "pickUp" && p.id == _selectedQRCode ){
-        emit(ChangePackageStateLoadingState());
+        emit(PickUpPackagesLoadingState());
         await FirebaseFirestore.instance.collection(p.savedCollection)
             .doc(p.id)
             .update({"packageState" : "onRoad" })
             .then((value) {
               p.packageState = "onRoad";
               _pickUpPackages-- ;
-              emit(ChangePackageStateSuccessfullyState());
+              emit(PickUpPackagesSuccessfullyState());
             });
       }
     }
+  }
+
+
+  Future<void> changePackageState({required String packageID,required String savedCollection, required String packageNewState})async{
+  emit(ChangePackageStateLoadingState());
+    await FirebaseFirestore.instance.collection(savedCollection)
+        .doc(packageID)
+        .update({"packageState" : packageNewState })
+        .then((value) {
+        final int index = myPackagesList.indexWhere((element) => element.id == packageID);
+        myPackagesList[index].packageState = packageNewState ;
+      emit(ChangePackageStateSuccessfullyState());
+    });
   }
 
   

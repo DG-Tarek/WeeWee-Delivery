@@ -731,12 +731,61 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                               offset: Offset(-2, 2),),
                           ],
                         ),
-                        child: Icon(Icons.person, color: Colors.deepPurple,size: 50,)),
+                        child: Icon(Icons.person, color: stateC,size: 50,)),
                   )
                 ],
               ),
 
               const SizedBox(height: 60,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20,),
+                    Text("Change Package State", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500),),
+                    const SizedBox(height: 20,),
+                    Container(
+                      width: width,
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade400,
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(3, 3),
+                          ),
+                        ],
+                      ),
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      child: Text("Delivered", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                    ),
+                    const SizedBox(height: 20,),
+                    Container(
+                      width: width,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade400,
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(3, 3),
+                          ),
+                        ],
+                      ),
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      child: Text("Returned", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 80,),
             ],
           ),
         )

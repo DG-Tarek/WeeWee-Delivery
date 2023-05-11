@@ -59,26 +59,21 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
                 thirdRingColor: Colors.orange),
           );
         }
-          return Column(
-            children: [
-              SizedBox(height: 20,),
-              SingleChildScrollView(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: DeliverFirebaseCubit().myPackagesList.length,
-                    itemBuilder: (_,index){
-                      return Container(
-                          padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
-                          child: DeliverFirebaseCubit().myPackagesList[index].packageState == widget.state || DeliverFirebaseCubit().myPackagesList[index].packageState == widget.state+"+" ?
-                          PackageItem(
-                            package: DeliverFirebaseCubit().myPackagesList[index],
-                          ): Container()
-                      ) ;
+          return Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: DeliverFirebaseCubit().myPackagesList.length,
+                itemBuilder: (_,index){
+                  return Container(
+                      padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
+                      child: DeliverFirebaseCubit().myPackagesList[index].packageState == widget.state || DeliverFirebaseCubit().myPackagesList[index].packageState == widget.state+"+" ?
+                      PackageItem(
+                        package: DeliverFirebaseCubit().myPackagesList[index],
+                      ): null
+                  ) ;
 
-                    }),
-              ),
-            ],
+                }),
           );
         }
       ),

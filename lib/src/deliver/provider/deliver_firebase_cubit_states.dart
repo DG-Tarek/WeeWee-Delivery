@@ -9,3 +9,7 @@ class GetMyPackagesListSuccessfullyState extends DeliverFirebaseCubitState {}
 
 class ChangePackageStateLoadingState extends DeliverFirebaseCubitState{}
 class ChangePackageStateSuccessfullyState extends DeliverFirebaseCubitState{}
+
+
+class PickUpPackagesLoadingState extends DeliverFirebaseCubitState{}
+class PickUpPackagesSuccessfullyState extends DeliverFirebaseCubitState{}

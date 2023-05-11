@@ -47,9 +47,9 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
       ),
       body: BlocBuilder(
           bloc: DeliverFirebaseCubit(),
-          buildWhen: (previous, current)=> current is ChangePackageStateLoadingState || current is ChangePackageStateSuccessfullyState,
+          buildWhen: (previous, current)=> current is PickUpPackagesLoadingState || current is PickUpPackagesSuccessfullyState,
           builder: (context, state) {
-            if(state is ChangePackageStateLoadingState){
+            if(state is PickUpPackagesLoadingState){
               return  Center(
                 child: LoadingAnimationWidget.discreteCircle(
                     color: Colors.deepPurple,
