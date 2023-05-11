@@ -61,6 +61,7 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
             return DeliverFirebaseCubit().pickUpPackages > 0 ?
                 Column(
                   children: [
+                    const SizedBox(height: 20,),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: GestureDetector(
