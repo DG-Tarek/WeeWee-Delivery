@@ -112,6 +112,7 @@ flutter:
     - assets/icons/online.png
     - assets/icons/inroad.png
     - assets/icons/coment.png
+    - assets/icons/warning.png
 
   #   - images/a_dot_ham.jpeg
 

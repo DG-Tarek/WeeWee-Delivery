@@ -18,8 +18,8 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
     return _instance;
   }
 
-  String? _selectedQRCode = "";
-  String? _pickedUpQRCode = "";
+
+
 
   int _pickUpPackages = 0;
 
@@ -32,6 +32,7 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
 
   Future<void> getMyPackagesList() async {
     emit(GetMyPackagesListLoadingState());
+    _pickUpPackages = 0;
     final String path = DateFormat.yMMM().format(DateTime.now());
     await FirebaseFirestore.instance.collection(path).where(
         "drivers", arrayContains: _uid).get().then((value) {
@@ -40,31 +41,36 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
         Package p = Package.fromJson(doc.data())
           ..id = doc.id ;
         if(p.packageState == "pickUp")
-          _pickUpPackages++;
+          {_pickUpPackages++;}
         _myPackagesList.add(p);
       }
       emit(GetMyPackagesListSuccessfullyState());
     });
   }
 
-  void setSelectedQRCode(String? qr)=> _selectedQRCode = qr;
-  void setPickedUpQRCode(String? qr)=> _pickedUpQRCode = qr;
 
-  Future<void> pickUpScannedPackage() async {
-    _pickedUpQRCode = "A8MK8D3FplSCSeGOhFrs";
+
+  Future<String> pickUpScannedPackage({required pickedUpQRCode}) async {
+    //pickedUpQRCode = "A8MK8D3FplSCSeGOhFrs";
+    String state = "Unpicked" ;
     for(Package p in _myPackagesList){
-      if ( p.id == _pickedUpQRCode && p.packageState == "pickUp" ){
-        emit(PickUpPackagesLoadingState());
-        await FirebaseFirestore.instance.collection(p.savedCollection)
-            .doc(p.id)
-            .update({"packageState" : "onRoad" })
-            .then((value) {
-              p.packageState = "onRoad";
-              _pickUpPackages-- ;
-              emit(PickUpPackagesSuccessfullyState());
-            });
+      if ( p.id == pickedUpQRCode){
+         state = "AlreadyPicked" ;
+        if( p.packageState == "pickUp" ){
+         emit(PickUpPackagesLoadingState());
+         await FirebaseFirestore.instance.collection(p.savedCollection)
+             .doc(p.id)
+             .update({"packageState" : "onRoad" })
+             .then((value) {
+           p.packageState = "onRoad";
+           _pickUpPackages-- ;
+            state = "Picked" ;
+           emit(PickUpPackagesSuccessfullyState());
+         });
+       }
       }
     }
+    return state;
   }
 
 

@@ -216,8 +216,8 @@ class TraderFirebaseCubit extends Cubit<TraderFirebaseCubitState> {
           coment: _deliveryOptions!.coment,
           drivers: []
         );
-        await FirebaseFirestore.instance.collection(path)
-        .add(package.toJson())
+        await FirebaseFirestore.instance.collection(path).doc("W120523-3943")
+        .set(package.toJson())
         .then((value) async {
         await FirebaseFirestore.instance.collection('test_users')
             .doc(_uid).collection("stock").doc(selectedProduct.id)

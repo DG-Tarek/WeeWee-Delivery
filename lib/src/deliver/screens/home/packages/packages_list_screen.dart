@@ -9,7 +9,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit_states.dart';
-import 'package:weewee_delivery/src/deliver/screens/home/packages/QRCodeScanner.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/confirming_qr_code_scanner.dart';
 import 'package:weewee_delivery/src/deliver/screens/home/packages/package_item.dart';
 
 import '../../../../constant/constant.dart';
@@ -145,25 +145,6 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
 
 
 
-  Route _createRoute() {
-   return PageRouteBuilder(
-      pageBuilder: (context, animation,
-          secondaryAnimation) =>  QRViewExample(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, 1.0);
-        const end = Offset.zero;
-        const curve = Curves.ease;
-
-        var tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
 }
 
 

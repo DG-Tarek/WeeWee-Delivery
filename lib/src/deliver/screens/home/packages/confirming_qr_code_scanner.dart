@@ -7,16 +7,22 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
 
+import '../../../../moduls/shared/package_model.dart';
+
  
 
-class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key, this.event = "confirming"}) : super(key: key);
+class QRViewConfirming extends StatefulWidget {
+  QRViewConfirming({Key? key,required this.package, required this.event}) : super(key: key);
   final String event ;
+  final Package package;
   @override
-  State<StatefulWidget> createState() => _QRViewExampleState();
+  State<StatefulWidget> createState() => _QRViewConfirmingState();
 }
 
-class _QRViewExampleState extends State<QRViewExample> {
+class _QRViewConfirmingState extends State<QRViewConfirming> {
+
+
+
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -33,10 +39,12 @@ class _QRViewExampleState extends State<QRViewExample> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    DeliverFirebaseCubit().setSelectedQRCode("");
+    // DeliverFirebaseCubit().setPickedUpQRCode("");
   }
 
   bool _stop = false ;
+  bool _confirmed = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,35 +96,75 @@ class _QRViewExampleState extends State<QRViewExample> {
           ),
           if(_stop)
             Positioned(
-top: height*.2,
+              top: height*.2,
                 child: Text(result!.code.toString(), style: TextStyle(
                   color: Colors.white, fontWeight: FontWeight.w600, fontSize: 27
                 ),)),
-          if(_stop)
           Positioned(
-            bottom: 40,
-            child: GestureDetector(
-              onTap: (){
-                if(widget.event == "pickingUp"){
-                  DeliverFirebaseCubit().setPickedUpQRCode(result!.code);
-                  Navigator.of(context).pop();
-                }else if(widget.event == "")
-                {
-                  DeliverFirebaseCubit().setPickedUpQRCode(result!.code);
+            bottom: 50,
+            width: width *.65,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 500),
+              opacity: _stop?1:0,
+              onEnd: () async {
+                if(_confirmed){
+                  await DeliverFirebaseCubit().changePackageState(
+                      packageID: widget.package.id!,
+                      savedCollection: widget.package.savedCollection,
+                      packageNewState: widget.event).then((value) => Navigator.of(context).pop());
+                }else{
                   Navigator.of(context).pop();
                 }
               },
-              child: Container(
-                height: 46,
-                width: width*.6,
+              child: _confirmed ?
+              Container(
+                width: width,
                 decoration: BoxDecoration(
                   color: Colors.green,
-                  border: Border.all(color: Colors.deepPurple , width: 0),
-                  borderRadius: BorderRadius.all(Radius.circular(18)),
+                  borderRadius: const BorderRadius.all(Radius.circular(24)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.05),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: Offset(3, 3),
+                    ),
+                  ],
                 ),
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(horizontal: 16 ),
-                child: Text("Confirm" , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("Package Confirmed", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w600),),
+                    Icon(Icons.verified, color: Colors.white,),
+
+                  ],
+                ),
+              ):
+              Container(
+                width: width,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: const BorderRadius.all(Radius.circular(24)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.05),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: Offset(3, 3),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("Wrong Package", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w600),),
+                    const Icon(Icons.warning_outlined, color: Colors.white,),
+                  ],
+                ),
               ),
             ),
           )
@@ -138,8 +186,7 @@ top: height*.2,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
         //overlayColor: Colors.black.withOpacity(.65),
-          borderColor: Colors.white,
-
+          borderColor: Colors.black,
           borderRadius: 25,
           borderLength: 45,
           borderWidth: 12,
@@ -157,6 +204,7 @@ top: height*.2,
         result = scanData;
         controller.stopCamera();
         _stop = true;
+        _confirmed = (result == widget.package!.id!);
       });
 
     });
@@ -164,15 +212,15 @@ top: height*.2,
 
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
     log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
-    if (!p) {
+   /* if (!p) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             backgroundColor: Colors.deepPurple,
             content: Center(child: Text('\nNo Permission'))),
       );
-    }
+    }*/
     //remove this btw
-    DeliverFirebaseCubit().pickUpScannedPackage();
+    //DeliverFirebaseCubit().pickUpScannedPackage();
   }
 
   @override

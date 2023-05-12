@@ -9,8 +9,9 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit_states.dart';
-import 'package:weewee_delivery/src/deliver/screens/home/packages/QRCodeScanner.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/confirming_qr_code_scanner.dart';
 import 'package:weewee_delivery/src/deliver/screens/home/packages/package_item.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/pick_up_qr_code_scanner.dart';
 
 import '../../../../constant/constant.dart';
 import '../../../state_management/deliver/main_cubit/deliver_main_cubit.dart';
@@ -47,9 +48,9 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
       ),
       body: BlocBuilder(
           bloc: DeliverFirebaseCubit(),
-          buildWhen: (previous, current)=> current is PickUpPackagesLoadingState || current is PickUpPackagesSuccessfullyState,
+          buildWhen: (previous, current)=> current is PickUpPackagesLoadingState || current is PickUpPackagesSuccessfullyState || current is GetMyPackagesListLoadingState || current is GetMyPackagesListSuccessfullyState,
           builder: (context, state) {
-            if(state is PickUpPackagesLoadingState){
+            if(state is PickUpPackagesLoadingState || state is GetMyPackagesListLoadingState){
               return  Center(
                 child: LoadingAnimationWidget.discreteCircle(
                     color: Colors.deepPurple,
@@ -118,7 +119,8 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
 
                         }),
                   ],
-                ):
+                )
+                :
                     Center(
                       child: Text(
                         "Fuck !"
@@ -149,7 +151,7 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
   Route _createRoute() {
     return PageRouteBuilder(
       pageBuilder: (context, animation,
-          secondaryAnimation) =>  QRViewExample(),
+          secondaryAnimation) =>  QRViewPickUp(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);
         const end = Offset.zero;

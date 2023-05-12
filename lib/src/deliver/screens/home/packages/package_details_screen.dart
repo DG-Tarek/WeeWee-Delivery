@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weewee_delivery/src/deliver/screens/home/packages/QRCodeScanner.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/confirming_qr_code_scanner.dart';
 
 import '../../../../constant/constant.dart';
 import '../../../../moduls/shared/package_model.dart';
@@ -737,109 +737,148 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                 ],
               ),
 
-              const SizedBox(height: 60,),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(46)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade200,
-                      spreadRadius: 8,
-                      blurRadius: 12,
-                      offset: Offset(0, -3),
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 25,),
-                      Row(
-                        children: [
-                          SizedBox(
-                              height: 35,
-                              width: 35,
-                              child: Image.asset("assets/icons/package.png",)),
-                         const  SizedBox(width: 16,),
-                          Text("Change Package State", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500),),
-                          const Spacer(),
-                          const Icon(Icons.close, color: Colors.red,),
-                          const SizedBox(width: 12,)
-                        ],
-                      ),
-                      const SizedBox(height: 30,),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.of(context).push(_createRoute());
-                        },
-                        child: Container(
-                          width: width,
+              const SizedBox(height: 40,),
+              if(widget.package.packageState != "pickUp")
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: GestureDetector(
+                  onTap: (){
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.black12,
+                      builder: (_){
+                        return  Container(
                           decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.all(Radius.circular(18)),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(46)),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.shade400,
+                                color: Colors.grey.shade600,
                                 spreadRadius: 3,
-                                blurRadius: 5,
-                                offset: Offset(3, 3),
+                                blurRadius: 6,
+                                offset: Offset(0, -3),
                               ),
                             ],
                           ),
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          child: Row(
-                            children: [
-                              const SizedBox(width: 20,),
-                              Text("Delivered", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
-                              Spacer(),
-                              SizedBox(
-                                  height: 35,
-                                  width: 35,
-                                  child: Image.asset("assets/icons/approved.png", color: Colors.white,)),
-                              const SizedBox(width: 20,),
-                            ],
-                          ),),
-                      ),
-                      const SizedBox(height: 15,),
-                      Container(
-                        width: width,
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: const BorderRadius.all(Radius.circular(18)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.shade400,
-                              spreadRadius: 3,
-                              blurRadius: 5,
-                              offset: Offset(3, 3),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const SizedBox(height: 30,),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                        height: 35,
+                                        width: 35,
+                                        child: Image.asset("assets/icons/package.png",)),
+                                    const  SizedBox(width: 16,),
+                                    Text("Change Package State", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w500),),
+                                    const Spacer(),
+                                    GestureDetector(
+                                        onTap: ()=>Navigator.of(context).pop(),
+                                        child: const Icon(Icons.close, color: Colors.red,)),
+                                    const SizedBox(width: 12,)
+                                  ],
+                                ),
+                                const SizedBox(height: 30,),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).push(_createRoute(event: "delivered"));
+                                  },
+                                  child: Container(
+                                    width: width,
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade400,
+                                          spreadRadius: 3,
+                                          blurRadius: 5,
+                                          offset: Offset(3, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.symmetric(vertical: 12),
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(width: 20,),
+                                        Text("Delivered", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                                        const Spacer(),
+                                        SizedBox(
+                                            height: 35,
+                                            width: 35,
+                                            child: Image.asset("assets/icons/approved.png", color: Colors.white,)),
+                                        const SizedBox(width: 20,),
+                                      ],
+                                    ),),
+                                ),
+                                const SizedBox(height: 15,),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).push(_createRoute(event: "returned"));
+                                  },
+                                  child: Container(
+                                    width: width,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: const BorderRadius.all(Radius.circular(18)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade400,
+                                          spreadRadius: 3,
+                                          blurRadius: 5,
+                                          offset: Offset(3, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.symmetric(vertical: 12),
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(width: 20,),
+                                        Text("Returned", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                                        const Spacer(),
+                                        SizedBox(
+                                            height: 35,
+                                            width: 35,
+                                            child: Image.asset("assets/icons/returned.png", color: Colors.white,)),
+                                        const SizedBox(width: 20,),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 60,),
+                              ],
                             ),
-                          ],
+                          ),
+                        );
+                      }
+                    );
+                  },
+                  child: Container(
+                    width: width,
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade400,
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(3, 3),
                         ),
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 20,),
-                            Text("Returned", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
-                            Spacer(),
-                            SizedBox(
-                                height: 35,
-                                width: 35,
-                                child: Image.asset("assets/icons/returned.png", color: Colors.white,)),
-                            const SizedBox(width: 20,),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 60,),
-
-                    ],
-                  ),
+                      ],
+                    ),
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child:  const Icon(Icons.settings, color: Colors.white,size: 28,)),
                 ),
               ),
+              const SizedBox(height: 80,),
             ],
           ),
         )
@@ -890,10 +929,10 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
   }
 
 
-  Route _createRoute() {
+  Route _createRoute({required String event}) {
     return PageRouteBuilder(
       pageBuilder: (context, animation,
-          secondaryAnimation) =>  QRViewExample(),
+          secondaryAnimation) =>  QRViewConfirming(event: event,package: widget.package,),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);
         const end = Offset.zero;

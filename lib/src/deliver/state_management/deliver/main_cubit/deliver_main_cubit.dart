@@ -32,10 +32,6 @@ class DeliverMainCubit extends Cubit<DeliverMainCubitState> {
 
   void changeScreen(int index){
     _currentScreenIndex = index;
-    if(index==2)
-     {
-       print("up");
-       DeliverFirebaseCubit().getMyPackagesList();}
     emit(ChangeScreenState());
   }
 

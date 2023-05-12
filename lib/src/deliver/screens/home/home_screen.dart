@@ -6,6 +6,7 @@ import 'package:weewee_delivery/src/deliver/screens/home/packages/packages_list_
 import 'package:weewee_delivery/src/deliver/screens/home/packages/pickup_packages_screen.dart';
 
 import '../../../constant/constant.dart';
+import '../../provider/deliver_firebase_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -47,20 +48,72 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: GestureDetector(
+                onTap: (){
+
+                },
+                child: Container(
+                    width: width,
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.all(Radius.circular(24)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade200,
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                          offset: Offset(3, 3),
+                        ),
+                        BoxShadow(
+                          color: Colors.grey.shade200,
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                          offset: Offset(-3, -3),
+                        ),
+                      ],
+                    ),
+
+                    child: Row(
+                      //mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+
+                        SizedBox(
+                          height: 55,
+                          width: 55,
+                          child: Image.asset("assets/icons/wallet.png",color: Colors.deepPurple,),
+                        ),
+                        const Spacer(),
+                        Text('+2000.0', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, fontSize: 32, color: Colors.deepPurple),),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 6.0, left: 4),
+                          child: Text('DZ', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.deepPurple),),
+                        ),
+                      ],
+                    )),
+              ),
+            ),
+            const SizedBox(height: 5,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30,),
-                  Text(' Packages Details', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
+                  Text('  Packages Details', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
                   const SizedBox(height: 25,),
                   Row(
                     children: [
-                      SizedBox(width: 8,),
+                      const SizedBox(width: 8,),
                       Expanded(
                         child: GestureDetector(
-                          onTap: (){
+                          onTap: () {
+                             DeliverFirebaseCubit().getMyPackagesList();
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) =>  PickUpPackagesScreen()),
@@ -231,52 +284,6 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                  const SizedBox(height: 35,),
-                  Text(' ', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
-                  const SizedBox(height: 35,),
-                  GestureDetector(
-                    onTap: (){
-
-                    },
-
-                    child: Container(
-                        width: width,
-                        padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.purple,
-                          borderRadius: BorderRadius.all(Radius.circular(24)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.shade400,
-                              spreadRadius: 5,
-                              blurRadius: 8,
-                              offset: Offset(3, 3),
-                            ),
-                          ],
-                        ),
-
-                        child: Row(
-                          //mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500,fontSize: 18, color: Colors.white),),
-                                const SizedBox(height: 4,),
-                                Text('Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 26, color: Colors.white),),
-                              ],
-                            ),
-                            Spacer(),
-                            SizedBox(
-                              height: 55,
-                              width: 55,
-                              child: Image.asset("assets/icons/wallet.png",color: Colors.white,),
-                            ),
-                          ],
-                        )),
-                  ),
-                  const SizedBox(height: 50,),
                 ],
               ),
             )
