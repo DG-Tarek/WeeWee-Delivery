@@ -26,9 +26,9 @@ class HomeScreen extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.shade400,
-                    spreadRadius: 2,
-                    blurRadius: 4,
-                    offset: Offset(0, 2),
+                    spreadRadius: 1,
+                    blurRadius: 12,
+                    offset: Offset(0, 3),
                   ),
                 ],
               ),
@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 30,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: GestureDetector(
@@ -79,20 +79,19 @@ class HomeScreen extends StatelessWidget {
                     ),
 
                     child: Row(
-                      //mainAxisSize: MainAxisSize.min,
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-
                         SizedBox(
-                          height: 55,
-                          width: 55,
+                          height: 42.5,
+                          width: 42.5,
                           child: Image.asset("assets/icons/wallet.png",color: Colors.deepPurple,),
                         ),
                         const Spacer(),
-                        Text('+2000.0', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, fontSize: 32, color: Colors.deepPurple),),
+                        Text('+ 2000.0', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 32, color: Colors.deepPurple),),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 6.0, left: 4),
-                          child: Text('DZ', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.deepPurple),),
+                          child: Text('DZ', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700, fontSize: 18, color: Colors.deepPurple),),
                         ),
                       ],
                     )),
@@ -105,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30,),
-                  Text('  Packages Details', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
+                  Text('  Delivery Details', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
                   const SizedBox(height: 25,),
                   Row(
                     children: [
@@ -174,7 +173,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            padding: EdgeInsets.all(24),
+                            padding: const EdgeInsets.all(24),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

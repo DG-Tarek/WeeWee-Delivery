@@ -90,15 +90,12 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
 
   // Complete this Method for saving Deliver History
   Future<void> addHistory( {required String activityType, required String event, String location="-", String money="-"})async{
-    final String month = DateFormat.yMMM().format(DateTime.now());
-    final String day = DateFormat.MMMd().format(DateTime.now());
-    const String time = "up";
+    final String month = DateFormat.yMMMM().format(DateTime.now());
+    final String day = DateFormat.MMMMd().format(DateTime.now());
+    final String time = DateFormat.jms().format(DateTime.now());
     final String history = "$time $activityType $event $location $money";
     await FirebaseFirestore.instance.collection("test_users")
-        .doc(_uid).collection(month).doc(day).set({})
-        .then((value) {
-
-    });
+        .doc(_uid).collection(month).doc(day).set({"Event":history});
 
   }
 

@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weewee_delivery/src/deliver/screens/home/packages/confirming_qr_code_scanner.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/qr_code/confirming_qr_code_scanner.dart';
 
 import '../../../../constant/constant.dart';
 import '../../../../moduls/shared/package_model.dart';
@@ -20,7 +20,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
   Widget build(BuildContext context) {
     final String stateF = stateFlag();
     final Color stateC = stateColor();
-    final double price = widget.package.productPrice+widget.package.deliveryCost;
+    final double price = widget.package.isFreeDelivery?(widget.package.productPrice):(widget.package.productPrice+widget.package.deliveryCost);
     return  Scaffold(
 
         appBar: AppBar(
@@ -39,7 +39,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                     child: Container(
                       alignment: Alignment.centerLeft,
                       width: width,
-                      padding: EdgeInsets.only(left: 16, top: 8,bottom: 8,right: 8),
+                      padding: const EdgeInsets.only(left: 16, top: 8,bottom: 8,right: 8),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -58,7 +58,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
 
                           children:  [
                             const SizedBox(height: 16 ,),
-                            Text("id" , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18, fontWeight: FontWeight.w500),),
+                            Text(widget.package.id! , style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18, fontWeight: FontWeight.w500),),
                             const SizedBox(height: 10,),
                             Text( widget.package.preferredDeliveryDay.split(" ")[0] ,
                               style:  const TextStyle(
@@ -113,10 +113,10 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                         Container(
                             height: 60,
                             width: 60,
-                            padding: EdgeInsets.only(top: 6, left: 8, bottom: 6),
+                            padding: widget.package.packageState != "onRoad" ?  const EdgeInsets.only(top: 6, left: 8, bottom: 6) : const EdgeInsets.all(6),
                             decoration: BoxDecoration(
                               color: stateC,
-                              borderRadius: BorderRadius.all(Radius.circular(12)),
+                              borderRadius: const BorderRadius.all(Radius.circular(12)),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.shade300,
@@ -157,16 +157,16 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0,left: 16,right: 16),
                       child: Container(
-                        padding: EdgeInsets.only(left: 3),
+                        padding: const EdgeInsets.only(left: 3),
                         decoration: BoxDecoration(
                           color: stateC,
-                          borderRadius: BorderRadius.all(Radius.circular(24)),
+                          borderRadius: const BorderRadius.all(Radius.circular(24)),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.shade200,
                               spreadRadius: 3,
                               blurRadius: 7,
-                              offset: Offset(3, 3),
+                              offset: const Offset(3, 3),
                             ),
                           ],
                         ),
@@ -277,7 +277,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                       fontWeight: FontWeight.w400,
                                       color: Colors.deepPurple),),
                                   const Spacer(),
-                                  Text(widget.package.productNewStockState, style: const TextStyle(
+                                  Text(widget.package.senderStoreName, style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black54
@@ -750,7 +750,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                         return  Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(46)),
+                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(46),topRight: Radius.circular(46)),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.shade600,

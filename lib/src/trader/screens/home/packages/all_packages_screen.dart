@@ -318,7 +318,7 @@ class PackageItem extends StatelessWidget {
                       Container(
                           height: 60,
                           width: 60,
-                          padding: package.packageState != "onroad" ?  const EdgeInsets.only(top: 6, left: 8, bottom: 6) : const EdgeInsets.all(7),
+                          padding: package.packageState != "onRoad" ?  const EdgeInsets.only(top: 6, left: 8, bottom: 6) : const EdgeInsets.all(6),
                           decoration: BoxDecoration(
                             color: stateC,
                             borderRadius: BorderRadius.all(Radius.circular(12)),

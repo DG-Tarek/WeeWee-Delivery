@@ -9,7 +9,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit_states.dart';
-import 'package:weewee_delivery/src/deliver/screens/home/packages/confirming_qr_code_scanner.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/qr_code/confirming_qr_code_scanner.dart';
 import 'package:weewee_delivery/src/deliver/screens/home/packages/package_item.dart';
 
 import '../../../../constant/constant.dart';

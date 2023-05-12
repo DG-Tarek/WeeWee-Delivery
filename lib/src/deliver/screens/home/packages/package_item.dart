@@ -18,6 +18,7 @@ class PackageItem extends StatelessWidget {
    Widget build(BuildContext context) {
      final String stateF = stateFlag();
      final Color stateC = stateColor();
+     final double price =  package.isFreeDelivery?( package.productPrice):( package.productPrice+ package.deliveryCost);
      return Padding(
        padding: const EdgeInsets.only(left: 16.0),
        child: GestureDetector(
@@ -100,7 +101,7 @@ class PackageItem extends StatelessWidget {
                          ],
                        ),
                        SizedBox(height: 20,),
-                       package.packageState == "returned+" || package.packageState == "returned"?
+                        package.packageState == "returned+" || package.packageState == "returned"?
                        Row(
                          crossAxisAlignment: CrossAxisAlignment.center,
                          children: [
@@ -109,57 +110,29 @@ class PackageItem extends StatelessWidget {
                                .textTheme
                                .titleLarge!
                                .copyWith(fontSize: 16,
-                               fontWeight: FontWeight.w300,
+                               fontWeight: FontWeight.w500,
                                color: stateC),),
-                           const SizedBox(width: 12,),
-                           Text(package.productPrice.toString(), style: Theme
-                               .of(context)
-                               .textTheme
-                               .titleLarge!
-                               .copyWith(
-                               fontSize: 16,
-                               fontWeight: FontWeight.w500,
-                               decoration: TextDecoration.lineThrough,
-                               color: Colors.black87),),
-                           const SizedBox(width: 8,),
-                           Text("0.0", style: Theme
-                               .of(context)
-                               .textTheme
-                               .titleLarge!
-                               .copyWith(fontSize: 20,
-                               fontWeight: FontWeight.w500,
-                               color: Colors.black87),),
 
-                           const SizedBox(width: 4,),
-                           Text("DZ", style: Theme
-                               .of(context)
-                               .textTheme
-                               .titleLarge!
-                               .copyWith(fontSize: 14,
-                               fontWeight: FontWeight.w600,
-                               color: Colors.black87),),
+
                            const Spacer(),
-                           SizedBox(
-                             width: 30,
-                             height: 30,
-                             child: Image.asset(
-                               "assets/icons/delivery-truck-return.png", color: Colors.red,),),
-                           const SizedBox(width: 8,),
-                           Text("150.0", style: Theme
+                           Text( price.toString(), style: Theme
                                .of(context)
                                .textTheme
                                .titleLarge!
-                               .copyWith(fontSize: 16,
-                               fontWeight: FontWeight.w500,
-                               color: Colors.black87),),
-                           const SizedBox(width: 4,),
-                           Text("DZ", style: Theme
-                               .of(context)
-                               .textTheme
-                               .titleLarge!
-                               .copyWith(fontSize: 12,
+                               .copyWith(fontSize: 18,
                                fontWeight: FontWeight.w600,
                                color: Colors.black87),),
+                           const SizedBox(width: 8,),
+                           Padding(
+                             padding: const EdgeInsets.only(top: 4.0),
+                             child: Text("DZ", style: Theme
+                                 .of(context)
+                                 .textTheme
+                                 .titleLarge!
+                                 .copyWith(fontSize: 14,
+                                 fontWeight: FontWeight.w700,
+                                 color: Colors.black87),),
+                           ),
                          ],
                        ):
                        Row(
@@ -170,46 +143,29 @@ class PackageItem extends StatelessWidget {
                                .textTheme
                                .titleLarge!
                                .copyWith(fontSize: 16,
-                               fontWeight: FontWeight.w400,
+                               fontWeight: FontWeight.w500,
                                color: stateC),),
-                           const SizedBox(width: 12,),
-                           Text(package.isFreeProduct ? "0.0":package.productPrice.toString(), style: Theme
-                               .of(context)
-                               .textTheme
-                               .titleLarge!
-                               .copyWith(fontSize: 20,
-                               fontWeight: FontWeight.w500,
-                               color: Colors.black87),),
-                           const SizedBox(width: 4,),
-                           Text("DZ", style: Theme
-                               .of(context)
-                               .textTheme
-                               .titleLarge!
-                               .copyWith(fontSize: 14,
-                               fontWeight: FontWeight.w600,
-                               color: Colors.black87),),
+
                            const Spacer(),
-                           SizedBox(
-                             width: 30,
-                             height: 30,
-                             child: Image.asset(
-                               "assets/icons/delivery-cost.png", color: Colors.deepPurple,),),
-                           const SizedBox(width: 8,),
-                           Text(package.deliveryCost.toString(), style: Theme
+                           Text( price.toString(), style: Theme
                                .of(context)
                                .textTheme
                                .titleLarge!
-                               .copyWith(fontSize: 16,
-                               fontWeight: FontWeight.w500,
-                               color: Colors.black87),),
-                           const SizedBox(width: 4,),
-                           Text("DZ", style: Theme
-                               .of(context)
-                               .textTheme
-                               .titleLarge!
-                               .copyWith(fontSize: 12,
+                               .copyWith(fontSize: 18,
                                fontWeight: FontWeight.w600,
                                color: Colors.black87),),
+                           const SizedBox(width: 8,),
+                           Padding(
+                             padding: const EdgeInsets.only(top: 4.0),
+                             child: Text("DZ", style: Theme
+                                 .of(context)
+                                 .textTheme
+                                 .titleLarge!
+                                 .copyWith(fontSize: 14,
+                                 fontWeight: FontWeight.w700,
+                                 color: Colors.black87),),
+                           ),
+
                          ],
                        ),
 
@@ -258,7 +214,7 @@ class PackageItem extends StatelessWidget {
                        Container(
                            height: 60,
                            width: 60,
-                           padding: package.packageState != "onroad" ?  const EdgeInsets.only(top: 6, left: 8, bottom: 6) : const EdgeInsets.all(7),
+                           padding: package.packageState != "onRoad" ?  const EdgeInsets.only(top: 6, left: 8, bottom: 6) : const EdgeInsets.all(6),
                            decoration: BoxDecoration(
                              color: stateC,
                              borderRadius: BorderRadius.all(Radius.circular(12)),

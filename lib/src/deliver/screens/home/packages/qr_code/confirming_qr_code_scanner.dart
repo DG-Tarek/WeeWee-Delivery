@@ -7,7 +7,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
 
-import '../../../../moduls/shared/package_model.dart';
+import '../../../../../moduls/shared/package_model.dart';
 
  
 
@@ -39,14 +39,16 @@ class _QRViewConfirmingState extends State<QRViewConfirming> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // DeliverFirebaseCubit().setPickedUpQRCode("");
-  }
+   }
 
   bool _stop = false ;
-  bool _confirmed = false;
+  bool _confirmed = false ;
 
   @override
   Widget build(BuildContext context) {
+    final Color color = stateColor();
+    final String flag = stateFlag();
+    final String state = stateName();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -100,74 +102,47 @@ class _QRViewConfirmingState extends State<QRViewConfirming> {
                 child: Text(result!.code.toString(), style: TextStyle(
                   color: Colors.white, fontWeight: FontWeight.w600, fontSize: 27
                 ),)),
-          Positioned(
-            bottom: 50,
-            width: width *.65,
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
-              opacity: _stop?1:0,
-              onEnd: () async {
-                if(_confirmed){
-                  await DeliverFirebaseCubit().changePackageState(
-                      packageID: widget.package.id!,
-                      savedCollection: widget.package.savedCollection,
-                      packageNewState: widget.event).then((value) => Navigator.of(context).pop());
-                }else{
-                  Navigator.of(context).pop();
-                }
-              },
-              child: _confirmed ?
-              Container(
-                width: width,
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: const BorderRadius.all(Radius.circular(24)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.05),
-                      spreadRadius: 3,
-                      blurRadius: 5,
-                      offset: Offset(3, 3),
-                    ),
-                  ],
-                ),
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text("Package Confirmed", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w600),),
-                    Icon(Icons.verified, color: Colors.white,),
+          if(_stop)
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: 5,),
+                Container(
+                    height: 85,
+                    width: 85,
+                    padding:   const EdgeInsets.only(left: 14, right: 4),
+                    decoration: BoxDecoration(
+                      color: _confirmed?color:Colors.deepOrange,
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
 
-                  ],
-                ),
-              ):
-              Container(
-                width: width,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: const BorderRadius.all(Radius.circular(24)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.05),
-                      spreadRadius: 3,
-                      blurRadius: 5,
-                      offset: Offset(3, 3),
                     ),
-                  ],
-                ),
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text("Wrong Package", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w600),),
-                    const Icon(Icons.warning_outlined, color: Colors.white,),
-                  ],
+                    child: Image.asset(
+                      _confirmed?flag:"assets/icons/warning.png", color: Colors.white,)),
+
+                const SizedBox(height: 12,),
+                Text(_confirmed?state:"Wrong Package",style: Theme.of(context).textTheme.titleLarge!.copyWith(color: _confirmed ? color : Colors.deepOrange),)
+              ],
+
+            ),
+          if(_stop)
+            Positioned(
+              bottom: height*.075,
+              height: 60,
+              width: width*.5,
+              child:
+              GestureDetector(
+                onTap: ()=> Navigator.of(context).pop(),
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                    color:  Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  child:  Icon(Icons.close, color: _confirmed?color:Colors.deepOrange,size: 30,),
                 ),
               ),
-            ),
-          )
+            )
+
         ],
       ),
     );
@@ -179,14 +154,11 @@ class _QRViewConfirmingState extends State<QRViewConfirming> {
         MediaQuery.of(context).size.height < 400)
         ? 150.0
         : 300.0;
-    // To ensure the Scanner view is properly sizes after rotation
-    // we need to listen for Flutter SizeChanged notification and update controller
-    return QRView(
+  return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
-        //overlayColor: Colors.black.withOpacity(.65),
-          borderColor: Colors.black,
+     borderColor: Colors.deepPurple,
           borderRadius: 25,
           borderLength: 45,
           borderWidth: 12,
@@ -199,13 +171,19 @@ class _QRViewConfirmingState extends State<QRViewConfirming> {
     setState(() {
       this.controller = controller;
     });
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
+    controller.scannedDataStream.listen((scanData) async  {
+        _stop = true;
         result = scanData;
         controller.stopCamera();
-        _stop = true;
-        _confirmed = (result == widget.package!.id!);
-      });
+        if(result!.code == widget.package.id!){
+          _confirmed = true ;
+          await DeliverFirebaseCubit().changePackageState(
+              packageID: widget.package.id!,
+              savedCollection: widget.package.savedCollection,
+              packageNewState: widget.event);
+        }
+        setState(() {});
+
 
     });
   }
@@ -227,5 +205,35 @@ class _QRViewConfirmingState extends State<QRViewConfirming> {
   void dispose() {
     controller?.dispose();
     super.dispose();
+  }
+
+
+  String stateFlag() {
+    switch(widget.event){
+      case "delivered":
+        return "assets/icons/approved.png";
+      case "returned":
+        return "assets/icons/returned.png";
+    }
+    return " error";
+  }
+
+  String stateName(){
+    switch(widget.event){
+      case "delivered":
+        return "Delivered";
+      case "returned":
+        return "Returned";
+    }
+    return "";
+  }
+  Color stateColor() {
+    switch(widget.event){
+      case "delivered":
+        return Colors.green;
+      case "returned":
+        return Colors.red;
+    }
+    return Colors.black;
   }
 }

@@ -145,7 +145,7 @@ class _QRViewPickUpState extends State<QRViewPickUp> {
                     width: 85,
                     padding:   const EdgeInsets.only(left: 14, right: 4),
                     decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Colors.deepOrange,
                       borderRadius: BorderRadius.all(Radius.circular(12)),
 
                     ),
@@ -153,7 +153,7 @@ class _QRViewPickUpState extends State<QRViewPickUp> {
                       "assets/icons/warning.png", color: Colors.white,)),
 
                 const SizedBox(height: 12,),
-                Text("Unpicked",style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.red),)
+                Text("Unpicked",style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.deepOrange),)
               ],
             ),
           if(_stop)
@@ -220,7 +220,7 @@ class _QRViewPickUpState extends State<QRViewPickUp> {
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
         //overlayColor: Colors.black.withOpacity(.65),
-          borderColor: Colors.black,
+          borderColor: Colors.deepPurple,
           borderRadius: 25,
           borderLength: 45,
           borderWidth: 12,
