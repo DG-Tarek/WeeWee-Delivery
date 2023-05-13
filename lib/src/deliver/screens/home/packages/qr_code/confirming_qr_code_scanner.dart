@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
+import 'package:weewee_delivery/src/shared/widgets.dart';
 
 import '../../../../../moduls/shared/package_model.dart';
 
@@ -131,7 +132,12 @@ class _QRViewConfirmingState extends State<QRViewConfirming> {
               width: width*.5,
               child:
               GestureDetector(
-                onTap: ()=> Navigator.of(context).pop(),
+                onTap: (){
+                  if(_confirmed){
+                    showToast(message: "This Package is moved to $state List");
+                  }
+                  Navigator.of(context).pop();
+                },
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   decoration: const BoxDecoration(

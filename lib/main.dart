@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weewee_delivery/src/opening/opening_screen.dart';
-import 'package:weewee_delivery/src/shared/styles.dart';
 import 'package:weewee_delivery/src/deliver/state_management/deliver/main_cubit/deliver_main_cubit.dart';
 import 'package:weewee_delivery/src/trader/provider/trader_firebase_cubit.dart';
 import 'package:weewee_delivery/src/trader/state_management/main_cubit/trader_main_cubit.dart';
@@ -32,7 +31,6 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           title: 'Flutter Demo',
-          theme: lightTheme,
           home: MultiBlocProvider(providers: [
             BlocProvider<DeliverMainCubit>(
               create: (BuildContext context) => DeliverMainCubit(),

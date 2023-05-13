@@ -785,6 +785,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                 const SizedBox(height: 30,),
                                 GestureDetector(
                                   onTap: (){
+                                    Navigator.of(context).pop();
                                     Navigator.of(context).push(_createRoute(event: "delivered"));
                                   },
                                   child: Container(
@@ -819,6 +820,7 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                 const SizedBox(height: 15,),
                                 GestureDetector(
                                   onTap: (){
+                                    Navigator.of(context).pop();
                                     Navigator.of(context).push(_createRoute(event: "returned"));
                                   },
                                   child: Container(
