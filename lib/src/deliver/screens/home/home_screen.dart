@@ -16,16 +16,17 @@ class HomeScreen extends StatelessWidget {
     return  Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               width: width,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.purple,
-                borderRadius: BorderRadius.all( Radius.circular(28)),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: const BoxDecoration(
+                color: Colors.deepPurple,
+                borderRadius:  BorderRadius.only(bottomRight: Radius.circular(32), bottomLeft: Radius.circular(32) ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade400,
+                    color: Colors.black26,
                     spreadRadius: 1,
                     blurRadius: 12,
                     offset: Offset(0, 3),
@@ -44,68 +45,59 @@ class HomeScreen extends StatelessWidget {
                   Text('Kaddour', style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),),
                   const SizedBox(height: 12,),
                   Text("WeeWee Delivery wishes you a nice Day", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white.withOpacity(.9), fontWeight: FontWeight.w400),),
-                  const  SizedBox(height: 25,),
+                  const  SizedBox(height:25,),
+
                 ],
               ),
             ),
-            const SizedBox(height: 40,),
+
+            const SizedBox(height: 30,),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: GestureDetector(
-                onTap: (){
+              padding: const EdgeInsets.symmetric(horizontal: 22.0),
+              child: Container(
+                alignment: Alignment.center,
+                decoration:  BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.all(Radius.circular(24)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade200,
+                        spreadRadius: 3,
+                        blurRadius: 5,
+                        offset: Offset(3, 3),
+                      ),
+                    ]
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 32),
 
-                },
-                child: Container(
-                    width: width,
-                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.all(Radius.circular(24)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade200,
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(3, 3),
-                        ),
-                        BoxShadow(
-                          color: Colors.grey.shade200,
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(-3, -3),
-                        ),
-                      ],
+                child:  Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8, right: 6),
+                      child: Text('My Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700, fontSize: 20, color: Colors.deepPurple),),
                     ),
-
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          height: 42.5,
-                          width: 42.5,
-                          child: Image.asset("assets/icons/wallet.png",color: Colors.deepPurple,),
-                        ),
-                        const Spacer(),
-                        Text('+ 2000.0', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 32, color: Colors.deepPurple),),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 6.0, left: 4),
-                          child: Text('DZ', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700, fontSize: 18, color: Colors.deepPurple),),
-                        ),
-                      ],
-                    )),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8, right: 4),
+                      child: Text('+', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700, fontSize: 20, color: Colors.deepPurple),),
+                    ),
+                    Text('2000.0', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, fontSize: 32, color: Colors.deepPurple),),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5, left: 4),
+                      child: Text('DZ', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700, fontSize: 16, color: Colors.deepPurple),),
+                    ),
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(height: 25,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 30,),
-                  Text('  Delivery Details', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
-                  const SizedBox(height: 25,),
                   Row(
                     children: [
                       const SizedBox(width: 8,),

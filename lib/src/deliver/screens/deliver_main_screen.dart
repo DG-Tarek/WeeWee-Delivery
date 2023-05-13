@@ -35,13 +35,13 @@ class DeliverMainScreen extends StatelessWidget {
                 SalomonBottomBarItem(
                     icon: Icon(Icons.dashboard),
                     title: Text("Home"),
-                    selectedColor: Colors.teal,
+                    selectedColor: Colors.deepPurple,
                     unselectedColor: Colors.grey
                 ),
                 SalomonBottomBarItem(
                   icon: Icon(CupertinoIcons.map_fill),
                   title: Text("Maps"),
-                  selectedColor: Colors.deepPurple,
+                  selectedColor: Colors.purple,
                     unselectedColor: Colors.grey
                 ),
                 /// Profile
