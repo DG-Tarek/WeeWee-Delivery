@@ -35,7 +35,7 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
     _pickUpPackages = 0;
     final String path = DateFormat.yMMM().format(DateTime.now());
     await FirebaseFirestore.instance.collection(path).where(
-        "drivers", arrayContains: _uid).get().then((value) {
+        "drivers", arrayContains: _uid).where("packageState",whereIn: ["pickUp", "onRoad","delivered","returned"]).get().then((value) {
       _myPackagesList.clear();
       for (var doc in value.docs) {
         Package p = Package.fromJson(doc.data())
@@ -51,7 +51,7 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
 
 
   Future<String> pickUpScannedPackage({required pickedUpQRCode}) async {
-    //pickedUpQRCode = "A8MK8D3FplSCSeGOhFrs";
+
     String state = "Unpicked" ;
     for(Package p in _myPackagesList){
       if ( p.id == pickedUpQRCode){

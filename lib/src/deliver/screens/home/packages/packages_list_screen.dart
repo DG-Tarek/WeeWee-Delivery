@@ -13,6 +13,7 @@ import 'package:weewee_delivery/src/deliver/screens/home/packages/qr_code/confir
 import 'package:weewee_delivery/src/deliver/screens/home/packages/package_item.dart';
 
 import '../../../../constant/constant.dart';
+import '../../../../moduls/shared/package_model.dart';
 import '../../../state_management/deliver/main_cubit/deliver_main_cubit.dart';
 
 class PackagesListScreen extends StatefulWidget {
@@ -30,6 +31,8 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
     final String stateF = stateFlag();
     final Color stateC = stateColor();
     final String stateT = stateTitle();
+    final Iterable<Package> packages = DeliverFirebaseCubit().myPackagesList.where((element) => element.packageState == widget.state);
+    print("buiillddddd");
     return Scaffold(
       appBar:  AppBar(
         backgroundColor: stateC,
@@ -59,18 +62,30 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
                 thirdRingColor: Colors.orange),
           );
         }
-          return Padding(
+          return packages.isEmpty ?
+          Center(
+            child: Column(
+              children: [
+                SizedBox(height: height*.2,),
+                Icon(CupertinoIcons.collections, size: 80,color: stateC,),
+                const SizedBox(height: 40,),
+                Text("NOTHING", style:  Theme.of(context).textTheme.headlineMedium!.copyWith(color: stateC, fontWeight: FontWeight.w600),),
+                const SizedBox(height: 10,),
+                Text("This packages list\nis Empty", textAlign: TextAlign.center ,style:  Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18,color: stateC, fontWeight: FontWeight.w400, height: 1.4),),
+              ],
+            ),
+          )
+              :Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: DeliverFirebaseCubit().myPackagesList.length,
+                itemCount: packages.length,
                 itemBuilder: (_,index){
                   return Container(
                       padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
-                      child: DeliverFirebaseCubit().myPackagesList[index].packageState == widget.state || DeliverFirebaseCubit().myPackagesList[index].packageState == widget.state+"+" ?
-                      PackageItem(
-                        package: DeliverFirebaseCubit().myPackagesList[index],
-                      ): null
+                      child:  PackageItem(
+                        package: packages.elementAt(index),
+                      ) 
                   ) ;
 
                 }),

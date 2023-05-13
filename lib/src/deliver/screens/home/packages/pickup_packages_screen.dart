@@ -99,7 +99,7 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
                                 ),
                               ),
 
-                              Icon(CupertinoIcons.qrcode, size: 52,color: Colors.white,),
+                              const Icon(CupertinoIcons.qrcode, size: 52,color: Colors.white,),
                             ],
                           ),
                         ),
@@ -121,11 +121,18 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
                   ],
                 )
                 :
-                    Center(
-                      child: Text(
-                        "Fuck !"
-                      ),
-                    )
+            Center(
+              child: Column(
+                children: [
+                  SizedBox(height: height*.2,),
+                  Icon(CupertinoIcons.collections, size: 80,color: stateC,),
+                  const SizedBox(height: 40,),
+                  Text("NOTHING", style:  Theme.of(context).textTheme.headlineMedium!.copyWith(color: stateC, fontWeight: FontWeight.w600),),
+                  const SizedBox(height: 10,),
+                  Text("There are No packages\nto Pick Up for Now", textAlign: TextAlign.center ,style:  Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18,color: stateC, fontWeight: FontWeight.w400, height: 1.4),),
+                ],
+              ),
+            )
              ;
           }
       ),
@@ -133,14 +140,10 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
   }
 
   String stateFlag() {
-
-
         return "assets/icons/pickup.png";
-
   }
 
   Color stateColor() {
-
         return Colors.blue;
   }
 

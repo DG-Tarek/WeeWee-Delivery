@@ -187,6 +187,8 @@ class _QRViewConfirmingState extends State<QRViewConfirming> {
               packageID: widget.package.id!,
               savedCollection: widget.package.savedCollection,
               packageNewState: widget.event);
+        }else{
+          showToast(message: "You are Scanning the wrong Package !");
         }
         setState(() {});
 

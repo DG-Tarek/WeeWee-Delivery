@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(height: 40,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: GestureDetector(
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                     )),
               ),
             ),
-            const SizedBox(height: 5,),
+            const SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
