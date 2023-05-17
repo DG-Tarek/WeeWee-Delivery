@@ -9,14 +9,11 @@ class WeeWeeWallet{
     required this.createdAt,
     required this.receivedDay,
     required this.confirmed,
-  required this.moneyReceiverFullName,
+    required this.moneyReceiverFullName,
     required this.numberOfPackages,
-  required this.numberOfDeliveredPackages,
-  required this.numberOfReturnedPackages,
+    required this.numberOfDeliveredPackages,
+    required this.numberOfReturnedPackages,
     required this.moneyReceived ,
-    required this.totalPrice,
-    required this.deliveryCost,
-    required this.returnCost,
     required this.packages,
 
   });
@@ -25,16 +22,13 @@ class WeeWeeWallet{
   final String receivedDay;
   final bool confirmed;
   final String moneyReceiverFullName;
-  final double totalPrice;
+
   final double moneyReceived;
 
   final int numberOfDeliveredPackages;
   final int numberOfReturnedPackages;
   final int numberOfPackages;
 
-
-  final double deliveryCost;
-  final double returnCost;
   List<String> packages;
 
   factory WeeWeeWallet.fromJson(Map<String, dynamic> json) => _$WeeWeeWalletFromJson(json);

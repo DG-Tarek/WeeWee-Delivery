@@ -13,6 +13,7 @@ class WeeWeeWalletDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
         title:  Text("Today, "+DateFormat("MMMM dd y").format(DateTime.now()).toString(),),
       ),
       body: Stack(
@@ -38,7 +39,7 @@ class WeeWeeWalletDetailsScreen extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: const BorderRadius.all(Radius.circular(36)),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(36),topRight: Radius.circular(36)),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.shade200,
@@ -66,25 +67,17 @@ class WeeWeeWalletDetailsScreen extends StatelessWidget {
                       Row(
                         children: [
 
-                          Text("Total Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.teal, fontWeight: FontWeight.w400)),
+                          Text("Delivery Packages", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.green.shade300, fontWeight: FontWeight.w400)),
                           const Spacer(),
-                        //  Text( TraderFirebaseCubit().totalPrice.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
-                        ],),
-                      SizedBox(height: 8,),
-                      Row(
-                        children: [
-
-                          Text("Delivery Cost", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple.shade300, fontWeight: FontWeight.w400)),
-                          const Spacer(),
-                       //   Text( TraderFirebaseCubit().walletDeliveryCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                         Text( DeliverFirebaseCubit().deliveredPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                         ],),
                       const SizedBox(height: 8,),
                       Row(
                         children: [
                           SizedBox(height: 16,),
-                          Text("Returned Cost", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red.shade300, fontWeight: FontWeight.w400)),
+                          Text("Returned Packages", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red.shade300, fontWeight: FontWeight.w400)),
                           const Spacer(),
-                         // Text( TraderFirebaseCubit().walletReturnedCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
+                          Text( DeliverFirebaseCubit().returnedPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                         ],),
                       const SizedBox(height: 12,),
                       Row(
@@ -92,7 +85,7 @@ class WeeWeeWalletDetailsScreen extends StatelessWidget {
                           SizedBox(height: 16,),
                           Text("Income", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
                           const Spacer(),
-                         // Text( TraderFirebaseCubit().incomeMoney.toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
+                         Text( DeliverFirebaseCubit().income.toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
                         ],),
                     ],
                   ),
@@ -100,14 +93,14 @@ class WeeWeeWalletDetailsScreen extends StatelessWidget {
                 SizedBox(height: 24,),
                 GestureDetector(
                   onTap: (){
-                   // TraderFirebaseCubit().newWeeWeeWallet();
+                    DeliverFirebaseCubit().newWeeWeeWallet();
                   },
                   child: Container(
                     width: width,
                     padding: const EdgeInsets.symmetric( vertical: 20),
                     decoration:  const BoxDecoration(
                       color: Colors.green ,
-                      borderRadius: BorderRadius.all(Radius.circular(36)),
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(36),topLeft: Radius.circular(36)),
                     ),
                     alignment: Alignment.center,
                     child: const Text("Receive Now", style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w500),),

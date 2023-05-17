@@ -13,3 +13,15 @@ class ChangePackageStateSuccessfullyState extends DeliverFirebaseCubitState{}
 
 class PickUpPackagesLoadingState extends DeliverFirebaseCubitState{}
 class PickUpPackagesSuccessfullyState extends DeliverFirebaseCubitState{}
+
+
+class NewWeeWeeWalletLoadingState extends DeliverFirebaseCubitState{}
+class NewWeeWeeWalletSuccessfullyState extends DeliverFirebaseCubitState{}
+
+class GetWeeWeeWalletSuccessfullyState extends DeliverFirebaseCubitState{}
+class GetWeeWeeWalletLoadingState extends DeliverFirebaseCubitState{}
+
+
+class GetWalletPackagesListHistoryLoadingState extends DeliverFirebaseCubitState{}
+class GetWalletPackagesListHistorySuccessfullyState extends DeliverFirebaseCubitState {}
+

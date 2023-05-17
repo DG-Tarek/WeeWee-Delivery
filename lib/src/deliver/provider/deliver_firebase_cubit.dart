@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit_states.dart';
 
+import '../../constant/constant.dart';
+import '../../moduls/deliver/weewee_wallet_model.dart';
 import '../../moduls/shared/package_model.dart';
 
 class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
@@ -24,10 +26,15 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
   int _pickUpPackages = 0;
   int _deliveredPackages = 0;
   int _returnedPackages = 0;
+  double _income = 0;
 
 
   List<Package> _myPackagesList = [];
   List<Package> _readyPackages = [];
+  List<Package> _walletPackagesListHistory = [];
+  List<WeeWeeWallet> _walletList = [] ;
+
+
 
   final String _uid = "kF6ffq2JGtlLESh0L7cw";
 
@@ -35,6 +42,7 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
   int get pickUpPackages => _pickUpPackages ;
   int get deliveredPackages => _deliveredPackages ;
   int get returnedPackages => _returnedPackages ;
+  double get income => _income ;
 
   Future<void> getMyPackagesList() async {
     emit(GetMyPackagesListLoadingState());
@@ -46,18 +54,6 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
       for (var doc in value.docs) {
         Package p = Package.fromJson(doc.data())
           ..id = doc.id ;
-
-        /*switch(p.packageState){
-          case "pickUp":{
-            _pickUpPackages++;
-            break;}
-          case "delivered":{
-            _deliveredPackages++;
-            break;}
-          case "returned":{
-            _returnedPackages++;
-          }
-        }*/
         if(p.packageState == "pickUp")
           {_pickUpPackages++;}
         _myPackagesList.add(p);
@@ -68,8 +64,10 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
 
 
   void countReadyPackages(){
+    const double  deliveryPrice = 300 ;
     _deliveredPackages = 0;
     _returnedPackages = 0;
+    _income = 0 ;
     _readyPackages.clear();
     for (Package p in _myPackagesList){
       switch(p.packageState){
@@ -84,6 +82,7 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
         }
       }
     }
+    _income = _deliveredPackages * deliveryPrice ;
   }
 
   Future<String> pickUpScannedPackage({required pickedUpQRCode}) async {
@@ -166,6 +165,66 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
   
   List<Package> get myPackagesList => _myPackagesList;
   List<Package> get readyPackages => _readyPackages;
+  List<Package> get walletPackagesListHistory => _walletPackagesListHistory;
 
 
+
+  Future<void> newWeeWeeWallet()async{
+    final String receivedDay = DateFormat.yMMMd().format(DateTime.now());
+    emit(NewWeeWeeWalletLoadingState());
+    List<String> packages = [];
+    for(Package package in readyPackages){
+      packages.add(package.savedCollection!+"@COLLECTION#"+package.id!);
+      //await FirebaseFirestore.instance.collection(package.savedCollection).doc(package.id).update({"closedPackage":true});
+    }
+    final WeeWeeWallet weeWeeWallet = WeeWeeWallet(
+      createdAt: createdTime(),
+      receivedDay: receivedDay,
+      confirmed: false,
+      moneyReceiverFullName: "Select by Admin",
+      moneyReceived: _income,
+      numberOfPackages: _readyPackages.length,
+      numberOfDeliveredPackages: _deliveredPackages,
+      numberOfReturnedPackages: _returnedPackages,
+      packages: packages,
+    );
+
+    await FirebaseFirestore.instance.collection('test_users')
+        .doc(_uid).collection("wallet").add(weeWeeWallet.toJson())
+        .then((value)  {
+      emit(NewWeeWeeWalletSuccessfullyState());
+    }
+    );
+
+  }
+
+
+
+  Future<void> getMyWeeWeeWallet() async {
+    emit(GetWeeWeeWalletLoadingState());
+    await FirebaseFirestore.instance.collection("test_users").doc(_uid).collection("wallet").get().then((value) {
+      _walletList.clear();
+      for (var doc in value.docs) {
+        _walletList.add(WeeWeeWallet.fromJson(doc.data())..id = doc.id);
+      }
+      emit(GetWeeWeeWalletSuccessfullyState());
+    });
+  }
+
+  List<WeeWeeWallet> get walletList => _walletList;
+
+
+  Future<void> getWalletPackagesListHistory(
+      {required WeeWeeWallet wallet}
+      ) async {
+    emit(GetWalletPackagesListHistoryLoadingState());
+    _walletPackagesListHistory.clear();
+    for(String package in wallet.packages){
+      final List<String> path = package.split("@COLLECTION#");
+      await FirebaseFirestore.instance.collection(path[0]).doc(path[1]).get().then((value) {
+        _walletPackagesListHistory.add(Package.fromJson(value.data()!)..id = value.id);
+        emit(GetWalletPackagesListHistorySuccessfullyState());
+      });
+    }
+  }
 }

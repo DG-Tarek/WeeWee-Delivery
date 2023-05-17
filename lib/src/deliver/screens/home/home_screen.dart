@@ -57,6 +57,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 22.0),
               child: GestureDetector(
                 onTap: (){
+                  DeliverFirebaseCubit().getMyWeeWeeWallet();
                   DeliverFirebaseCubit().countReadyPackages();
                   Navigator.push(
                     context,

@@ -1,17 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:weewee_delivery/src/moduls/trader/weewee_wallet_model.dart';
-import 'package:weewee_delivery/src/trader/screens/home/packages/all_packages_screen.dart';
+import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
+import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit_states.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/packages/package_item.dart';
 
-import '../../../provider/trader_firebase_cubit.dart';
-import '../../../provider/trader_firebase_cubit_states.dart';
+import '../../../../moduls/deliver/weewee_wallet_model.dart';
+
+
+
 
 class WeeWeeWalletHistoryScreen extends StatelessWidget {
   const WeeWeeWalletHistoryScreen({Key? key, required this.wallet}) : super(key: key);
   final WeeWeeWallet wallet ;
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -90,31 +92,8 @@ class WeeWeeWalletHistoryScreen extends StatelessWidget {
                               const Spacer(),
                               Text( wallet.numberOfPackages.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
                             ],),
-                          const SizedBox(height: 20,),
-                          Row(
-                            children: [
-
-                              Text("Total Price", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.teal, fontWeight: FontWeight.w400)),
-                              const Spacer(),
-                              Text( wallet.totalPrice.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
-                            ],),
-                          const SizedBox(height: 12,),
-                          Row(
-                            children: [
-
-                              Text("Delivery Cost", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple.shade300, fontWeight: FontWeight.w400)),
-                              const Spacer(),
-                              Text( wallet.deliveryCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
-                            ],),
-                          const SizedBox(height: 12,),
-                          Row(
-                            children: [
-                              SizedBox(height: 16,),
-                              Text("Returned Cost", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.red.shade300, fontWeight: FontWeight.w400)),
-                              const Spacer(),
-                              Text( wallet.returnCost.toString(), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black54, fontWeight: FontWeight.w500)),
-                            ],),
                           const SizedBox(height: 24,),
+
                           Row(
                             children: [
                               SizedBox(height: 16,),
@@ -139,8 +118,8 @@ class WeeWeeWalletHistoryScreen extends StatelessWidget {
             MediaQuery.removePadding(
               context: context,
               removeTop: true,
-              child: BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
-                  bloc: TraderFirebaseCubit(),
+              child: BlocBuilder<DeliverFirebaseCubit, DeliverFirebaseCubitState>(
+                  bloc: DeliverFirebaseCubit(),
                   buildWhen: (previous, current)=> current is GetWalletPackagesListHistoryLoadingState || current is GetWalletPackagesListHistorySuccessfullyState,
                   builder: (_, state) {
                     if( state is GetWalletPackagesListHistoryLoadingState){
@@ -158,10 +137,10 @@ class WeeWeeWalletHistoryScreen extends StatelessWidget {
                       child: ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: TraderFirebaseCubit().walletPackagesListHistory.length,
+                          itemCount: DeliverFirebaseCubit().walletPackagesListHistory.length,
                           itemBuilder: (_,index){
                             return PackageItem(
-                              package: TraderFirebaseCubit().walletPackagesListHistory[index],
+                              package: DeliverFirebaseCubit().walletPackagesListHistory[index],
                             );
                           }),
                     );

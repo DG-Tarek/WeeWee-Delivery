@@ -1,9 +1,12 @@
 
 
 
+import 'dart:async';
+
 import 'package:circular_menu/circular_menu.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../constant/constant.dart';
 import '../../../moduls/shared/package_model.dart';
@@ -19,7 +22,15 @@ class MapsScreen extends StatefulWidget {
 
 class _MapsScreenState extends State<MapsScreen> {
 
-  final _animatedDuration = Duration(milliseconds: 300);
+  final Completer<GoogleMapController> _controller =
+  Completer<GoogleMapController>();
+
+   static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(36.6534, 3.1473),
+    zoom: 14,
+  );
+  static const  LatLng p = LatLng(36.6534, 3.1473);
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,73 +40,89 @@ class _MapsScreenState extends State<MapsScreen> {
       child: Stack(
         alignment: Alignment.center,
         children: [
+          SizedBox(
+            height: height,
+            width: width,
+            child: GoogleMap(
+              mapType: MapType.normal,
+              initialCameraPosition: _kGooglePlex,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+              markers: {
+                Marker(
+                  markerId: MarkerId("p"),
+                  position: p
+                ),
+              } ,
+            ),
+          ),
           Positioned(
             top: 0,
             child: Container(
-        height: 120,
-      width: width,
-      color: Colors.deepPurple,
-      alignment: Alignment.bottomCenter,
-      child: DropdownButtonFormField2(
-      decoration: InputDecoration(
-        isDense: true,
-        contentPadding: EdgeInsets.zero,
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
-        ),
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent,width: 0),
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
-        focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent, width: 1),
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
-      ),
-      isExpanded: true,
-      hint:  Text(
-        DeliverMainCubit().selectedTypeOfPackages,
-      style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
-      ),
-      items:  DeliverMainCubit().typesOfPackages
-            .map((item) =>
-              DropdownMenuItem<String>(
-              value: item,
-              child: Text(
-              item,
-              style:  TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: item == DeliverMainCubit().selectedTypeOfPackages ? Colors.white: Colors.deepPurple
-              ),
-              ),
-              ))
-            .toList(),
-      onChanged: (value) {
-        setState(() {
-          DeliverMainCubit().changeSelectedTypeOfPackages(value);
-        });
-      },
-      buttonStyleData: const ButtonStyleData(
-      height: 60,
-      padding: EdgeInsets.only(right: 10),
-      ),
-      iconStyleData: const IconStyleData(
-      icon: Icon(
-      Icons.arrow_drop_down_outlined,
-      color: Colors.white,
-      ),
-      iconSize: 26,
-      ),
-      dropdownStyleData: DropdownStyleData(
-      decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(12),
-      ),
-      ),
-      )
-      ),
+                height: 120,
+                width: width,
+                color: Colors.deepPurple,
+                alignment: Alignment.bottomCenter,
+                child: DropdownButtonFormField2(
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent,width: 0),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                  ),
+                  isExpanded: true,
+                  hint:  Text(
+                    DeliverMainCubit().selectedTypeOfPackages,
+                    style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+                  ),
+                  items:  DeliverMainCubit().typesOfPackages
+                      .map((item) =>
+                      DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(
+                          item,
+                          style:  TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: item == DeliverMainCubit().selectedTypeOfPackages ? Colors.white: Colors.deepPurple
+                          ),
+                        ),
+                      ))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      DeliverMainCubit().changeSelectedTypeOfPackages(value);
+                    });
+                  },
+                  buttonStyleData: const ButtonStyleData(
+                    height: 60,
+                    padding: EdgeInsets.only(right: 10),
+                  ),
+                  iconStyleData: const IconStyleData(
+                    icon: Icon(
+                      Icons.arrow_drop_down_outlined,
+                      color: Colors.white,
+                    ),
+                    iconSize: 26,
+                  ),
+                  dropdownStyleData: DropdownStyleData(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                )
+            ),
           ),
-          Text("Google Maps"),
           Positioned(
             height: 80,
               width: 80,

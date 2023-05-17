@@ -5,9 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit.dart';
+import 'package:weewee_delivery/src/deliver/provider/deliver_firebase_cubit_states.dart';
 import 'package:weewee_delivery/src/deliver/screens/home/wallet/weewee_wallet_details.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/wallet/weewee_wallet_history.dart';
 
 import '../../../../constant/constant.dart';
+import '../../../../moduls/deliver/weewee_wallet_model.dart';
 
 class MyWeeWeeWallet extends StatelessWidget {
   const MyWeeWeeWallet({Key? key}) : super(key: key);
@@ -77,7 +80,7 @@ class MyWeeWeeWallet extends StatelessWidget {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                             Text("2000.0", style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),),
+                             Text(DeliverFirebaseCubit().income.toString(), style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: Colors.white),),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0, left: 6),
                                 child: Text("DZ", style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
@@ -181,11 +184,11 @@ class MyWeeWeeWallet extends StatelessWidget {
               child: Text('My WeeWee Wallet History', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 22, color: Colors.black),),
             ),
             const SizedBox(height: 20,),
-            /*MediaQuery.removePadding(
+            MediaQuery.removePadding(
               context: context,
               removeTop: true,
-              child: BlocBuilder<TraderFirebaseCubit, TraderFirebaseCubitState>(
-                  bloc: TraderFirebaseCubit(),
+              child: BlocBuilder<DeliverFirebaseCubit, DeliverFirebaseCubitState>(
+                  bloc: DeliverFirebaseCubit(),
                   buildWhen: (previous, current)=> current is GetWeeWeeWalletLoadingState || current is GetWeeWeeWalletSuccessfullyState,
                   builder: (_, state) {
                     if( state is GetWeeWeeWalletLoadingState){
@@ -203,12 +206,12 @@ class MyWeeWeeWallet extends StatelessWidget {
                       child: ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: TraderFirebaseCubit().walletList.length,
+                          itemCount: DeliverFirebaseCubit().walletList.length,
                           itemBuilder: (_,index){
                             return Container(
                                 padding: const EdgeInsets.only(bottom: 12) ,
                                 child: WalletItem(
-                                  wallet: TraderFirebaseCubit().walletList[index],
+                                  wallet: DeliverFirebaseCubit().walletList[index],
                                 )
                             );
 
@@ -217,7 +220,7 @@ class MyWeeWeeWallet extends StatelessWidget {
                   }
               ),
 
-            ),*/
+            ),
           ],
         ),
       ),
@@ -225,7 +228,7 @@ class MyWeeWeeWallet extends StatelessWidget {
   }
 }
 
-/*
+
 
 class WalletItem extends StatelessWidget {
   const WalletItem({Key? key, required this.wallet}) : super(key: key);
@@ -239,10 +242,10 @@ class WalletItem extends StatelessWidget {
 
         GestureDetector(
           onTap: (){
-       TraderFirebaseCubit().getWalletPackagesListHistory(wallet: wallet);
+       DeliverFirebaseCubit().getWalletPackagesListHistory(wallet: wallet);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Container(), //WeeWeeWalletHistoryScreen(wallet: wallet,)) ,
+              MaterialPageRoute(builder: (context) => WeeWeeWalletHistoryScreen(wallet: wallet,)
             ));
           },
           child: Padding(
@@ -296,4 +299,3 @@ class WalletItem extends StatelessWidget {
     );
   }
 }
-*/
