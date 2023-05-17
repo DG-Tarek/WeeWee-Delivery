@@ -65,9 +65,12 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
           Center(
             child: Column(
               children: [
-                SizedBox(height: height*.2,),
-                Icon(CupertinoIcons.collections, size: 80,color: stateC,),
-                const SizedBox(height: 40,),
+                SizedBox(height: height*.15,),
+                SizedBox(
+                  height: width*.25,
+                  width: width*.25,
+                  child: Image.asset("assets/icons/empty.png",color: stateC,),
+                ),const SizedBox(height: 30,),
                 Text("NOTHING", style:  Theme.of(context).textTheme.headlineMedium!.copyWith(color: stateC, fontWeight: FontWeight.w600),),
                 const SizedBox(height: 10,),
                 Text("This packages list\nis Empty", textAlign: TextAlign.center ,style:  Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18,color: stateC, fontWeight: FontWeight.w400, height: 1.4),),
@@ -79,12 +82,13 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: packages.length,
+                physics: const ClampingScrollPhysics(),
                 itemBuilder: (_,index){
                   return Container(
                       padding: index == 0 ? const EdgeInsets.only(top: 20):null ,
                       child:  PackageItem(
                         package: packages.elementAt(index),
-                      ) 
+                      )
                   ) ;
 
                 }),

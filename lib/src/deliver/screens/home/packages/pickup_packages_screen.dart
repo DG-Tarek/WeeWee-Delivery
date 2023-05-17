@@ -108,6 +108,7 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
                     const SizedBox(height: 20,),
                     ListView.builder(
                         shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
                         itemCount: DeliverFirebaseCubit().myPackagesList.length,
                         itemBuilder: (_,index){
                           return Container(
@@ -124,9 +125,13 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
             Center(
               child: Column(
                 children: [
-                  SizedBox(height: height*.2,),
-                  Icon(CupertinoIcons.collections, size: 80,color: stateC,),
-                  const SizedBox(height: 40,),
+                  SizedBox(height: height*.15,),
+                  SizedBox(
+                    height: width*.25,
+                    width: width*.25,
+                    child: Image.asset("assets/icons/empty.png",color: stateC,),
+                  ),
+                  const SizedBox(height: 30,),
                   Text("NOTHING", style:  Theme.of(context).textTheme.headlineMedium!.copyWith(color: stateC, fontWeight: FontWeight.w600),),
                   const SizedBox(height: 10,),
                   Text("There are No packages\nto Pick Up for Now", textAlign: TextAlign.center ,style:  Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18,color: stateC, fontWeight: FontWeight.w400, height: 1.4),),
