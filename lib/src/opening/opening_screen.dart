@@ -1,8 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/deliver/screens/deliver_main_screen.dart';
 import 'package:weewee_delivery/src/onboarding/onboarding_screen.dart';
 import 'package:weewee_delivery/src/registering/phone_auth_screen.dart';
+import 'package:weewee_delivery/src/registering/third_screen.dart';
 
 import '../constant/constant.dart';
 
@@ -62,11 +64,23 @@ alignment: Alignment.center,
                       ),
                     ],
                     isRepeatingAnimation: false,
-                    onFinished: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) =>  OnboardingScreen()),//OnboardingScreen
-                      );
+                    onFinished: () async  {
+                       FirebaseAuth.instance
+                          .authStateChanges()
+                          .listen((User? user) {
+                        if (user == null) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) =>  OnboardingScreen()),//OnboardingScreen
+                          );
+                        } else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) =>  ThirdPage(accountType: "driver")),//OnboardingScreen
+                          );
+                        }
+                      });
+                     
                     },
                   ),
 

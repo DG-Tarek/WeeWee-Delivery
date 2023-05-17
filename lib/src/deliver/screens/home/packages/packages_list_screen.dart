@@ -32,7 +32,6 @@ class _PackagesListScreenState extends State<PackagesListScreen> {
     final Color stateC = stateColor();
     final String stateT = stateTitle();
     final Iterable<Package> packages = DeliverFirebaseCubit().myPackagesList.where((element) => element.packageState == widget.state);
-    print("buiillddddd");
     return Scaffold(
       appBar:  AppBar(
         backgroundColor: stateC,

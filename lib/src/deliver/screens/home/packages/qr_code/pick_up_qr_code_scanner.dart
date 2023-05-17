@@ -235,7 +235,7 @@ class _QRViewPickUpState extends State<QRViewPickUp> {
       result = scanData;
       controller.stopCamera();
       _stop = true;
-      await DeliverFirebaseCubit().pickUpScannedPackage(pickedUpQRCode: result!.code)
+      await DeliverFirebaseCubit().pickUpScannedPackage(pickedUpQRCode: result!.code )
           .then((exist){
         _state = exist;
         setState(() {

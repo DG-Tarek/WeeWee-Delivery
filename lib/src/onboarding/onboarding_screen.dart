@@ -167,11 +167,11 @@ class OnboardingPage extends StatelessWidget {
           SizedBox(height: 20.h,),
           Text(title,
 
-              style:  Theme.of(context).textTheme.displayLarge),
+              style:  Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.deepPurple,fontSize: 32)),
           SizedBox(height: 6.h,),
            Text(text,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.black)),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black, fontWeight: FontWeight.w400,height: 1.35)),
         ],
       ),
     );

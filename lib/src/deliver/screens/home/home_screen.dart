@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/deliver/screens/home/packages/packages_list_screen.dart';
 import 'package:weewee_delivery/src/deliver/screens/home/packages/pickup_packages_screen.dart';
+import 'package:weewee_delivery/src/deliver/screens/home/wallet/weewee_wallet_screen.dart';
 
 import '../../../constant/constant.dart';
 import '../../provider/deliver_firebase_cubit.dart';
@@ -54,41 +55,50 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 30,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22.0),
-              child: Container(
-                alignment: Alignment.center,
-                decoration:  BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(24)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        spreadRadius: 3,
-                        blurRadius: 5,
-                        offset: Offset(3, 3),
-                      ),
-                    ]
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 32),
+              child: GestureDetector(
+                onTap: (){
+                  DeliverFirebaseCubit().countReadyPackages();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  MyWeeWeeWallet()),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration:  BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.all(Radius.circular(24)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade200,
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(3, 3),
+                        ),
+                      ]
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
 
-                child:  Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8, right: 6),
-                      child: Text('My Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700, fontSize: 20, color: Colors.deepPurple),),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8, right: 4),
-                      child: Text('+', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700, fontSize: 20, color: Colors.deepPurple),),
-                    ),
-                    Text('2000.0', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400, fontSize: 32, color: Colors.deepPurple),),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 5, left: 4),
-                      child: Text('DZ', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700, fontSize: 16, color: Colors.deepPurple),),
-                    ),
-                  ],
+                  child:  Row(
+                    //mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('My WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w400,fontSize: 18, color: Colors.deepPurple),),
+                          const SizedBox(height: 4,),
+                          Text('Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 26, color: Colors.deepPurple),),
+                        ],
+                      ),
+                      const Spacer(),
+                      SizedBox(
+                        height: 55,
+                        width: 55,
+                        child: Image.asset("assets/icons/wallet.png",color: Colors.deepPurple,),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -1,4 +1,5 @@
 
+import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:weewee_delivery/src/constant/constant.dart';
 
@@ -36,9 +37,14 @@ mainAxisSize: MainAxisSize.min,
                     const SizedBox(width: 16,),
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0),
-                      child: SizedBox(height: 25,
-                        width: 25,
-                        child: Image.asset("assets/icons/logout.png" , color: Colors.deepPurple,),
+                      child: GestureDetector(
+                        onTap: () async {
+                          await FirebaseAuth.instance.signOut();
+                        },
+                        child: SizedBox(height: 25,
+                          width: 25,
+                          child: Image.asset("assets/icons/logout.png" , color: Colors.deepPurple,),
+                        ),
                       ),
                     )
                   ],

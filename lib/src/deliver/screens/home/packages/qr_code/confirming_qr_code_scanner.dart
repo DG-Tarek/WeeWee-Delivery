@@ -184,8 +184,7 @@ class _QRViewConfirmingState extends State<QRViewConfirming> {
         if(result!.code == widget.package.id!){
           _confirmed = true ;
           await DeliverFirebaseCubit().changePackageState(
-              packageID: widget.package.id!,
-              savedCollection: widget.package.savedCollection,
+              package: widget.package,
               packageNewState: widget.event);
         }else{
           showToast(message: "You are Scanning the wrong Package !");

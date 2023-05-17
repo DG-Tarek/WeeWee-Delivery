@@ -123,7 +123,7 @@ class _FirstPageState extends State<FirstPage> {
                 ),
                 SizedBox(height: 4.h,),
                 Container(
-            height: 110,
+            height: 100,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -147,16 +147,16 @@ class _FirstPageState extends State<FirstPage> {
                   Text(
                     "Deliver is someone who delivers packages, thier involves transporting parcels from one location to another." ,
                     key: ValueKey<String>(_type),
-                    style: Theme.of(context).textTheme.displaySmall!.copyWith(color:Colors.deepPurple.shade500 , fontWeight: FontWeight.w500),)
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color:Colors.deepPurple.shade500 , fontWeight: FontWeight.w500),)
                       :
                   _type == "trader" ?
                   Text("Trader is a person who owns or operates a business that sells good or services, it's can be on line or through an e-commerce platefrom." ,
                     key: ValueKey<String>(_type),
-                    style: Theme.of(context).textTheme.displaySmall!.copyWith(color:Colors.deepPurple.shade500 , fontWeight: FontWeight.w500),)
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color:Colors.deepPurple.shade500 , fontWeight: FontWeight.w500),)
                       :
                   Text("I can give you a simple definition about Driver or Trader, after you choose one of them." ,
                     key: ValueKey<String>(_type),
-                    style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.deepPurple.shade500 , fontWeight: FontWeight.w500),)
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepPurple.shade500 , fontWeight: FontWeight.w500),)
 
                   ,
                 ),

@@ -22,13 +22,19 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
 
 
   int _pickUpPackages = 0;
+  int _deliveredPackages = 0;
+  int _returnedPackages = 0;
 
 
   List<Package> _myPackagesList = [];
+  List<Package> _readyPackages = [];
+
   final String _uid = "kF6ffq2JGtlLESh0L7cw";
 
 
   int get pickUpPackages => _pickUpPackages ;
+  int get deliveredPackages => _deliveredPackages ;
+  int get returnedPackages => _returnedPackages ;
 
   Future<void> getMyPackagesList() async {
     emit(GetMyPackagesListLoadingState());
@@ -40,6 +46,18 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
       for (var doc in value.docs) {
         Package p = Package.fromJson(doc.data())
           ..id = doc.id ;
+
+        /*switch(p.packageState){
+          case "pickUp":{
+            _pickUpPackages++;
+            break;}
+          case "delivered":{
+            _deliveredPackages++;
+            break;}
+          case "returned":{
+            _returnedPackages++;
+          }
+        }*/
         if(p.packageState == "pickUp")
           {_pickUpPackages++;}
         _myPackagesList.add(p);
@@ -49,6 +67,24 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
   }
 
 
+  void countReadyPackages(){
+    _deliveredPackages = 0;
+    _returnedPackages = 0;
+    _readyPackages.clear();
+    for (Package p in _myPackagesList){
+      switch(p.packageState){
+        case "delivered":{
+          _deliveredPackages++;
+          _readyPackages.add(p);
+          break;}
+        case "returned":{
+          _returnedPackages++;
+          _readyPackages.add(p);
+          break;
+        }
+      }
+    }
+  }
 
   Future<String> pickUpScannedPackage({required pickedUpQRCode}) async {
 
@@ -61,10 +97,11 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
          await FirebaseFirestore.instance.collection(p.savedCollection)
              .doc(p.id)
              .update({"packageState" : "onRoad" })
-             .then((value) {
+             .then((value) async {
            p.packageState = "onRoad";
            _pickUpPackages-- ;
             state = "Picked" ;
+           await addHistory(activityType: "delivery",event: "pickup",location: p.senderWilaya+", "+p.senderBaladia , packageCollection: p.savedCollection , packageID: p.id! );
            emit(PickUpPackagesSuccessfullyState());
          });
        }
@@ -74,33 +111,61 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
   }
 
 
-  Future<void> changePackageState({required String packageID,required String savedCollection, required String packageNewState})async{
+  Future<void> changePackageState({required Package package, required String packageNewState})async{
   emit(ChangePackageStateLoadingState());
-    await FirebaseFirestore.instance.collection(savedCollection)
-        .doc(packageID)
+    await FirebaseFirestore.instance.collection(package.savedCollection)
+        .doc(package.id)
         .update({"packageState" : packageNewState })
         .then((value) {
-        final int index = myPackagesList.indexWhere((element) => element.id == packageID);
+        final int index = myPackagesList.indexWhere((element) => element.id == package.id);
         myPackagesList[index].packageState = packageNewState ;
-      emit(ChangePackageStateSuccessfullyState());
+        switch(packageNewState){
+          case "delivered":
+            {
+              final double money = package.isFreeDelivery ? package.productPrice : package.productPrice + package.deliveryCost;
+              addHistory(activityType: "delivery",event: "delivered",location: package.clientWilaya+", "+package.clientBaladia, money: money.toString() , packageCollection: package.savedCollection , packageID: package.id!);
+              break;
+            }
+          case "returned":
+            {
+              addHistory(activityType: "delivery",event: "returned",location: package.clientWilaya+", "+package.clientBaladia , packageCollection: package.savedCollection , packageID: package.id!);
+              break;
+            }
+        }
+        emit(ChangePackageStateSuccessfullyState());
+
     });
   }
 
 
 
   // Complete this Method for saving Deliver History
-  Future<void> addHistory( {required String activityType, required String event, String location="-", String money="-"})async{
+  Future<void> addHistory( {required String activityType, required String event,required String packageID, required String packageCollection, String location="-", String money="-"})async{
     final String month = DateFormat.yMMMM().format(DateTime.now());
-    final String day = DateFormat.MMMMd().format(DateTime.now());
+     String day = DateFormat.MMMMd().format(DateTime.now());
     final String time = DateFormat.jms().format(DateTime.now());
-    final String history = "$time $activityType $event $location $money";
+
+    final String history = "$time | $activityType | $event | $packageCollection $packageID | $location | $money";
+
     await FirebaseFirestore.instance.collection("test_users")
-        .doc(_uid).collection(month).doc(day).set({"Event":history});
+        .doc(_uid).collection(month).doc(day).get().then((value) async{
+          try {
+            await FirebaseFirestore.instance.collection("test_users")
+                .doc(_uid).collection(month).doc(day).update(
+                {"History": FieldValue.arrayUnion(<String>[history])});
+          }
+          catch (e){
+            await FirebaseFirestore.instance.collection("test_users")
+                .doc(_uid).collection(month).doc(day).set({"History": FieldValue.arrayUnion(<String>[history])});
+          }
+        });
+
 
   }
 
   
   List<Package> get myPackagesList => _myPackagesList;
+  List<Package> get readyPackages => _readyPackages;
 
 
 }
