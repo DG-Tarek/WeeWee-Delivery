@@ -116,7 +116,7 @@ class MyWeeWeeWallet extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 children: [
-                  SizedBox(width: 8,),
+                  const SizedBox(width: 8,),
                   Expanded(
                     child: Container(
                       height: 160,

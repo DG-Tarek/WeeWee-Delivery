@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 22.0),
               child: GestureDetector(
                 onTap: (){
-                  DeliverFirebaseCubit().getMyWeeWeeWallet();
+                  DeliverFirebaseCubit().getWeeWeeWallet();
                   DeliverFirebaseCubit().countReadyPackages();
                   Navigator.push(
                     context,
@@ -72,9 +72,15 @@ class HomeScreen extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.shade200,
-                          spreadRadius: 3,
-                          blurRadius: 5,
-                          offset: Offset(3, 3),
+                          spreadRadius: 1,
+                          blurRadius: 3,
+                          offset: const Offset(3, 3),
+                        ),
+                        BoxShadow(
+                          color: Colors.grey.shade100,
+                          spreadRadius: 1,
+                          blurRadius: 3,
+                          offset: const Offset(-3, -1),
                         ),
                       ]
                   ),
@@ -87,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('My WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w400,fontSize: 18, color: Colors.deepPurple),),
+                          Text('WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w700,fontSize: 18, color: Colors.deepPurple),),
                           const SizedBox(height: 4,),
                           Text('Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 26, color: Colors.deepPurple),),
                         ],

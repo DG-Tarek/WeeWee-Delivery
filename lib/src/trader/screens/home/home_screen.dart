@@ -699,7 +699,7 @@ class HomeScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('My WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w400,fontSize: 18, color: Colors.white),),
+                                Text('WeeWee', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w700,fontSize: 18, color: Colors.white),),
                                 const SizedBox(height: 4,),
                                 Text('Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 26, color: Colors.white),),
                               ],

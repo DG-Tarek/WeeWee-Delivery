@@ -821,6 +821,41 @@ class _PackageDetailsScreenState extends State<PackageDetailsScreen> {
                                 GestureDetector(
                                   onTap: (){
                                     Navigator.of(context).pop();
+                                    Navigator.of(context).push(_createRoute(event: "delivered"));
+                                  },
+                                  child: Container(
+                                    width: width,
+                                    decoration: BoxDecoration(
+                                      color: Colors.orange,
+                                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade400,
+                                          spreadRadius: 3,
+                                          blurRadius: 5,
+                                          offset: Offset(3, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.symmetric(vertical: 12),
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(width: 20,),
+                                        Text("Report", style:  Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w500),),
+                                        const Spacer(),
+                                        SizedBox(
+                                            height: 35,
+                                            width: 35,
+                                            child: Image.asset("assets/icons/approved.png", color: Colors.white,)),
+                                        const SizedBox(width: 20,),
+                                      ],
+                                    ),),
+                                ),
+                                const SizedBox(height: 15,),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
                                     Navigator.of(context).push(_createRoute(event: "returned"));
                                   },
                                   child: Container(

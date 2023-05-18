@@ -134,7 +134,7 @@ class _PickUpPackagesScreenState extends State<PickUpPackagesScreen> {
                   const SizedBox(height: 30,),
                   Text("NOTHING", style:  Theme.of(context).textTheme.headlineMedium!.copyWith(color: stateC, fontWeight: FontWeight.w600),),
                   const SizedBox(height: 10,),
-                  Text("There are No packages\nto Pick Up for Now", textAlign: TextAlign.center ,style:  Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18,color: stateC, fontWeight: FontWeight.w400, height: 1.4),),
+                  Text("There are No Packages\nto Pick Up for Now", textAlign: TextAlign.center ,style:  Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18,color: stateC, fontWeight: FontWeight.w400, height: 1.4),),
                 ],
               ),
             )

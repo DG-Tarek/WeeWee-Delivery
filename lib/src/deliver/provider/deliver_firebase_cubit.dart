@@ -200,7 +200,7 @@ class DeliverFirebaseCubit extends Cubit<DeliverFirebaseCubitState> {
 
 
 
-  Future<void> getMyWeeWeeWallet() async {
+  Future<void> getWeeWeeWallet() async {
     emit(GetWeeWeeWalletLoadingState());
     await FirebaseFirestore.instance.collection("test_users").doc(_uid).collection("wallet").get().then((value) {
       _walletList.clear();
