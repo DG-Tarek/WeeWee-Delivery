@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+//import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -295,7 +295,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
 
                   onTap: () {
                     final DateTime now = DateTime.now();
-                    DatePicker.showDatePicker(context,
+                   /* DatePicker.showDatePicker(context,
                         showTitleActions: true,
                         minTime: DateTime( now.year, now.month , now.day),
                         maxTime: DateTime( now.year, now.month +1, now.day),
@@ -305,7 +305,7 @@ class _DeliveryPageState extends State<DeliveryPage>  with AutomaticKeepAliveCli
                           });
                         },
                         currentTime: DateTime.now(),
-                        locale: LocaleType.en);
+                        locale: LocaleType.en);*/
                   },
                   child: Container(
 

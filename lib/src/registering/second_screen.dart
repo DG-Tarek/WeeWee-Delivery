@@ -1,7 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+//import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:weewee_delivery/src/registering/third_screen.dart';
@@ -236,7 +236,7 @@ class _SecondPageState extends State<SecondPage> {
               const SizedBox(height: 20,),
               GestureDetector(
                 onTap: () {
-                  DatePicker.showDatePicker(context,
+                 /* DatePicker.showDatePicker(context,
                       showTitleActions: true,
                       minTime: DateTime(1950, 1, 1),
                       maxTime: DateTime(2005, 12, 31),
@@ -246,7 +246,7 @@ class _SecondPageState extends State<SecondPage> {
                         });
                       },
                       currentTime: DateTime.now(),
-                      locale: LocaleType.en);
+                      locale: LocaleType.en);*/
                 },
                 child: Container(
 

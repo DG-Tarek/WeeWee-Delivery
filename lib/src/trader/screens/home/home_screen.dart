@@ -704,6 +704,8 @@ class HomeScreen extends StatelessWidget {
                                 Text('Wallet', textAlign: TextAlign.left,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500, fontSize: 26, color: Colors.white),),
                               ],
                             ),
+
+
                             Spacer(),
                             SizedBox(
                               height: 55,
